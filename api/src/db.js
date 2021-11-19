@@ -2,6 +2,8 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+
+
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
@@ -29,9 +31,65 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
-const { Country, Activity } = sequelize.models;
+const { Mesa, Resto, Detalle, Bebidas, Cervezas, 
+  Cocktels, Ensaladas, Entradas, Picadas, Pizzas, Postres,
+  Principales, Sandwitch, Vinos } = sequelize.models;
 // Para relacionarlos hacemos un destructuring
    //const { Videogame } = sequelize.models;   EJEMPLO
+
+Resto.hasMany(Mesa,{
+  foreignKey: {
+    name: 'uid',
+    allowNull: false
+  }
+})
+Mesa.belongsTo(Resto,{
+  foreignKey: {
+    name: 'uid',
+    allowNull: false
+  }
+})
+
+Mesa.hasMany(Detalle)
+Detalle.belongsTo(Mesa)
+
+Resto.hasMany(Bebidas)
+Bebidas.belongsTo(Resto)
+
+Resto.hasMany(Cervezas)
+Cervezas.belongsTo(Resto)
+
+Resto.hasMany(Cocktels)
+Cocktels.belongsTo(Resto)
+
+Resto.hasMany(Ensaladas)
+Ensaladas.belongsTo(Resto)
+
+Resto.hasMany(Entradas)
+Entradas.belongsTo(Resto)
+
+Resto.hasMany(Picadas)
+Picadas.belongsTo(Resto)
+
+Resto.hasMany(Pizzas)
+Pizzas.belongsTo(Resto)
+
+Resto.hasMany(Picadas)
+Picadas.belongsTo(Resto)
+
+Resto.hasMany(Postres)
+Postres.belongsTo(Resto)
+
+Resto.hasMany(Principales)
+Principales.belongsTo(Resto)
+
+Resto.hasMany(Sandwitch)
+Sandwitch.belongsTo(Resto)
+
+Resto.hasMany(Vinos)
+Vinos.belongsTo(Resto)
+
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
