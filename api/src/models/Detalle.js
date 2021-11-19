@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
     },
 
     precio: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
     },
 
     plato:{

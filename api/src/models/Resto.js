@@ -39,7 +39,7 @@ module.exports = (sequelize) => {
     },
     
     mesa:{
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     }
 
