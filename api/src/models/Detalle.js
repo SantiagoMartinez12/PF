@@ -5,7 +5,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('detalle', {
     id: {
-    type: DataTypes.STRING,
+    type: 
+        DataTypes.UUID,
       allowNull: false,
       primaryKey:true,
     },
@@ -21,6 +22,14 @@ module.exports = (sequelize) => {
     plato:{
         type: DataTypes.STRING,
     },
+
+    estado: {
+        type: DataTypes.BOOLEAN,
+    },
+
+    seguimiento: {
+        type: DataTypes.ENUM('solicitado', 'confirmado', 'entregado', 'pagado'),
+    }
 
 },{
     freezeTableName: true

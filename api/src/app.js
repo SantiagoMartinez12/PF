@@ -4,10 +4,7 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 
 require('./db.js');
-// hola grupo 
-// ijanscjinasjicnasc
-// Soy Pato!!!
-// Que escandalo MARTAAAAAAAAAAAAAAAAAAAA!!!!
+
 const server = express();
 
 server.name = 'API';
