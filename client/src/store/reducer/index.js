@@ -2,6 +2,8 @@
 
 
 const initialState = {
+    //menuBaseDatos [],
+    //
     
 };
 
