@@ -3,9 +3,9 @@ const { DataTypes} = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('postres', {
+  sequelize.define('producto', {
     id: {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
       allowNull: false,
       primaryKey:true,
     },

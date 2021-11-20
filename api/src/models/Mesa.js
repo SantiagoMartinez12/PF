@@ -5,23 +5,21 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('mesa', {
     id: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
       allowNull: false,
       primaryKey:true,
     },
 
     name: {
       type: DataTypes.STRING,
-      
     },
 
     estado: {
       type: DataTypes.BOOLEAN,
-      
     },
+
     cuenta: {
-      type: DataTypes.INTEGER,
-      
+      type: DataTypes.INTEGER,  
     },
     
   },{
