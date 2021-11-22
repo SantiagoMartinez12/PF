@@ -23,8 +23,7 @@ router.get('/:id', async (req, res, next) =>{
 
 router.post('/', async (req, res, next) =>{
     try{
-        const {id, name, precio, plato, estado, seguimiento} = req.body
-        console.log(id, name, precio, plato, estado, seguimiento, comentario)
+        const {id, name, precio, plato, estado, seguimiento, comentario} = req.body
         const newDetalle = await Detalle.create({
             id,
             name,
@@ -41,7 +40,39 @@ router.post('/', async (req, res, next) =>{
 });
 
 router.put('/', async (req, res, next) =>{
-    
+    try{
+        const {id, name, precio, plato, estado, seguimiento, comentario} = req.body
+        const cambiarDetail = await Detalle.update({
+            name:name,
+            precio:precio,
+            plato:plato,
+            estado:estado,
+            seguimiento:seguimiento,
+            comentario:comentario
+        },{
+            where:{
+                id:id
+            }
+        })
+        res.send('su detalle se ha cambiado con exito') 
+    }catch(error){
+        next(error)
+    }
+});
+
+router.delete('/:id', async (req, res, next) =>{
+    try{
+        const {id} = req.params;
+        const detalle = await Detalle.destroy({
+        attributes : ['id', 'name', 'precio', 'plato', 'estado', 'seguimiento'],
+        where:{
+            id:id,
+        }
+        }) 
+        res.send('se ha eliminado con exito')
+    }catch(error){
+        next(error)
+    }
 });
 
 module.exports = router;
