@@ -8,3 +8,10 @@
 // boton "Finalizar pedido"  
 // en la store debe haber un estado con el detalle del pedido que se actualiza con el submiteo anterior
 
+import react from 'react';
+
+export default function Carta(){
+    return(
+    <div>Menu</div>
+    )
+}
