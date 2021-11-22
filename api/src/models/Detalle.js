@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('detalle', {
     id: {
     type: 
-        DataTypes.UUID,
+        DataTypes.STRING,
       allowNull: false,
       primaryKey:true,
     },
@@ -29,6 +29,10 @@ module.exports = (sequelize) => {
 
     seguimiento: {
         type: DataTypes.ENUM('solicitado', 'confirmado', 'entregado', 'pagado'),
+    },
+
+    comentario:{
+        type: DataTypes.STRING
     }
 
 },{

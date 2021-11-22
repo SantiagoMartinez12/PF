@@ -41,12 +41,8 @@ Mesa.belongsTo(Resto);
 Mesa.hasMany(Detalle);
 Detalle.belongsTo(Mesa);
 
-Resto.belongsToMany(Categorias,{
-  through: 'resto_categorias'
-});
-Categorias.belongsToMany(Resto,{
-  through: 'resto_categorias'
-});
+Resto.hasMany(Categorias)
+Categorias.belongsTo(Resto)
 
 Categorias.hasMany(Producto);
 Producto.belongsTo(Categorias);
