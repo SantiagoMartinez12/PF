@@ -4,7 +4,10 @@
 const initialState = {
     //menuBaseDatos [],
     //
-    
+    ClientInfo:{
+        name:"",
+        id:null
+    }
 };
 
 const reducer = (state= initialState, action)=>{

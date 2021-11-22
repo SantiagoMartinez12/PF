@@ -11,6 +11,7 @@ import logo from "../../../assets/Logo.png";
 import { useState } from "react";
 
 export default function LandingPageClient() {
+
   const [input, setInput] = useState({
     name: "",
   });
@@ -28,7 +29,7 @@ export default function LandingPageClient() {
     if (name === undefined || name.length < 3) {
       return alert("Por favor, escríbe un nombre valido");
     }
-    navigate("/home");
+    navigate(`/home/${name}`);
   }
 
   return (

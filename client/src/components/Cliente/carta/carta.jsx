@@ -12,6 +12,6 @@ import react from 'react';
 
 export default function Carta(){
     return(
-    <div>Menu</div>
+    <div><br/>ACA LISTA CON PRODUCTOS <br/> FILTRADOS <br/> CANTIDADES </div>
     )
 }

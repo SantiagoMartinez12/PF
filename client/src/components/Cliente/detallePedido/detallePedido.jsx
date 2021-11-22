@@ -9,6 +9,9 @@ import react from 'react';
 
 export default function DetallePedido(){
     return(
-    <div>Detalle de Pedido</div>
+    <div><br/>ACA SE MUESTRA EL DETALLE DEL PEDIDO <br/>
+         BOTON MODIFICAR <br/>
+         BOTON ELIMINAR<br/>
+         BOTON PAGAR</div>
     )
 }

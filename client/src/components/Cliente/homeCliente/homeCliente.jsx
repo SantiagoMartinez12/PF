@@ -7,12 +7,17 @@
 
 
 import React, { useState } from 'react'
+import { useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
 
 
 
 export default function HomeClient(){
+    let param = useParams()
+    
+    let name = param.name
+
        const [ state, setState] = useState(false)
         function handleClickPedido(e){
           setState(false)
@@ -22,7 +27,7 @@ export default function HomeClient(){
         }
     return <div>
 
-            <h1>Bienvenido/a  Martaaa </h1>
+            <h1>Bienvenido/a {name} </h1>
 
             <button onClick={e => {handleClickPedido(e)}}>Ver Pedido</button> 
             <button onClick={e => {handleClickPedidoMenu(e)}}>Ver Menu</button>
