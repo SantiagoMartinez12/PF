@@ -17,5 +17,7 @@ router.use("/resto", restoRoutes);
 // router.use('/categorias', categoriasRoutes)
 // router.use('/producto', productoRoutes)
 router.use("/detalle", detalleRoutes);
+router.use("/api/producto", productoRoutes);
+
 
 module.exports = router;
