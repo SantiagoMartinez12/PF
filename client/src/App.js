@@ -1,9 +1,18 @@
 import './App.css';
+import React from 'react';
+import { Routes,Route  } from 'react-router-dom';
+import LandingPageClient from './components/Cliente/landingPageCliente/landingPageCliente.jsx';
+
+import HomeClient from './components/Cliente/homeCliente/homeCliente.jsx';
+
 
 function App() {
   return (
     <div className="App">
-      <h1>Mozo App</h1>
+      <Routes>
+            <Route exact path='/' element={<LandingPageClient/>}/>
+            <Route exact path='/home/:name' element={<HomeClient/>}/>
+        </Routes>
     </div>
   );
 }

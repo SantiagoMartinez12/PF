@@ -5,3 +5,13 @@
 // boton eliminar pedido -- resetea todo el pedido
 // boton confirmar pedido --- hace el post al back con el pedido
 
+import react from 'react';
+
+export default function DetallePedido(){
+    return(
+    <div><br/>ACA SE MUESTRA EL DETALLE DEL PEDIDO <br/>
+         BOTON MODIFICAR <br/>
+         BOTON ELIMINAR<br/>
+         BOTON PAGAR</div>
+    )
+}
