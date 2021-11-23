@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
       allowNull: false,
       primaryKey:true,
+      defaultValue: DataTypes.UUIDV4
     },
 
     name: {
@@ -15,6 +16,9 @@ module.exports = (sequelize) => {
     },
     
   },{
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false,
+    createdAt: false,
+
     });
 };

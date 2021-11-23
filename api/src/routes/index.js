@@ -14,10 +14,14 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 // router.use('/mesa', mesaRoutes)
 router.use("/resto", restoRoutes);
-// router.use('/categorias', categoriasRoutes)
+
 // router.use('/producto', productoRoutes)
 router.use("/detalle", detalleRoutes);
+//<<<<<<< HEAD
+router.use("/categorias", categoriasRoutes);
+//=======
 router.use("/api/producto", productoRoutes);
 
+//>>>>>>> 0d4b9d25daa383a0a52a728c5ff416937abcddce
 
 module.exports = router;
