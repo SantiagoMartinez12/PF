@@ -1,6 +1,5 @@
 const { conn } = require('../db');
 const {  Categorias } = conn.models;
-const { Op } = require('sequelize');
 
 
 const findCategoria = async (categoria) => {
