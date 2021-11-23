@@ -1,42 +1,51 @@
 const { Router } = require('express');
-const { conn } = require('../db');
-const { Producto } = conn.models;
-const {Op} =require('sequelize');
 const getProduct = require('../functions/getProdct');
 const bulkProductDataBase = require('../functions/bulkProductDataBase');
-
+const updateProduct = require('../functions/updateProduct');
+const express = require("express");
+const deleteProduct = require('../functions/deleteProduct');
 
 const router = Router();
+router.use(express.json());
 
-router.get('/api/producto', async (req, res, next) =>{
+
+router.post('/', async (req, res, next) =>{
     try{
         let parameters = req.body;
-        await getProduct(parameters)
+        await bulkProductDataBase(parameters);
+        res.json({response:'correcto'});
+    }catch(error){
+        next(error) 
+    }
+});
+
+
+router.get('/', async (req, res, next) =>{
+    try{
+        let parameters = req.body;
+        let result = await getProduct(parameters);
+        res.json(result);
     }catch(error){
         next(error)
     }
 });
 
-router.post('/api/producto', async (req, res, next) =>{
+
+router.put('/', async (req, res, next) =>{
     try{
         let parameters = req.body;
-        await bulkProductDataBase(parameters)
+        await updateProduct(parameters);
+        res.json({response:'correcto'});
     }catch(error){
         next(error) 
     }
 });
 
-router.put('/api/producto', async (req, res, next) =>{
+router.delete('/', async (req, res, next) =>{
     try{
-
-    }catch(error){
-        next(error) 
-    }
-});
-
-router.delete('/api/producto', async (req, res, next) =>{
-    try{
-
+        let parameters = req.body;
+        await deleteProduct(parameters);
+        res.json({response:'correcto'});
     }catch(error){
         next(error) 
     }
