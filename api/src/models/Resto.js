@@ -8,12 +8,9 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.STRING,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true,
-      },
-
-      qr: {
-        type: DataTypes.STRING,
       },
 
       image: {
@@ -28,6 +25,7 @@ module.exports = (sequelize) => {
       usuario: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
       },
 
       contraseña: {
@@ -37,6 +35,7 @@ module.exports = (sequelize) => {
 
       mail: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
       },
 

@@ -5,7 +5,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('mesa', {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
@@ -20,6 +21,10 @@ module.exports = (sequelize) => {
 
     cuenta: {
       type: DataTypes.INTEGER,
+    },
+
+    qr: {
+      type: DataTypes.STRING,
     },
     
   },

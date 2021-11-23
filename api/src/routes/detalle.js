@@ -23,9 +23,10 @@ router.get('/:id', async (req, res, next) =>{
 
 router.post('/', async (req, res, next) =>{
     try{
-        const {id, name, precio, plato, estado, seguimiento, comentario} = req.body
+        const {mesaId, name, precio, plato, estado, seguimiento, comentario} = req.body
         const newDetalle = await Detalle.create({
-            id,
+
+            mesaId: mesaId,
             name,
             precio,
             plato,
@@ -43,7 +44,7 @@ router.put('/', async (req, res, next) =>{
     try{
         const {mesaId, id, name, precio, plato, estado, seguimiento, comentario} = req.body
         const cambiarDetail = await Detalle.update({
-            mesaId: mesaId,
+            
             name:name,
             precio:precio,
             plato:plato,

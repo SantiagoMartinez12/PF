@@ -10,7 +10,6 @@ router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
     let info = await Resto.findAll({
       attributes: [
-        "qr",
         "image",
         "name",
         "usuario",
@@ -30,11 +29,10 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    let { id, qr, image, name, usuario, contraseña, mail, mesa } = req.body;
+    let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
 
     let newUser = await Resto.create({
       id,
-      qr,
       image,
       name,
       usuario,
@@ -42,7 +40,7 @@ router.post("/", async (req, res, next) => {
       mail,
       mesa,
     });
-
+    await generadorQr(newUser.dataValues.mesa)
     res.send(newUser);
   } catch (err) {
     next(err);
