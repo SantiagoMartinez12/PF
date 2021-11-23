@@ -4,23 +4,31 @@ const {Categorias} = conn.models;
 
 const router = Router();
 
-router.get("/", async (req, res, next)=>{
+router.get("/:id", async (req, res, next)=>{
     try{
+        let {id} =req.params
+        console.log(id)
+        console.log(typeof(id))
         let cat = await Categorias.findAll({
             attributes:['id', 'name'],
-            
+            where:{
+                restoId:id
+            }
         })
         res.send(cat)
 
     }catch(err){
         next(err)
     }
-})
+});
+
+
 router.post('/', async (req, res, next) =>{
     try{
-        const {id, name} = req.body
+        const {id, name, restoId} = req.body
         const newCategoria = await Categorias.create({
             id,
+            restoId,
             name
             
         })

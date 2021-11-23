@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const { conn } = require("../db");
 const { Resto, Detalle } = conn.models;
- 
+const generadorQr = require("../functions/generadorQr")
+
 
 const router = Router();
 
@@ -40,7 +41,8 @@ router.post("/", async (req, res, next) => {
       mail,
       mesa,
     });
-    await generadorQr(newUser.dataValues.mesa)
+    console.log(newUser)
+    await generadorQr(newUser.dataValues.mesa, newUser.dataValues.id)
     res.send(newUser);
   } catch (err) {
     next(err);

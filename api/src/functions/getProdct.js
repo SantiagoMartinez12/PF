@@ -39,6 +39,7 @@ const getProduct = async (parameters) => {
                     [Op.iLike]: `${parameters.producto}`
                 }
             },
+            include: [Categorias],
         })
         return product;
     }

@@ -29,7 +29,6 @@ router.post('/', async (req, res, next) =>{
             name,
             estado,
             cuenta
-            
         })
         res.send(newMesa) 
     }catch(error){

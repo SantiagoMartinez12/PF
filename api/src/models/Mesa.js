@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define('mesa', {
     id: {
       type: DataTypes.STRING,
-      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
