@@ -6,7 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define('detalle', {
     id: {
     type: 
-        DataTypes.STRING,
+    DataTypes.STRING,
+    defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey:true,
     },
@@ -20,7 +21,7 @@ module.exports = (sequelize) => {
     },
 
     plato:{
-        type: DataTypes.STRING,
+            type: DataTypes.STRING,
     },
 
     estado: {
@@ -36,6 +37,7 @@ module.exports = (sequelize) => {
     }
 
 },{
-    freezeTableName: true
+    freezeTableName: true,
+
     });
 };
