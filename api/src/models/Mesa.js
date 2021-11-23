@@ -22,7 +22,11 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,  
     },
     
-  },{
-    freezeTableName: true
+  },
+  {
+    freezeTableName: true,
+    timestamps: false,
+    createdAt: false,
+    
     });
 };
