@@ -11,3 +11,25 @@ export function myFunction() {
         })
     };
 };
+
+export function filtroProductos(payload) {
+    return {
+        type: 'filtroProductos',
+        payload
+    }
+};
+
+export function sumaTicket(payload) {
+    return {
+        type: 'sumaTicket',
+        payload
+    }
+};
+
+export function buscaProducto(producto) {
+    return {
+        type: 'buscaProducto',
+        payload:producto
+    }
+};
+

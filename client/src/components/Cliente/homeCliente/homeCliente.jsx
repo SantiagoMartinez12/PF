@@ -17,7 +17,7 @@ export default function HomeClient(){
     let param = useParams()
     
     let name = param.name
-
+    // este estado en false muestra el detalle y en true muestra la carta
        const [ state, setState] = useState(false)
         function handleClickPedido(e){
           setState(false)
@@ -33,7 +33,7 @@ export default function HomeClient(){
             <button onClick={e => {handleClickPedidoMenu(e)}}>Ver Menu</button>
             <br/>
             {
-                !state ? <DetallePedido/> : <Carta/>
+                !state ? <DetallePedido/> : <Carta verPedido={handleClickPedido}/>
             }
     </div>
 }
