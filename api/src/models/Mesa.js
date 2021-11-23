@@ -21,8 +21,12 @@ module.exports = (sequelize) => {
     cuenta: {
       type: DataTypes.INTEGER,
     },
-
-  }, {
-    freezeTableName: true
-  });
+    
+  },
+  {
+    freezeTableName: true,
+    timestamps: false,
+    createdAt: false,
+    
+    });
 };

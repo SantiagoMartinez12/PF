@@ -34,7 +34,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         }
 
-    }, {
-        freezeTableName: true
+},{
+    freezeTableName: true,
+    timestamps: false,
+    createdAt: false,
     });
 };
