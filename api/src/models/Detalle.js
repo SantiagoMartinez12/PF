@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
     },
 
     plato:{
-        type: DataTypes.STRING,
+            type: DataTypes.STRING,
     },
 
     estado: {

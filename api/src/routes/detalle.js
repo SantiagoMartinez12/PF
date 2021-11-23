@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { conn } = require('../db');
 const {Detalle} = conn.models;
-const {Op} =require('sequelize');
+
 
 
 const router = Router();
@@ -41,8 +41,9 @@ router.post('/', async (req, res, next) =>{
 
 router.put('/', async (req, res, next) =>{
     try{
-        const {id, name, precio, plato, estado, seguimiento, comentario} = req.body
+        const {mesaId, id, name, precio, plato, estado, seguimiento, comentario} = req.body
         const cambiarDetail = await Detalle.update({
+            mesaId: mesaId,
             name:name,
             precio:precio,
             plato:plato,
