@@ -37,6 +37,10 @@ const getProduct = async (parameters) => {
     } else if (parameters.idResto && !parameters.categoria) {
 
         let allCategoriesResto = await Categorias.findAll({
+            attributes: [
+                "name",
+              ],
+            include: [Producto],
             where: {
                 restoId: {
                     [Op.iLike]: `${parameters.idResto}`
