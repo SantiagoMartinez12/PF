@@ -6,16 +6,16 @@ const findCategoria = require('./findCategoria');
 
 const bulkProductDataBase = async (parameters) => {
 
-    if (!parameters && parameters.idResto) {
+    if (!parameters.idResto) {
         return null;
 
     } else if (parameters.categoria) {
-        var categoriaControlVar = await findCategoria({ name: parameters.categoria })
+        var categoriaControlVar = await findCategoria(parameters.categoria, parameters.idResto)
 
         if (!categoriaControlVar) {
             categoriaControlVar = await Categorias.create({
                 name: parameters.categoria,
-                // restoId: parameters.idResto
+                restoId: parameters.idResto
             })
         }
 

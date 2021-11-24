@@ -5,6 +5,19 @@ const { Op } = require('sequelize');
 
 const getProduct = async (parameters) => {
 
+    if (parameters.producto) {
+
+        let product = await Producto.findAll({
+            where: {
+                id: {
+                    [Op.iLike]: `${parameters.producto}`
+                }
+            },
+            include: [Categorias],
+        })
+        return product;
+    }
+
     if (!parameters.categoria && !parameters.idResto) {
         let allProducts = await Producto.findAll();
         return allProducts;
@@ -17,6 +30,7 @@ const getProduct = async (parameters) => {
                     [Op.iLike]: `${parameters.categoria}`
                 }
             },
+            include: [Categorias],
         })
         return allProductsResto;
 
@@ -31,18 +45,7 @@ const getProduct = async (parameters) => {
         })
         return allCategoriesResto;
 
-    } else if (parameters.producto) {
-
-        let product = await Producto.findAll({
-            where: {
-                id: {
-                    [Op.iLike]: `${parameters.producto}`
-                }
-            },
-            include: [Categorias],
-        })
-        return product;
-    }
+    } 
 }
 
 module.exports = getProduct;

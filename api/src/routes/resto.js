@@ -41,7 +41,6 @@ router.post("/", async (req, res, next) => {
       mail,
       mesa,
     });
-    console.log(newUser)
     await generadorQr(newUser.dataValues.mesa, newUser.dataValues.id)
     res.send(newUser);
   } catch (err) {
