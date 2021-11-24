@@ -7,7 +7,8 @@ const initialState = {
     menuBaseDatos: productos,
     categoriasMenu: categorias,
     productosFiltrados:productos,
-    ticket:{},
+    ticket:[],
+    cuenta:0,
     
     ClientInfo:{
         name:"",
@@ -24,33 +25,48 @@ const reducer = (state= initialState, action)=>{
                 ...state,
                 productosFiltrados:filtrados
             }
-        case 'sumaTicket':
-            // let nuevoTicket = {}
-           
-            // for(const producto in state.ticket){
-                // console.log(`producto ${producto}`)
-
-                // if(action.payload.hasOwnProperty(producto)){
-                //     console.log('entré al if')
-                //     nuevoTicket[producto] = producto + action.payload.producto
-                // }else{
-                //     console.log('no entré al if')
-                //     console.log(nuevoTicket[producto])
-                //     nuevoTicket[producto] = producto
-                // }
-
-                // //cerveza:2
-            // }
+        case 'agregarTicket':
+            const nuevoItem = state.menuBaseDatos.find(p=> p.id === action.payload)
+            const itemsEnTicket= state.ticket.find(p=> p.id === nuevoItem.id)
+            
+            return itemsEnTicket ? 
+                    {
+                    ...state, 
+                    ticket: state.ticket.map(it=> it.id === nuevoItem.id ? {...it, cantidad: it.cantidad + 1}: it)
+             
+                    }
+                    :
+                    {...state,
+                        ticket:[...state.ticket, {...nuevoItem, cantidad:1} ]
+                    }
+       
+        case 'restarTicket':
+     
             return {
-                ...state,
-                ticket: action.payload
-            }
+                ...state, 
+                ticket: state.ticket.map(it=> it.id === action.payload ? {...it, cantidad: it.cantidad - 1}: it)
+         
+                }
+
         case 'buscaProducto':
-            let encontrados = state.menuBaseDatos.filter(p => p.name.toLowerCase().includes(action.payload.toLowerCase()))
+        let encontrados = state.menuBaseDatos.filter(p => p.name.toLowerCase().includes(action.payload.toLowerCase()))
             return {
                 ...state,
                 productosFiltrados:encontrados
             }
+
+        case 'sumaCuenta':
+            return {
+                ...state,
+                cuenta: state.cuenta + action.payload   
+            }    
+
+        case 'restaCuenta':
+            return {
+                ...state,
+                cuenta: state.cuenta - action.payload   
+            }
+
         default:
             return state;
     }
