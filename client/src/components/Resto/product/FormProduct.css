@@ -1,0 +1,34 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.8fr 0.8fr 0.8fr;
+    grid-template-rows: 1.5fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 10px;
+    grid-template-areas:
+      "nav nav nav"
+      "subNav subNav subNav"
+      "producto producto categoria"
+      "precio peso marca"
+      "descripcion descripcion imagen"
+      "descripcion descripcion imagen"
+      "submit submit submit"
+      "deleteSearch deleteSearch deleteSearch"
+      "deleteList deleteList deleteList"
+      "goBack goBack goBack"
+      "footer footer footer";
+  }
+  
+  .nav { grid-area: nav; }
+  .subNav { grid-area: subNav; }
+  .producto { grid-area: producto; }
+  .categoria { grid-area: categoria; }
+  .precio { grid-area: precio; }
+  .peso { grid-area: peso; }
+  .marca { grid-area: marca; }
+  .footer { grid-area: footer; }
+  .goBack { grid-area: goBack; }
+  .submit { grid-area: submit; }
+  .descripcion { grid-area: descripcion; }
+  .imagen { grid-area: imagen; }
+  .deleteSearch { grid-area: deleteSearch; }
+  .deleteList { grid-area: deleteList; }
+  
