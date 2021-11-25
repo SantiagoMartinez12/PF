@@ -19,9 +19,30 @@ export function filtroProductos(payload) {
     }
 };
 
-export function sumaTicket(payload) {
+export function agregarTicket(payload) {
     return {
-        type: 'sumaTicket',
+        type: 'agregarTicket',
+        payload
+    }
+};
+
+export function restarTicket(payload) {
+    return {
+        type: 'restarTicket',
+        payload
+    }
+};
+
+export function sumaCuenta(payload) {
+    return {
+        type: 'sumaCuenta',
+        payload
+    }
+};
+
+export function restaCuenta(payload) {
+    return {
+        type: 'restaCuenta',
         payload
     }
 };

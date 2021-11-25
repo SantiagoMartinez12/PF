@@ -12,68 +12,39 @@ import react, { useState } from 'react';
 
 import Buscador from './Buscador'
 import { useDispatch, useSelector } from 'react-redux'
-import { filtroProductos, sumaTicket } from '../../../store/actions';
+import { filtroProductos } from '../../../store/actions';
+import ItemCarta from './itemCarta';
 
 
-export default function Carta({verPedido}){
-    
-    
+export default function Carta(){
 
-    // const productos = useSelector(state => state.menuBaseDatos);
     const categorias = useSelector(state => state.categoriasMenu);
     const filtrados = useSelector(state=> state.productosFiltrados)
+    
 
     const dispatch = useDispatch();
-
-    const[input, setInput]= useState({})
-
     const handleOnClick=(e)=>{
         dispatch(filtroProductos(e.target.value))
 
     }
 
-    const handleOnChange=(e)=>{
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleOnSubmit=(e)=>{
-        e.preventDefault();
-        dispatch(sumaTicket(input));
-        setInput({})
-        verPedido();
-    }
-
-
     return(
-    <div>
-        <Buscador />
-        <br/>
-            {categorias?.map(c=>{
-                return(
-                <button key={c} value={c} onClick= {handleOnClick}>{c}</button>
-                )})}
-        <br/>
-        <form onSubmit= {handleOnSubmit}>
-            {filtrados?.map(p=>{
-                return(
-                    <div key={p.name}>
-                        {p.name} ${p.precio} <input name={p.name} type="number" min='0' value={input[p.name]} onChange={handleOnChange}></input>  
-                    </div>
-                )
-            })}
-            <button type='submit'>Finalizar pedido</button>
-        </form>
-
-       
-         
-    
-    
-    
-    
-    </div>
+        <div>
+            <Buscador />
+            <br/>
+                {categorias?.map(c=>{
+                    return(
+                    <button key={c} value={c} onClick= {handleOnClick}>{c}</button>
+                    )})}
+            <br/>
+                {filtrados?.map(p=>{
+                    return(
+                        <div key={p.id}>
+                            <ItemCarta data={p}/> 
+                        </div>
+                    )
+                })}
+        </div>
     )
 }
 
