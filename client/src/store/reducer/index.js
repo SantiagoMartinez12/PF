@@ -3,9 +3,9 @@ import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
 
 const initialState = {
-  menuBaseDatos: productos,
+  menuBaseDatos: [],
   categoriasMenu: [],
-  productosFiltrados: productos,
+  productosFiltrados: [],
   ticket: [],
   cuenta: 0,
 
@@ -72,10 +72,33 @@ const reducer = (state = initialState, action) => {
         cuenta: state.cuenta - action.payload,
       };
     
-    case "getCategorias":
+    // case "getCategorias":
+    //   return {
+    //     ...state,
+    //     categoriasMenu: action.payload,
+    //   };
+
+    case "getProductos":
+      // el payload trae un array con objetos {name:'categoria', productos:[array de productos]}
+      // acá lo convierto para que quede un array de objetos de productos con la propiedad "categoria"
+      const arrayProductos = [];
+      action.payload.map(categoria=>{
+        categoria.productos.map(prod=>{
+        prod.categoria = categoria.name
+        arrayProductos.push(prod)
+        });
+      });
+      // del array que nos llega del back saco un array con las categorias
+      const arrayCategorias = [];
+      action.payload.map(categoria=>{
+        arrayCategorias.push(categoria.name)
+      })
+
       return {
         ...state,
-        categoriasMenu: action.payload,
+        menuBaseDatos: arrayProductos,
+        productosFiltrados: arrayProductos,
+        categoriasMenu: arrayCategorias
       };
 
     default:

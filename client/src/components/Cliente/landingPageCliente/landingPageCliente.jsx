@@ -16,9 +16,9 @@ import { useDispatch } from "react-redux";
 export default function LandingPageClient() {
     const dispatch = useDispatch()
   
-    useEffect(() => {
-    dispatch(getCategorias());
-  }, [dispatch]);
+  //   useEffect(() => {
+  //   dispatch(getCategorias());
+  // }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
