@@ -2,74 +2,85 @@
 import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
 
-
 const initialState = {
-    menuBaseDatos: productos,
-    categoriasMenu: categorias,
-    productosFiltrados:productos,
-    ticket:[],
-    cuenta:0,
-    
-    ClientInfo:{
-        name:"",
-        id:null
-    }
+  menuBaseDatos: productos,
+  categoriasMenu: [],
+  productosFiltrados: productos,
+  ticket: [],
+  cuenta: 0,
+
+  ClientInfo: {
+    name: "",
+    id: null,
+  },
 };
 
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "filtroProductos":
+      let filtrados = state.menuBaseDatos.filter(
+        (p) => p.categoria === action.payload
+      );
+      return {
+        ...state,
+        productosFiltrados: filtrados,
+      };
+    case "agregarTicket":
+      const nuevoItem = state.menuBaseDatos.find(
+        (p) => p.id === action.payload
+      );
+      const itemsEnTicket = state.ticket.find((p) => p.id === nuevoItem.id);
 
-const reducer = (state= initialState, action)=>{
-    switch(action.type){
-        case 'filtroProductos':
-            let filtrados = state.menuBaseDatos.filter(p => p.categoria === action.payload)
-            return {
-                ...state,
-                productosFiltrados:filtrados
-            }
-        case 'agregarTicket':
-            const nuevoItem = state.menuBaseDatos.find(p=> p.id === action.payload)
-            const itemsEnTicket= state.ticket.find(p=> p.id === nuevoItem.id)
-            
-            return itemsEnTicket ? 
-                    {
-                    ...state, 
-                    ticket: state.ticket.map(it=> it.id === nuevoItem.id ? {...it, cantidad: it.cantidad + 1}: it)
-             
-                    }
-                    :
-                    {...state,
-                        ticket:[...state.ticket, {...nuevoItem, cantidad:1} ]
-                    }
-       
-        case 'restarTicket':
-     
-            return {
-                ...state, 
-                ticket: state.ticket.map(it=> it.id === action.payload ? {...it, cantidad: it.cantidad - 1}: it)
-         
-                }
+      return itemsEnTicket
+        ? {
+            ...state,
+            ticket: state.ticket.map((it) =>
+              it.id === nuevoItem.id ? { ...it, cantidad: it.cantidad + 1 } : it
+            ),
+          }
+        : {
+            ...state,
+            ticket: [...state.ticket, { ...nuevoItem, cantidad: 1 }],
+          };
 
-        case 'buscaProducto':
-        let encontrados = state.menuBaseDatos.filter(p => p.name.toLowerCase().includes(action.payload.toLowerCase()))
-            return {
-                ...state,
-                productosFiltrados:encontrados
-            }
+    case "restarTicket":
+      return {
+        ...state,
+        ticket: state.ticket.map((it) =>
+          it.id === action.payload ? { ...it, cantidad: it.cantidad - 1 } : it
+        ),
+      };
 
-        case 'sumaCuenta':
-            return {
-                ...state,
-                cuenta: state.cuenta + action.payload   
-            }    
+    case "buscaProducto":
+      let encontrados = state.menuBaseDatos.filter((p) =>
+        p.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      return {
+        ...state,
+        productosFiltrados: encontrados,
+      };
 
-        case 'restaCuenta':
-            return {
-                ...state,
-                cuenta: state.cuenta - action.payload   
-            }
+    case "sumaCuenta":
+      return {
+        ...state,
+        cuenta: state.cuenta + action.payload,
+      };
 
-        default:
-            return state;
-    }
-}
+    case "restaCuenta":
+      return {
+        ...state,
+        cuenta: state.cuenta - action.payload,
+      };
+    
+    case "getCategorias":
+      return {
+        ...state,
+        categoriasMenu: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default reducer;
