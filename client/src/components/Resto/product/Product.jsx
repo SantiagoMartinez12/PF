@@ -21,7 +21,7 @@ const Product = () => {
     return (
         <>
             {form ? <FormProduct /> :
-                <div className="grid-container">
+                <div className="prodcutAll">
                     <div className="menu">
                         <button type='button' onClick={(e) => handleAddProduct(e)}>Agregar Producto</button>
                     </div>

@@ -30,14 +30,14 @@ const ProductsPerCategory = ({ productos }) => {
 
     return (
         <>
-            <div class="grid-container">
-                <div class="before">
+            <div className="perCategoryALl">
+                <div className="before">
                     {productos.length > 3 ? <button type='button' onClick={(e) => handleBefore(e)}>{'<'}</button> : null}
                 </div>
-                <div class="after">
+                <div className="after">
                     {productos.length > 3 ? <button type='button' onClick={(e) => handleAfter(e)}>{'>'}</button> : null}
                 </div>
-                <div class="product">
+                <div className="product">
 
                     {currentDataShow.map((product) => {
                         return <div className='card'>

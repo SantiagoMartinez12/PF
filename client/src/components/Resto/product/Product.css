@@ -1,4 +1,4 @@
-.grid-container {
+.prodcutAll {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.5fr 1.5fr;
@@ -10,8 +10,7 @@
   
   .menu { grid-area: menu; }
   
-  .contenido { grid-area: contenido; }
-  
+  .contenido { grid-area: contenido; }  
 
   .contenido {
     height: 200px;
