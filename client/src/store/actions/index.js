@@ -1,10 +1,13 @@
 import axios from "axios"
+import productos from "../../components/Cliente/carta/ejemploCarta";
 
-export function getCategorias() {
+
+
+export function getProductos() {
     return function (dispatch) {
-        axios.get("http://localhost:3001/api/categorias/61a5fe2c-5275-4a22-8281-d194e63ba667")
+        axios.get("http://localhost:3001/api/producto?idResto=b1bd05ae-0156-47a4-9465-324fb6e29c03")
         .then((response) => {
-            dispatch({ type: "getCategorias", payload: response.data });
+            dispatch({ type: "getProductos", payload: response.data });
         })
         .catch((err) => {
             console.log(err)

@@ -8,11 +8,11 @@
 // boton "Finalizar pedido"  
 // en la store debe haber un estado con el detalle del pedido que se actualiza con el submiteo anterior
 
-import react, { useState } from 'react';
+import react, { useEffect, useState } from 'react';
 
 import Buscador from './Buscador'
 import { useDispatch, useSelector } from 'react-redux'
-import { filtroProductos } from '../../../store/actions';
+import { filtroProductos, getProductos } from '../../../store/actions';
 import ItemCarta from './itemCarta';
 
 
@@ -21,8 +21,12 @@ export default function Carta(){
     const categorias = useSelector(state => state.categoriasMenu);
     const filtrados = useSelector(state=> state.productosFiltrados)
     
-
     const dispatch = useDispatch();
+   
+    useEffect (() =>{
+        dispatch(getProductos())
+    }, [dispatch]);
+    
     const handleOnClick=(e)=>{
         dispatch(filtroProductos(e.target.value))
 
@@ -34,7 +38,7 @@ export default function Carta(){
             <br/>
                 {categorias?.map(c=>{
                     return(
-                    <button key={c.id} value={c.name} onClick= {handleOnClick}>{c.name}</button>
+                    <button key={c} value={c} onClick= {handleOnClick}>{c}</button>
                     )})}
             <br/>
                 {filtrados?.map(p=>{

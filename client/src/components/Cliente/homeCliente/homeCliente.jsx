@@ -14,6 +14,8 @@ import DetallePedido from '../detallePedido/detallePedido.jsx'
 
 
 export default function HomeClient(){
+
+    
     let param = useParams()
     
     let name = param.name
@@ -25,6 +27,8 @@ export default function HomeClient(){
         function handleClickPedidoMenu(e){
         setState(true)
         }
+
+    
     return <div>
 
             <h1>Bienvenido/a {name} </h1>
