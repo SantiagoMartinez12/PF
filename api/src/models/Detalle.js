@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
     sequelize.define('detalle', {
         id: {
             type: DataTypes.STRING,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
         },

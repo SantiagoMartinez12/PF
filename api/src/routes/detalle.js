@@ -23,17 +23,18 @@ router.get('/:id', async (req, res, next) =>{
 
 router.post('/', async (req, res, next) =>{
     try{
-        const {mesaId, name, precio, plato, estado, seguimiento, comentario} = req.body
-        const newDetalle = await Detalle.create({
-
-            mesaId: mesaId,
-            name,
-            precio,
-            plato,
-            estado,
-            seguimiento,
-            comentario
-        })
+        const data = req.body
+        console.log(data)
+        const newDetalle = await data.forEach(async(register)=>{
+            await Detalle.create({
+            mesaId: register.mesaId,
+            name: register.name,
+            precio: register.precio,
+            plato: register.plato,
+            estado: register.estado,
+            seguimiento: register.seguimiento,
+            comentario: register.comentario
+        })})
         res.send(newDetalle) 
     }catch(error){
         next(error)
