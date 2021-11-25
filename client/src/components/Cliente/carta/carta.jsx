@@ -34,7 +34,7 @@ export default function Carta(){
             <br/>
                 {categorias?.map(c=>{
                     return(
-                    <button key={c} value={c} onClick= {handleOnClick}>{c}</button>
+                    <button key={c.id} value={c.name} onClick= {handleOnClick}>{c.name}</button>
                     )})}
             <br/>
                 {filtrados?.map(p=>{
