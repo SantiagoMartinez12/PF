@@ -8,9 +8,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCategorias } from "../../../store/actions";
+import { useDispatch } from "react-redux";
+
 
 export default function LandingPageClient() {
+    const dispatch = useDispatch()
+  
+    useEffect(() => {
+    dispatch(getCategorias());
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
@@ -48,9 +56,7 @@ export default function LandingPageClient() {
           onChange={(e) => handleChange(e)}
         />
         <div>
-          
-            <button type="submit">Ingresar</button>
-          
+          <button type="submit">Ingresar</button>
         </div>
       </form>
     </div>

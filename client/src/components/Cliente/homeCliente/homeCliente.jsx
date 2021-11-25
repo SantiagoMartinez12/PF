@@ -33,7 +33,7 @@ export default function HomeClient(){
             <button onClick={e => {handleClickPedidoMenu(e)}}>Ver Menu</button>
             <br/>
             {
-                !state ? <DetallePedido/> : <Carta verPedido={handleClickPedido}/>
+                !state ? <DetallePedido/> : <Carta/>
             }
     </div>
 }
