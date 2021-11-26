@@ -79,7 +79,7 @@ export function ticketCuenta(payload){
 
 export function infoUsuario(id){
     return function (dispatch){
-        axios.get("http://localhost:3001/api/resto/437a0762-b37b-4d5b-97d0-e0ebd6ec8cdf")
+        axios.get("http://localhost:3001/api/resto/5b58f33f-8cee-4934-aa4a-43a6535fa880")
         .then((usuario) => {
             dispatch({
                 type: INFO_USUARIO,
