@@ -1,0 +1,28 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: 0.8fr 2fr 0.2fr;
+    grid-template-rows: 0.4fr 2.6fr 0.4fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". . ."
+      "Nav Form ."
+      ". . .";
+  }
+  .form { grid-area: Form; }
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 17px 0px;
+    grid-template-areas:
+      "Info-Usuario"
+      "Productos"
+      "Categorias"
+      "Medios-de-pago";
+    grid-area: Nav;
+  }
+  .infoUsuario { grid-area: Info-Usuario; }
+  .productos { grid-area: Productos; }
+  .categorias { grid-area: Categorias; }
+  .mediosDePago { grid-area: Medios-de-pago; }
+  

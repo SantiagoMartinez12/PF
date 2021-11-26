@@ -1,6 +1,7 @@
 // import { importar acciones } from "../actions/index"
 import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
+import { INFO_USUARIO } from "../actions";
 
 const initialState = {
   menuBaseDatos: [],
@@ -100,6 +101,11 @@ const reducer = (state = initialState, action) => {
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias
       };
+      case INFO_USUARIO:
+        return{
+            ...state,
+            usuario: action.payload
+        }
 
     default:
       return state;

@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
         },
 
-        name: {
+        namecliente: {
             type: DataTypes.STRING,
         },
 
@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
         },
 
-        plato: {
+        name: {
             type: DataTypes.STRING,
         },
 
@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
 
         comentario: {
             type: DataTypes.STRING
+        },
+
+        cantidad:{
+            type:DataTypes.INTEGER
         }
 
 },{
