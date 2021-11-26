@@ -4,10 +4,14 @@ import ProductsPerCategory from "./ProductsPerCategory";
 import FormProduct from "./FormProduct";
 import './Product.css';
 import data from "./data";
+import ProductDetail from "./ProductDetail";
 
 const Product = () => {
     const [form, setForm] = useState(false)
+    const [showDetail, setShowDetail] = useState(false);
+    const [infoDetail, setInfoDetail] = useState({});
     const dispatch = useDispatch();
+
 
     useEffect(() => {
 
@@ -20,22 +24,23 @@ const Product = () => {
 
     return (
         <>
-            {form ? <FormProduct /> :
-                <div className="prodcutAll">
-                    <div className="menu">
-                        <button type='button' onClick={(e) => handleAddProduct(e)}>Agregar Producto</button>
-                    </div>
-                    <div className="contenido">
+            {showDetail ? <ProductDetail info={infoDetail} /> :
+                form ? <FormProduct /> :
+                    <div className="prodcutAll">
+                        <div className="menu">
+                            <button type='button' onClick={(e) => handleAddProduct(e)}>Agregar Producto</button>
+                        </div>
+                        <div className="contenido">
 
-                        {data.map((categories) => {
-                            return <div className='categoriaBox'>
-                                <h4>{categories.name}</h4>
-                                <ProductsPerCategory productos={categories.productos} />
-                            </div>
-                        })}
+                            {data.map((categories) => {
+                                return <div className='categoriaBox'>
+                                    <h4>{categories.name}</h4>
+                                    <ProductsPerCategory productos={categories.productos} setShowDetail={setShowDetail} setInfoDetail={setInfoDetail} />
+                                </div>
+                            })}
 
+                        </div>
                     </div>
-                </div>
             }
         </>
     )

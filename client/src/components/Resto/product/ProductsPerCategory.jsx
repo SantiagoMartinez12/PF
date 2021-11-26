@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './ProductsPerCategory.css'
 
-const ProductsPerCategory = ({ productos }) => {
+const ProductsPerCategory = ({ productos ,  setShowDetail ,  setInfoDetail }) => {
     const [current, setCurrent] = useState(1);
     const dataShow = 3;
     const lastData = dataShow * current;
@@ -9,13 +9,12 @@ const ProductsPerCategory = ({ productos }) => {
     const currentDataShow = productos.slice(firstData, lastData);
 
 
-
     const handleBefore = (e) => {
         e.preventDefault();
         if (current === 1) {
             setCurrent(Math.ceil(productos.length / dataShow));
         } else {
-            setCurrent(current-1);
+            setCurrent(current - 1);
         }
     }
 
@@ -24,8 +23,14 @@ const ProductsPerCategory = ({ productos }) => {
         if (current === Math.ceil(productos.length / dataShow)) {
             setCurrent(1);
         } else {
-            setCurrent(current+1)
+            setCurrent(current + 1)
         }
+    }
+
+    const handleSelect = (e) => {
+        e.preventDefault();
+        setInfoDetail(e.target.value);
+        setShowDetail(true);
     }
 
     return (
@@ -41,7 +46,7 @@ const ProductsPerCategory = ({ productos }) => {
 
                     {currentDataShow.map((product) => {
                         return <div className='card'>
-                            <h5>{product.name}</h5>
+                            <button type='button' onClick={(e) => handleSelect(e)} value={JSON.stringify(product)}>{product.name}</button>
                             <img src={product.imagen} alt="imagen" />
                             <p>{product.precio}</p>
                         </div>
