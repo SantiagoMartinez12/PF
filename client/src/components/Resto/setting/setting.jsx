@@ -8,19 +8,25 @@ import Categorias from "./categoria";
 import 'boxicons'
 
 export default function Setting(){
-    const[setting, setSettings] = useState(false)
+    const[infoUsuario, setInfoUsuario] = useState(false)
     const dispatch = useDispatch()
     const info = useSelector((state) => state.usuario)
+    console.log(info)
 
     function handleUsuario(e){
-        e.preventDefault();
-        dispatch(infoUsuario())
-        setSettings(false)
+        if(infoUsuario === false){
+            e.preventDefault();
+            setInfoUsuario(true)
+        }else{
+            e.preventDefault();
+            setInfoUsuario(false)
+        }
+
     }
-    function handleCategoria(e){
-        e.preventDefault();
-        setSettings()
-    }
+    // function handleCategoria(e){
+    //     e.preventDefault();
+    //     setSettings()
+    // }
 
     return(
 <div className={style.gridContainer}>
@@ -30,9 +36,11 @@ export default function Setting(){
             <button onClick={(e)=>{handleUsuario(e)}}>
             <box-icon type='solid' name='user-detail'></box-icon>
                 Informacion de Usuario</button>
-            {info?.map((i) => {
+                {infoUsuario===true?<Usuario/> : <></>
+                }
+            {/* {info?.map((i) => {
                 return <Usuario key={i.id} image={i.imagen} name={i.name} usuario={i.usuario} contraseña={i.contraseña} mail={i.mail} mesas={i.mesa}/>
-            })}
+            })} */}
         </div>
         <div className={style.productos}>
             <Link to='/producto'><button>
@@ -40,7 +48,7 @@ export default function Setting(){
                 Productos</button></Link>
         </div>
         <div className={style.categorias}>
-            <Link to='/categorias'><button onClick = {(e) => {handleCategoria(e)}}>
+            <Link to='/categorias'><button >
             <box-icon name='cart'></box-icon>
                 Categorias</button></Link>
             <Categorias/>

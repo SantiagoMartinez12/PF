@@ -11,7 +11,7 @@ export default function Categorias(){
     useEffect(() => {
       let data= axios.get("http://localhost:3001/api/categorias/437a0762-b37b-4d5b-97d0-e0ebd6ec8cdf")
        .then(resp => {setCategorias(resp.data)})   
-            console.log    
+          
     }, [])
 
     
