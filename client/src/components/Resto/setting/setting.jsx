@@ -4,12 +4,15 @@ import style from "./setting.module.css"
 import {Link} from 'react-router-dom'
 import Usuario from "./usuario";
 import { useDispatch, useSelector } from "react-redux";
-import Categorias from "./categoria";
+import Categorias from "./Categorias";
 import 'boxicons'
 
 export default function Setting(){
     const[infoUsuario, setInfoUsuario] = useState(false)
-    const dispatch = useDispatch()
+
+    const[infoCategorias, setInfoCategorias] = useState(false)
+
+    
     const info = useSelector((state) => state.usuario)
     console.log(info)
 
@@ -23,10 +26,23 @@ export default function Setting(){
         }
 
     }
+        function handleCategorias(e){
+            if(infoCategorias === false){
+                e.preventDefault();
+                setInfoCategorias(true)
+            }else{
+                e.preventDefault();
+                setInfoCategorias(false)
+            }
+        }
+
+
+    }
     // function handleCategoria(e){
     //     e.preventDefault();
     //     setSettings()
     // }
+
 
     return(
 <div className={style.gridContainer}>
@@ -48,10 +64,17 @@ export default function Setting(){
                 Productos</button></Link>
         </div>
         <div className={style.categorias}>
+
+            <Link to='/categorias'><button onClick = {(e) => {handleCategorias(e)}}>
+
             <Link to='/categorias'><button >
+
             <box-icon name='cart'></box-icon>
                 Categorias</button></Link>
-            <Categorias/>
+                {
+                    infoCategorias === true? <Categorias/> : <></>
+                }
+            
         </div>
         <div className={style.mediosDePago}>
             <Link to='/mediosDePago'><button>
