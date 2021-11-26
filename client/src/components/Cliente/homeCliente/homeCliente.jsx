@@ -10,23 +10,38 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
+import { useEffect } from 'react'
+import { getDatosMesa } from '../../../store/actions/index.js'
+import { useDispatch } from 'react-redux'
+import Cuenta from '../cuenta/cuenta.jsx'
 
 
 
 export default function HomeClient(){
 
-    
-    let param = useParams()
-    
-    let name = param.name
+    const{name,idResto,idMesa} = useParams()
+    const dispatch = useDispatch()
+   // let {name} = useParams()
+    const cliente = {
+        nameCliente:name,
+        idResto:idResto,
+        idMesa:idMesa
+    }
+   //let name = param.name
+    useEffect (() =>{
+        dispatch(getDatosMesa(cliente))
+    }, [dispatch]);
     // este estado en false muestra el detalle y en true muestra la carta
-       const [ state, setState] = useState(false)
+       const [ state, setState] = useState("ver pedido")
         function handleClickPedido(e){
-          setState(false)
+          setState("ver pedido")
         }
         function handleClickPedidoMenu(e){
-        setState(true)
+        setState("ver menu")
         }
+        function handleClickPedidoCuenta(e){
+            setState("ver cuenta")
+            }
 
     
     return <div>
@@ -35,9 +50,11 @@ export default function HomeClient(){
 
             <button onClick={e => {handleClickPedido(e)}}>Ver Pedido</button> 
             <button onClick={e => {handleClickPedidoMenu(e)}}>Ver Menu</button>
+            <button onClick={e => {handleClickPedidoCuenta(e)}}>Ver Cuenta</button>
             <br/>
             {
-                !state ? <DetallePedido/> : <Carta/>
+                state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta/> :  <Cuenta/> 
+                
             }
     </div>
 }

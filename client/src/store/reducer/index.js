@@ -1,7 +1,9 @@
 // import { importar acciones } from "../actions/index"
+import { useParams } from "react-router";
 import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
 import { INFO_USUARIO } from "../actions";
+
 
 const initialState = {
   menuBaseDatos: [],
@@ -9,14 +11,20 @@ const initialState = {
   productosFiltrados: [],
   ticket: [],
   cuenta: 0,
+  //esto lo volamos cuando funcione el back
+  ticketCuenta:[],
 
   ClientInfo: {
-    name: "",
-    id: null,
+    nameCliente: "",
+    idResto:"",
+    idMesa:""
   },
 };
 
 const reducer = (state = initialState, action) => {
+
+  
+  
   switch (action.type) {
     case "filtroProductos":
       let filtrados = state.menuBaseDatos.filter(
@@ -41,7 +49,11 @@ const reducer = (state = initialState, action) => {
           }
         : {
             ...state,
-            ticket: [...state.ticket, { ...nuevoItem, cantidad: 1 }],
+            ticket: [...state.ticket, { ...nuevoItem, cantidad: 1, 
+              nameCliente:state.ClientInfo.nameCliente,
+              idResto:state.ClientInfo.idResto,
+              idMesa:state.ClientInfo.idMesa,
+              comentario:"" }],
           };
 
     case "restarTicket":
@@ -106,6 +118,23 @@ const reducer = (state = initialState, action) => {
             ...state,
             usuario: action.payload
         }
+
+    case "getDatosMesa":
+      return {
+        ...state,
+        ClientInfo: action.payload
+      }
+
+    case "resetTicket":
+      return {
+        ...state,
+        ticket:[]
+      }
+    case "ticketCuenta":
+      return {
+        ...state,
+        ticketCuenta: [...state.ticketCuenta, action.payload]
+      }
 
     default:
       return state;
