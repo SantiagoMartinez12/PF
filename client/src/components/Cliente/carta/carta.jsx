@@ -14,17 +14,20 @@ import Buscador from './Buscador'
 import { useDispatch, useSelector } from 'react-redux'
 import { filtroProductos, getProductos } from '../../../store/actions';
 import ItemCarta from './itemCarta';
+import { useParams } from 'react-router';
 
 
 export default function Carta(){
+    const {idResto} = useParams()
 
     const categorias = useSelector(state => state.categoriasMenu);
     const filtrados = useSelector(state=> state.productosFiltrados)
+    const cuenta = useSelector(state=> state.cuenta)
     
     const dispatch = useDispatch();
    
     useEffect (() =>{
-        dispatch(getProductos())
+        dispatch(getProductos(idResto))
     }, [dispatch]);
     
     const handleOnClick=(e)=>{
@@ -41,6 +44,9 @@ export default function Carta(){
                     <button key={c} value={c} onClick= {handleOnClick}>{c}</button>
                     )})}
             <br/>
+            <div>
+            <h2>Total a pagar ${cuenta}</h2>
+            </div>
                 {filtrados?.map(p=>{
                     return(
                         <div key={p.id}>

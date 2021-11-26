@@ -6,7 +6,7 @@
 // boton submit "Ingresar"
 
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import { useState, useEffect } from "react";
 import { getCategorias } from "../../../store/actions";
@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 
 
 export default function LandingPageClient() {
+  const { idResto,idMesa} = useParams()
     const dispatch = useDispatch()
   
   //   useEffect(() => {
@@ -37,7 +38,7 @@ export default function LandingPageClient() {
     if (name === undefined || name.length < 3) {
       return alert("Por favor, escríbe un nombre valido");
     }
-    navigate(`/home/${name}`);
+    navigate(`/${idResto}/${idMesa}/home/${name}`);
   }
 
   return (

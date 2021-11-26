@@ -5,13 +5,17 @@
 // boton eliminar pedido -- resetea todo el pedido
 // boton confirmar pedido --- hace el post al back con el pedido
 
-import react from 'react';
+import axios, { Axios } from 'axios';
+import react, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { agregarTicket, restaCuenta, restarTicket, sumaCuenta } from '../../../store/actions';
+
+import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta, ticketCuenta } from '../../../store/actions';
 
 
 
 export default function DetallePedido(){
+    
+    const [input,setInput] = useState("")
 
     const ticket = useSelector(state=> state.ticket);
     const cuenta = useSelector(state=> state.cuenta);
@@ -26,7 +30,31 @@ export default function DetallePedido(){
         dispatch(restarTicket(id))
         dispatch(restaCuenta(precio))
     }
+    function handleInputChange(e) {
+        e.preventDefault();
+        setInput(e.target.value);
 
+    }
+    
+     function handleSubmit (e){
+        e.preventDefault();
+        let post = []
+         ticket.map(el => {el.comentario = input 
+            post.push(el)})
+        console.log(post)
+        axios.post('http://localhost:3001/api/detalle', post)
+        dispatch(ticketCuenta(ticket))
+        dispatch(resetTicket())
+
+        
+        
+        
+        /*
+            nameCliente:state.ClientInfo.nameCliente,
+              idResto:state.ClientInfo.idResto,
+              idMesa:state.ClientInfo.idMesa
+         */ 
+    }
     return(
     <div>
         <br/>
@@ -46,8 +74,17 @@ export default function DetallePedido(){
         <div>
             <h2>Total a pagar ${cuenta}</h2>
         </div>
+    
+            
+        
         <div>
-            <button>Confirmar Pedido</button>
+            <input placeholder="Agregar Comentario.."
+                        value={input}
+                    onChange={(e) => handleInputChange(e)}
+            />
+            <br/>
+            <button onClick={(e) => handleSubmit(e)}>Pedir</button>
+           
         </div>
          
     </div>     
