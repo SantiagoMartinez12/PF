@@ -3,13 +3,10 @@ const {Mesa} = conn.models;
  
  
  const modificarMesaQr = async (anterior, actual, id) => {
-     console.log(actual)
-     console.log(anterior)
     function func() {
         return ( ( ( 1+Math.random() ) * 0x10000 ) | 0 ).toString( 16 ).substring( 1 );
         }
      if(anterior < actual){
-         console.log('entre en primer if')
          let diferencia = actual - anterior
 
          for(let i = 1 ; i <= diferencia ; i++){
@@ -25,7 +22,6 @@ const {Mesa} = conn.models;
          }
      }
      if(anterior > actual){
-         console.log("entre en segundo")
         let diferencia = anterior - actual
 
         for(let i = 0 ; i < diferencia ; i++){

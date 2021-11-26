@@ -24,7 +24,6 @@ router.get('/:id', async (req, res, next) =>{
 router.post('/', async (req, res, next) =>{
     try{
         const data = req.body
-        console.log(data)
         const newDetalle = await data.forEach(async(register)=>{
             await Detalle.create({
             mesaId: register.mesaId,
