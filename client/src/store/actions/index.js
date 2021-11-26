@@ -3,9 +3,9 @@ import productos from "../../components/Cliente/carta/ejemploCarta";
 
 
 
-export function getProductos() {
+export function getProductos(idResto) {
     return function (dispatch) {
-        axios.get("http://localhost:3001/api/producto?idResto=b1bd05ae-0156-47a4-9465-324fb6e29c03")
+        axios.get(`http://localhost:3001/api/producto?idResto=${idResto}`)
         .then((response) => {
             dispatch({ type: "getProductos", payload: response.data });
         })
@@ -14,6 +14,12 @@ export function getProductos() {
         })
     };
 };
+export function getDatosMesa(payload){
+    return {
+        type: "getDatosMesa",
+        payload
+    }
+}
 
 export function filtroProductos(payload) {
     return {
@@ -56,4 +62,17 @@ export function buscaProducto(producto) {
         payload:producto
     }
 };
+export function resetTicket(){
+    return {
+        type: 'resetTicket',
+        
+    }
+}
+export function ticketCuenta(payload){
+    return {
+        type:'ticketCuenta',
+        payload
+    }
+}
+
 
