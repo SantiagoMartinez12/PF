@@ -1,23 +1,25 @@
-import './App.css';
-import React from 'react';
-import { Routes,Route  } from 'react-router-dom';
-import LandingPageClient from './components/Cliente/landingPageCliente/landingPageCliente.jsx';
+import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import LandingPageClient from "./components/Cliente/landingPageCliente/landingPageCliente.jsx";
 
-import HomeClient from './components/Cliente/homeCliente/homeCliente.jsx';
-import Setting from './components/Resto/setting/setting';
-
-
+import HomeClient from "./components/Cliente/homeCliente/homeCliente.jsx";
+import Setting from "./components/Resto/setting/setting";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-            <Route exact path='/' element={<LandingPageClient/>}/>
-            <Route exact path='/home/:name' element={<HomeClient/>}/>
-            <Route path='/home/resto/setting' element={<Setting/>}/>
-            <Route exact path='/:idResto/:idMesa' element={<LandingPageClient/>}/>
-            <Route exact path='/:idResto/:idMesa/home/:name' element={<HomeClient/>}/>
-        </Routes>
+        <Route exact path="/" element={<LandingPageClient />} />
+        <Route exact path="/home/:name" element={<HomeClient />} />
+        <Route path="/home/resto/setting" element={<Setting />} />
+        <Route exact path="/:idResto/:idMesa" element={<LandingPageClient />} />
+        <Route
+          exact
+          path="/:idResto/:idMesa/home/:name"
+          element={<HomeClient />}
+        />
+      </Routes>
     </div>
   );
 }

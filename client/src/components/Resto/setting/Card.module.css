@@ -1,0 +1,37 @@
+.card {
+  background-color: rgba(167, 77, 42, 0.87);
+  color: #fafafa;
+  padding: 15px;
+  height: 200px;
+  margin: 5px;
+  border-radius: 10px;
+  border: 1px;
+  max-width: 200px;
+}
+.card:hover {
+  background-color: aqua;
+
+  backdrop-filter: blur(2px);
+}
+.cardImage {
+  height: 130px;
+  width: 220px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.link {
+  text-decoration: none;
+  color: #fafafa;
+}
+
+.divName {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 80%;
+  justify-content: center;
+}
+.h5Card {
+  margin: 5px;
+}
