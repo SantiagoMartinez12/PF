@@ -8,19 +8,14 @@ import Categorias from "./categoria";
 import 'boxicons'
 
 export default function Setting(){
-    const[setting, setSettings] = useState(false)
-    const dispatch = useDispatch()
+    const[infoUsuario, setInfoUsuario] = useState(false)
     const info = useSelector((state) => state.usuario)
 
     function handleUsuario(e){
         e.preventDefault();
-        dispatch(infoUsuario())
-        setSettings(false)
+        setInfoUsuario(false)
     }
-    function handleCategoria(e){
-        e.preventDefault();
-        setSettings()
-    }
+    
 
     return(
 <div className={style.gridContainer}>
@@ -40,7 +35,7 @@ export default function Setting(){
                 Productos</button></Link>
         </div>
         <div className={style.categorias}>
-            <Link to='/categorias'><button onClick = {(e) => {handleCategoria(e)}}>
+            <Link to='/categorias'><button>
             <box-icon name='cart'></box-icon>
                 Categorias</button></Link>
             <Categorias/>
