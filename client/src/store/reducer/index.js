@@ -13,6 +13,7 @@ const initialState = {
   cuenta: 0,
   //esto lo volamos cuando funcione el back
   ticketCuenta:[],
+  usuario:[],
 
   ClientInfo: {
     nameCliente: "",
@@ -113,11 +114,12 @@ const reducer = (state = initialState, action) => {
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias
       };
-      // case INFO_USUARIO:
-      //   return{
-      //       ...state,
-      //       usuario: action.payload
-      //   }
+      case INFO_USUARIO:
+        
+        return{
+            ...state,
+            usuario: action.payload,
+        }
 
     case "getDatosMesa":
       return {

@@ -4,7 +4,7 @@ import styles from "./Categorias.module.css"
 import Card from "./Card";
 import { Link } from "react-router-dom";
 
-
+///546546
 // const categoria = [{"name": "Bebidas"}, {"name": "Postres"}, {"name": "Pizzas"},]
 
 
@@ -15,7 +15,7 @@ export default function Categorias(){
     const [categorias, setCategorias] = useState()
 
     useEffect(() => {
-       axios.get("http://localhost:3001/api/categorias/84fb67c6-a5b3-4bb1-9920-986e13375739")
+       axios.get("http://localhost:3001/api/categorias/5b58f33f-8cee-4934-aa4a-43a6535fa880")
        .then(resp => {setCategorias(resp.data)})            
     }, [])
 

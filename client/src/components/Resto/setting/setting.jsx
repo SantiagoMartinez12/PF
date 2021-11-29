@@ -12,6 +12,7 @@ export default function Setting(){
     const[infoCategorias, setInfoCategorias] = useState(false)
     const info = useSelector((state) => state.usuario)
 
+    console.log(info)
     function handleUsuario(e){
         if(infoUsuario === false){
             e.preventDefault();
@@ -35,24 +36,22 @@ export default function Setting(){
 
     return(
 <div className={style.gridContainer}>
-    <div className={style.form}>Mozo Vitual</div>
-        <div className={style.nav}>
+    <div className={style.titulo1}><h1>Mozo Vitual</h1></div>
+        <div className={style.selectorBotones}>
+            <div>
         <div className={style.infoUsuario}>
             <button onClick={(e)=>{handleUsuario(e)}}>
             <box-icon type='solid' name='user-detail'></box-icon>
                 Informacion de Usuario</button>
-                {infoUsuario===true?<Usuario/> : <></>
-                }
-            {/* {info?.map((i) => {
+                {/* {infoUsuario===true?<Usuario/>
+                    : <></>
+                } */}
+            {infoUsuario===true?info.map((i) => {
                 return <Usuario key={i.id} image={i.imagen} name={i.name} usuario={i.usuario} contraseña={i.contraseña} mail={i.mail} mesas={i.mesa}/>
-            })} */}
-        </div>
-        <div className={style.productos}>
-            <Link to='/producto'><button>
-            <box-icon name='restaurant'></box-icon> 
-                Productos</button></Link>
-        </div>
-        <div className={style.categorias}>
+            }): <></>}
+            </div>
+
+        <div className={style.infoCategorias}>
 
             <Link to='/categorias'><button button onClick = {(e) => {handleCategorias(e)}}>
 
@@ -62,10 +61,16 @@ export default function Setting(){
                 }
             
         </div>
-        <div className={style.mediosDePago}>
+        <div className={style.infoProductos}>
+            <Link to='/producto'><button>
+            <box-icon name='restaurant'></box-icon> 
+                Productos</button></Link>
+        </div>
+        <div className={style.formasPago}>
             <Link to='/mediosDePago'><button>
             <box-icon name='credit-card' type='solid' ></box-icon>
                 Medios de pagos</button></Link>
+        </div>
         </div>
   </div>
 </div>

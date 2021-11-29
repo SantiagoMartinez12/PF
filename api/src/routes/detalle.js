@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { conn } = require('../db');
 const {Detalle} = conn.models;
 
-
+//dhewetetty
 
 const router = Router();
 
