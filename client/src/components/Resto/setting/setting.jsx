@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import Usuario from "./usuario";
 import { useDispatch, useSelector } from "react-redux";
 import Categorias from "./Categorias";
-import 'boxicons'
+
 
 export default function Setting(){
     const[infoUsuario, setInfoUsuario] = useState(false)

@@ -42,24 +42,31 @@ export default function LandingPageClient() {
   }
 
   return (
-    <div>
-      <img src={logo} alt="Logo" width="30%" />
-
-      <h2>Bienvenido, soy tu mozo virtual</h2>
-      <h3>Por favor, escribe tu nombre aquí:</h3>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          placeholder="Nombre..."
-          value={input.name}
-          name="name"
-          required
-          onChange={(e) => handleChange(e)}
-        />
-        <div>
-          <button type="submit">Ingresar</button>
+    <div className="container">
+      <div class="row vh-100 justify-content-center align-items-center">
+        <div class="col-auto  text-center">
+          <img src={logo} alt="Logo" width="50%" class="img-fluid"/>
+          <h2>Bienvenido</h2>
+          <h6>Escribe tu nombre aquí:</h6>
+          <form onSubmit={(e) => handleSubmit(e)}>
+          <div class="row justify-content-center align-items-center">
+            <div class="input-group p-3 w-80">
+            <input class="form-control"
+            type="text"
+            placeholder="Nombre..."
+            value={input.name}
+            name="name"
+            required
+            onChange={(e) => handleChange(e)}
+            />
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-sm w-50">Ingresar</button>
+              </div>
+            </div> 
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
