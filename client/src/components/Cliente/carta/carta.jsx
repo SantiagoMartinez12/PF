@@ -36,20 +36,25 @@ export default function Carta(){
     }
 
     return(
-        <div>
-            <Buscador />
-            <br/>
-                {categorias?.map(c=>{
-                    return(
-                    <button key={c} value={c} onClick= {handleOnClick}>{c}</button>
-                    )})}
+        <div className="container">
+
+            <Buscador/>
             <br/>
             <div>
-            <h2>Total a pagar ${cuenta}</h2>
+            <h5 class="justify-content-md-end">Total a pagar ${cuenta}</h5>
             </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+                {categorias?.map(c=>{
+                    return(
+                    <button key={c} value={c} onClick= {handleOnClick} class="btn btn-outline-primary">{c}</button>
+                    )})}
+                </div>
+            <br/>
+
                 {filtrados?.map(p=>{
                     return(
-                        <div key={p.id}>
+                        <div key={p.id} class="p-3 mb-2 bg-light text-black">
                             <ItemCarta data={p}/> 
                         </div>
                     )

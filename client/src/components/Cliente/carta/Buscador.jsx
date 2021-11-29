@@ -23,12 +23,11 @@ export default function Buscador(){
     }
     
     return(
-        <div>
+        <div className="container">
             <form onSubmit={(e) => handleSubmit(e)}>
-                <div className="search_tile">    
-                    <div className="search_input">
-                        <input
-                        placeholder="Buscar ..."
+                    <div class="input-group mb-3" >
+                        <input class="form-control"
+                        placeholder="Buscar tu producto favorito aquí..."
                         type="text"
                         id="search"
                         name="input"
@@ -36,11 +35,10 @@ export default function Buscador(){
                         value={input}
                         onChange={(e) => handleChange(e)}
                         />
+                        <div className="search_button_container">
+                        <button className="search_button" type="submit"  class="btn btn-primary">SEARCH</button>
+                        </div>
                     </div >
-                    <div className="search_button_container">
-                        <button className="search_button" type="submit">Search</button>
-                    </div>
-                </div>
             </form>
         </div>
     )

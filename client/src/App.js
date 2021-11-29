@@ -2,9 +2,9 @@ import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LandingPageClient from "./components/Cliente/landingPageCliente/landingPageCliente.jsx";
-
 import HomeClient from "./components/Cliente/homeCliente/homeCliente.jsx";
 import Setting from "./components/Resto/setting/setting";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
