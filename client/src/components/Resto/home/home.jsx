@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import Card from "./Card";
+
+import Card from "./card";
 import logo from "../../../assets/Logo.png";
 import s from "../home/home.module.css"
 import axios from "axios";
@@ -25,15 +25,15 @@ export default function HomeResto(){
             
 
         <div className={s.Mesas}>
-            {/* {
-                allMesas?.map(el =>{
+            {
+                mesas?.map(el =>{
                     return(
                         <div>
-                    <Card name={el.name} seguimiento={el.seguimiento}/>
+                    <Card  name={el.name} />
                     </div>
                     )
                 })
-            } */}
+            }
         </div>
         <div className={s.Logo}>
         <img src={logo} alt="Logo" width="15%" />
