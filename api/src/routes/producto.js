@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) =>{
 
 router.get('/', async (req, res, next) =>{
     try{
-        let parameters = req.body;
+        let parameters = req.query;
         let result = await getProduct(parameters);
         res.json(result);
     }catch(error){

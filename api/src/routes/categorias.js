@@ -7,8 +7,6 @@ const router = Router();
 router.get("/:id", async (req, res, next)=>{
     try{
         let {id} =req.params
-        console.log(id)
-        console.log(typeof(id))
         let cat = await Categorias.findAll({
             attributes:['id', 'name'],
             where:{

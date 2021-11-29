@@ -6,11 +6,12 @@ module.exports = (sequelize) => {
     sequelize.define('detalle', {
         id: {
             type: DataTypes.STRING,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
         },
 
-        name: {
+        namecliente: {
             type: DataTypes.STRING,
         },
 
@@ -18,7 +19,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
         },
 
-        plato: {
+        name: {
             type: DataTypes.STRING,
         },
 
@@ -32,6 +33,10 @@ module.exports = (sequelize) => {
 
         comentario: {
             type: DataTypes.STRING
+        },
+
+        cantidad:{
+            type:DataTypes.INTEGER
         }
 
 },{

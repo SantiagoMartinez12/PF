@@ -10,7 +10,7 @@ router.get('/:id', async (req, res, next) =>{
     try{
         const {id} = req.params;
         const detalle = await Detalle.findAll({
-        attributes : ['id', 'name', 'precio', 'plato', 'estado', 'seguimiento'],
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad'],
         where:{
             id:id,
         }
@@ -23,17 +23,18 @@ router.get('/:id', async (req, res, next) =>{
 
 router.post('/', async (req, res, next) =>{
     try{
-        const {mesaId, name, precio, plato, estado, seguimiento, comentario} = req.body
-        const newDetalle = await Detalle.create({
-
-            mesaId: mesaId,
-            name,
-            precio,
-            plato,
-            estado,
-            seguimiento,
-            comentario
-        })
+        const data = req.body
+        const newDetalle = await data.forEach(async(register)=>{
+            await Detalle.create({
+            mesaId: register.mesaId,
+            namecliente: register.namecliente,
+            precio: register.precio,
+            name: register.name,
+            estado: register.estado,
+            seguimiento: register.seguimiento,
+            comentario: register.comentario,
+            cantidad: register.cantidad
+        })})
         res.send(newDetalle) 
     }catch(error){
         next(error)
@@ -42,15 +43,16 @@ router.post('/', async (req, res, next) =>{
 
 router.put('/', async (req, res, next) =>{
     try{
-        const {mesaId, id, name, precio, plato, estado, seguimiento, comentario} = req.body
+        const {mesaId, id, namecliente, precio, name, estado, seguimiento, comentario, cantidad} = req.body
         const cambiarDetail = await Detalle.update({
             
-            name:name,
+            namecliente:namecliente,
             precio:precio,
-            plato:plato,
+            name:name,
             estado:estado,
             seguimiento:seguimiento,
-            comentario:comentario
+            comentario:comentario,
+            cantidad:cantidad
         },{
             where:{
                 id:id
@@ -66,7 +68,6 @@ router.delete('/:id', async (req, res, next) =>{
     try{
         const {id} = req.params;
         const detalle = await Detalle.destroy({
-        attributes : ['id', 'name', 'precio', 'plato', 'estado', 'seguimiento'],
         where:{
             id:id,
         }

@@ -1,0 +1,21 @@
+.infoDeUsuario { grid-area: Info-de-usuario; }
+.info {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "imagen nombre";
+  grid-area: info;
+}
+.imagen { grid-area: imagen; }
+.nombre { grid-area: nombre; }
+.modicarDatos {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-area: modicar-datos;
+}
+.modificarUsuario { grid-area: 1 / 1 / 2 / 2; }
+.modificarCantidadDeMesas { grid-area: 3 / 1 / 4 / 2; }

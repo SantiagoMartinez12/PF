@@ -41,13 +41,13 @@ module.exports = (sequelize) => {
 
       mesa: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false, 
       },
     },
     {
       freezeTableName: true,
       timestamps: false,
-    createdAt: false,
+      createdAt: false,
     }
   );
 };

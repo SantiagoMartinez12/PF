@@ -1,0 +1,48 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px black solid;
+  height: 90vh;
+}
+.titulo {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  border: 1px red solid;
+  margin: 0px auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.titulo h2 {
+  display: inline-block;
+  margin-left: 50px;
+}
+.boton {
+  height: 25px;
+  margin-right: 50px;
+}
+.cardsDiv {
+  display: flex;
+  border: solid 1px blue;
+  width: 100%;
+  height: 50%;
+  justify-content: space-around;
+  align-items: center;
+}
+.imagen {
+  grid-area: imagen;
+  border: 1px black solid;
+}
+.tituloCambio {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  border: 1px red solid;
+  margin: 0px auto;
+  align-items: center;
+  justify-content: center;
+}
+.botonCambio {
+  height: 25px;
+  margin-right: 50px;
+}
