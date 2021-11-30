@@ -5,6 +5,7 @@ import LandingPageClient from "./components/Cliente/landingPageCliente/landingPa
 import HomeClient from "./components/Cliente/homeCliente/homeCliente.jsx";
 import Setting from "./components/Resto/setting/setting";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Product from "../src/components/Resto/product/Product.jsx"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           path="/:idResto/:idMesa/home/:name"
           element={<HomeClient />}
         />
+        <Route path="/producto" element={<Product />} />
       </Routes>
     </div>
   );
