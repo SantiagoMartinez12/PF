@@ -1,0 +1,22 @@
+
+.gridcontainer {
+    display: grid;
+    grid-template-columns: 0.1fr 2.9fr 0.1fr;
+    grid-template-rows: 0.2fr 2.3fr 1.2fr 1.1fr 0.2fr;
+    gap: 7px 3px;
+    grid-template-areas:
+      ". . ."
+      ". numero ."
+      ". nombre ."
+      ". seguimiento ."
+      ". . .";
+      
+  }
+
+  
+  .numero { grid-area: numero; }
+  
+  .nombre { grid-area: nombre; }
+  
+  .seguimiento { grid-area: seguimiento; }
+  

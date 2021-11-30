@@ -20,6 +20,7 @@ const initialState = {
     idResto:"",
     idMesa:""
   },
+  detalle: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -136,6 +137,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         ticketCuenta: [...state.ticketCuenta, action.payload]
+      }
+    
+    case "GET_DETALLE":
+      return{
+        ...state,
+        detalle: action.payload
       }
 
     default:

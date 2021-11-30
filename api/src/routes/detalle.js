@@ -77,5 +77,21 @@ router.delete('/:id', async (req, res, next) =>{
         next(error)
     }
 });
+router.get('/mesaId/:mesaId', async (req, res, next) =>{
+    
+    try{
+        const {mesaId} = req.params;
+       
+        const detalle = await Detalle.findAll({
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad'],
+        where:{
+            mesaId:mesaId,
+        }
+        }) 
+        res.send(detalle)
+    }catch(error){
+        next(error)
+    }
+});
 
 module.exports = router;
