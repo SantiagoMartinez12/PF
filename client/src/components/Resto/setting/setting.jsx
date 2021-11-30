@@ -1,25 +1,27 @@
 import { useState } from "react";
-import { infoUsuario } from "../../../store/actions";
 import style from "./setting.module.css"
 import {Link} from 'react-router-dom'
 import Usuario from "./usuario";
-import { useDispatch, useSelector } from "react-redux";
 import Categorias from "./Categorias";
-
+import 'boxicons'
+import { useDispatch, useSelector } from "react-redux";
+import { infoUsuario } from "../../../store/actions";
 
 export default function Setting(){
-    const[infoUsuario, setInfoUsuario] = useState(false)
+    const[iUsuario, setIUsuario] = useState(false)
     const[infoCategorias, setInfoCategorias] = useState(false)
-    const info = useSelector((state) => state.usuario)
-
+    const info = useSelector((state) => state.usuario) 
+    const dispatch = useDispatch()
     console.log(info)
+    
     function handleUsuario(e){
-        if(infoUsuario === false){
+        if(iUsuario === false){
             e.preventDefault();
-            setInfoUsuario(true)
+            setIUsuario(true)
+            dispatch(infoUsuario())
         }else{
             e.preventDefault();
-            setInfoUsuario(false)
+            setIUsuario(false)
         }
 
     }
@@ -36,7 +38,7 @@ export default function Setting(){
 
     return(
 <div className={style.gridContainer}>
-    <div className={style.titulo1}><h1>Mozo Vitual</h1></div>
+    <div className={style.titulo1}><h1>Mozo Virtual</h1></div>
         <div className={style.selectorBotones}>
             <div>
         <div className={style.infoUsuario}>
@@ -46,8 +48,8 @@ export default function Setting(){
                 {/* {infoUsuario===true?<Usuario/>
                     : <></>
                 } */}
-            {infoUsuario===true?info.map((i) => {
-                return <Usuario key={i.id} image={i.imagen} name={i.name} usuario={i.usuario} contraseña={i.contraseña} mail={i.mail} mesas={i.mesa}/>
+            {iUsuario===true?info.map((el) => {
+                return <Usuario key={el.id} image={el.imagen} name={el.name} usuario={el.usuario} contraseña={el.contraseña} mail={el.mail} mesa={el.mesa}/>
             }): <></>}
             </div>
 

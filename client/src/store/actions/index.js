@@ -1,7 +1,7 @@
 import axios from "axios"
 import productos from "../../components/Cliente/carta/ejemploCarta";
 export const INFO_USUARIO = 'INFO_USUARIO'
-
+export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
 
 
 export function getProductos(idResto) {
@@ -76,18 +76,33 @@ export function ticketCuenta(payload){
     }
 }
 
+export default function modificarUsuario(){
+    return function (dispatch){
+        axios.get("http://localhost:3001/api/resto/")
+        .then((usuario) => {
+            dispatch({
+                type: MODIFICAR_USUARIO,
+                payload: usuario.data
+            })
+        })
+    }
+}
 
 export function infoUsuario(id){
     return function (dispatch){
-        axios.get("http://localhost:3001/api/resto/f602db27-b12e-40dd-83c5-bc0ee02cf82b")
+        axios.get("http://localhost:3001/api/resto/5cffeb91-f981-4d08-b887-ba1408ec5ce4")
         .then((usuario) => {
             dispatch({
                 type: INFO_USUARIO,
-                payload: usuario.data
+                payload: usuario.data,
+                
             })
+            
         })
         .catch((error) =>{
             console.log(error)
         })
     }
 }
+
+

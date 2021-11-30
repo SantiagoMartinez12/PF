@@ -2,7 +2,7 @@
 import { useParams } from "react-router";
 import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
-import { INFO_USUARIO } from "../actions";
+import { INFO_USUARIO, MODIFICAR_USUARIO } from "../actions";
 
 
 const initialState = {
@@ -21,7 +21,7 @@ const initialState = {
     idMesa:""
   },
 };
-
+console.log(initialState.usuario)
 const reducer = (state = initialState, action) => {
 
   
@@ -114,11 +114,17 @@ const reducer = (state = initialState, action) => {
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias
       };
-      case INFO_USUARIO:
-        
-        return{
+      
+      case MODIFICAR_USUARIO:
+          return{
             ...state,
             usuario: action.payload,
+        }
+
+      case INFO_USUARIO:
+        return{
+          ...state,
+          usuario: action.payload,
         }
 
     case "getDatosMesa":

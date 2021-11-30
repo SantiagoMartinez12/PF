@@ -15,7 +15,7 @@ export default function Categorias(){
     const [categorias, setCategorias] = useState()
 
     useEffect(() => {
-       axios.get("http://localhost:3001/api/categorias/5b58f33f-8cee-4934-aa4a-43a6535fa880")
+       axios.get("http://localhost:3001/api/categorias/5cffeb91-f981-4d08-b887-ba1408ec5ce4")
        .then(resp => {setCategorias(resp.data)})            
     }, [])
 
