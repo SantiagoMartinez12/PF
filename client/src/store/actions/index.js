@@ -108,3 +108,40 @@ export function getDetalle(idMesa){
     }
 
 }
+//actions to delete, update and create products RESTO
+
+export function postProduct(productObject) {
+    return function (dispatch) {
+        axios.post(`http://localhost:3001/api/producto`, productObject)
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    };
+};
+
+export function getUpdateProduct(productObject) {
+    return function (dispatch) {
+        axios.put(`http://localhost:3001/api/producto`, productObject)
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    };
+};
+
+export function deleteProduct(id) {
+    return function (dispatch) {
+        axios.delete(`http://localhost:3001/api/producto?id=${id}`)
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    };
+};
