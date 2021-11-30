@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductsPerCategory from "./ProductsPerCategory";
 import FormProduct from "./FormProduct";
 import './Product.css';
-import data from "./data";
 import ProductDetail from "./ProductDetail";
+import { getProductos } from "../../../store/actions";
+// import data from "./data";
 
 const Product = () => {
     const [form, setForm] = useState(false)
     const [showDetail, setShowDetail] = useState(false);
     const [infoDetail, setInfoDetail] = useState({});
     const dispatch = useDispatch();
+    const data = useSelector((state)=>state.rawData)
 
 
     useEffect(() => {
-
+        dispatch(getProductos('11a3415b-7bef-42de-bf5c-15ff1826798e'));
     }, [])
 
     const handleAddProduct = (e) => {

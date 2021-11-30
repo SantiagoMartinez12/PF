@@ -1,19 +1,32 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import logo from "../../../assets/Logo.png";
+import { deleteProduct, getUpdateProduct } from "../../../store/actions";
 import './ProductDetail.css'
 
 const ProductDetail = ({ info }) => {
     const data = JSON.parse(info);
     const [useForm, setUseForm] = useState(false)
+    const dispatch = useDispatch()
+
+    const [updateProduct, setUpdateProduct] = useState({
+        name: '',
+        precio: '',
+        imagen: '',
+        detalle: '',
+        categoria: '',
+        idResto: '11a3415b-7bef-42de-bf5c-15ff1826798e'
+    })
+
 
     const handleEliminar = () => {
         let userPreference;
         if (window.confirm("Deseas eliminar el producto?")) {
             userPreference = "Producto eliminado!";
-            //eliminar producto
-            window.location.reload()
+            dispatch(deleteProduct(data.id))
+            // window.location.reload()
         } else {
-            userPreference = "Eliminación fallida!";
+            userPreference = "Eliminación abortada!";
         };
     }
 
@@ -27,13 +40,24 @@ const ProductDetail = ({ info }) => {
         setUseForm(false);
     }
 
-    const handleSubmit = () => {
+    const handleForm = (e) => {
+        setUpdateProduct({
+            ...updateProduct,
+            [e.target.name]: e.target.value
+        });
+    }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(getUpdateProduct(updateProduct))
     }
 
     const handleGoBack = () => {
         window.location.reload()
     }
+
+    console.log(updateProduct);
+
 
     return (
         <>
@@ -64,8 +88,9 @@ const ProductDetail = ({ info }) => {
                     <img src={data.imagen} alt="imagen" />
                 </div>
 
+
                 {useForm ?
-                    <form className="formProduct">
+                    <form className="formProduct" onChange={(e) => handleForm(e)}>
                         <div className="producto">
                             <label htmlFor="name">Nombre del producto</label>
                             <input type="text" name="name" id="name" />

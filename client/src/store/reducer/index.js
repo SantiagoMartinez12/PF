@@ -9,6 +9,7 @@ const initialState = {
   menuBaseDatos: [],
   categoriasMenu: [],
   productosFiltrados: [],
+  rawData: [],
   ticket: [],
   cuenta: 0,
   //esto lo volamos cuando funcione el back
@@ -109,6 +110,7 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
+        rawData: action.payload,
         menuBaseDatos: arrayProductos,
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias

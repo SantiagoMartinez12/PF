@@ -1,15 +1,18 @@
 import './FormProduct.css'
 import logo from "../../../assets/Logo.png";
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { postProduct } from '../../../store/actions';
 
 const FormProduct = () => {
+    const dispatch = useDispatch();
     const [newProduct, setNewProduct] = useState({
         name: '',
         precio: '',
         imagen: '',
         detalle: '',
         categoria: '',
-        idResto: ''
+        idResto: '11a3415b-7bef-42de-bf5c-15ff1826798e'
     })
 
     const handleForm = (e) =>{
@@ -21,7 +24,7 @@ const FormProduct = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-
+        dispatch(postProduct(newProduct))
     }
 
     const handleGoBack = () => {
