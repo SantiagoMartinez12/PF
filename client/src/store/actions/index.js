@@ -1,5 +1,6 @@
 import axios from "axios"
 import productos from "../../components/Cliente/carta/ejemploCarta";
+import Detalle from "../../components/Resto/home/detalle";
 export const INFO_USUARIO = 'INFO_USUARIO'
 
 
@@ -90,4 +91,20 @@ export function infoUsuario(id){
             console.log(error)
         })
     }
+}
+
+export function getDetalle(idMesa){
+    return function(dispatch){
+        axios.get("http://localhost:3001/api/detalle/mesaId/" + idMesa)
+        .then((json) => {
+            dispatch({
+                type: "GET_DETALLE",
+                payload: json.data
+            })
+        })
+        .catch((error) =>{
+            console.log(error)
+        })
+    }
+
 }

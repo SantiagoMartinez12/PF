@@ -6,6 +6,7 @@ import LandingPageClient from "./components/Cliente/landingPageCliente/landingPa
 import HomeClient from "./components/Cliente/homeCliente/homeCliente.jsx";
 import Setting from "./components/Resto/setting/setting";
 import HomeResto from "./components/Resto/home/home";
+import Detalle from "./components/Resto/home/detalle";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           element={<HomeClient />}
         />
         <Route exact path="/home/resto/" element={<HomeResto/>}/>
+        <Route exact path="/detalle/:idMesa" element={<Detalle/>}/>
       </Routes>
     </div>
   );
