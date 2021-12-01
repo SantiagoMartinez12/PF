@@ -145,3 +145,15 @@ export function deleteProduct(id) {
         })
     };
 };
+export function getMesa(restoId) {
+    return async function (dispatch) {
+        let json = await axios.get("http://localhost:3001/api/mesa/get/" + restoId)
+        
+           return dispatch({
+                type: "GET_MESA",
+                payload: json.data
+            })
+    
+       
+    };
+};
