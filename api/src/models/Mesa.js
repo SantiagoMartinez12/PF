@@ -25,12 +25,10 @@ module.exports = (sequelize) => {
     qr: {
       type: DataTypes.STRING,
     },
-    
   },
   {
     freezeTableName: true,
     timestamps: false,
     createdAt: false,
-    
     });
 };

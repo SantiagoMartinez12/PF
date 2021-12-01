@@ -53,5 +53,19 @@ router.put('/', async (req, res, next) =>{
     }
 });
 
+router.get('/get/:restoId', async (req, res, next) => {
+    try{
+        const {restoId} = req.params
+        
+        const mesa = await Mesa.findAll({
+            where:{
+                restoId: restoId
+            }
+        })
+        res.send(mesa)
+    }catch(error){
+        next(error)
+    }
+});
 
 module.exports = router;

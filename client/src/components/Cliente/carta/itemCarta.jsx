@@ -19,8 +19,10 @@ export default function ItemCarta ({data}){
 
     return(
         <div>
-            <h3>{name}  ${precio}</h3>
-            <button onClick={handleOnClick}>Agregar</button> 
+            <h5 class="text-capitalize fw-normal">{name}  ${precio}</h5>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+             <button onClick={handleOnClick} class="btn btn-primary me-md-2" >Agregar</button> 
+            </div>
         </div>
     )
 }

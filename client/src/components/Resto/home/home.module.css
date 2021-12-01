@@ -1,0 +1,45 @@
+.gridcontainer {
+    display: grid;
+    grid-template-columns: 0.3fr 1.9fr 0.3fr;
+    grid-template-rows: 0.6fr 3.3fr 0.5fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ". Logo Rueda"
+      ". Mesas ."
+      ". . .";
+      
+  }
+  .Mesas {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+      ". . . ."
+      ". . . ."
+      ". . . .";
+    grid-area: Mesas;
+    
+
+  }
+  .Logo {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Logo;
+    align-items: center;
+  
+
+  }
+  .Rueda {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+    grid-area: Rueda;
+  }

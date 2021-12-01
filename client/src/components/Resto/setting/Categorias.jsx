@@ -18,7 +18,9 @@ export default function Categorias(){
     const categorias = useSelector((state) => state.categorias)
    
     useEffect(() => {
-        dispatch(getCategorias());
+
+        dispatch(getCategorias());            
+
     }, [])
     
 

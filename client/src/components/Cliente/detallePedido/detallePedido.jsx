@@ -56,37 +56,37 @@ export default function DetallePedido(){
          */ 
     }
     return(
-    <div>
+    <div className="container">
         <br/>
-            Tu pedido
+        <div>
+        <h4 class="fw-normal">TU PEDIDO</h4>
+        </div>
         <br/>
         {ticket.map(it=>{
             return( it.cantidad>0?
-                <div key={it.id}>
-                    <h3>{it.name} ${it.precio} x {it.cantidad} ${it.precio * it.cantidad}</h3>
-                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)}>+</button>
-                    <button onClick = {()=>handleOnClickMenos(it.id, it.precio)}>-</button>
+                <div key={it.id} class="p-3 mb-2 bg-light text-black">
+                    <h5 class="text-capitalize fw-normal">{it.name} ${it.precio} x {it.cantidad} ${it.precio * it.cantidad}</h5>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)} class="btn btn-outline-primary">+</button>
+                    <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} class="btn btn-outline-primary">-</button>
+                    </div>
+                   
                 </div>
                 :null
             )
         })}
-        <br/>
-        <div>
-            <h2>Total a pagar ${cuenta}</h2>
-        </div>
-    
-            
-        
-        <div>
-            <input placeholder="Agregar Comentario.."
+        <br/>      
+        <div class="input-group mb-3">
+            <input placeholder="Agrega una nota al restaurante (salsa tradicional, servir sin chile...)" class="form-control"
                         value={input}
                     onChange={(e) => handleInputChange(e)}
             />
             <br/>
-            <button onClick={(e) => handleSubmit(e)}>Pedir</button>
-           
+            <button onClick={(e) => handleSubmit(e)} class="btn btn-primary">PEDIR</button> 
         </div>
-         
+        <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+            <h5>Total a pagar: ${cuenta}</h5>
+        </div>
     </div>     
     )
 }

@@ -25,10 +25,12 @@ module.exports = (sequelize) => {
 
         estado: {
             type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
 
         seguimiento: {
             type: DataTypes.ENUM('solicitado', 'confirmado', 'entregado', 'pagado'),
+            defaultValue: 'solicitado',
         },
 
         comentario: {
