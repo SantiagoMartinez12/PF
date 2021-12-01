@@ -2,7 +2,7 @@
 import { useParams } from "react-router";
 import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
-import { INFO_USUARIO } from "../actions";
+import { INFO_USUARIO, MODIFICAR_USUARIO } from "../actions";
 
 
 const initialState = {
@@ -14,6 +14,7 @@ const initialState = {
   cuenta: 0,
   //esto lo volamos cuando funcione el back
   ticketCuenta:[],
+  usuario:[],
 
   ClientInfo: {
     nameCliente: "",
@@ -23,7 +24,7 @@ const initialState = {
   detalle: [],
   mesas: [],
 };
-
+console.log(initialState.usuario)
 const reducer = (state = initialState, action) => {
 
   
@@ -117,11 +118,18 @@ const reducer = (state = initialState, action) => {
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias
       };
-      // case INFO_USUARIO:
-      //   return{
-      //       ...state,
-      //       usuario: action.payload
-      //   }
+      
+      case MODIFICAR_USUARIO:
+          return{
+            ...state,
+            usuario: action.payload,
+        }
+
+      case INFO_USUARIO:
+        return{
+          ...state,
+          usuario: action.payload,
+        }
 
     case "getDatosMesa":
       return {
