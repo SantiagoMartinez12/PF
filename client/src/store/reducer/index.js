@@ -1,9 +1,13 @@
 // import { importar acciones } from "../actions/index"
+import {
+  AGREGAR_CATEGORIAS,
+  BORRAR_CATEGORIAS,
+  GET_CATEGORIAS,
+} from "../actions";
 import { useParams } from "react-router";
 import productos from "../../components/Cliente/carta/ejemploCarta";
 import { categorias } from "../../components/Cliente/carta/ejemploCarta";
 import { INFO_USUARIO } from "../actions";
-
 
 const initialState = {
   menuBaseDatos: [],
@@ -12,19 +16,18 @@ const initialState = {
   ticket: [],
   cuenta: 0,
   //esto lo volamos cuando funcione el back
-  ticketCuenta:[],
+  ticketCuenta: [],
 
   ClientInfo: {
     nameCliente: "",
-    idResto:"",
-    idMesa:""
+    idResto: "",
+    idMesa: "",
   },
+
+  categorias: [],
 };
 
 const reducer = (state = initialState, action) => {
-
-  
-  
   switch (action.type) {
     case "filtroProductos":
       let filtrados = state.menuBaseDatos.filter(
@@ -49,11 +52,17 @@ const reducer = (state = initialState, action) => {
           }
         : {
             ...state,
-            ticket: [...state.ticket, { ...nuevoItem, cantidad: 1, 
-              nameCliente:state.ClientInfo.nameCliente,
-              idResto:state.ClientInfo.idResto,
-              idMesa:state.ClientInfo.idMesa,
-              comentario:"" }],
+            ticket: [
+              ...state.ticket,
+              {
+                ...nuevoItem,
+                cantidad: 1,
+                nameCliente: state.ClientInfo.nameCliente,
+                idResto: state.ClientInfo.idResto,
+                idMesa: state.ClientInfo.idMesa,
+                comentario: "",
+              },
+            ],
           };
 
     case "restarTicket":
@@ -84,7 +93,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         cuenta: state.cuenta - action.payload,
       };
-    
+
     // case "getCategorias":
     //   return {
     //     ...state,
@@ -95,46 +104,64 @@ const reducer = (state = initialState, action) => {
       // el payload trae un array con objetos {name:'categoria', productos:[array de productos]}
       // acá lo convierto para que quede un array de objetos de productos con la propiedad "categoria"
       const arrayProductos = [];
-      action.payload.map(categoria=>{
-        categoria.productos.map(prod=>{
-        prod.categoria = categoria.name
-        arrayProductos.push(prod)
+      action.payload.map((categoria) => {
+        categoria.productos.map((prod) => {
+          prod.categoria = categoria.name;
+          arrayProductos.push(prod);
         });
       });
       // del array que nos llega del back saco un array con las categorias
       const arrayCategorias = [];
-      action.payload.map(categoria=>{
-        arrayCategorias.push(categoria.name)
-      })
+      action.payload.map((categoria) => {
+        arrayCategorias.push(categoria.name);
+      });
 
       return {
         ...state,
         menuBaseDatos: arrayProductos,
         productosFiltrados: arrayProductos,
-        categoriasMenu: arrayCategorias
+        categoriasMenu: arrayCategorias,
       };
-      // case INFO_USUARIO:
-      //   return{
-      //       ...state,
-      //       usuario: action.payload
-      //   }
+    // case INFO_USUARIO:
+    //   return{
+    //       ...state,
+    //       usuario: action.payload
+    //   }
 
     case "getDatosMesa":
       return {
         ...state,
-        ClientInfo: action.payload
-      }
+        ClientInfo: action.payload,
+      };
 
     case "resetTicket":
       return {
         ...state,
-        ticket:[]
-      }
+        ticket: [],
+      };
     case "ticketCuenta":
       return {
         ...state,
-        ticketCuenta: [...state.ticketCuenta, action.payload]
-      }
+        ticketCuenta: [...state.ticketCuenta, action.payload],
+      };
+
+    case GET_CATEGORIAS:
+      return {
+        ...state,
+        categorias: action.payload,
+      };
+    case AGREGAR_CATEGORIAS:
+      let categoriasActual = state.categorias;
+      let sumarCategorias = action.payload;
+      let nuevoArrayCategorias = categoriasActual.concat(sumarCategorias);
+      return {
+        ...state,
+        categorias: [...nuevoArrayCategorias],
+      };
+    case BORRAR_CATEGORIAS:
+      return {
+        ...state,
+      };
 
     default:
       return state;
