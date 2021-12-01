@@ -21,8 +21,8 @@ module.exports = (sequelize) => {
 
         imagen: {
             type: DataTypes.STRING,
-            defaultValue:
-            "https://www.muycomputer.com/wp-content/uploads/2016/06/Nintendo-64.jpg",
+            // defaultValue:
+            // "https://www.muycomputer.com/wp-content/uploads/2016/06/Nintendo-64.jpg",
         },
 
         detalle: {

@@ -1,0 +1,34 @@
+.gridcontainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.4fr 0.4fr 2.8fr;
+    gap: 5px 5px;
+    grid-template-areas:
+      "NameMesa"
+      "NameCliente"
+      "seguimiento"
+      "pedido";
+  }
+  
+  .NameMesa { grid-area: NameMesa; }
+  
+  .NameCliente { grid-area: NameCliente; }
+  
+  .seguimiento { grid-area: seguimiento; }
+  
+  .pedido {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "nameProducto cantidad precio";
+    grid-area: pedido;
+  }
+  
+  .nameProducto { grid-area: nameProducto; }
+  
+  .cantidad { grid-area: cantidad; }
+  
+  .precio { grid-area: precio; }
+  

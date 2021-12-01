@@ -53,5 +53,14 @@ router.put('/', async (req, res, next) =>{
     }
 });
 
+router.get('/', async (req, res, next) => {
+    try{
+        
+        const mesa = await Mesa.findAll()
+        res.send(mesa)
+    }catch(error){
+        next(error)
+    }
+});
 
 module.exports = router;
