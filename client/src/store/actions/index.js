@@ -5,9 +5,7 @@ import Usuario from "../../components/Resto/setting/usuario";
 
 import Detalle from "../../components/Resto/home/detalle";
 
-
-export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
-
+export const MODIFICAR_USUARIO = "MODIFICAR_USUARIO";
 
 export const INFO_USUARIO = "INFO_USUARIO";
 export const GET_CATEGORIAS = "GET_CATEGORIAS";
@@ -101,7 +99,6 @@ export function ticketCuenta(payload) {
 //     }
 // }
 
-
 export const agregarCategorias = (payload) => {
   return async function () {
     console.log("esto es lo que agrego");
@@ -129,37 +126,40 @@ export function getCategorias(idResto) {
       dispatch({ type: GET_CATEGORIAS, payload: result });
     } catch (err) {
       console.log(err);
-
-export default function modificarUsuario(obj){
-    return function (dispatch){
-        axios.put("http://localhost:3001/api/resto/", obj)
-        .then((usuario) => {
-            return usuario
-        })
-        .catch((error)=>{
-            console.log(error)
-        })
-    }
-}
-
-export function infoUsuario(id){
-    return function (dispatch){
-        axios.get("http://localhost:3001/api/resto/5cffeb91-f981-4d08-b887-ba1408ec5ce4")
-        .then((usuario) => {
-            dispatch({
-                type: INFO_USUARIO,
-                payload: usuario.data,
-                
-            })
-            
-        })
-        .catch((error) =>{
-            console.log(error)
-        })
     }
   };
-}
 
+  export default function modificarUsuario(obj) {
+    return function (dispatch) {
+      axios
+        .put("http://localhost:3001/api/resto/", obj)
+        .then((usuario) => {
+          return usuario;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
+
+  export function infoUsuario(id) {
+    return function (dispatch) {
+      axios
+        .get(
+          "http://localhost:3001/api/resto/5cffeb91-f981-4d08-b887-ba1408ec5ce4"
+        )
+        .then((usuario) => {
+          dispatch({
+            type: INFO_USUARIO,
+            payload: usuario.data,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
+}
 
 export const borrarCategorias = (id) => {
   return async function (dispatch) {
@@ -172,72 +172,70 @@ export const borrarCategorias = (id) => {
   };
 };
 
-
-export function getDetalle(idMesa){
-    return function(dispatch){
-        axios.get("http://localhost:3001/api/detalle/mesaId/" + idMesa)
-        .then((json) => {
-            dispatch({
-                type: "GET_DETALLE",
-                payload: json.data
-            })
-        })
-        .catch((error) =>{
-            console.log(error)
-        })
-    }
-
+export function getDetalle(idMesa) {
+  return function (dispatch) {
+    axios
+      .get("http://localhost:3001/api/detalle/mesaId/" + idMesa)
+      .then((json) => {
+        dispatch({
+          type: "GET_DETALLE",
+          payload: json.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
 
 //actions to delete, update and create products RESTO
 
 export function postProduct(productObject) {
-    return function (dispatch) {
-        axios.post(`http://localhost:3001/api/producto`, productObject)
-        .then((response) => {
-            return response;
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    };
-};
+  return function (dispatch) {
+    axios
+      .post(`http://localhost:3001/api/producto`, productObject)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
 
 export function getUpdateProduct(productObject) {
-    return function (dispatch) {
-        axios.put(`http://localhost:3001/api/producto`, productObject)
-        .then((response) => {
-            return response;
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    };
-};
+  return function (dispatch) {
+    axios
+      .put(`http://localhost:3001/api/producto`, productObject)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
 
 export function deleteProduct(id) {
-    return function (dispatch) {
-        axios.delete(`http://localhost:3001/api/producto?id=${id}`)
-        .then((response) => {
-            return response;
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    };
-};
+  return function (dispatch) {
+    axios
+      .delete(`http://localhost:3001/api/producto?id=${id}`)
+      .then((response) => {
+        return response;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
 
 export function getMesa(restoId) {
-    return async function (dispatch) {
-        let json = await axios.get("http://localhost:3001/api/mesa/get/" + restoId)
-        
-           return dispatch({
-                type: "GET_MESA",
-                payload: json.data
-            })
-    
-       
-    };
-};
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/api/mesa/get/" + restoId);
 
-
+    return dispatch({
+      type: "GET_MESA",
+      payload: json.data,
+    });
+  };
+}
