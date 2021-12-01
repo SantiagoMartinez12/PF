@@ -7,7 +7,12 @@ import Setting from "./components/Resto/setting/setting";
 import HomeResto from "./components/Resto/home/home";
 import Detalle from "./components/Resto/home/detalle";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+
 import Product from "../src/components/Resto/product/Product.jsx"
+
 
 function App() {
   return (
@@ -22,9 +27,11 @@ function App() {
           path="/:idResto/:idMesa/home/:name"
           element={<HomeClient />}
         />
+
         <Route exact path="/home/resto/" element={<HomeResto/>}/>
         <Route exact path="/detalle/:idMesa" element={<Detalle/>}/>
         <Route path="/producto" element={<Product />} />
+
       </Routes>
     </div>
   );
