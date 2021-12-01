@@ -7,7 +7,9 @@ import Detalle from "../../components/Resto/home/detalle";
 
 export const INFO_USUARIO = 'INFO_USUARIO'
 export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
-
+export const AGREGAR_CATEGORIAS = 'AGREGAR_CATEGORIAS'
+export const GET_CATEGORIAS = "GET_CATEGORIAS";
+export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
 
 export function getProductos(idResto) {
     return function (dispatch) {
@@ -179,4 +181,48 @@ export function getMesa(restoId) {
        
     };
 };
+
+
+export const agregarCategorias = (payload) => {
+    return async function () {
+      console.log("esto es lo que agrego");
+      console.log(payload);
+      const data = await axios.post(
+        "http://localhost:3001/api/categorias/",
+        payload
+      );
+      const posteo = data.data;
+      console.log(posteo);
+      return {
+        type: AGREGAR_CATEGORIAS,
+        payload: posteo,
+      };
+    };
+  };
+  
+  export function getCategorias(idResto) {
+    return async function (dispatch) {
+      try {
+        const resp = await axios.get(
+          "http://localhost:3001/api/categorias/84fb67c6-a5b3-4bb1-9920-986e13375739"
+        );
+        const result = resp.data;
+        dispatch({ type: GET_CATEGORIAS, payload: result });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+};
+
+
+export const borrarCategorias = (id) => {
+    return async function (dispatch) {
+      const borrando = await axios.delete(
+        `http://localhost:3001/api/categorias/${id}`
+      );
+      const result = borrando.data;
+      console.log(result);
+      dispatch({ type: BORRAR_CATEGORIAS, payload: result });
+    };
+  };
 
