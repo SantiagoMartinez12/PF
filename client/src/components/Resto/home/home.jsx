@@ -3,26 +3,29 @@ import AutorizaMesa from "../home/autorizaMesa"
 import Card from "./card";
 import logo from "../../../assets/Logo.png";
 import s from "../home/home.module.css"
-import axios from "axios";
-import mesa from "../home/mesa"
 
+import { useDispatch, useSelector } from "react-redux";
+import { getDetalle, getMesa } from "../../../store/actions";
 
 export default function HomeResto(){
-    const [mesas, setMesas] = useState()   
-    function getMesa(){
-        axios.get("http://localhost:3001/api/mesa/")
-        .then((json) => setMesas(json.data))
-    }
+    const mesas = useSelector(state => state.mesas)
+    
+    const dispatch = useDispatch()
+    // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
+
      
     useEffect(()=>{
-      setInterval(getMesa, 10000)
-        
+      setInterval(()=>{
+            dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
+
+        }, 5000)
+       
     },[])
     
     
     let mesaTrue = mesas?.filter(m => m.estado === true)
-    console.log(mesaTrue)
-    console.log(mesas)
+    // console.log(mesaTrue)
+    // console.log(mesas)
     return(
         <div className={s.gridcontainer}>
             

@@ -21,6 +21,7 @@ const initialState = {
     idMesa:""
   },
   detalle: [],
+  mesas: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -143,6 +144,11 @@ const reducer = (state = initialState, action) => {
       return{
         ...state,
         detalle: action.payload
+      }
+      case "GET_MESA":
+      return{
+        ...state,
+        mesas: action.payload
       }
 
     default:
