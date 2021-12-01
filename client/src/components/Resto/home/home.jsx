@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import AutorizaMesa from "../home/autorizaMesa"
 import Card from "./card";
 import logo from "../../../assets/Logo.png";
 import s from "../home/home.module.css"
@@ -15,7 +15,7 @@ export default function HomeResto(){
     }
      
     useEffect(()=>{
-      setInterval(getMesa, 20000)
+      setInterval(getMesa, 10000)
         
     },[])
     
@@ -26,8 +26,12 @@ export default function HomeResto(){
     return(
         <div className={s.gridcontainer}>
             
+            
 
         <div className={s.Mesas}>
+            <div>
+            <AutorizaMesa/>
+            </div>
             {
 
                 mesaTrue?.map(el =>{
