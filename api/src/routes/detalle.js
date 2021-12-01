@@ -24,10 +24,11 @@ router.get('/:id', async (req, res, next) =>{
 router.post('/', async (req, res, next) =>{
     try{
         const data = req.body
+        console.log(data)
         const newDetalle = await data.forEach(async(register)=>{
             await Detalle.create({
-            mesaId: register.mesaId,
-            namecliente: register.namecliente,
+            mesaId: register.idMesa,
+            namecliente: register.nameCliente,
             precio: register.precio,
             name: register.name,
             estado: register.estado,
@@ -73,6 +74,22 @@ router.delete('/:id', async (req, res, next) =>{
         }
         }) 
         res.send('se ha eliminado con exito')
+    }catch(error){
+        next(error)
+    }
+});
+router.get('/mesaId/:mesaId', async (req, res, next) =>{
+    
+    try{
+        const {mesaId} = req.params;
+       
+        const detalle = await Detalle.findAll({
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad'],
+        where:{
+            mesaId:mesaId,
+        }
+        }) 
+        res.send(detalle)
     }catch(error){
         next(error)
     }

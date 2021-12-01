@@ -1,6 +1,10 @@
 import axios from "axios"
 import productos from "../../components/Cliente/carta/ejemploCarta";
+
 import Usuario from "../../components/Resto/setting/usuario";
+
+import Detalle from "../../components/Resto/home/detalle";
+
 export const INFO_USUARIO = 'INFO_USUARIO'
 export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
 
@@ -107,6 +111,24 @@ export function infoUsuario(id){
 }
 
 
+
+
+export function getDetalle(idMesa){
+    return function(dispatch){
+        axios.get("http://localhost:3001/api/detalle/mesaId/" + idMesa)
+        .then((json) => {
+            dispatch({
+                type: "GET_DETALLE",
+                payload: json.data
+            })
+        })
+        .catch((error) =>{
+            console.log(error)
+        })
+    }
+
+}
+
 //actions to delete, update and create products RESTO
 
 export function postProduct(productObject) {
@@ -144,3 +166,17 @@ export function deleteProduct(id) {
         })
     };
 };
+
+export function getMesa(restoId) {
+    return async function (dispatch) {
+        let json = await axios.get("http://localhost:3001/api/mesa/get/" + restoId)
+        
+           return dispatch({
+                type: "GET_MESA",
+                payload: json.data
+            })
+    
+       
+    };
+};
+
