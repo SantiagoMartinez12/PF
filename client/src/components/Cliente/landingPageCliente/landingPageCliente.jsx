@@ -11,6 +11,7 @@ import logo from "../../../assets/Logo.png";
 import { useState, useEffect } from "react";
 import { getCategorias } from "../../../store/actions";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 
 export default function LandingPageClient() {
@@ -39,6 +40,9 @@ export default function LandingPageClient() {
       return alert("Por favor, escríbe un nombre valido");
     }
     navigate(`/${idResto}/${idMesa}/home/${name}`);
+    //post a la ruta cliente
+    axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
+
   }
 
   return (
