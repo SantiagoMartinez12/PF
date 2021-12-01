@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import LandingPageClient from "./components/Cliente/landingPageCliente/landingPageCliente.jsx";
 import HomeClient from "./components/Cliente/homeCliente/homeCliente.jsx";
@@ -14,6 +14,11 @@ import LandingPageResto from "./components/Resto/landingPageResto/landigPageRest
 
 
 import Product from "../src/components/Resto/product/Product.jsx"
+import { useDispatch } from "react-redux";
+import modificarUsuario from "./store/actions";
+import Usuario from "./components/Resto/setting/usuario";
+
+
 
 
 function App() {

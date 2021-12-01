@@ -16,7 +16,7 @@ const Product = () => {
 
 
     useEffect(() => {
-        dispatch(getProductos('11a3415b-7bef-42de-bf5c-15ff1826798e'));
+        dispatch(getProductos('5cffeb91-f981-4d08-b887-ba1408ec5ce4'));
     }, [])
 
     const handleAddProduct = (e) => {
