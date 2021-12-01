@@ -1,0 +1,18 @@
+.prodcutAll {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1.5fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "menu"
+      "contenido";
+  }
+  
+  .menu { grid-area: menu; }
+  
+  .contenido { grid-area: contenido; }  
+
+  .contenido {
+    height: 200px;
+    overflow-y: auto;
+  }

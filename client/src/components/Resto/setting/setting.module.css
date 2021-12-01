@@ -10,3 +10,18 @@ selectorBotones{
       flex-direction: column;
       justify-content: space-evenly;
 }
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 0.6fr 1.8fr;
+  grid-template-rows: 0.7fr 2.7fr 0.3fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "LogoTitulo LogoTitulo"
+    "navBar display"
+    "pieDePagina pieDePagina";
+}
+.LogoTitulo { grid-area: LogoTitulo; }
+.navBar { grid-area: navBar; }
+.display { grid-area: display; }
+.pieDePagina { grid-area: pieDePagina; }

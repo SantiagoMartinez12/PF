@@ -1,5 +1,6 @@
 import axios from "axios"
 import productos from "../../components/Cliente/carta/ejemploCarta";
+import Usuario from "../../components/Resto/setting/usuario";
 export const INFO_USUARIO = 'INFO_USUARIO'
 export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
 
@@ -76,14 +77,14 @@ export function ticketCuenta(payload){
     }
 }
 
-export default function modificarUsuario(){
+export default function modificarUsuario(obj){
     return function (dispatch){
-        axios.get("http://localhost:3001/api/resto/")
+        axios.put("http://localhost:3001/api/resto/", obj)
         .then((usuario) => {
-            dispatch({
-                type: MODIFICAR_USUARIO,
-                payload: usuario.data
-            })
+            return usuario
+        })
+        .catch((error)=>{
+            console.log(error)
         })
     }
 }
@@ -106,3 +107,40 @@ export function infoUsuario(id){
 }
 
 
+//actions to delete, update and create products RESTO
+
+export function postProduct(productObject) {
+    return function (dispatch) {
+        axios.post(`http://localhost:3001/api/producto`, productObject)
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    };
+};
+
+export function getUpdateProduct(productObject) {
+    return function (dispatch) {
+        axios.put(`http://localhost:3001/api/producto`, productObject)
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    };
+};
+
+export function deleteProduct(id) {
+    return function (dispatch) {
+        axios.delete(`http://localhost:3001/api/producto?id=${id}`)
+        .then((response) => {
+            return response;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    };
+};

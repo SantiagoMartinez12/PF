@@ -43,7 +43,7 @@ router.put('/', async (req, res, next) =>{
 
 router.delete('/', async (req, res, next) =>{
     try{
-        let parameters = req.body;
+        let parameters = req.query;
         await deleteProduct(parameters);
         res.json({response:'correcto'});
     }catch(error){
