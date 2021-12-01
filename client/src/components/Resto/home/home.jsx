@@ -6,18 +6,23 @@ import s from "../home/home.module.css"
 import axios from "axios";
 import mesa from "../home/mesa"
 
+
 export default function HomeResto(){
-    // const [mesas, setMesas] = useState()    
-    // useEffect(()=>{
-    //     axios.get("http://localhost:3001/api/mesa/")
+    const [mesas, setMesas] = useState()   
+    function getMesa(){
+        axios.get("http://localhost:3001/api/mesa/")
+        .then((json) => setMesas(json.data))
+    }
+     
+    useEffect(()=>{
+      setInterval(getMesa, 20000)
         
-    //     .then((json) => setMesas(json.data)  
-        
-    // },[])
+    },[])
     
     
-    let mesaTrue = mesa.filter(m => m.estado === true)
+    let mesaTrue = mesas?.filter(m => m.estado === true)
     console.log(mesaTrue)
+    console.log(mesas)
     return(
         <div className={s.gridcontainer}>
             
