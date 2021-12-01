@@ -18,7 +18,7 @@ export default function Usuario({id, name, usuario, contraseña, mail, mesa, ima
     id:'5cffeb91-f981-4d08-b887-ba1408ec5ce4',
   })
 
-
+  
 
   function handleModificar(e) {
     e.preventDefault();
@@ -40,6 +40,7 @@ export default function Usuario({id, name, usuario, contraseña, mail, mesa, ima
     setRenderiza6(false)
     dispatch(infoUsuario())
   }
+  console.log()
 
   function handleRenderiza1(e){
         if(renderiza1===false){
