@@ -8,20 +8,16 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
-import { useState, useEffect } from "react";
-import { getCategorias } from "../../../store/actions";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { getDatosMesa } from "../../../store/actions";
 
 
 export default function LandingPageClient() {
   const { idResto,idMesa} = useParams()
-    const dispatch = useDispatch()
-  
-  //   useEffect(() => {
-  //   dispatch(getCategorias());
-  // }, [dispatch]);
-
+  const infoCliente = useSelector(state=> state.ClientInfo);
+  const dispatch = useDispatch()
   const [input, setInput] = useState({
     name: "",
   });
@@ -37,11 +33,39 @@ export default function LandingPageClient() {
     e.preventDefault();
     const { name } = input;
     if (name === undefined || name.length < 3) {
-      return alert("Por favor, escríbe un nombre valido");
+      return alert("Por favor, escribe un nombre valido");
     }
-    navigate(`/${idResto}/${idMesa}/home/${name}`);
-    //post a la ruta cliente
-    axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
+    
+    //confirmo si idResto e idMesa son correctos (existen en la BD)
+    const exiteResto = axios.get(`http://localhost:3001/api/resto/${idResto}`);
+    const existeMesa = axios.get(`http://localhost:3001/api/mesa/${idMesa}`);
+    Promise.all([exiteResto, existeMesa])
+      .then(res=>{
+    //si idResto o isMesa no existen postea nada y lo redirige a una página de error    
+        if(res[0].data.length === 0 || res[1].data.length === 0){
+          navigate('/errorQr');
+        }else{
+    //si idResto y idMesa son correctos postea a la ruta cliente y lo redirige al home Cliente
+          navigate(`/${idResto}/${idMesa}/home/${name}`);
+          axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
+            .then(resPost=> {
+              dispatch(getDatosMesa({idCliente:resPost.data.id}));
+              // const getEstado=()=>{
+              //   axios.get(`http://localhost:3001/api/cliente/${resPost.data.id}`)
+              //       .then(res=>{
+              //         dispatch(getDatosMesa({estadoCliente:res.data.estado}));
+              //       })
+              // }
+              // getEstado()
+              // // const repet = setInterval(getEstado, 2000);
+              // // if(infoCliente.estadoCliente !== 'solicitado'){
+              // //     clearInterval(repet);
+              // // }
+
+          })
+        }  
+    })
+    
 
   }
 

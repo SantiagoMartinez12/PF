@@ -1,10 +1,9 @@
+import Detalle from "../../components/Resto/home/detalle";
+export const INFO_USUARIO = 'INFO_USUARIO'
 import axios from "axios";
 import productos from "../../components/Cliente/carta/ejemploCarta";
-
 import Usuario from "../../components/Resto/setting/usuario";
-
 import Detalle from "../../components/Resto/home/detalle";
-
 export const INFO_USUARIO = 'INFO_USUARIO'
 export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
 export const AGREGAR_CATEGORIAS = 'AGREGAR_CATEGORIAS'

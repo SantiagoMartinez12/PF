@@ -48,7 +48,7 @@ export default function AutorizaMesa(){
             { mesas.length?
                 mesas?.map(m=>{
                     return  <div key={m.id}>
-                                {`${m.nombre} está esperando autorización en ${m.mesa.name}`}
+                                {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                                 <button onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
                             </div>
                 })
