@@ -17,7 +17,7 @@ export default function HomeResto(){
      
     useEffect(()=>{
       setInterval(()=>{
-            dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
+            dispatch(getMesa("9fc5065b-520f-42a9-9755-422b7f552539")) // id resto
 
         }, 5000)
        

@@ -64,6 +64,24 @@ router.put('/', async (req, res, next) =>{
         next(error)
     }
 });
+router.put('/seguimiento/', async (req, res, next) =>{
+    try{
+        const {id, seguimiento} = req.body
+        console.log(id,seguimiento)
+        const cambiarSeguimiento = await Detalle.update({
+            
+            seguimiento:seguimiento,
+            
+        },{
+            where:{
+                id:id
+            }
+        })
+        res.send('su seguimiento se ha cambiado con exito') 
+    }catch(error){
+        next(error)
+    }
+});
 
 router.delete('/:id', async (req, res, next) =>{
     try{
