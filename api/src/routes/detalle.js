@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { conn } = require('../db');
 const {Detalle} = conn.models;
 
-
+//dhewetetty
 
 const router = Router();
 
@@ -60,6 +60,24 @@ router.put('/', async (req, res, next) =>{
             }
         })
         res.send('su detalle se ha cambiado con exito') 
+    }catch(error){
+        next(error)
+    }
+});
+router.put('/seguimiento/', async (req, res, next) =>{
+    try{
+        const {id, seguimiento} = req.body
+        console.log(id,seguimiento)
+        const cambiarSeguimiento = await Detalle.update({
+            
+            seguimiento:seguimiento,
+            
+        },{
+            where:{
+                id:id
+            }
+        })
+        res.send('su seguimiento se ha cambiado con exito') 
     }catch(error){
         next(error)
     }

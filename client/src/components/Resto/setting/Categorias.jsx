@@ -2,59 +2,71 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./Categorias.module.css"
 import Card from "./Card";
-import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { agregarCategorias, getCategorias } from "../../../store/actions";
 
-
-// const categoria = [{"name": "Bebidas"}, {"name": "Postres"}, {"name": "Pizzas"},]
 
 
 export default function Categorias(){
-
-
-
-    const [categorias, setCategorias] = useState()
-
-    useEffect(() => {
-       axios.get("http://localhost:3001/api/categorias/84fb67c6-a5b3-4bb1-9920-986e13375739")
-       .then(resp => {setCategorias(resp.data)})            
-    }, [])
-
-
-    //Cada categoria tiene (en el modelo) un id y un name
-    // Tengo que renderizar una card con el nombre
-
-    // Tengo que poder modificar mis categorias (agregar una o mas, y borrar una o mas).
-
+    const dispatch = useDispatch();
+    const [clickAgregar, setClickAgregar] = useState(false);
+    const [nuevaCategoria, setNuevaCategoria] = useState({
+        name: "",
+        restoId: "84fb67c6-a5b3-4bb1-9920-986e13375739"
+    });
     
-    console.log(categorias)
+    const categorias = useSelector((state) => state.categorias)
+   
+    useEffect(() => {
+
+        dispatch(getCategorias());            
+
+    }, [])
+    
+
+    function handleClick(e){
+        if(clickAgregar===false){
+            setClickAgregar(true)
+        } else {
+            setClickAgregar(false)
+        }
+
+    }
+    function handleSubmit(e){
+        e.preventDefault();
+        setClickAgregar(false)
+        console.log(nuevaCategoria)
+        dispatch(agregarCategorias(nuevaCategoria))
+        dispatch(getCategorias())
+              
+    }
+    function handleChange(e){
+        console.log(e.target.value)
+        setNuevaCategoria({...nuevaCategoria, name: e.target.value})
+    }
+
+
    
     return(
         
         <div className={styles.gridContainer}>
             <div className={styles.titulo}>
             <h2>Categorias</h2>
-                <Link to={'/home'}>
-                    <button className={styles.boton}>Volver</button>
-                </Link>
+                
             </div>
 
             <div className={styles.cardsDiv} >
                 {
                     categorias?.map(el => (
-                        <Card key={el.id} name={el.name}/>
+                        <Card key={el.id} id={el.id} name={el.name} />
                     ) )
                 }
             </div>
 
             <div className={styles.tituloCambio}>            
-                <Link to={'/'}>
-                    <button className={styles.botonCambio}>Agregar</button>
-                </Link>
-                <Link to={'/'}>
-                    <button className={styles.botonCambio}>Modificar</button>
-                </Link>
-            </div>
-            
+               { clickAgregar=== false ? <button onClick={(e)=>handleClick(e)} className={styles.botonCambio}>Agregar</button>:  <><input name={"categoria"} onChange={handleChange}></input><button type="submit" onClick={handleSubmit} >Confirmar</button></>
+               }                     
+            </div>           
             
             
         </div>       
