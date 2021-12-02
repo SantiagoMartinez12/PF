@@ -87,6 +87,8 @@ export default function DetallePedido(){
         <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
             <h5>Total a pagar: ${cuenta}</h5>
         </div>
+        
+        
     </div>     
     )
 }

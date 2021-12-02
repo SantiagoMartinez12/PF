@@ -1,5 +1,5 @@
 import axios from "axios"
-import productos from "../../components/Cliente/carta/ejemploCarta";
+
 import Detalle from "../../components/Resto/home/detalle";
 export const INFO_USUARIO = 'INFO_USUARIO'
 

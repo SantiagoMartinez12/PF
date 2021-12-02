@@ -12,9 +12,10 @@ import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
 import { useEffect } from 'react'
 import { getDatosMesa } from '../../../store/actions/index.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
+import axios from 'axios'
 
 
 
@@ -23,27 +24,50 @@ export default function HomeClient(){
 
     const{name,idResto,idMesa} = useParams()
     const dispatch = useDispatch()
-   // let {name} = useParams()
     const cliente = {
         nameCliente:name,
         idResto:idResto,
         idMesa:idMesa
     }
-   //let name = param.name
+    
     useEffect (() =>{
-        dispatch(getDatosMesa(cliente))
+        dispatch(getDatosMesa(cliente));
+        // actualizarEstado()
     }, [dispatch]);
+
+    const infoCliente = useSelector(state=> state.ClientInfo);
+
+
     // este estado en false muestra el detalle y en true muestra la carta
-       const [ state, setState] = useState("ver pedido")
-        function handleClickPedido(e){
-          setState("ver pedido")
-        }
-        function handleClickPedidoMenu(e){
-        setState("ver menu")
-        }
-        function handleClickPedidoCuenta(e){
-            setState("ver cuenta")
-            }
+    const [ state, setState] = useState("ver pedido");
+
+    // const [ estado, setEstado ] = useState('solicitado')
+
+    // function getEstado(){
+    //     console.log(infoCliente.idCliente)
+    //     axios.get(`http://localhost:3001/api/cliente/${infoCliente.idCliente}`)
+    //         .then(res=>{
+    //             console.log(res.data)
+    //             // setEstado(res.data.estado)
+    //         })
+    // }
+    
+    // function actualizarEstado(){
+    //     const repet = setInterval(getEstado, 2000);
+    //     if(estado !== 'solicitado'){
+    //         clearInterval(repet);
+    //     }
+    // }
+
+    function handleClickPedido(e){
+        setState("ver pedido")
+    }
+    function handleClickPedidoMenu(e){
+    setState("ver menu")
+    }
+    function handleClickPedidoCuenta(e){
+        setState("ver cuenta")
+    }
 
     
     return (
@@ -63,10 +87,10 @@ export default function HomeClient(){
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item px-2">
-                    <button onClick={e => {handleClickPedido(e)}} class="btn btn-primary btn-md   navbar-btn">Ver Pedido</button>
+                    <button onClick={e => {handleClickPedidoMenu(e)}} class="btn btn-primary btn-md  navbar-btn">Ver Menu</button>
                     </li>
                     <li class="nav-item px-2">
-                    <button onClick={e => {handleClickPedidoMenu(e)}} class="btn btn-primary btn-md  navbar-btn">Ver Menu</button>
+                    <button onClick={e => {handleClickPedido(e)}} class="btn btn-primary btn-md   navbar-btn">Ver Pedido</button>
                     </li>
                     <li class="nav-item px-2">
                     <button onClick={e => {handleClickPedidoCuenta(e)}} class="btn btn-primary btn-md  navbar-btn">Ver Cuenta</button>
@@ -79,5 +103,12 @@ export default function HomeClient(){
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta/> :  <Cuenta/>  
             }
-    </div>)
+            <br/>
+            <br/>
+            <div>
+                <h5>En un instante te habilitaremos para realizar pedidos.</h5>
+                <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+            </div>
+        </div>
+    )
 }

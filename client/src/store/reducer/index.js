@@ -1,7 +1,5 @@
 // import { importar acciones } from "../actions/index"
 import { useParams } from "react-router";
-import productos from "../../components/Cliente/carta/ejemploCarta";
-import { categorias } from "../../components/Cliente/carta/ejemploCarta";
 import { INFO_USUARIO } from "../actions";
 
 
@@ -14,8 +12,9 @@ const initialState = {
   cuenta: 0,
   //esto lo volamos cuando funcione el back
   ticketCuenta:[],
-
   ClientInfo: {
+    estadoCliente:"solicitado",
+    idCliente:"",
     nameCliente: "",
     idResto:"",
     idMesa:""
@@ -52,6 +51,7 @@ const reducer = (state = initialState, action) => {
         : {
             ...state,
             ticket: [...state.ticket, { ...nuevoItem, cantidad: 1, 
+              idCliente: state.ClientInfo.idCliente,
               nameCliente:state.ClientInfo.nameCliente,
               idResto:state.ClientInfo.idResto,
               idMesa:state.ClientInfo.idMesa,
@@ -87,12 +87,6 @@ const reducer = (state = initialState, action) => {
         cuenta: state.cuenta - action.payload,
       };
     
-    // case "getCategorias":
-    //   return {
-    //     ...state,
-    //     categoriasMenu: action.payload,
-    //   };
-
     case "getProductos":
       // el payload trae un array con objetos {name:'categoria', productos:[array de productos]}
       // acá lo convierto para que quede un array de objetos de productos con la propiedad "categoria"
@@ -123,9 +117,17 @@ const reducer = (state = initialState, action) => {
       //   }
 
     case "getDatosMesa":
+      const{ estadoCliente, idCliente, nameCliente, idResto, idMesa }= action.payload
+      
       return {
         ...state,
-        ClientInfo: action.payload
+        ClientInfo: {
+          idCliente: idCliente? idCliente: state.ClientInfo.idCliente,
+          estadoCliente: estadoCliente? estadoCliente: state.ClientInfo.estadoCliente,
+          nameCliente: nameCliente? nameCliente: state.ClientInfo.nameCliente,
+          idResto: idResto? idResto: state.ClientInfo.idResto,
+          idMesa: idMesa? idMesa: state.ClientInfo.idMesa
+        }  
       }
 
     case "resetTicket":

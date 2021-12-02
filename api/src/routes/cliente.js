@@ -16,13 +16,17 @@ router.get('/', async(req, res, next)=>{
 })
 
 
-router.get('/:estado', async(req, res, next)=>{
-    const { estado } = req.params; 
+router.get('/:param', async(req, res, next)=>{
+    const { param } = req.params; 
     
     try{
+        if(param.length > 15){
+            const cliente = await Cliente.findByPk(param);
+            res.json(cliente)              
+        }
         const clientes = await Cliente.findAll({
             where:{
-            estado:estado,
+            estado:param,
             },
             include: {model:Mesa,
                 attributes: ['name']
@@ -40,6 +44,9 @@ router.post('/', async (req, res, next) =>{
     const { nombre, mesaId} = req.body
     
     try{
+        const existeId = await Mesa.findByPk(mesaId)
+        if(!existeId) return res.status(404);
+
         const newCliente = await Cliente.create({
             nombre,
             mesaId
