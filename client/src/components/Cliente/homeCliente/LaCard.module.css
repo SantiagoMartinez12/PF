@@ -1,0 +1,44 @@
+.card {
+    background-color: rgb(22 7 247 / 87%);
+    color: #fafafa;
+    padding: 15px;
+    height: 165px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px;
+    max-width: 165px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .card:hover {
+    background-color: rgb(110, 110, 112);
+  
+    backdrop-filter: blur(2px);
+  }
+  .cardImage {
+    height: 130px;
+    width: 220px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .link {
+    text-decoration: none;
+    color: #fafafa;
+  }
+  
+  .divName {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 80%;
+    justify-content: center;
+  }
+  .h5Card {
+    margin: 5px;
+  }
+  
