@@ -11,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function LandingPageResto() {
   const { isAuthenticated } = useAuth0();
+  console.log(isAuthenticated)
   return (
     <div>
       <h1>Bienvenido!</h1>
@@ -22,6 +23,7 @@ export default function LandingPageResto() {
         </>
       ) : (
         <LoginButton />
+        
       )}
     </div>
   );
