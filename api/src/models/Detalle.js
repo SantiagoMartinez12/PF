@@ -39,6 +39,9 @@ module.exports = (sequelize) => {
 
         cantidad:{
             type:DataTypes.INTEGER
+        },
+        clienteId:{
+            type:DataTypes.STRING
         }
 
 },{
