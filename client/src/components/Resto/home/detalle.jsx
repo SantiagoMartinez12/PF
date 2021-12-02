@@ -4,12 +4,12 @@ import { useParams } from "react-router";
 import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function Detalle(){
     
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     const {idMesa} = useParams()
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
@@ -33,6 +33,17 @@ export default function Detalle(){
     let cantidad = detalle?.map(e => e.cantidad )
     let precio = detalle?.map(e => e.precio)
     let seguimiento = detalle?.map(e => e.seguimiento)
+
+    const desocuparMesa = (idMesa)=>{
+        axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
+    }
+    const handleOnClick = (e) =>{
+        e.preventDefault();
+        desocuparMesa(idMesa)
+        navigate("/home/resto")
+    }
+    console.log(mesa)
+    console.log(mesaFind)
 
 
     return(
@@ -86,6 +97,10 @@ export default function Detalle(){
                         </div>
                     )
                     })}</p>
+            </div>
+            <div>
+                <h5>Desea cerrar mesa?</h5>
+                <button onClick={handleOnClick}>Ok</button>
             </div>
         </div>
     </div>
