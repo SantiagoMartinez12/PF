@@ -34,9 +34,11 @@ router.post('/', async (req, res, next) =>{
             estado: register.estado,
             seguimiento: register.seguimiento,
             comentario: register.comentario,
-            cantidad: register.cantidad
+            cantidad: register.cantidad,
+            clienteId: register.idCliente
         })})
         res.send(newDetalle) 
+        console.log()
     }catch(error){
         next(error)
     }
@@ -96,15 +98,15 @@ router.delete('/:id', async (req, res, next) =>{
         next(error)
     }
 });
-router.get('/mesaId/:mesaId', async (req, res, next) =>{
+router.get('/idcliente/:idCliente', async (req, res, next) =>{
     
     try{
-        const {mesaId} = req.params;
+        const {idCliente} = req.params;
        
         const detalle = await Detalle.findAll({
-        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad'],
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad', 'clienteId'],
         where:{
-            mesaId:mesaId,
+            clienteId:idCliente,
         }
         }) 
         res.send(detalle)
