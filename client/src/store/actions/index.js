@@ -171,10 +171,10 @@ export const borrarCategorias = (id) => {
   };
 };
 
-export function getDetalle(idMesa) {
+export function getDetalle(idCliente) {
   return function (dispatch) {
     axios
-      .get(serverFinder("detalle/mesaId/" + idMesa))
+      .get(serverFinder("detalle/idcliente/" + idCliente))
       .then((json) => {
         dispatch({
           type: "GET_DETALLE",

@@ -7,25 +7,34 @@ import s from "../home/home.module.css"
 import { useDispatch, useSelector } from "react-redux";
 import { getDetalle, getMesa } from "../../../store/actions";
 import { Link } from "react-router-dom";
+import idResto from "./idResto.js"
+import axios from "axios"
 
 export default function HomeResto(){
     const mesas = useSelector(state => state.mesas)
-    
+    const [clientes, setClientes] = useState()
     const dispatch = useDispatch()
     // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
 
      
     useEffect(()=>{
       setInterval(()=>{
-            dispatch(getMesa("9fc5065b-520f-42a9-9755-422b7f552539")) // id resto
-
+        updateMesa() // id resto
+            
         }, 5000)
        
     },[])
+    function updateMesa(){
+        axios.get('http://localhost:3001/api/cliente/autorizado')
+            .then(res =>{
+                setClientes(res.data)
+            })
+
+    }
+  
     
     
-    let mesaTrue = mesas?.filter(m => m.estado === true)
-    // console.log(mesaTrue)
+    
     // console.log(mesas)
     return(
         <div className={s.gridcontainer}>
@@ -38,11 +47,12 @@ export default function HomeResto(){
             </div>
             {
 
-                mesaTrue?.map(el =>{
-                    
+            clientes?.map(el =>{
+                   
                     return(
                         <div>
-                    <Card idMesa={el.id} name={el.name} />
+                    <Card idMesa={el.mesaId} name={el.mesa.name} idCliente={el.id} nombreCliente={el.nombre} />
+
                     </div>
                     )
                     
