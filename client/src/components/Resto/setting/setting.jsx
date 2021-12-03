@@ -7,12 +7,14 @@ import 'boxicons'
 import { useDispatch, useSelector } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
+import MediosDePago from "./MediosDePago";
 
 
 export default function Setting() {
     const [iUsuario, setIUsuario] = useState(false)
     const [infoCategorias, setInfoCategorias] = useState(false)
     const [product, setProduct] = useState(false)
+    const [mediosDePago, setMediosDePago] = useState(false)
     const info = useSelector((state) => state.usuario)
     const dispatch = useDispatch()
 
@@ -24,6 +26,7 @@ export default function Setting() {
             dispatch(infoUsuario())
             setInfoCategorias(false)
             setProduct(false)
+            setMediosDePago(false)
         } else {
             e.preventDefault();
             setIUsuario(false)
@@ -36,6 +39,7 @@ export default function Setting() {
             setInfoCategorias(true)
             setIUsuario(false)
             setProduct(false)
+            setMediosDePago(false)
         } else {
             e.preventDefault();
             setInfoCategorias(false)
@@ -48,10 +52,26 @@ export default function Setting() {
             setProduct(true)
             setIUsuario(false)
             setInfoCategorias(false)
+            setMediosDePago(false)
+
         } else {
             e.preventDefault();
             setProduct(false)
         }
+    }
+
+    function handleMediosDePago(e){
+        if(mediosDePago===false){
+            e.preventDefault();
+            setMediosDePago(true)
+            setProduct(false)
+                setIUsuario(false)
+                setInfoCategorias(false)
+        }else{
+            e.preventDefault();
+            setMediosDePago(false)
+        }
+
     }
 
     return (
@@ -77,7 +97,8 @@ export default function Setting() {
                         Productos</button>
                 </div>
                 <div className={style.formasPago}>
-                    <Link to='/mediosDePago'><button>
+                    <Link to='/mediosDePago'>
+                        <button onClick={(e) => { handleMediosDePago(e) }}>
                         <box-icon name='credit-card' type='solid' ></box-icon>
                         Medios de pagos</button></Link>
                 </div>
@@ -94,6 +115,9 @@ export default function Setting() {
                 }
 
                 {product === true ? <Product /> : <></>
+                }
+
+                {mediosDePago === true ? <MediosDePago /> : <></>
                 }
             </div>
             <div className={style.pieDePagina}></div>

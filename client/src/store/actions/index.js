@@ -6,7 +6,6 @@ import Usuario from "../../components/Resto/setting/usuario";
 import Detalle from "../../components/Resto/home/detalle";
 
 export const MODIFICAR_USUARIO = "MODIFICAR_USUARIO";
-
 export const INFO_USUARIO = "INFO_USUARIO";
 export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
@@ -128,37 +127,37 @@ export function getCategorias(idResto) {
       console.log(err);
     }
   };
+}
 
-  export default function modificarUsuario(obj) {
-    return function (dispatch) {
-      axios
-        .put("http://localhost:3001/api/resto/", obj)
-        .then((usuario) => {
-          return usuario;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-  }
+export default function modificarUsuario(obj) {
+  return function (dispatch) {
+    axios
+      .put("http://localhost:3001/api/resto/", obj)
+      .then((usuario) => {
+        return usuario;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
-  export function infoUsuario(id) {
-    return function (dispatch) {
-      axios
-        .get(
-          "http://localhost:3001/api/resto/5cffeb91-f981-4d08-b887-ba1408ec5ce4"
-        )
-        .then((usuario) => {
-          dispatch({
-            type: INFO_USUARIO,
-            payload: usuario.data,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
+export function infoUsuario(id) {
+  return function (dispatch) {
+    axios
+      .get(
+        "http://localhost:3001/api/resto/5cffeb91-f981-4d08-b887-ba1408ec5ce4"
+      )
+      .then((usuario) => {
+        dispatch({
+          type: INFO_USUARIO,
+          payload: usuario.data,
         });
-    };
-  }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
 
 export const borrarCategorias = (id) => {

@@ -1,3 +1,29 @@
-.container {
-  border: solid 1px black;
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Header Header Header Header Header"
+    "Buttons Render-Area Render-Area Render-Area Render-Area"
+    "Buttons Render-Area Render-Area Render-Area Render-Area"
+    "Buttons Render-Area Render-Area Render-Area Render-Area"
+    "Buttons Render-Area Render-Area Render-Area Render-Area";
+  border: solid 1px red;
+}
+
+.header {
+  grid-area: Header;
+  background-color: cornflowerblue;
+}
+
+.renderArea {
+  grid-area: Render-Area;
+  background-color: cadetblue;
+}
+
+.buttons {
+  grid-area: Buttons;
+  grid-auto-flow: column;
+  background-color: cyan;
 }
