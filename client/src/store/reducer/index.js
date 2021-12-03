@@ -4,8 +4,8 @@ import {
   BORRAR_CATEGORIAS,
   GET_CATEGORIAS,
 } from "../actions";
+import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO } from "../actions";
 
-import { INFO_USUARIO, MODIFICAR_USUARIO } from "../actions";
 
 
 const initialState = {
@@ -16,6 +16,7 @@ const initialState = {
   ticket: [],
   cuenta: 0,
   ticketCuenta:[],
+
   usuario:[],
 
   ClientInfo: {
@@ -31,7 +32,8 @@ const initialState = {
   mesas: [],
 
 };
-console.log(initialState.usuario)
+
+console.log(initialState.idResto)
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -190,6 +192,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         mesas: action.payload
       }
+      case CREAR_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
+      
+
 
 
     default:

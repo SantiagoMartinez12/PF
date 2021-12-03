@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const { conn } = require("../db");
 const { Resto, Detalle } = conn.models;
-const generadorQr = require("../functions/generadorQr")
+const generadorQr = require("../functions/generadorQr");
+const modificarMesaQr = require("../functions/modificarMesaQr");
 
 
 const router = Router();
@@ -32,16 +33,16 @@ router.post("/", async (req, res, next) => {
   try {
     let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
 
-    let newUser = await Resto.create({
+    let newUser = await Resto.findOrCreate({
       id,
-      image,
-      name,
-      usuario,
-      contraseña,
       mail,
-      mesa,
+      mesa:0,
+      where:{
+        id:id,
+        mail:mail
+      }
     });
-    await generadorQr(newUser.dataValues.mesa, newUser.dataValues.id)
+    
     res.send(newUser);
   } catch (err) {
     next(err);
@@ -67,7 +68,7 @@ router.put("/", async (req, res, next) => {
         },
       }
     );
-
+    await modificarMesaQr(updated.dataValues.mesa, updated.dataValues.id)
     res.send(updated);
   } catch (err) {
     next(err);
