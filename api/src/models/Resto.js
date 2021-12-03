@@ -8,40 +8,39 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.STRING,
-        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-
+      
+      mail: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      }, 
+      
       image: {
         type: DataTypes.BLOB,
       },
 
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
 
       usuario: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true
       },
 
       contraseña: {
         type: DataTypes.STRING,
-        allowNull: false,
+        
       },
 
-      mail: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
 
       mesa: {
         type: DataTypes.INTEGER,
-        allowNull: false, 
+        
       },
     },
     {

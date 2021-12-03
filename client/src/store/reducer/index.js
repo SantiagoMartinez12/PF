@@ -4,8 +4,8 @@ import {
   BORRAR_CATEGORIAS,
   GET_CATEGORIAS,
 } from "../actions";
-import { useParams } from "react-router";
-import { INFO_USUARIO, MODIFICAR_USUARIO } from "../actions";
+import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO } from "../actions";
+
 
 
 const initialState = {
@@ -15,7 +15,6 @@ const initialState = {
   rawData: [],
   ticket: [],
   cuenta: 0,
-  //esto lo volamos cuando funcione el back
   ticketCuenta:[],
 
   usuario:[],
@@ -33,7 +32,8 @@ const initialState = {
   mesas: [],
 
 };
-console.log(initialState.usuario)
+
+console.log(initialState.idResto)
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -151,12 +151,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         ticket: [],
+        cuenta:0
+        
       };
-    case "ticketCuenta":
+
+    case "getCuenta":
       return {
         ...state,
-
-        ticketCuenta: [...state.ticketCuenta, action.payload],
+        ticketCuenta: action.payload
       };
 
     case GET_CATEGORIAS:
@@ -190,6 +192,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         mesas: action.payload
       }
+      case CREAR_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
+      
+
 
 
     default:

@@ -27,10 +27,11 @@ export default function Detalle(){
   
     console.log(detalle)
     useEffect(()=>{
+
         dispatch(getDetalle(idCliente))
         dispatch(getMesa(idResto)) // id de resto
-
     },[detalle])
+ 
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)

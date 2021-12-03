@@ -11,13 +11,12 @@ import logo from "../../../assets/Logo.png";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getDatosMesa } from "../../../store/actions";
+
 
 
 export default function LandingPageClient() {
   const { idResto,idMesa} = useParams()
-  const infoCliente = useSelector(state=> state.ClientInfo);
-  const dispatch = useDispatch()
+    
   const [input, setInput] = useState({
     name: "",
   });
@@ -46,21 +45,11 @@ export default function LandingPageClient() {
           navigate('/errorQr');
         }else{
     //si idResto y idMesa son correctos postea a la ruta cliente y lo redirige al home Cliente
-          navigate(`/${idResto}/${idMesa}/home/${name}`);
+          
           axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
             .then(resPost=> {
-              dispatch(getDatosMesa({idCliente:resPost.data.id}));
-    // repite el get para ver el estado hasta que cambia a autorizado          
-              let repet = setInterval(()=>{
-                axios.get(`http://localhost:3001/api/cliente/${resPost.data.id}`)
-                      .then(res=>{
-                        dispatch(getDatosMesa({estadoCliente:res.data.estado}));
-                        if(res.data.estado !== 'solicitado'){
-                            clearInterval(repet);
-                        }
-                      })
-              }          
-               , 2000);
+              navigate(`/${idResto}/${idMesa}/home/${name}/${resPost.data.id}`);
+              
             })
         }  
     })
