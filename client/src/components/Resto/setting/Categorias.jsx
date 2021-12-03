@@ -12,7 +12,7 @@ export default function Categorias(){
     const [clickAgregar, setClickAgregar] = useState(false);
     const [nuevaCategoria, setNuevaCategoria] = useState({
         name: "",
-        restoId: "84fb67c6-a5b3-4bb1-9920-986e13375739"
+        restoId: "9fc5065b-520f-42a9-9755-422b7f552539"
     });
     
     const categorias = useSelector((state) => state.categorias)
