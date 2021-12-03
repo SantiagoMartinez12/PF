@@ -73,10 +73,16 @@ export function resetTicket() {
     type: "resetTicket",
   };
 }
-export function ticketCuenta(payload) {
-  return {
-    type: "ticketCuenta",
-    payload,
+export function getCuenta(idCliente) {
+  return function (dispatch) {
+    axios
+      .get(serverFinder(`detalle/idcliente/${idCliente}`))
+      .then((response) => {
+        dispatch({ type: "getCuenta", payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }
 

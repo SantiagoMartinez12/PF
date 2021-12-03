@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/errorQr" element={<ErrorQr />} />
         <Route
           exact
-          path="/:idResto/:idMesa/home/:name"
+          path="/:idResto/:idMesa/home/:name/:idCliente"
           element={<HomeClient />}
         />
 

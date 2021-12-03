@@ -9,7 +9,7 @@ import axios, { Axios } from 'axios';
 import react, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta, ticketCuenta } from '../../../store/actions';
+import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta } from '../../../store/actions';
 
 
 
@@ -43,18 +43,10 @@ export default function DetallePedido(){
          ticket.map(el => {el.comentario = input 
             post.push(el)})
         console.log(post)
-        // axios.post('http://localhost:3001/api/detalle', post)
-        // dispatch(ticketCuenta(ticket))
+        axios.post('http://localhost:3001/api/detalle', post)
         dispatch(resetTicket())
 
         
-        
-        
-        /*
-            nameCliente:state.ClientInfo.nameCliente,
-              idResto:state.ClientInfo.idResto,
-              idMesa:state.ClientInfo.idMesa
-         */ 
     }
     return(
     <div className="container">
@@ -90,7 +82,7 @@ export default function DetallePedido(){
             }
             </div>
         <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
-            <h5>Total a pagar: ${cuenta}</h5>
+            <h5>Total del pedido: ${cuenta}</h5>
         </div>
         
         
