@@ -43,8 +43,8 @@ export default function DetallePedido(){
          ticket.map(el => {el.comentario = input 
             post.push(el)})
         console.log(post)
-        // axios.post('http://localhost:3001/api/detalle', post)
-        // dispatch(ticketCuenta(ticket))
+         axios.post('http://localhost:3001/api/detalle', post)
+         dispatch(ticketCuenta(ticket))
         dispatch(resetTicket())
 
         

@@ -39,12 +39,15 @@ export default function HomeResto(){
     return(
         <div className={s.gridcontainer}>
             
+            <div className={s.AutorizaMesa}>
+            <AutorizaMesa/>
+            </div>
             
 
         <div className={s.Mesas}>
-            <div>
-            <AutorizaMesa/>
-            </div>
+            
+
+        
             {
 
             clientes?.map(el =>{
