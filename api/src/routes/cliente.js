@@ -22,7 +22,7 @@ router.get('/:param', async(req, res, next)=>{
     try{
         if(param.length > 15){
             const cliente = await Cliente.findByPk(param);
-            res.json(cliente)              
+            return res.json(cliente)              
         }
         const clientes = await Cliente.findAll({
             where:{
@@ -31,8 +31,8 @@ router.get('/:param', async(req, res, next)=>{
             include: {model:Mesa,
                 attributes: ['name']
             }
-    });
-    res.json(clientes)
+        });
+        return res.json(clientes)
 
     }catch(error){
         next(error)
