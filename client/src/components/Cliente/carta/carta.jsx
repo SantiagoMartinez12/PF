@@ -8,7 +8,7 @@
 // boton "Finalizar pedido"  
 // en la store debe haber un estado con el detalle del pedido que se actualiza con el submiteo anterior
 
-import react, { useEffect, useState } from 'react';
+import  { useEffect,} from 'react';
 
 import Buscador from './Buscador'
 import { useDispatch, useSelector } from 'react-redux'

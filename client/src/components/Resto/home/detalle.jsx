@@ -27,8 +27,10 @@ export default function Detalle(){
   
  
     useEffect(()=>{
+
         dispatch(getDetalle(idCliente))
         dispatch(getMesa(idResto)) // id de resto
+
 
     },[])
 

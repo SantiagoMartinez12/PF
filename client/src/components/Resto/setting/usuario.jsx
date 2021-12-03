@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import modificarUsuario,  {infoUsuario } from "../../../store/actions"
 import style from "./usuario.module.css"
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Usuario({id, name, usuario, contraseña, mail, mesa, image}){
   const dispatch = useDispatch()
-  const allUsuario = useSelector((state) => state.usuario)
+  const restoId = useSelector((state) => state.usuario)
   const [renderiza1, setRenderiza1] = useState({name:true})
   const [renderiza2, setRenderiza2] = useState({name:true})
   const [renderiza3, setRenderiza3] = useState({name:true})
@@ -15,9 +15,10 @@ export default function Usuario({id, name, usuario, contraseña, mail, mesa, ima
   const [renderiza5, setRenderiza5] = useState({name:true})
   const [renderiza6, setRenderiza6] = useState({name:true})
   const [modificar, setModificar] = useState({
-    id:'9fc5065b-520f-42a9-9755-422b7f552539',
-  })
+    id: restoId,
 
+  })
+  
   
 
   function handleModificar(e) {
@@ -40,7 +41,7 @@ export default function Usuario({id, name, usuario, contraseña, mail, mesa, ima
     setRenderiza6(false)
     dispatch(infoUsuario())
   }
-  console.log()
+  
 
   function handleRenderiza1(e){
         if(renderiza1===false){
