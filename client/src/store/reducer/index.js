@@ -7,6 +7,7 @@ import {
 import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO } from "../actions";
 
 
+
 const initialState = {
   menuBaseDatos: [],
   categoriasMenu: [],
@@ -14,9 +15,8 @@ const initialState = {
   rawData: [],
   ticket: [],
   cuenta: 0,
-  //esto lo volamos cuando funcione el back
   ticketCuenta:[],
-  idResto:[],
+
   usuario:[],
 
   ClientInfo: {
@@ -151,12 +151,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         ticket: [],
+        cuenta:0
+        
       };
-    case "ticketCuenta":
+
+    case "getCuenta":
       return {
         ...state,
-
-        ticketCuenta: [...state.ticketCuenta, action.payload],
+        ticketCuenta: action.payload
       };
 
     case GET_CATEGORIAS:

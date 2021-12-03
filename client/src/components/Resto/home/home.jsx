@@ -7,10 +7,15 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetalle, getMesa } from "../../../store/actions";
 import { Link } from "react-router-dom";
+import idResto from "./idResto.js"
+import axios from "axios"
 
 export default function HomeResto(){
     const mesas = useSelector(state => state.mesas)
-    const IdResto = useSelector ((state) => state.usuario)
+
+
+    const [clientes, setClientes] = useState()
+
     const dispatch = useDispatch()
     // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
     const {restoId} = useParams()
@@ -19,14 +24,22 @@ export default function HomeResto(){
     useEffect(()=>{
       setInterval(()=>{
             dispatch(getMesa(restoId)) // id resto
-
+        updateMesa() // id resto
+     
         }, 5000)
        
     },[])
+    function updateMesa(){
+        axios.get('http://localhost:3001/api/cliente/autorizado')
+            .then(res =>{
+                setClientes(res.data)
+            })
+
+    }
+  
     
     
-    let mesaTrue = mesas?.filter(m => m.estado === true)
-    // console.log(mesaTrue)
+    
     // console.log(mesas)
     return(
         <div className={s.gridcontainer}>
@@ -39,11 +52,12 @@ export default function HomeResto(){
             </div>
             {
 
-                mesaTrue?.map(el =>{
-                    
+            clientes?.map(el =>{
+                   
                     return(
                         <div>
-                    <Card idMesa={el.id} name={el.name} />
+                    <Card idMesa={el.mesaId} name={el.mesa.name} idCliente={el.id} nombreCliente={el.nombre} />
+
                     </div>
                     )
                     

@@ -18,6 +18,7 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(getProductos(restoId));
+
     }, [])
 
     const handleAddProduct = (e) => {

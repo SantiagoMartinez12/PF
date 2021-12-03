@@ -16,6 +16,7 @@ export default function Categorias(){
     const [nuevaCategoria, setNuevaCategoria] = useState({
         name: "",
         restoId: restoId
+
     });
     
     const categorias = useSelector((state) => state.categorias)

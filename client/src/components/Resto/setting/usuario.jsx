@@ -16,6 +16,7 @@ export default function Usuario({id, name, usuario, contraseña, mail, mesa, ima
   const [renderiza6, setRenderiza6] = useState({name:true})
   const [modificar, setModificar] = useState({
     id: restoId,
+
   })
   
   

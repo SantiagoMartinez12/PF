@@ -1,7 +1,4 @@
-
-
 import axios from "axios";
-
 import Usuario from "../../components/Resto/setting/usuario";
 import Detalle from "../../components/Resto/home/detalle";
 import serverFinder from "../deploy/serverFinder";
@@ -77,10 +74,16 @@ export function resetTicket() {
     type: "resetTicket",
   };
 }
-export function ticketCuenta(payload) {
-  return {
-    type: "ticketCuenta",
-    payload,
+export function getCuenta(idCliente) {
+  return function (dispatch) {
+    axios
+      .get(serverFinder(`detalle/idcliente/${idCliente}`))
+      .then((response) => {
+        dispatch({ type: "getCuenta", payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }
 
@@ -169,10 +172,10 @@ export const borrarCategorias = (id) => {
   };
 };
 
-export function getDetalle(idMesa) {
+export function getDetalle(idCliente) {
   return function (dispatch) {
     axios
-      .get(serverFinder("detalle/mesaId/" + idMesa))
+      .get(serverFinder("detalle/idcliente/" + idCliente))
       .then((json) => {
         dispatch({
           type: "GET_DETALLE",
@@ -236,5 +239,3 @@ export function getMesa(restoId) {
             })  
     };
 };
-
-

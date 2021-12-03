@@ -15,6 +15,8 @@ const FormProduct = () => {
         detalle: '',
         categoria: '',
         idResto: restoId
+
+      
     })
 
     const handleForm = (e) =>{

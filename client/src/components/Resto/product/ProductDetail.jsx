@@ -18,6 +18,7 @@ const ProductDetail = ({ info }) => {
         detalle: '',
         categoria: '',
         idResto: restoId
+
     })
 
 
