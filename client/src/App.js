@@ -32,7 +32,7 @@ function App() {
         />
 
         <Route exact path="/home/resto/" element={<HomeResto/>}/>
-        <Route exact path="/detalle/:idMesa" element={<Detalle/>}/>
+        <Route exact path="/detalle/:idCliente" element={<Detalle/>}/>
         <Route path="/producto" element={<Product />} />
 
       </Routes>

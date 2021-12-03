@@ -3,17 +3,18 @@ import s from "../home/card.module.css"
 import {Link} from "react-router-dom"
 
 
-export default function Card({name, nameCliente,seguimiento, idMesa}){
-    
+export default function Card({name, nombreCliente,idCliente, idMesa}){
+    console.log(idCliente)
    
-
+    
     return(
         
         <div className={s.gridcontainer}>
             
         <div className={s.card}>
-        <Link to= {`/detalle/${idMesa}`} > 
-        <div className={s.numero}>{name}</div>
+        <Link to= {`/detalle/${idCliente}`} > 
+        <div className={s.numero}>{name}---{nombreCliente}</div>
+
         </Link>
       
         <div className={s.nombre}></div>
