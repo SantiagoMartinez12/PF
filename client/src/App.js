@@ -9,9 +9,10 @@ import Detalle from "./components/Resto/home/detalle";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from "../src/components/Resto/product/Product.jsx"
 import ErrorQr from "./components/Cliente/landingPageCliente/errorQr";
-import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto";
-
-
+import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto"
+import { useDispatch } from "react-redux";
+import modificarUsuario from "./store/actions";
+import Usuario from "./components/Resto/setting/usuario";
 
 
 function App() {

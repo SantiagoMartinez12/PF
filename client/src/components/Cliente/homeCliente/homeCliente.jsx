@@ -37,28 +37,9 @@ export default function HomeClient(){
 
     const infoCliente = useSelector(state=> state.ClientInfo);
 
-
     // este estado en false muestra el detalle y en true muestra la carta
     const [ state, setState] = useState("ver pedido");
-
-    // const [ estado, setEstado ] = useState('solicitado')
-
-    // function getEstado(){
-    //     console.log(infoCliente.idCliente)
-    //     axios.get(`http://localhost:3001/api/cliente/${infoCliente.idCliente}`)
-    //         .then(res=>{
-    //             console.log(res.data)
-    //             // setEstado(res.data.estado)
-    //         })
-    // }
     
-    // function actualizarEstado(){
-    //     const repet = setInterval(getEstado, 2000);
-    //     if(estado !== 'solicitado'){
-    //         clearInterval(repet);
-    //     }
-    // }
-
     function handleClickPedido(e){
         setState("ver pedido")
     }
@@ -105,10 +86,13 @@ export default function HomeClient(){
             }
             <br/>
             <br/>
-            <div>
-                <h5>En un instante te habilitaremos para realizar pedidos.</h5>
-                <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
-            </div>
+            {infoCliente.estadoCliente === 'solicitado'?
+                <div>
+                    <h5>En un instante te habilitaremos para realizar pedidos.</h5>
+                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+                </div>
+                : null
+            }    
         </div>
     )
 }

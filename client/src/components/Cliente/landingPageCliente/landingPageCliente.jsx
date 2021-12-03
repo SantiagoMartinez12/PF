@@ -41,7 +41,7 @@ export default function LandingPageClient() {
     const existeMesa = axios.get(`http://localhost:3001/api/mesa/${idMesa}`);
     Promise.all([exiteResto, existeMesa])
       .then(res=>{
-    //si idResto o isMesa no existen postea nada y lo redirige a una página de error    
+    //si idResto o isMesa no existen no postea nada y lo redirige a una página de error    
         if(res[0].data.length === 0 || res[1].data.length === 0){
           navigate('/errorQr');
         }else{
@@ -50,23 +50,20 @@ export default function LandingPageClient() {
           axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
             .then(resPost=> {
               dispatch(getDatosMesa({idCliente:resPost.data.id}));
-              // const getEstado=()=>{
-              //   axios.get(`http://localhost:3001/api/cliente/${resPost.data.id}`)
-              //       .then(res=>{
-              //         dispatch(getDatosMesa({estadoCliente:res.data.estado}));
-              //       })
-              // }
-              // getEstado()
-              // // const repet = setInterval(getEstado, 2000);
-              // // if(infoCliente.estadoCliente !== 'solicitado'){
-              // //     clearInterval(repet);
-              // // }
-
-          })
+    // repite el get para ver el estado hasta que cambia a autorizado          
+              let repet = setInterval(()=>{
+                axios.get(`http://localhost:3001/api/cliente/${resPost.data.id}`)
+                      .then(res=>{
+                        dispatch(getDatosMesa({estadoCliente:res.data.estado}));
+                        if(res.data.estado !== 'solicitado'){
+                            clearInterval(repet);
+                        }
+                      })
+              }          
+               , 2000);
+            })
         }  
     })
-    
-
   }
 
   return (

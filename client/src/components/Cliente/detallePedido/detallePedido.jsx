@@ -19,6 +19,7 @@ export default function DetallePedido(){
 
     const ticket = useSelector(state=> state.ticket);
     const cuenta = useSelector(state=> state.cuenta);
+    const infoCliente = useSelector(state=> state.ClientInfo);
     const dispatch = useDispatch();
 
     const handleOnClickMas=(id, precio)=>{
@@ -42,8 +43,8 @@ export default function DetallePedido(){
          ticket.map(el => {el.comentario = input 
             post.push(el)})
         console.log(post)
-        axios.post('http://localhost:3001/api/detalle', post)
-        dispatch(ticketCuenta(ticket))
+        // axios.post('http://localhost:3001/api/detalle', post)
+        // dispatch(ticketCuenta(ticket))
         dispatch(resetTicket())
 
         
@@ -82,8 +83,12 @@ export default function DetallePedido(){
                     onChange={(e) => handleInputChange(e)}
             />
             <br/>
-            <button onClick={(e) => handleSubmit(e)} class="btn btn-primary">PEDIR</button> 
-        </div>
+            {infoCliente.estadoCliente === 'solicitado'?
+            <button  class="btn btn-primary" disabled >PEDIR</button>
+            :
+            <button  onClick={(e) => handleSubmit(e)} class="btn btn-primary">PEDIR</button> 
+            }
+            </div>
         <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
             <h5>Total a pagar: ${cuenta}</h5>
         </div>
