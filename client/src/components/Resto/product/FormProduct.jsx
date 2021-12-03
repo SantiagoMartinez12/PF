@@ -12,7 +12,7 @@ const FormProduct = () => {
         imagen: '',
         detalle: '',
         categoria: '',
-        idResto: '5cffeb91-f981-4d08-b887-ba1408ec5ce4'
+        idResto: '9fc5065b-520f-42a9-9755-422b7f552539'
     })
 
     const handleForm = (e) =>{
