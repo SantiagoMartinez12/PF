@@ -16,7 +16,7 @@ const initialState = {
   cuenta: 0,
   //esto lo volamos cuando funcione el back
   ticketCuenta:[],
-
+  idResto:[],
   usuario:[],
 
   ClientInfo: {
@@ -32,7 +32,8 @@ const initialState = {
   mesas: [],
 
 };
-console.log(initialState.usuario)
+
+console.log(initialState.idResto)
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -194,6 +195,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         usuario: action.payload,
       };
+      
 
 
 

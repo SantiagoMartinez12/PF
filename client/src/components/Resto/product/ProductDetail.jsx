@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png";
 import { deleteProduct, getUpdateProduct } from "../../../store/actions";
 import './ProductDetail.css'
@@ -8,6 +9,7 @@ const ProductDetail = ({ info }) => {
     const data = JSON.parse(info);
     const [useForm, setUseForm] = useState(false)
     const dispatch = useDispatch()
+    const {restoId} = useParams()
 
     const [updateProduct, setUpdateProduct] = useState({
         name: '',
@@ -15,7 +17,7 @@ const ProductDetail = ({ info }) => {
         imagen: '',
         detalle: '',
         categoria: '',
-        idResto: '5cffeb91-f981-4d08-b887-ba1408ec5ce4'
+        idResto: restoId
     })
 
 

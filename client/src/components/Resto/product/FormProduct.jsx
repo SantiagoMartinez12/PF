@@ -3,16 +3,18 @@ import logo from "../../../assets/Logo.png";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { postProduct } from '../../../store/actions';
+import { useParams } from 'react-router';
 
 const FormProduct = () => {
     const dispatch = useDispatch();
+    const {restoId} = useParams()
     const [newProduct, setNewProduct] = useState({
         name: '',
         precio: '',
         imagen: '',
         detalle: '',
         categoria: '',
-        idResto: '5cffeb91-f981-4d08-b887-ba1408ec5ce4'
+        idResto: restoId
     })
 
     const handleForm = (e) =>{

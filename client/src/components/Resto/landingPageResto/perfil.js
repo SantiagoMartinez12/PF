@@ -7,7 +7,7 @@ export const Perfil = () => {
   if (isLoading) {
     return <div> Loading...</div>;
   }
-console.log(user.sub)
+// console.log(user.sub)
 
   return (
       isAuthenticated && (
