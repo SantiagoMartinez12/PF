@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import modificarUsuario,  {infoUsuario } from "../../../store/actions"
 import style from "./usuario.module.css"

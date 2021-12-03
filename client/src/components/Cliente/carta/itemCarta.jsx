@@ -1,4 +1,4 @@
-import react, { useState } from 'react';
+
 import { useDispatch } from 'react-redux';
 import { agregarTicket, sumaCuenta } from '../../../store/actions';
 

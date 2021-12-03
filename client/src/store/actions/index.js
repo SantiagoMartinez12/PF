@@ -1,14 +1,10 @@
-import Detalle from "../../components/Resto/home/detalle";
-export const INFO_USUARIO = 'INFO_USUARIO'
 import axios from "axios";
-import productos from "../../components/Cliente/carta/ejemploCarta";
-import Usuario from "../../components/Resto/setting/usuario";
-import Detalle from "../../components/Resto/home/detalle";
 export const INFO_USUARIO = 'INFO_USUARIO'
 export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
 export const AGREGAR_CATEGORIAS = 'AGREGAR_CATEGORIAS'
 export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
+export const CREAR_USUARIO = 'CREAR_USUARIO'
 
 export function getProductos(idResto) {
   return function (dispatch) {
@@ -82,20 +78,20 @@ export function ticketCuenta(payload) {
   };
 }
 
-// export function infoUsuario(id){
-//     return function (dispatch){
-//         axios.get("http://localhost:3001/api/resto/5b58f33f-8cee-4934-aa4a-43a6535fa880")
-//         .then((usuario) => {
-//             dispatch({
-//                 type: INFO_USUARIO,
-//                 payload: usuario.data
-//             })
-//         })
-//         .catch((error) =>{
-//             console.log(error)
-//         })
-//     }
-// }
+export function crearUsuario(obj){
+    return function (dispatch){
+        axios.post("http://localhost:3001/api/resto", obj)
+        .then((usuario) => {
+            dispatch({
+                type: CREAR_USUARIO,
+                payload: usuario.data
+            })
+        })
+        .catch((error) =>{
+            console.log(error)
+        })
+    }
+}
 
 export const agregarCategorias = (payload) => {
   return async function () {
@@ -118,7 +114,7 @@ export function getCategorias(idResto) {
   return async function (dispatch) {
     try {
       const resp = await axios.get(
-        "http://localhost:3001/api/categorias/84fb67c6-a5b3-4bb1-9920-986e13375739"
+        "http://localhost:3001/api/categorias/5cffeb91-f981-4d08-b887-ba1408ec5ce4"
       );
       const result = resp.data;
       dispatch({ type: GET_CATEGORIAS, payload: result });
