@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<LandingPageClient />} />
-        <Route exact path="/home/login" element={<LandingPageResto />} />
+        <Route exact path="/home/cliente" element={<LandingPageClient />} />
+        <Route exact path="/" element={<LandingPageResto />} />
         <Route exact path="/home/:name" element={<HomeClient />} />
         <Route path="/home/resto/setting" element={<Setting />} />
         <Route exact path="/:idResto/:idMesa" element={<LandingPageClient />} />

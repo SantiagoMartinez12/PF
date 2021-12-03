@@ -3,6 +3,7 @@ import {
   AGREGAR_CATEGORIAS,
   BORRAR_CATEGORIAS,
   GET_CATEGORIAS,
+  CREAR_USUARIO
 } from "../actions";
 import { useParams } from "react-router";
 import productos from "../../components/Cliente/carta/ejemploCarta";
@@ -102,11 +103,11 @@ const reducer = (state = initialState, action) => {
         cuenta: state.cuenta - action.payload,
       };
 
-    // case "getCategorias":
-    //   return {
-    //     ...state,
-    //     categoriasMenu: action.payload,
-    //   };
+    case CREAR_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
 
     case "getProductos":
       // el payload trae un array con objetos {name:'categoria', productos:[array de productos]}

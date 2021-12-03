@@ -10,6 +10,7 @@ export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO'
 export const AGREGAR_CATEGORIAS = 'AGREGAR_CATEGORIAS'
 export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
+export const CREAR_USUARIO ="CREAR_USUARIO";
 
 export function getProductos(idResto) {
   return function (dispatch) {
@@ -83,20 +84,20 @@ export function ticketCuenta(payload) {
   };
 }
 
-// export function infoUsuario(id){
-//     return function (dispatch){
-//         axios.get("http://localhost:3001/api/resto/5b58f33f-8cee-4934-aa4a-43a6535fa880")
-//         .then((usuario) => {
-//             dispatch({
-//                 type: INFO_USUARIO,
-//                 payload: usuario.data
-//             })
-//         })
-//         .catch((error) =>{
-//             console.log(error)
-//         })
-//     }
-// }
+export function crearUsuario(){
+    return function (dispatch){
+        axios.post("http://localhost:3001/api/resto/")
+        .then((usuario) => {
+            dispatch({
+                type: CREAR_USUARIO,
+                payload: usuario.data
+            })
+        })
+        .catch((error) =>{
+            console.log(error)
+        })
+    }
+}
 
 export const agregarCategorias = (payload) => {
   return async function () {

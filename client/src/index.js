@@ -16,12 +16,14 @@ ReactDOM.render(
         clientId="p8APxRRiu5BBYtX3SLkreNxZxJtcLilT"
         redirectUri={window.location.origin}
       >
+        
         <Provider store={store}>
           <App />
         </Provider>
       </Auth0Provider>
     </BrowserRouter>
   </React.StrictMode>,
+
   document.getElementById("root")
 );
 
