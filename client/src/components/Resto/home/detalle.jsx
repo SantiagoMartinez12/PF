@@ -18,17 +18,20 @@ export default function Detalle({idResto,funcion}){
    const  idCliente = useSelector(state => state.idCliente)
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
-        console.log(detalle)
-    //let mesaFind = mesa.find(e => e.id === idMesa)
-    // console.log(mesaFind)
-    let idMesa = detalle.mesaId
-  
-    console.log(idCliente)
+   /*      console.log(detalle)
+     mesaFind = mesa.find(e => e.id === idMesa)
+     console.log(mesaFind) */
+    let idMesa = detalle[0].mesaId
+       
+    
     useEffect(()=>{
 
-        dispatch(getDetalle(idCliente))
+        //dispatch(getDetalle(idCliente))
         dispatch(getMesa(idResto)) // id de resto
     },[])
+    useEffect(() =>{
+        dispatch(getDetalle(idCliente))
+    },[idCliente])
  
 
     // console.log(detalle)
@@ -73,14 +76,12 @@ export default function Detalle({idResto,funcion}){
        let seguimientoPut = {id:id, seguimiento:segui}
         console.log(seguimientoPut)
         axios.put("http://localhost:3001/api/detalle/seguimiento", seguimientoPut)
-        dispatch(getDetalle(idMesa))
+        dispatch(getDetalle(idCliente))
     }
     
     return(
        <div>
-           {
-           detalle.length === 0 ? <div className="container"><h1>El cliente no realizo su pedido</h1> </div>
-                : 
+          
         <div className={s.gridcontainer}>
       
         <div className={s.NameMesa}>
@@ -140,7 +141,7 @@ export default function Detalle({idResto,funcion}){
             </div>
         </div>
     </div>
-           }
+           
     </div>
     )
 }

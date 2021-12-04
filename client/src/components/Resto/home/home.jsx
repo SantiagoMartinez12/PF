@@ -27,7 +27,8 @@ export default function HomeResto(){
 
     useEffect(()=>{
       setInterval(()=>{
-            dispatch(getMesa(restoId)) // id resto
+            dispatch(getMesa(restoId))
+            updateMesa() // id resto
         }, 5000)
        
     },[])
