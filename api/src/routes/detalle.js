@@ -104,7 +104,7 @@ router.get('/idcliente/:idCliente', async (req, res, next) =>{
         const {idCliente} = req.params;
        
         const detalle = await Detalle.findAll({
-        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad', 'clienteId'],
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad', 'clienteId','mesaId'],
         where:{
             clienteId:idCliente,
         }
