@@ -6,12 +6,7 @@ import HomeClient from "./components/Cliente/homeCliente/homeCliente.jsx";
 import Setting from "./components/Resto/setting/setting";
 import HomeResto from "./components/Resto/home/home";
 import Detalle from "./components/Resto/home/detalle";
-<<<<<<< HEAD
-import 'bootstrap/dist/css/bootstrap.min.css';
-=======
 import "bootstrap/dist/css/bootstrap.min.css";
-
->>>>>>> main
 import ErrorQr from "./components/Cliente/landingPageCliente/errorQr";
 import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto";
 import { useDispatch } from "react-redux";
