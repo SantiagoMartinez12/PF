@@ -37,23 +37,25 @@ export default function AutorizaMesa(){
         autorizarCliente(e.target.value)
         ocuparMesa(e.target.name)
     }
-        
+   
     
     return (
-        <div>
-            <h2>Soy el componente "Autoriza Mesa"</h2>
+        <div class="card">
+            <h2>"Autorizar Mesa"</h2>
             <br/>
             <br/>
             
             { mesas.length?
                 mesas?.map(m=>{
-                    return  <div key={m.id}>
+                    return  <div class="card-body" key={m.id}>
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                                 <button onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
                             </div>
                 })
                 :
-                <h3>No hay solicitudes</h3>
+                <div class="card-body">
+                <p>No hay solicitudes</p>
+                </div>
             }
 
 

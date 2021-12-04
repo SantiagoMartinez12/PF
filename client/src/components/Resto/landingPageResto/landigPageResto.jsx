@@ -26,7 +26,8 @@ export default function LandingPageResto() {
       
       dispatch(crearUsuario({
         id: user.sub,
-        mail: user.email
+        mail: user.email,
+      
       }))
     }
   },[isAuthenticated])

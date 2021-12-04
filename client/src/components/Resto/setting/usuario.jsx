@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import modificarUsuario,  {infoUsuario } from "../../../store/actions"
 import style from "./usuario.module.css"
 import { useAuth0 } from "@auth0/auth0-react";
+import { useParams } from "react-router";
 
 
 export default function Usuario({id, name, usuario, contraseña, mail, mesa, image}){
+  const {restoId} = useParams()
   const dispatch = useDispatch()
-  const restoId = useSelector((state) => state.usuario)
+  const restoId1 = useSelector((state) => state.usuario)
   const [renderiza1, setRenderiza1] = useState({name:true})
   const [renderiza2, setRenderiza2] = useState({name:true})
   const [renderiza3, setRenderiza3] = useState({name:true})
