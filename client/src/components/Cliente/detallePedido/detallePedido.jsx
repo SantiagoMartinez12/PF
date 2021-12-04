@@ -45,7 +45,7 @@ export default function DetallePedido(){
         console.log(post)
 
          axios.post('http://localhost:3001/api/detalle', post)
-         dispatch(ticketCuenta(ticket))
+         //dispatch(ticketCuenta(ticket))
          dispatch(resetTicket())
 
         

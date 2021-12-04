@@ -36,7 +36,6 @@ router.post("/", async (req, res, next) => {
     let newUser = await Resto.findOrCreate({
       id,
       mail,
-      mesa:0,
       where:{
         id:id,
         mail:mail
@@ -52,6 +51,10 @@ router.post("/", async (req, res, next) => {
 router.put("/", async (req, res, next) => {
   try {
     let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
+    console.log(req.body)
+    let comparar = await Resto.findOne({where:{
+      id: id,
+    }})
 
     let updated = await Resto.update(
       {
@@ -68,7 +71,8 @@ router.put("/", async (req, res, next) => {
         },
       }
     );
-    await modificarMesaQr(updated.dataValues.mesa, updated.dataValues.id)
+    await modificarMesaQr(comparar.dataValues.mesa, mesa ,id)
+    
     res.send(updated);
   } catch (err) {
     next(err);
