@@ -26,10 +26,14 @@ export default function Detalle({idResto,funcion}){
     console.log(idCliente)
     useEffect(()=>{
 
-        dispatch(getDetalle(idCliente))
+       
         dispatch(getMesa(idResto)) // id de resto
     },[])
- 
+    useEffect(()=>{
+
+        dispatch(getDetalle(idCliente))
+     // id de resto
+    },[idCliente])
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)
@@ -73,7 +77,7 @@ export default function Detalle({idResto,funcion}){
        let seguimientoPut = {id:id, seguimiento:segui}
         console.log(seguimientoPut)
         axios.put("http://localhost:3001/api/detalle/seguimiento", seguimientoPut)
-        dispatch(getDetalle(idMesa))
+        dispatch(getDetalle(idCliente))
     }
     
     return(
