@@ -50,7 +50,7 @@ export default function Categorias(){
    
     return(
         
-        <div className={styles.gridContainer}>
+        <div className="container">
             <div className={styles.titulo}>
             <h2>Categorias</h2>
                 

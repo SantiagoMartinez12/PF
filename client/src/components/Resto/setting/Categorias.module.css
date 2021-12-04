@@ -46,3 +46,45 @@
   height: 25px;
   margin-right: 50px;
 }
+/* aca esta lo que copie y pegue */
+/* .gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.3fr 0.4fr;
+  grid-template-rows: 0.3fr 0.4fr 2.3fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "logo . ."
+    "AutorizaMesa AutorizaMesa . ."
+    "Mesas Mesas Detalle Detalle";
+}
+.logo {
+  grid-area: logo;
+}
+.rueda {
+  grid-area: rueda;
+}
+.logOut {
+  grid-area: logOut;
+}
+.AutorizaMesa {
+  grid-area: AutorizaMesa;
+}
+.Mesas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . .";
+  grid-area: Mesas;
+}
+.Detalle {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr;
+  gap: 0px 0px;
+  grid-template-areas: ".";
+  grid-area: Detalle;
+} */

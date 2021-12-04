@@ -96,10 +96,10 @@ export default function Setting() {
                         Productos</button>
                 </div>
                 <div className={style.formasPago}>
-                    <Link to='/mediosDePago'>
+                    
                         <button onClick={(e) => { handleMediosDePago(e) }}>
                         <box-icon name='credit-card' type='solid' ></box-icon>
-                        Medios de pagos</button></Link>
+                        Medios de pagos</button>
                 </div>
 
             </div>

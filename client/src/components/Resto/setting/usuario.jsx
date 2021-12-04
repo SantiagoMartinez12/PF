@@ -95,6 +95,7 @@ export default function Usuario(){
 
 
   return ( 
+    
   
         <div className={style.display}>
           <div className={style.formulario}>
@@ -136,6 +137,17 @@ export default function Usuario(){
         </div>
       </div>
       </div> 
+      //template del generator
+      
+
+
+
+
+
+            
+
+
+
       
       )
 }
