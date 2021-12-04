@@ -13,8 +13,7 @@ export default function Categorias(){
     const {restoId} = useParams()
     const categorias = useSelector((state) => state.categorias)
     const [clickAgregar, setClickAgregar] = useState(false);
-    const [nuevaCategoria, setNuevaCategoria] = useState({
-        name: "",
+    const [nuevaCategoria, setNuevaCategoria] = useState({       
         restoId: restoId
     });
       
@@ -39,6 +38,15 @@ export default function Categorias(){
         dispatch(agregarCategorias(nuevaCategoria))
         setClickAgregar(false)
         dispatch(getCategorias(restoId))
+        setNuevaCategoria({       
+            restoId: restoId
+        })
+        if (window.confirm("Se ha agregado una nueva categoria")) {
+            window.location.reload()
+        } else {
+            window.location.reload()
+        };
+        
               
     }
     function handleChange(e){
@@ -65,7 +73,7 @@ export default function Categorias(){
             </div>
 
             <div className={styles.tituloCambio}>            
-               { clickAgregar=== false ? <button class="btn btn-primary" onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input class="form-control" name="name" onChange={(e)=>handleChange(e)}></input><button class="btn btn-primary" type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
+               { clickAgregar=== false ? <button class="btn btn-primary" onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input class="form-control" name="name" onChange={(e)=>handleChange(e)}></input><button disabled={!nuevaCategoria.name} class="btn btn-primary" type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
                }                     
             </div>           
             

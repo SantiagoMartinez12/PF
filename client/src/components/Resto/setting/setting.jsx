@@ -101,16 +101,10 @@ export default function Setting() {
                         <box-icon name='restaurant'></box-icon>
                         Productos</button>
                 </div>
-<<<<<<< HEAD
-                <div className={style.formasPago}>
-                    
-                        <button onClick={(e) => { handleMediosDePago(e) }}>
-=======
             </div>
             <div >
                 <div className={style.component}>
                     <button className={style.botonsito}>
->>>>>>> main
                         <box-icon name='credit-card' type='solid' ></box-icon>
                         Medios de pagos</button>
                 </div>
