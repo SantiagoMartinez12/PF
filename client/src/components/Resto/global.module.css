@@ -1,0 +1,39 @@
+body{
+    background-image: url("https://observatoriodelpaisajeucr.org/wp-content/uploads/2018/09/cuadro-gris-01-1024x782.png");
+    background-repeat: repeat;
+    background-size:  20em;
+}
+
+.imgperfil{
+    border-radius: 8px;
+}
+
+.whiteback{
+    padding: 0px;
+    margin: 10px;
+    background:white;
+    width: 270px;
+    height: 170px;
+    border-radius: 8px;
+    box-shadow: 3px 9px 5px -2px rgba(0,0,0,0.11);
+}
+
+.whitebacklog{
+    padding: 0px;
+    margin: 10px;
+    background:white;
+    width: 270px;
+    height: 400px;
+    border-radius: 8px;
+    box-shadow: 3px 9px 5px -2px rgba(0,0,0,0.11);
+}
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #201f5a;
+  color: white;
+  text-align: center;
+}
