@@ -7,26 +7,23 @@ import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetalle, getMesa } from "../../../store/actions";
 import { Link } from "react-router-dom";
-import idResto from "./idResto.js"
 import axios from "axios"
 
 export default function HomeResto(){
     const mesas = useSelector(state => state.mesas)
     const {restoId} = useParams()
-
+    console.log(restoId + "soy resto id")
 
     const [clientes, setClientes] = useState()
 
     const dispatch = useDispatch()
     // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
-    console.log(restoId)
+    
     // const ruta = `${restoId}/home/resto/setting/`
 
     useEffect(()=>{
       setInterval(()=>{
             dispatch(getMesa(restoId)) // id resto
-        updateMesa() // id resto
-     
         }, 5000)
        
     },[])
@@ -60,7 +57,9 @@ export default function HomeResto(){
                    
                     return(
                         <div>
-                    <Card idMesa={el.mesaId} name={el.mesa.name} idCliente={el.id} nombreCliente={el.nombre} />
+                    <Card idMesa={el.mesaId} name={el.mesa.name} idCliente={el.id} nombreCliente={el.nombre}
+                    idResto={restoId}
+                    />
 
                     </div>
                     )

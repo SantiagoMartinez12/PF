@@ -104,35 +104,35 @@ export default function Usuario(){
         <div className={style.info}>
           
           <img  alt="img not found" width="200px" height="250px"/>
-          {editarImagen === false ? <> <button onClick={(e)=>handleEditarImagen(e)} >Editar</button></> 
-          : <><input onChange={(e)=> {handleModificar(e)}} name='image'></input>
-          <button onClick={(e)=>handleEditarImagen(e)} >x</button></>}
+          {editarImagen === false ? <> <button onClick={(e)=>handleEditarImagen(e)} class="btn btn-primary">Editar</button></> 
+          : <><input onChange={(e)=> {handleModificar(e)}} name='image' class="form-control"></input>
+          <button onClick={(e)=>handleEditarImagen(e)} class="btn btn-primary">x</button></>}
           
           <div className={style.nombre}>Nombre de Resto: {restoInfo[0]?.name}</div>
           {editarNombreResto===false?<>
-          <button onClick={(e)=>handleEditarNombreResto(e)} >Editar</button></> : <>
-          <input onChange={(e)=> {handleModificar(e)}} name='name'></input>
-          <button onClick={(e)=>handleEditarNombreResto(e)}>x</button></>} 
+          <button onClick={(e)=>handleEditarNombreResto(e)} class="btn btn-primary">Editar</button></> : <>
+          <input onChange={(e)=> {handleModificar(e)}} name='name' class="form-control"></input>
+          <button onClick={(e)=>handleEditarNombreResto(e)} class="btn btn-primary">x</button></>} 
           
           <div className={style.nombreUsuario}>Nombre de Usuario: {restoInfo[0]?.usuario}</div>
           {editarNombreUsuario===false?<>
-          <button onClick={(e)=>handleEditarNombreUsuario(e)} >Editar</button></> : <>
-          <input onChange={(e)=> {handleModificar(e)}} name='usuario'></input>
-          <button onClick={(e)=>handleEditarNombreUsuario(e)}  >x</button></>}
+          <button onClick={(e)=>handleEditarNombreUsuario(e)} class="btn btn-primary">Editar</button></> : <>
+          <input onChange={(e)=> {handleModificar(e)}} name='usuario' class="form-control"></input>
+          <button onClick={(e)=>handleEditarNombreUsuario(e)}  class="btn btn-primary">x</button></>}
           
           <div className={style.mail}>Email: {restoInfo[0]?.mail} </div>
           {editarEmail===false?<>
-          <button onClick={(e)=>handleEditarEmail(e)} >Editar</button></> : <>
-          <input onChange={(e)=> {handleModificar(e)}}  name='mail'></input>
-          <button onClick={(e)=>handleEditarEmail(e)}>x</button></>}
+          <button onClick={(e)=>handleEditarEmail(e)} class="btn btn-primary">Editar</button></> : <>
+          <input onChange={(e)=> {handleModificar(e)}}  name='mail' class="form-control"></input>
+          <button onClick={(e)=>handleEditarEmail(e)} class="btn btn-primary">x</button></>}
           
           <div className={style.contraseña}>Mesas: {restoInfo[0]?.mesa} </div>
           {editarNumeroMesas===false?<>
-          <button onClick={(e)=>handleEditarNumeroMesas(e)}>Editar</button></> : <>
-          <input onChange={(e)=> {handleModificar(e)}} name='mesa'></input>
-          <button onClick={(e)=>handleEditarNumeroMesas(e)} >x</button></>}
+          <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-primary">Editar</button></> : <>
+          <input onChange={(e)=> {handleModificar(e)}} name='mesa' class="form-control"></input>
+          <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-primary">x</button></>}
           <div>
-          <button onClick={(e)=>handleSubmit(e)} >Enviar cambios</button>
+          <button onClick={(e)=>handleSubmit(e)} class="btn btn-primary">Enviar cambios</button>
         </div>
         </div>
       </div>
