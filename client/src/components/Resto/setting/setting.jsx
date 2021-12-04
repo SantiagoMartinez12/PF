@@ -13,11 +13,11 @@ import { useParams } from "react-router";
 
 
 export default function Setting() {
+    const info = useSelector((state) => state.usuario)
     const [iUsuario, setIUsuario] = useState(false)
     const [infoCategorias, setInfoCategorias] = useState(false)
     const [product, setProduct] = useState(false)
     const [mediosDePago, setMediosDePago] = useState(false)
-    const info = useSelector((state) => state.usuario)
     const dispatch = useDispatch()
     const {restoId} = useParams()
     const ruta = `/home/resto/${restoId}`
@@ -36,8 +36,7 @@ export default function Setting() {
 
     }
     function handleCategorias(e) {
-        if (infoCategorias === false) {
-           
+        if (infoCategorias === false) {           
             setInfoCategorias(true)
             setIUsuario(false)
             setProduct(false)
@@ -49,8 +48,7 @@ export default function Setting() {
     }
 
     function handleProduct(e) {
-        if (product === false) {
-            
+        if (product === false) {            
             setProduct(true)
             setIUsuario(false)
             setInfoCategorias(false)
@@ -63,8 +61,7 @@ export default function Setting() {
     }
 
     function handleMediosDePago(e){
-        if(mediosDePago===false){
-           
+        if(mediosDePago===false){           
             setMediosDePago(true)
             setProduct(false)
                 setIUsuario(false)
