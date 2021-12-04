@@ -5,7 +5,7 @@ import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
 import { useNavigate } from 'react-router-dom';
-
+import idResto from "./idResto.js"
 
 export default function Detalle(){
     
@@ -16,19 +16,22 @@ export default function Detalle(){
 
     const navigate = useNavigate()
 
-    const {idMesa} = useParams()
+    const {idCliente} = useParams()
+    //console.log(idCliente)
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
-        console.log(mesa)
-    let mesaFind = mesa.find(e => e.id === idMesa)
+        console.log(detalle)
+    //let mesaFind = mesa.find(e => e.id === idMesa)
     // console.log(mesaFind)
+    let idMesa = detalle.mesaId
   
- 
+    console.log(detalle)
     useEffect(()=>{
-        dispatch(getDetalle(idMesa))
-        dispatch(getMesa("9fc5065b-520f-42a9-9755-422b7f552539")) // id de resto
 
-    },[])
+        dispatch(getDetalle(idCliente))
+        dispatch(getMesa(idResto)) // id de resto
+    },[detalle])
+ 
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)
@@ -41,12 +44,13 @@ export default function Detalle(){
 
     let seguimiento={}
      seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
-    
+    console.log(seguimiento)
 
  
 
     const desocuparMesa = (idMesa)=>{
         axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
+        axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
     }
     const handleOnClick = (e) =>{
         e.preventDefault();
@@ -58,6 +62,7 @@ export default function Detalle(){
 
 
     function handleClickSeguimiento(seguimiento,id){
+      
         let segui = seguimiento
         if(segui === 'solicitado'){
             segui = 'confirmado'
@@ -75,7 +80,7 @@ export default function Detalle(){
     return(
     <div className={s.gridcontainer}>
         <div className={s.NameMesa}>
-            <h2>{mesaFind.name}</h2>
+          {/*   <h2>{mesaFind.name}</h2> */}
         </div>
             <div className={s.NameCliente}>
                 <h4>Nombre del Cliente: {nameCliente[0]} </h4>
@@ -116,7 +121,7 @@ export default function Detalle(){
             </div>
             <div className={s.Seguimiento}>
             <h4>Seguimiento:</h4>
-                <p>{seguimiento.map( s=>{
+                <p>{seguimiento?.map( s=>{
                     return(
                         <div>
                             

@@ -1,19 +1,18 @@
-
-
 import axios from "axios";
-
 import Usuario from "../../components/Resto/setting/usuario";
 import Detalle from "../../components/Resto/home/detalle";
+import serverFinder from "../deploy/serverFinder";
 export const INFO_USUARIO = 'INFO_USUARIO';
 export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO';
 export const AGREGAR_CATEGORIAS = 'AGREGAR_CATEGORIAS';
 export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
+export const CREAR_USUARIO = 'CREAR_USUARIO'
 
 export function getProductos(idResto) {
   return function (dispatch) {
     axios
-      .get(`http://localhost:3001/api/producto?idResto=${idResto}`)
+      .get(serverFinder(`producto?idResto=${idResto}`))
       .then((response) => {
         dispatch({ type: "getProductos", payload: response.data });
       })
@@ -75,34 +74,38 @@ export function resetTicket() {
     type: "resetTicket",
   };
 }
-export function ticketCuenta(payload) {
-  return {
-    type: "ticketCuenta",
-    payload,
+export function getCuenta(idCliente) {
+  return function (dispatch) {
+    axios
+      .get(serverFinder(`detalle/idcliente/${idCliente}`))
+      .then((response) => {
+        dispatch({ type: "getCuenta", payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }
 
-// export function infoUsuario(id){
-//     return function (dispatch){
-//         axios.get("http://localhost:3001/api/resto/5b58f33f-8cee-4934-aa4a-43a6535fa880")
-//         .then((usuario) => {
-//             dispatch({
-//                 type: INFO_USUARIO,
-//                 payload: usuario.data
-//             })
-//         })
-//         .catch((error) =>{
-//             console.log(error)
-//         })
-//     }
-// }
+export function crearUsuario(obj){
+    return function (dispatch){
+        axios.post(serverFinder("resto/"), obj)
+        .then((usuario) => {
+            dispatch({
+                type: CREAR_USUARIO,
+                payload: usuario.data
+            })
+        })
+        .catch((error) =>{
+            console.log(error)
+        })
+    }
+}
 
 export const agregarCategorias = (payload) => {
   return async function () {
-    console.log("esto es lo que agrego");
-    console.log(payload);
     const data = await axios.post(
-      "http://localhost:3001/api/categorias/",
+      serverFinder("categorias/"),
       payload
     );
     const posteo = data.data;
@@ -118,7 +121,7 @@ export function getCategorias(idResto) {
   return async function (dispatch) {
     try {
       const resp = await axios.get(
-        "http://localhost:3001/api/categorias/84fb67c6-a5b3-4bb1-9920-986e13375739"
+        serverFinder("categorias/" + idResto)
       );
       const result = resp.data;
       dispatch({ type: GET_CATEGORIAS, payload: result });
@@ -130,7 +133,7 @@ export function getCategorias(idResto) {
   export default function modificarUsuario(obj) {
     return function (dispatch) {
       axios
-        .put("http://localhost:3001/api/resto/", obj)
+        .put(serverFinder("resto/"), obj)
         .then((usuario) => {
           return usuario;
         })
@@ -144,7 +147,7 @@ export function getCategorias(idResto) {
     return function (dispatch) {
       axios
         .get(
-          "http://localhost:3001/api/resto/5cffeb91-f981-4d08-b887-ba1408ec5ce4"
+          serverFinder('resto/' + id)
         )
         .then((usuario) => {
           dispatch({
@@ -162,18 +165,17 @@ export function getCategorias(idResto) {
 export const borrarCategorias = (id) => {
   return async function (dispatch) {
     const borrando = await axios.delete(
-      `http://localhost:3001/api/categorias/${id}`
+      serverFinder(`categorias/${id}`)
     );
     const result = borrando.data;
-    console.log(result);
     dispatch({ type: BORRAR_CATEGORIAS, payload: result });
   };
 };
 
-export function getDetalle(idMesa) {
+export function getDetalle(idCliente) {
   return function (dispatch) {
     axios
-      .get("http://localhost:3001/api/detalle/mesaId/" + idMesa)
+      .get(serverFinder("detalle/idcliente/" + idCliente))
       .then((json) => {
         dispatch({
           type: "GET_DETALLE",
@@ -191,7 +193,7 @@ export function getDetalle(idMesa) {
 export function postProduct(productObject) {
   return function (dispatch) {
     axios
-      .post(`http://localhost:3001/api/producto`, productObject)
+      .post(serverFinder(`producto`), productObject)
       .then((response) => {
         return response;
       })
@@ -204,7 +206,7 @@ export function postProduct(productObject) {
 export function getUpdateProduct(productObject) {
   return function (dispatch) {
     axios
-      .put(`http://localhost:3001/api/producto`, productObject)
+      .put(serverFinder(`producto`), productObject)
       .then((response) => {
         return response;
       })
@@ -217,7 +219,7 @@ export function getUpdateProduct(productObject) {
 export function deleteProduct(id) {
   return function (dispatch) {
     axios
-      .delete(`http://localhost:3001/api/producto?id=${id}`)
+      .delete(serverFinder(`producto?id=${id}`))
       .then((response) => {
         return response;
       })
@@ -229,7 +231,7 @@ export function deleteProduct(id) {
 
 export function getMesa(restoId) {
     return async function (dispatch) {
-        let json = await axios.get("http://localhost:3001/api/mesa/get/" + restoId)
+        let json = await axios.get(serverFinder("mesa/get/" + restoId))
         
            return dispatch({
                 type: "GET_MESA",
@@ -237,5 +239,3 @@ export function getMesa(restoId) {
             })  
     };
 };
-
-

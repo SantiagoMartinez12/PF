@@ -5,6 +5,7 @@ import FormProduct from "./FormProduct";
 import './Product.css';
 import ProductDetail from "./ProductDetail";
 import { getProductos } from "../../../store/actions";
+import { useParams } from "react-router";
 // import data from "./data";
 
 const Product = () => {
@@ -13,10 +14,11 @@ const Product = () => {
     const [infoDetail, setInfoDetail] = useState({});
     const dispatch = useDispatch();
     const data = useSelector((state)=>state.rawData)
-
+    const {restoId} = useParams()
 
     useEffect(() => {
-        dispatch(getProductos('5cffeb91-f981-4d08-b887-ba1408ec5ce4'));
+        dispatch(getProductos(restoId));
+
     }, [])
 
     const handleAddProduct = (e) => {
