@@ -1,21 +1,17 @@
 .card {
-  background-color: rgba(167, 77, 42, 0.87);
+  background-color: rgb(34 85 251 / 87%);
   color: #fafafa;
   padding: 15px;
-  height: 200px;
+  height: 250px; /* Si le achicas esto no entra el nombre */
   margin: 5px;
   border-radius: 10px;
   border: 1px;
   max-width: 200px;
 }
-.card:hover {
-  background-color: aqua;
 
-  backdrop-filter: blur(2px);
-}
 .cardImage {
-  height: 130px;
-  width: 220px;
+  height: 150px;
+  width: 150px;
   border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -34,4 +30,9 @@
 }
 .h5Card {
   margin: 5px;
+}
+
+.divBotones {
+  display: flex;
+  justify-content: flex-end;
 }

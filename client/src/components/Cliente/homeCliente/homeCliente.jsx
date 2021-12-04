@@ -37,7 +37,7 @@ export default function HomeClient(){
         dispatch(getCuenta(idCliente));
     // repite el get para ver el estado hasta que cambia a autorizado     
         let repet = setInterval(()=>{
-            axios.get(`http://localhost:3001/api/cliente/${idCliente}`)
+            axios.get(`http://localhost:3001/api/cliente/cliente/${idCliente}`)
                   .then(res=>{
                     dispatch(getDatosMesa({estadoCliente:res.data.estado}));
                     if(res.data.estado !== 'solicitado'){

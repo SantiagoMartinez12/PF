@@ -6,8 +6,6 @@ import {
 } from "../actions";
 import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO } from "../actions";
 
-
-
 const initialState = {
   menuBaseDatos: [],
   categoriasMenu: [],
@@ -15,13 +13,13 @@ const initialState = {
   rawData: [],
   ticket: [],
   cuenta: 0,
-  ticketCuenta:[],
-
-  usuario:[],
+  ticketCuenta: [],
+  idCliente:"",
+  usuario: [],
 
   ClientInfo: {
-    estadoCliente:"solicitado",
-    idCliente:"",
+    estadoCliente: "solicitado",
+    idCliente: "",
     nameCliente: "",
     idResto: "",
     idMesa: "",
@@ -30,10 +28,9 @@ const initialState = {
   categorias: [],
   detalle: [],
   mesas: [],
-
 };
 
-console.log(initialState.idResto)
+console.log(initialState.idResto);
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -59,12 +56,18 @@ const reducer = (state = initialState, action) => {
           }
         : {
             ...state,
-            ticket: [...state.ticket, { ...nuevoItem, cantidad: 1, 
-              idCliente: state.ClientInfo.idCliente,
-              nameCliente:state.ClientInfo.nameCliente,
-              idResto:state.ClientInfo.idResto,
-              idMesa:state.ClientInfo.idMesa,
-              comentario:"" }],
+            ticket: [
+              ...state.ticket,
+              {
+                ...nuevoItem,
+                cantidad: 1,
+                idCliente: state.ClientInfo.idCliente,
+                nameCliente: state.ClientInfo.nameCliente,
+                idResto: state.ClientInfo.idResto,
+                idMesa: state.ClientInfo.idMesa,
+                comentario: "",
+              },
+            ],
           };
 
     case "restarTicket":
@@ -119,46 +122,47 @@ const reducer = (state = initialState, action) => {
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias,
       };
-      
-      case MODIFICAR_USUARIO:
-          return{
-            ...state,
-            usuario: action.payload,
-        }
 
-      case INFO_USUARIO:
-        return{
-          ...state,
-          usuario: action.payload,
-        }
+    case MODIFICAR_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
 
+    case INFO_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
 
     case "getDatosMesa":
-      const{ estadoCliente, idCliente, nameCliente, idResto, idMesa }= action.payload
-      
+      const { estadoCliente, idCliente, nameCliente, idResto, idMesa } =
+        action.payload;
+
       return {
         ...state,
         ClientInfo: {
-          idCliente: idCliente? idCliente: state.ClientInfo.idCliente,
-          estadoCliente: estadoCliente? estadoCliente: state.ClientInfo.estadoCliente,
-          nameCliente: nameCliente? nameCliente: state.ClientInfo.nameCliente,
-          idResto: idResto? idResto: state.ClientInfo.idResto,
-          idMesa: idMesa? idMesa: state.ClientInfo.idMesa
-        }  
-      }
+          idCliente: idCliente ? idCliente : state.ClientInfo.idCliente,
+          estadoCliente: estadoCliente
+            ? estadoCliente
+            : state.ClientInfo.estadoCliente,
+          nameCliente: nameCliente ? nameCliente : state.ClientInfo.nameCliente,
+          idResto: idResto ? idResto : state.ClientInfo.idResto,
+          idMesa: idMesa ? idMesa : state.ClientInfo.idMesa,
+        },
+      };
 
     case "resetTicket":
       return {
         ...state,
         ticket: [],
-        cuenta:0
-        
+        cuenta: 0,
       };
 
     case "getCuenta":
       return {
         ...state,
-        ticketCuenta: action.payload
+        ticketCuenta: action.payload,
       };
 
     case GET_CATEGORIAS:
@@ -167,39 +171,35 @@ const reducer = (state = initialState, action) => {
         categorias: action.payload,
       };
     case AGREGAR_CATEGORIAS:
-      let categoriasActual = state.categorias;
-      let sumarCategorias = action.payload;
-      let nuevoArrayCategorias = categoriasActual.concat(sumarCategorias);
       return {
         ...state,
-        categorias: [...nuevoArrayCategorias],
+        categorias: [...state.categorias, action.payload],
       };
     case BORRAR_CATEGORIAS:
       return {
         ...state,
       };
 
-      
-     
-    
     case "GET_DETALLE":
-      return{
+      return {
         ...state,
-        detalle: action.payload
-      }
-      case "GET_MESA":
-      return{
+        detalle: action.payload,
+      };
+    case "GET_MESA":
+      return {
         ...state,
-        mesas: action.payload
-      }
-      case CREAR_USUARIO:
+        mesas: action.payload,
+      };
+    case CREAR_USUARIO:
       return {
         ...state,
         usuario: action.payload,
       };
-      
-
-
+      case "GET_ID_CLIENTE":
+        return {
+          ...state,
+          idCliente:action.payload
+        }
 
     default:
       return state;

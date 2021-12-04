@@ -20,7 +20,7 @@ router.put('/', async (req, res, next) =>{
                 id:restoId
             }
         })
-        modificarMesaQr(comparar.dataValues.mesa, mesa, restoId)
+        modificarMesaQr(comparar.dataValues.mesa, update.mesa, restoId)
         res.send('se modico con exito')
     }catch(error){
         next(error)

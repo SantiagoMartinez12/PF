@@ -1,15 +1,16 @@
 .producDetailAll {
     display: grid;
     grid-template-columns: 0.5fr 0.9fr 0.9fr 0.9fr;
-    grid-template-rows: 0.5fr 0.2fr 0.5fr 1.5fr 1.5fr 0.5fr;
+    grid-template-rows: 0.5fr 0.2fr 0.5fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
       "nav nav nav nav"
       "subNav subNav subNav subNav"
       "name name eliminar actualizar"
-      "imagen imagen form form"
-      "imagen imagen form form"
-      "footer footer footer footer";
+      "imagen imagen imagen imagen"
+      "imagen imagen imagen imagen"
+      "form form form form"
+      "form form form form";
   }
   
   .nav { grid-area: nav; }  
@@ -22,12 +23,13 @@
   .formProduct {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.8fr 0.8fr 1.8fr 0.6fr;
+    grid-template-rows: 0.8fr 0.8fr 1.8fr 0.6fr 0.6fr;
     gap: 0px 0px;
     grid-template-areas:
       "producto producto categoria"
       "precio peso marca"
       "descripcion descripcion inputImagen"
+      "actualizarBoton actualizarBoton actualizarBoton"
       "actualizarBoton actualizarBoton actualizarBoton";
     grid-area: form;
   }
@@ -40,5 +42,20 @@
   .descripcion { grid-area: descripcion; }
   .inputImagen { grid-area: inputImagen; }
   .actualizarBoton { grid-area: actualizarBoton; }  
-  .footer { grid-area: footer; }
   
+  .warning {
+    margin: 0 !important;
+    font-size: xx-small;
+    color: #581515;
+    width: fit-content;
+}
+
+.producDetailAll {
+  height: 440px;
+  overflow-y: auto;
+}
+
+.formProduct {
+  height: 440px;
+  overflow-y: auto;
+}

@@ -1,33 +1,53 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png";
-import { deleteProduct, getUpdateProduct } from "../../../store/actions";
+import { deleteProduct, getCategorias, getUpdateProduct } from "../../../store/actions";
 import './ProductDetail.css'
 
 const ProductDetail = ({ info }) => {
     const data = JSON.parse(info);
+
     const [useForm, setUseForm] = useState(false)
     const dispatch = useDispatch()
-    const {restoId} = useParams()
+    const { restoId } = useParams()
 
     const [updateProduct, setUpdateProduct] = useState({
+        id: data.id,
+        categoriaId: data.categoriaId,
         name: '',
-        precio: '',
+        precio: 0,
         imagen: '',
         detalle: '',
-        categoria: '',
+        categoria: data.categoriaId,
         idResto: restoId
-
     })
+    const [imagenSelected, setImagenSelected] = useState(null)
+    const [control, setControl] = useState(null)
+    const categorias = useSelector((state) => state.categorias)
 
+    useEffect(() => {
+
+        dispatch(getCategorias(restoId));
+        if (control) {
+            setUpdateProduct({
+                ...updateProduct,
+                imagen: control
+            });
+        }
+
+    }, [control])
 
     const handleEliminar = () => {
-        let userPreference;
+        var userPreference;
         if (window.confirm("Deseas eliminar el producto?")) {
             userPreference = "Producto eliminado!";
             dispatch(deleteProduct(data.id))
-            // window.location.reload()
+            if (window.confirm("Se ha eliminado el producto")) {
+                window.location.reload()
+            } else {
+                window.location.reload()
+            };
         } else {
             userPreference = "Eliminación abortada!";
         };
@@ -44,29 +64,46 @@ const ProductDetail = ({ info }) => {
     }
 
     const handleForm = (e) => {
-        setUpdateProduct({
-            ...updateProduct,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name !== 'imagen') {
+            setUpdateProduct({
+                ...updateProduct,
+                [e.target.name]: e.target.value
+            });
+        }
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(getUpdateProduct(updateProduct))
+        if (window.confirm("Se ha actualizado el producto")) {
+            window.location.reload()
+        } else {
+            window.location.reload()
+        };
     }
 
     const handleGoBack = () => {
         window.location.reload()
     }
 
-    console.log(updateProduct);
+    const handleImg = (e) => {
+
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = async function () {
+            setControl(reader.result)
+        }
+        if (file) {
+            setImagenSelected(reader.readAsDataURL(file));
+        }
+    }
 
 
     return (
         <>
             <div className="producDetailAll">
                 <div className="nav">
-                    <img src={logo} alt="Logo" width="30%" />
+                    <h3>Actualizar Producto</h3>
                 </div>
 
                 <div className="subNav"></div>
@@ -101,7 +138,12 @@ const ProductDetail = ({ info }) => {
 
                         <div className="categoria">
                             <label htmlFor="categoria">Categoria</label>
-                            <input type="text" name="categoria" id="categoria" />
+                            <select name="categoria" id='categoria' >
+                                <option disabled selected>Selección...</option>
+                                {categorias.map((cat) =>
+                                    <option value={cat.id}> {cat.name} </option>
+                                )}
+                            </select>
                         </div>
 
                         <div className="precio">
@@ -109,15 +151,15 @@ const ProductDetail = ({ info }) => {
                             <input type="text" name="precio" id="precio" />
                         </div>
 
-                        <div className="peso">
+                        {/* <div className="peso">
                             <label htmlFor="Peso">Peso/Lts/Personas</label>
                             <input type="text" name="Peso" id="Peso" />
-                        </div>
-
-                        <div className="marca">
+                            </div>
+                            
+                            <div className="marca">
                             <label htmlFor="Marca">Marca</label>
                             <input type="text" name="Marca" id="Marca" />
-                        </div>
+                        </div> */}
 
                         <div className="descripcion">
                             <label htmlFor="detalle">Descripción</label>
@@ -126,11 +168,15 @@ const ProductDetail = ({ info }) => {
 
                         <div className="inputImagen">
                             <label htmlFor="imagen">Imagen</label>
-                            <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                            <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                            <br />
+                            <img src={control} height="200" alt="Image preview..." />
                         </div>
 
                         <div className="actualizarBoton">
-                            <button type='submit' onClick={(e) => handleSubmit(e)}>Agregar</button>
+                            <button type='submit' onClick={(e) => handleSubmit(e)}>Actualizar</button>
+                            <button type='button' onClick={handleGoBack}>volver</button>
+                            <p className='warning'>Llenar solo los campos que desea actualizar</p>
                         </div>
 
                     </form>
@@ -138,27 +184,27 @@ const ProductDetail = ({ info }) => {
 
                     <div className="formProduct">
                         <div className="producto">
-                            <p>{data.name}</p>
+                            <p><b>Nombre del Producto: </b>{data.name}</p>
                         </div>
 
                         <div className="categoria">
-                            <p>{data.categoria}</p>
+                            <p><b>Categoria: </b> {data.categoria}</p>
                         </div>
 
                         <div className="precio">
-                            <p>{data.precio}</p>
+                            <p><b>Precio: </b>{data.precio}</p>
                         </div>
 
-                        <div className="peso">
+                        {/* <div className="peso">
                             <p>{data.name}</p>
                         </div>
 
                         <div className="marca">
                             <p>{data.name}</p>
-                        </div>
+                        </div> */}
 
                         <div className="descripcion">
-                            <p>{data.detalle}</p>
+                            <p><b>Descripcion del Producto: </b>{data.detalle}</p>
                         </div>
 
                         <div className="actualizarBoton">

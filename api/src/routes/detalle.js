@@ -109,6 +109,7 @@ router.get('/idcliente/:idCliente', async (req, res, next) =>{
             clienteId:idCliente,
         }
         }) 
+      
         res.send(detalle)
     }catch(error){
         next(error)

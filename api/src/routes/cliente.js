@@ -4,11 +4,12 @@ const {Cliente, Mesa} = conn.models;
 
 const router = Router();
 
-router.get('/', async(req, res, next)=>{
+router.get('/cliente/:idCliente', async(req, res, next)=>{
+    const {idCliente} = req.params
     try{
-        const clientes = await Cliente.findAll({
-    });
-    res.json(clientes)
+        const cliente = await Cliente.findByPk(idCliente);
+    
+        res.json(cliente)
 
     }catch(error){
         next(error)
@@ -16,8 +17,8 @@ router.get('/', async(req, res, next)=>{
 })
 
 
-router.get('/:param', async(req, res, next)=>{
-    const { param } = req.params; 
+router.get('/:id/:param', async(req, res, next)=>{
+    const { id,param } = req.params; 
     
     try{
         if(param.length > 15){
@@ -26,6 +27,7 @@ router.get('/:param', async(req, res, next)=>{
         }
         const clientes = await Cliente.findAll({
             where:{
+            restoId:id,    
             estado:param,
             },
             include: {model:Mesa,
@@ -41,14 +43,12 @@ router.get('/:param', async(req, res, next)=>{
 
 
 router.post('/', async (req, res, next) =>{
-    const { nombre, mesaId} = req.body
+    const { nombre, restoId, mesaId} = req.body
     
     try{
-        const existeId = await Mesa.findByPk(mesaId)
-        if(!existeId) return res.status(404);
-
         const newCliente = await Cliente.create({
             nombre,
+            restoId,
             mesaId
         })
         res.status(201).json(newCliente) 

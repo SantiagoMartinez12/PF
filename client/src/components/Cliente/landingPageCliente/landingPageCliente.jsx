@@ -15,7 +15,7 @@ import axios from "axios";
 
 
 export default function LandingPageClient() {
-  const { idResto,idMesa} = useParams()
+  const { idResto , idMesa} = useParams()
     
   const [input, setInput] = useState({
     name: "",
@@ -40,13 +40,15 @@ export default function LandingPageClient() {
     const existeMesa = axios.get(`http://localhost:3001/api/mesa/${idMesa}`);
     Promise.all([exiteResto, existeMesa])
       .then(res=>{
-    //si idResto o isMesa no existen no postea nada y lo redirige a una página de error    
+    //si idResto o isMesa no existen no postea nada y lo redirige a una página de error  
+   
         if(res[0].data.length === 0 || res[1].data.length === 0){
           navigate('/errorQr');
         }else{
+         
     //si idResto y idMesa son correctos postea a la ruta cliente y lo redirige al home Cliente
           
-          axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
+          axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa,restoId:idResto})
             .then(resPost=> {
               navigate(`/${idResto}/${idMesa}/home/${name}/${resPost.data.id}`);
               

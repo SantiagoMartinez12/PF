@@ -1,45 +1,40 @@
 .gridcontainer {
-    display: grid;
-    grid-template-columns: 0.3fr 1.9fr 0.3fr;
-    grid-template-rows: 0.6fr 3.3fr 0.5fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      ". Logo Rueda"
-      ". Mesas ."
-      ". . .";
-      
-  }
-  .Mesas {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 10px 10px;
-    grid-template-areas:
-      ". . . ."
-      ". . . ."
-      ". . . .";
-    grid-area: Mesas;
-    
-
-  }
-  .Logo {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      ".";
-    grid-area: Logo;
-    align-items: center;
-  
-
-  }
-  .Rueda {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      ".";
-    grid-area: Rueda;
-  }
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.3fr 0.4fr;
+  grid-template-rows: 0.6fr 0.4fr 2.3fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "logo . logOut rueda"
+    "AutorizaMesa AutorizaMesa . ."
+    "Mesas Mesas Detalle Detalle";
+}
+.logo { grid-area: logo; padding-left: 30px;}
+.rueda { grid-area: rueda; text-align: right; padding-right: 10px;}
+.logOut { grid-area: logOut; }
+.AutorizaMesa { grid-area: AutorizaMesa; padding-left: 30px;padding-bottom: 10px;text-align: center}
+.Mesas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . .";
+  grid-area: Mesas;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  padding: 30px;
+}
+.Mesas a{text-decoration: none; color:black}
+.Detalle {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ".";
+  grid-area: Detalle;
+}
