@@ -13,7 +13,7 @@ const {Mesa} = conn.models;
             let UUID = (func() + func() + "-" + func() + "-3" + func().substr(0,2) + "-" + func() + "-" + func() + func() + func()).toLowerCase();
             await Mesa.create({
                 id:UUID,
-                qr: `http://api.qrserver.com/v1/create-qr-code/?data=[http://localhost:3000/${id}/${UUID}]&size=[750]x[750]` ,
+                qr: `http://api.qrserver.com/v1/create-qr-code/?data=[https://www.mozo-virtual.xyz/${id}/${UUID}]&size=[750]x[750]` ,
                 name: "mesa " + (i + anterior),
                 estado: false,
                 cuenta: 0,

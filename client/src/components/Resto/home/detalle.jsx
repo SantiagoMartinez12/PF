@@ -25,14 +25,13 @@ export default function Detalle(){
     // console.log(mesaFind)
     let idMesa = detalle.mesaId
   
- 
+    console.log(detalle)
     useEffect(()=>{
 
         dispatch(getDetalle(idCliente))
         dispatch(getMesa(idResto)) // id de resto
-
-
-    },[])
+    },[detalle])
+ 
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)
@@ -45,7 +44,7 @@ export default function Detalle(){
 
     let seguimiento={}
      seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
-    
+    console.log(seguimiento)
 
  
 
@@ -63,6 +62,7 @@ export default function Detalle(){
 
 
     function handleClickSeguimiento(seguimiento,id){
+      
         let segui = seguimiento
         if(segui === 'solicitado'){
             segui = 'confirmado'
@@ -121,7 +121,7 @@ export default function Detalle(){
             </div>
             <div className={s.Seguimiento}>
             <h4>Seguimiento:</h4>
-                <p>{seguimiento.map( s=>{
+                <p>{seguimiento?.map( s=>{
                     return(
                         <div>
                             

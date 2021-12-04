@@ -133,7 +133,7 @@ export function getCategorias(idResto) {
   export default function modificarUsuario(obj) {
     return function (dispatch) {
       axios
-        .put(serverFinder("/resto/"), obj)
+        .put(serverFinder("resto/"), obj)
         .then((usuario) => {
           return usuario;
         })

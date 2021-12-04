@@ -12,13 +12,14 @@ import axios from "axios"
 
 export default function HomeResto(){
     const mesas = useSelector(state => state.mesas)
+    const {restoId} = useParams()
 
 
     const [clientes, setClientes] = useState()
 
     const dispatch = useDispatch()
     // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
-    const {restoId} = useParams()
+    console.log(restoId)
     // const ruta = `${restoId}/home/resto/setting/`
 
     useEffect(()=>{
@@ -44,12 +45,15 @@ export default function HomeResto(){
     return(
         <div className={s.gridcontainer}>
             
+            <div className={s.AutorizaMesa}>
+            <AutorizaMesa/>
+            </div>
             
 
         <div className={s.Mesas}>
-            <div>
-            <AutorizaMesa/>
-            </div>
+            
+
+        
             {
 
             clientes?.map(el =>{
