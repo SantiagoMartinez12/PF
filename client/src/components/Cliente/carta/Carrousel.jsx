@@ -7,13 +7,13 @@ export default function Carrousel(){
          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
              <div class="carousel-inner">
                <div class="carousel-item active">
-               <img class="d-block w-100" src={banner1} alt="First slide"/>
+               <img class="d-block w-100 rounded" src={banner1} alt="First slide"/>
              </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src={banner2} alt="Second slide"/>
+              <img class="d-block w-100 rounded" src={banner2}alt="Second slide"/>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src={banner3} alt="Third slide"/>
+              <img class="d-block w-100 rounded" src={banner3} alt="Third slide"/>
               </div>
              </div>
             </div>
