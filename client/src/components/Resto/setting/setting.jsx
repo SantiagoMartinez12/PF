@@ -78,7 +78,7 @@ export default function Setting() {
         <div className={style.gridContainer}>
             <div className={style.LogoTitulo}>
             <img src={logo} alt="Logo" width="15%"  class="navbar-brand" />
-                <div className={style.LogoTitulo}><h1>Mozo Virtual</h1></div>
+                <div className={style.titulo}><h1>Mozo Virtual</h1></div>
             </div>
             <div className={style.navBar}>
             <div >

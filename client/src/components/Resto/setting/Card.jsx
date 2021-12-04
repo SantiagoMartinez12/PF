@@ -19,7 +19,7 @@ export default function Card({name, id}){
     return(
         <div className={styles.card}>  
             <div className={styles.divBotones}>
-                <button className={styles.botonEliminar} onClick={(e)=>handleClick(e)}>X</button> 
+                <button class="btn btn-primary" onClick={(e)=>handleClick(e)}>X</button> 
             </div>         
             <img src={`https://via.placeholder.com/150`} alt="Not found" />
 

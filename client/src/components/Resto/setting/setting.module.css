@@ -30,13 +30,17 @@
     justify-content: center;
     align-items: center;
     -webkit-text-stroke-width: thick;
+    border-radius: 7px;
     
 }
-.LogoTitulo { grid-area: LogoTitulo; }
+.LogoTitulo { grid-area: LogoTitulo; 
+  display: -webkit-box;
+  margin: 3px 48px 23px 50px;}
 .display { grid-area: display; }
 .pieDePagina { grid-area: pieDePagina; }
 
-.logoTitulo { grid-area: logoTitulo; }
+.logoTitulo { grid-area: logoTitulo;
+  display: -webkit-box; }
 .navBAr {
   display: grid;
   grid-template-columns: 1fr;
@@ -87,4 +91,5 @@
     ".";
   grid-area: display;
 }
-.titulo { grid-area: titulo; }
+.titulo { grid-area: titulo; 
+  margin: 49px 75px 31px 255px;}
