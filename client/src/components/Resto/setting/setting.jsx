@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
 import { useParams } from "react-router";
+import logo from "../../../assets/Logo.png"
 
 
 
@@ -60,30 +61,38 @@ export default function Setting() {
     return (
         <div className={style.gridContainer}>
             <div className={style.LogoTitulo}>
-                <div className={style.titulo1}><h1>Mozo Virtual</h1></div>
+            <img src={logo} alt="Logo" width="15%"  class="navbar-brand" />
+                <div className={style.LogoTitulo}><h1>Mozo Virtual</h1></div>
             </div>
             <div className={style.navBar}>
-                <div className={style.infoUsuario}>
-                    <button onClick={(e) => { handleUsuario(e) }}>
+            <div >
+                <div className={style.component}>
+                    <button onClick={(e) => { handleUsuario(e) }} className={style.botonsito}>
                         <box-icon type='solid' name='user-detail'></box-icon>
-                        Informacion de Usuario</button>
+                        Info. de Usuario</button>
                 </div>
-
-                <div className={style.infoCategorias}>
-                    <button onClick={(e) => { handleCategorias(e) }}>
+            </div>
+            <div>
+                <div className={style.component}>
+                    <button onClick={(e) => { handleCategorias(e) }} className={style.botonsito}>
                         <box-icon name='cart'></box-icon>
                         Categorias</button>
                 </div>
-                <div className={style.infoProductos}>
-                    <button onClick={(e) => { handleProduct(e) }}>
+            </div>
+            <div >
+                <div className={style.component}>
+                    <button onClick={(e) => { handleProduct(e) }} className={style.botonsito}>
                         <box-icon name='restaurant'></box-icon>
                         Productos</button>
                 </div>
-                <div className={style.formasPago}>
-                    <Link to='/mediosDePago'><button>
+            </div>
+            <div >
+                <div className={style.component}>
+                    <button className={style.botonsito}>
                         <box-icon name='credit-card' type='solid' ></box-icon>
-                        Medios de pagos</button></Link>
+                        Medios de pagos</button>
                 </div>
+            </div>
 
             </div>
 
