@@ -12,14 +12,16 @@ export default function MediosDePago(){
                         <h2>Medios de Pago</h2>
                     </div>
             <div className={styles.buttons}>
-                <div>
-                    <button>Agregar</button>
-                </div>
-                <div>
-                    <button>Modificar</button>
-                </div>
-                <div>
-                    <button>Eliminar</button>
+                <div className={styles.nav}>
+                    <div>
+                        <button>Agregar</button>
+                    </div>
+                    <div>
+                        <button>Modificar</button>
+                    </div>
+                    <div>
+                        <button>Eliminar</button>
+                    </div>
                 </div>
             </div>
             <div className={styles.renderArea}>

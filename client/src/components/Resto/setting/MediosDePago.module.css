@@ -27,3 +27,11 @@
   grid-auto-flow: column;
   background-color: cyan;
 }
+.nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}

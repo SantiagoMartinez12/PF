@@ -10,6 +10,7 @@ import Product from "../product/Product";
 import MediosDePago from "./MediosDePago";
 
 
+
 export default function Setting() {
     const [iUsuario, setIUsuario] = useState(false)
     const [infoCategorias, setInfoCategorias] = useState(false)
@@ -20,55 +21,54 @@ export default function Setting() {
 
 
     function handleUsuario(e) {
-        if (iUsuario === false) {
-            e.preventDefault();
+        if (iUsuario === false) {            
             setIUsuario(true)
             dispatch(infoUsuario())
             setInfoCategorias(false)
             setProduct(false)
             setMediosDePago(false)
         } else {
-            e.preventDefault();
+            
             setIUsuario(false)
         }
 
     }
     function handleCategorias(e) {
         if (infoCategorias === false) {
-            e.preventDefault();
+           
             setInfoCategorias(true)
             setIUsuario(false)
             setProduct(false)
             setMediosDePago(false)
         } else {
-            e.preventDefault();
+           
             setInfoCategorias(false)
         }
     }
 
     function handleProduct(e) {
         if (product === false) {
-            e.preventDefault();
+            
             setProduct(true)
             setIUsuario(false)
             setInfoCategorias(false)
             setMediosDePago(false)
 
         } else {
-            e.preventDefault();
+            
             setProduct(false)
         }
     }
 
     function handleMediosDePago(e){
         if(mediosDePago===false){
-            e.preventDefault();
+           
             setMediosDePago(true)
             setProduct(false)
                 setIUsuario(false)
                 setInfoCategorias(false)
         }else{
-            e.preventDefault();
+           
             setMediosDePago(false)
         }
 
@@ -107,9 +107,8 @@ export default function Setting() {
 
 
             <div className={style.display}>
-                {iUsuario === true ? info.map((el) => {
-                    return <Usuario key={el.id} image={el.imagen} name={el.name} usuario={el.usuario} contraseña={el.contraseña} mail={el.mail} mesa={el.mesa} />
-                }) : <></>}
+                {iUsuario === true ? <Usuario />
+                 : <></>}
 
                 {infoCategorias === true ? <Categorias /> : <></>
                 }
@@ -122,11 +121,6 @@ export default function Setting() {
             </div>
             <div className={style.pieDePagina}></div>
             <div className={style.selectorBotones}>
-
-
-                {/* {infoUsuario===true?<Usuario/>
-                    : <></>
-                } */}
 
 
             </div>

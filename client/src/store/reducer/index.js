@@ -18,9 +18,8 @@ const initialState = {
   cuenta: 0,
   //esto lo volamos cuando funcione el back
 
-  ticketCuenta:[],
-  usuario:[],
-
+  ticketCuenta: [],
+  usuario: [],
 
   ClientInfo: {
     nameCliente: "",
@@ -28,13 +27,11 @@ const initialState = {
     idMesa: "",
   },
 
-
   categorias: [],
   detalle: [],
   mesas: [],
-
 };
-console.log(initialState.usuario)
+console.log(initialState.usuario);
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -131,19 +128,18 @@ const reducer = (state = initialState, action) => {
         productosFiltrados: arrayProductos,
         categoriasMenu: arrayCategorias,
       };
-      
-      case MODIFICAR_USUARIO:
-          return{
-            ...state,
-            usuario: action.payload,
-        }
 
-      case INFO_USUARIO:
-        return{
-          ...state,
-          usuario: action.payload,
-        }
+    case MODIFICAR_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
 
+    case INFO_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
+      };
 
     case "getDatosMesa":
       return {
@@ -169,32 +165,25 @@ const reducer = (state = initialState, action) => {
         categorias: action.payload,
       };
     case AGREGAR_CATEGORIAS:
-      let categoriasActual = state.categorias;
-      let sumarCategorias = action.payload;
-      let nuevoArrayCategorias = categoriasActual.concat(sumarCategorias);
       return {
         ...state,
-        categorias: [...nuevoArrayCategorias],
+        categorias: [...state.categorias, action.payload],
       };
     case BORRAR_CATEGORIAS:
       return {
         ...state,
       };
 
-      
-     
-    
     case "GET_DETALLE":
-      return{
+      return {
         ...state,
-        detalle: action.payload
-      }
-      case "GET_MESA":
-      return{
+        detalle: action.payload,
+      };
+    case "GET_MESA":
+      return {
         ...state,
-        mesas: action.payload
-      }
-
+        mesas: action.payload,
+      };
 
     default:
       return state;
