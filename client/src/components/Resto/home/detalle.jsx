@@ -5,7 +5,7 @@ import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
 import { useNavigate } from 'react-router-dom';
-import idResto from "./idResto.js"
+
 
 export default function Detalle(){
     
@@ -16,8 +16,8 @@ export default function Detalle(){
 
     const navigate = useNavigate()
 
-    const {idCliente} = useParams()
-    //console.log(idCliente)
+    const {idCliente , idResto} = useParams()
+    console.log(idResto)
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
         console.log(detalle)
@@ -55,7 +55,7 @@ export default function Detalle(){
     const handleOnClick = (e) =>{
         e.preventDefault();
         desocuparMesa(idMesa)
-        navigate("/home/resto")
+        navigate(`/home/resto/${idResto}`)
     }
  
 
