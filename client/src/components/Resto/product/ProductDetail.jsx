@@ -22,14 +22,21 @@ const ProductDetail = ({ info }) => {
         categoria: data.categoriaId,
         idResto: restoId
     })
-
+    const [imagenSelected, setImagenSelected] = useState(null)
+    const [control, setControl] = useState(null)
     const categorias = useSelector((state) => state.categorias)
 
     useEffect(() => {
 
         dispatch(getCategorias(restoId));
+        if (control) {
+            setUpdateProduct({
+                ...updateProduct,
+                imagen: control
+            });
+        }
 
-    }, [])
+    }, [control])
 
     const handleEliminar = () => {
         var userPreference;
@@ -57,12 +64,14 @@ const ProductDetail = ({ info }) => {
     }
 
     const handleForm = (e) => {
-        setUpdateProduct({
-            ...updateProduct,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name !== 'imagen') {
+            setUpdateProduct({
+                ...updateProduct,
+                [e.target.name]: e.target.value
+            });
+        }
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(getUpdateProduct(updateProduct))
@@ -77,7 +86,18 @@ const ProductDetail = ({ info }) => {
         window.location.reload()
     }
 
-    console.log(updateProduct)
+    const handleImg = (e) => {
+
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = async function () {
+            setControl(reader.result)
+        }
+        if (file) {
+            setImagenSelected(reader.readAsDataURL(file));
+        }
+    }
+
 
     return (
         <>
@@ -148,7 +168,9 @@ const ProductDetail = ({ info }) => {
 
                         <div className="inputImagen">
                             <label htmlFor="imagen">Imagen</label>
-                            <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                            <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                            <br />
+                            <img src={control} height="200" alt="Image preview..." />
                         </div>
 
                         <div className="actualizarBoton">
@@ -159,7 +181,7 @@ const ProductDetail = ({ info }) => {
 
                     </form>
                     :
-                    
+
                     <div className="formProduct">
                         <div className="producto">
                             <p><b>Nombre del Producto: </b>{data.name}</p>

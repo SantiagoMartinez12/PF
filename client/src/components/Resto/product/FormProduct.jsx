@@ -15,22 +15,30 @@ const FormProduct = () => {
         categoria: '',
         idResto: restoId
     })
+    const [imagenSelected, setImagenSelected] = useState(null)
+    const [control, setControl] = useState(null)
 
     const regEx = new RegExp(/[A-Za-z0-9]+/g);
     const reg = new RegExp('^[0-9]+$');
     const categorias = useSelector((state) => state.categorias)
 
     useEffect(() => {
-
         dispatch(getCategorias(restoId));
-
-    }, [])
+        if (control){       
+            setNewProduct({
+                ...newProduct,
+                imagen: control
+            });
+        }
+    }, [control])
 
     const handleForm = (e) => {
-        setNewProduct({
-            ...newProduct,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name !== 'imagen') {
+            setNewProduct({
+                ...newProduct,
+                [e.target.name]: e.target.value
+            });
+        }
     }
 
     const handleSubmit = (e) => {
@@ -47,7 +55,18 @@ const FormProduct = () => {
         window.location.reload()
     }
 
-    console.log(newProduct)
+    const handleImg = (e) => {
+
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = async function () {
+            setControl(reader.result)
+        }
+        if (file) {
+            setImagenSelected(reader.readAsDataURL(file));
+        }        
+
+    }
 
     return (
         <>
@@ -99,7 +118,9 @@ const FormProduct = () => {
 
                     <div className="imagen">
                         <label htmlFor="imagen">Imagen</label>
-                        <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                        <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                        <br />
+                        <img src={control} height="200" alt="Image preview..." />
                     </div>
 
                     <div className="submit">

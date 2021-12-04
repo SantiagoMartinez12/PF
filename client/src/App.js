@@ -19,17 +19,14 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path="/:idResto/:idMesa" element={<LandingPageClient />} />
+        <Route exact path="/:idResto/:idMesa/home/:name/:idCliente" element={<HomeClient />}/>
 
-        <Route
-          exact
-          path="/:idResto/:idMesa/home/:name"
-          element={<HomeClient />}
-        />
         <Route exact path="/" element={<LandingPageResto />} />
         <Route exact path="/home/resto/:restoId" element={<HomeResto />} />
         <Route path="/home/resto/setting/:restoId" element={<Setting />} />
         <Route exact path="/errorQr" element={<ErrorQr />} />
-        <Route exact path="/detalle/:idCliente" element={<Detalle />} />
+        <Route exact path="/home/resto/detalle/:idResto/:idCliente" element={<Detalle/>}/>
+   
       </Routes>
     </div>
   );

@@ -1,24 +1,34 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getCuenta } from "../../../store/actions";
+import serverFinder from "../../../store/deploy/serverFinder";
 
 
 export default function Cuenta(){
     const{idCliente} = useParams()
     const dispatch = useDispatch();
-    const cuenta = useSelector(state=> state.ticketCuenta);
-    
+   // const cuenta = useSelector(state=> state.ticketCuenta);
+    let subtotales = []
+    const reducer = (a, b) => a+b;
+    let totalCuenta = 0
+    let cuenta = []
     useEffect (() =>{
-        dispatch(getCuenta(idCliente));
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+        .then((response) =>  {cuenta = response.data ;
+                            subtotales = response.data.map(el => { 
+               return el.precio * el.cantidad 
+        }) 
+        totalCuenta = subtotales.reduce(reducer)
+        }
+        )
     }, []);
 
     // calculo del total a pagar para renderizar
-    let subtotales = cuenta.map(it=>{
+   /*  let subtotales = cuenta?.map(it=>{
         return it.precio * it.cantidad
-    }) 
-    const reducer = (a, b) => a+b;
-    let totalCuenta = subtotales.reduce(reducer)
+    })  */
   
     return(
         <div className="container">

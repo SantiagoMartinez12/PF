@@ -32,7 +32,7 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
-
+    console.log(id)
     let newUser = await Resto.findOrCreate({
       id,
       mail,

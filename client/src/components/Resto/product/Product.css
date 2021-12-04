@@ -13,6 +13,6 @@
   .contenido { grid-area: contenido; }  
 
   .contenido {
-    height: 440px;
+    height: 300px;
     overflow-y: auto;
   }
