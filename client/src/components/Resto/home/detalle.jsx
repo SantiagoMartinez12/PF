@@ -7,17 +7,15 @@ import {useDispatch, useSelector} from  "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Detalle(){
+export default function Detalle({idResto,funcion}){
     
     const dispatch = useDispatch();
-
- 
 
 
     const navigate = useNavigate()
 
-    const {idCliente , idResto} = useParams()
-    console.log(idResto)
+   // const {idCliente , idResto} = useParams()
+   const  idCliente = useSelector(state => state.idCliente)
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
         console.log(detalle)
@@ -25,12 +23,12 @@ export default function Detalle(){
     // console.log(mesaFind)
     let idMesa = detalle.mesaId
   
-    console.log(detalle)
+    console.log(idCliente)
     useEffect(()=>{
 
         dispatch(getDetalle(idCliente))
         dispatch(getMesa(idResto)) // id de resto
-    },[detalle])
+    },[])
  
 
     // console.log(detalle)
@@ -44,7 +42,7 @@ export default function Detalle(){
 
     let seguimiento={}
      seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
-    console.log(seguimiento)
+    
 
  
 
@@ -55,6 +53,7 @@ export default function Detalle(){
     const handleOnClick = (e) =>{
         e.preventDefault();
         desocuparMesa(idMesa)
+        funcion()
         navigate(`/home/resto/${idResto}`)
     }
  
@@ -78,7 +77,12 @@ export default function Detalle(){
     }
     
     return(
-    <div className={s.gridcontainer}>
+       <div>
+           {
+           detalle.length === 0 ? <div className="container"><h1>El cliente no realizo su pedido</h1> </div>
+                : 
+        <div className={s.gridcontainer}>
+      
         <div className={s.NameMesa}>
           {/*   <h2>{mesaFind.name}</h2> */}
         </div>
@@ -135,6 +139,8 @@ export default function Detalle(){
                 <button onClick={handleOnClick}>Ok</button>
             </div>
         </div>
+    </div>
+           }
     </div>
     )
 }
