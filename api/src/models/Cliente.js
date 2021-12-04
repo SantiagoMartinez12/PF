@@ -13,6 +13,14 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
 
+    restoId: {
+      type: DataTypes.STRING,
+    },
+
+    mesaId: {
+      type: DataTypes.STRING,
+    },
+
     estado: {
       type: DataTypes.STRING,
       defaultValue:'solicitado'
