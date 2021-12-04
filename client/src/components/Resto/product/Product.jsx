@@ -6,7 +6,6 @@ import './Product.css';
 import ProductDetail from "./ProductDetail";
 import { getProductos } from "../../../store/actions";
 import { useParams } from "react-router";
-// import data from "./data";
 
 const Product = () => {
     const [form, setForm] = useState(false)
@@ -26,6 +25,8 @@ const Product = () => {
         setForm(true);
     }
 
+    console.log(data)
+
     return (
         <>
             {showDetail ? <ProductDetail info={infoDetail} /> :
@@ -36,12 +37,14 @@ const Product = () => {
                         </div>
                         <div className="contenido">
 
-                            {data.map((categories) => {
+                            {data[0] ? data.map((categories) => {
                                 return <div className='categoriaBox'>
                                     <h4>{categories.name}</h4>
                                     <ProductsPerCategory productos={categories.productos} setShowDetail={setShowDetail} setInfoDetail={setInfoDetail} />
                                 </div>
-                            })}
+                            })
+                        :<h2>No hay Prodtuctos cargados</h2>
+                        }
 
                         </div>
                     </div>

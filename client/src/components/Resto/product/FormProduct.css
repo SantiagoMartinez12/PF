@@ -1,8 +1,8 @@
 .grid-container {
     display: grid;
     grid-template-columns: 0.8fr 0.8fr 0.8fr;
-    grid-template-rows: 1.5fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 10px;
+    grid-template-rows: 50px 30px 60px 100px 80px 80px 50px 50px 50px;
+    gap: 10px 10px;
     grid-template-areas:
       "nav nav nav"
       "subNav subNav subNav"
@@ -11,8 +11,6 @@
       "descripcion descripcion imagen"
       "descripcion descripcion imagen"
       "submit submit submit"
-      "deleteSearch deleteSearch deleteSearch"
-      "deleteList deleteList deleteList"
       "goBack goBack goBack"
       "footer footer footer";
   }
@@ -29,6 +27,21 @@
   .submit { grid-area: submit; }
   .descripcion { grid-area: descripcion; }
   .imagen { grid-area: imagen; }
-  .deleteSearch { grid-area: deleteSearch; }
-  .deleteList { grid-area: deleteList; }
+
   
+
+  .grid-container {
+    height: 440px;
+    overflow-y: auto;
+  }
+
+  .grid-container h3 {
+    margin: 0;
+  }
+
+  .grid-container p{
+      margin: 0 !important;
+      font-size: xx-small;
+      color: #581515;
+      width: fit-content;
+  }
