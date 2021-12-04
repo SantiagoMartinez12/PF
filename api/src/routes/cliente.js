@@ -41,14 +41,12 @@ router.get('/:param', async(req, res, next)=>{
 
 
 router.post('/', async (req, res, next) =>{
-    const { nombre, mesaId} = req.body
+    const { nombre, restoId, mesaId} = req.body
     
     try{
-        const existeId = await Mesa.findByPk(mesaId)
-        if(!existeId) return res.status(404);
-
         const newCliente = await Cliente.create({
             nombre,
+            restoId,
             mesaId
         })
         res.status(201).json(newCliente) 
