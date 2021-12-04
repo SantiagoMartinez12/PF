@@ -10,7 +10,7 @@ export default function Card({name, nombreCliente,idCliente, idResto}){
     return(
         
         <div class="card" width="1rem">
-               <Link to= {`/home/resto/detalle/${idResto}/${idCliente}`}> 
+               <Link to= {`/home/resto/detalle/${idResto}/detalle/${idCliente}`}> 
             <div class="card-body">
                 <h5 class="card-title">{name}</h5>
                 <p class="card-text">{nombreCliente}</p>

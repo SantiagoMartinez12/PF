@@ -230,3 +230,9 @@ export function getMesa(restoId) {
     });
   };
 }
+
+export function getIdClienteToState(payload){
+  return { 
+    type: "GET_ID_CLIENTE",
+    payload}
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 
 
-export default function AutorizaMesa(){
+export default function AutorizaMesa({restoId}){
 
     const [mesas, setMesas] = useState([])
 
@@ -15,7 +15,7 @@ export default function AutorizaMesa(){
 
     // esta función actualiza el estado mesas con la info traída del back   
     const updateMesas = ()=>{
-        axios.get('http://localhost:3001/api/cliente/solicitado')
+        axios.get(`http://localhost:3001/api/cliente/${restoId}/solicitado`)
             .then(res =>{
                 setMesas(res.data)
             })
@@ -41,17 +41,24 @@ export default function AutorizaMesa(){
     
     return (
         <div class="card">
-            <h2>"Autorizar Mesa"</h2>
-            <br/>
-            <br/>
+            <h2>Autorizar Mesa</h2>
+         
             
             { mesas.length?
                 mesas?.map(m=>{
-                    return  <div class="card-body" key={m.id}>
+                    return( 
+                        <div class="container">
+
+                            <div class="card-body row" key={m.id}>
+                              <div class="col text-capitalize fs-5">
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
-                                <button onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
+                              </div> 
+                              <div class="col">
+                                <button type="button" class="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
+                              </div>  
                             </div>
-                })
+                        </div>
+                 ) })
                 :
                 <div class="card-body">
                 <p>No hay solicitudes</p>
