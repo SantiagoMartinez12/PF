@@ -1,5 +1,5 @@
 .card {
-  background-color: rgba(167, 77, 42, 0.87);
+  background-color: rgb(34 85 251 / 87%);
   color: #fafafa;
   padding: 15px;
   height: 250px; /* Si le achicas esto no entra el nombre */
@@ -8,11 +8,7 @@
   border: 1px;
   max-width: 200px;
 }
-.card:hover {
-  background-color: aqua;
 
-  backdrop-filter: blur(2px);
-}
 .cardImage {
   height: 150px;
   width: 150px;

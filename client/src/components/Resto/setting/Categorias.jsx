@@ -65,7 +65,7 @@ export default function Categorias(){
             </div>
 
             <div className={styles.tituloCambio}>            
-               { clickAgregar=== false ? <button className={styles.botonCambio} onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input name="name" onChange={(e)=>handleChange(e)}></input><button type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
+               { clickAgregar=== false ? <button class="btn btn-primary" onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input class="form-control" name="name" onChange={(e)=>handleChange(e)}></input><button class="btn btn-primary" type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
                }                     
             </div>           
             

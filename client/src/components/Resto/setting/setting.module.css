@@ -1,15 +1,7 @@
 .titulo1{
   margin: 28px;
 }
-selectorBotones{
-  display: flex;
-      flex-wrap: wrap;
-      align-content: flex-start;
-      align-items: flex-start;
-      border: solid 7px black;
-      flex-direction: column;
-      justify-content: space-evenly;
-}
+
 
 .gridContainer {
   display: grid;
@@ -21,7 +13,83 @@ selectorBotones{
     "navBar display"
     "pieDePagina pieDePagina";
 }
-.LogoTitulo { grid-area: LogoTitulo; }
-.navBar { grid-area: navBar; }
+.component{
+  padding: 14px 23px 51px 23px;
+  margin: 16px 29px 17px 12px;
+  
+  
+}
+.botonsito{
+  padding: 41px 71px 63px 50px;
+    margin: -60px -21px -29px -11px;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+    -webkit-text-stroke-width: thick;
+    border-radius: 7px;
+    
+}
+.LogoTitulo { grid-area: LogoTitulo; 
+  display: -webkit-box;
+  margin: 3px 48px 23px 50px;}
 .display { grid-area: display; }
 .pieDePagina { grid-area: pieDePagina; }
+
+.logoTitulo { grid-area: logoTitulo;
+  display: -webkit-box; }
+.navBAr {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+    padding: 80px 30px 50px 30px;
+    margin: 15px 23px 10px 18px;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+  grid-template-areas:
+    "infoUsuario"
+    "categorias"
+    "productos"
+    "mediosDePago";
+  grid-area: navBAr;
+}
+.infoUsuario1 { grid-area: infoUsuario; }
+.categorias1 { grid-area: categorias; }
+.productos1 { grid-area: productos;
+  padding: 51px 25px 51px 25px;
+  margin: 15px 23px 10px 18px;
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center; }
+.mediosDePago1 { grid-area: mediosDePago;
+  padding: 51px 25px 51px 25px;
+  margin: 15px 23px 10px 18px;
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center; }
+.display {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "titulo"
+    ".";
+  grid-area: display;
+}
+.titulo { grid-area: titulo; 
+  margin: 49px 75px 31px 255px;}
