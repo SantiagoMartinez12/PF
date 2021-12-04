@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
 import MediosDePago from "./MediosDePago";
+import { useParams } from "react-router";
 
 
 
@@ -18,12 +19,13 @@ export default function Setting() {
     const [mediosDePago, setMediosDePago] = useState(false)
     const info = useSelector((state) => state.usuario)
     const dispatch = useDispatch()
-
+    const {restoId} = useParams()
+    const ruta = `/home/resto/${restoId}`
 
     function handleUsuario(e) {
         if (iUsuario === false) {            
             setIUsuario(true)
-            dispatch(infoUsuario())
+            dispatch(infoUsuario(restoId))
             setInfoCategorias(false)
             setProduct(false)
             setMediosDePago(false)
@@ -120,6 +122,7 @@ export default function Setting() {
                 }
             </div>
             <div className={style.pieDePagina}></div>
+            <Link to= {ruta}><button>Home</button></Link>
             <div className={style.selectorBotones}>
 
 

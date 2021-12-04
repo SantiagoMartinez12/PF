@@ -4,10 +4,7 @@ import {
   BORRAR_CATEGORIAS,
   GET_CATEGORIAS,
 } from "../actions";
-import { useParams } from "react-router";
-import productos from "../../components/Cliente/carta/ejemploCarta";
-import { categorias } from "../../components/Cliente/carta/ejemploCarta";
-import { INFO_USUARIO, MODIFICAR_USUARIO } from "../actions";
+import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO } from "../actions";
 
 const initialState = {
   menuBaseDatos: [],
@@ -16,12 +13,13 @@ const initialState = {
   rawData: [],
   ticket: [],
   cuenta: 0,
-  //esto lo volamos cuando funcione el back
-
   ticketCuenta: [],
+
   usuario: [],
 
   ClientInfo: {
+    estadoCliente: "solicitado",
+    idCliente: "",
     nameCliente: "",
     idResto: "",
     idMesa: "",
@@ -31,7 +29,8 @@ const initialState = {
   detalle: [],
   mesas: [],
 };
-console.log(initialState.usuario);
+
+console.log(initialState.idResto);
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -62,6 +61,7 @@ const reducer = (state = initialState, action) => {
               {
                 ...nuevoItem,
                 cantidad: 1,
+                idCliente: state.ClientInfo.idCliente,
                 nameCliente: state.ClientInfo.nameCliente,
                 idResto: state.ClientInfo.idResto,
                 idMesa: state.ClientInfo.idMesa,
@@ -98,12 +98,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         cuenta: state.cuenta - action.payload,
       };
-
-    // case "getCategorias":
-    //   return {
-    //     ...state,
-    //     categoriasMenu: action.payload,
-    //   };
 
     case "getProductos":
       // el payload trae un array con objetos {name:'categoria', productos:[array de productos]}
@@ -142,21 +136,33 @@ const reducer = (state = initialState, action) => {
       };
 
     case "getDatosMesa":
+      const { estadoCliente, idCliente, nameCliente, idResto, idMesa } =
+        action.payload;
+
       return {
         ...state,
-        ClientInfo: action.payload,
+        ClientInfo: {
+          idCliente: idCliente ? idCliente : state.ClientInfo.idCliente,
+          estadoCliente: estadoCliente
+            ? estadoCliente
+            : state.ClientInfo.estadoCliente,
+          nameCliente: nameCliente ? nameCliente : state.ClientInfo.nameCliente,
+          idResto: idResto ? idResto : state.ClientInfo.idResto,
+          idMesa: idMesa ? idMesa : state.ClientInfo.idMesa,
+        },
       };
 
     case "resetTicket":
       return {
         ...state,
         ticket: [],
+        cuenta: 0,
       };
-    case "ticketCuenta":
+
+    case "getCuenta":
       return {
         ...state,
-
-        ticketCuenta: [...state.ticketCuenta, action.payload],
+        ticketCuenta: action.payload,
       };
 
     case GET_CATEGORIAS:
@@ -183,6 +189,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mesas: action.payload,
+      };
+    case CREAR_USUARIO:
+      return {
+        ...state,
+        usuario: action.payload,
       };
 
     default:

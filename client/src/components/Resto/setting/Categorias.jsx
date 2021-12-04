@@ -4,22 +4,28 @@ import styles from "./Categorias.module.css"
 import Card from "./Card";
 import {useDispatch, useSelector} from 'react-redux';
 import { agregarCategorias, getCategorias } from "../../../store/actions";
+import { useParams } from "react-router";
 
 
 
 export default function Categorias(){
     const dispatch = useDispatch();
+    // const restoId = useSelector((state) => state.usuario)
+    const {restoId} = useParams()
     const [clickAgregar, setClickAgregar] = useState(false);
     const [nuevaCategoria, setNuevaCategoria] = useState({
         name: "",
-        restoId: "84fb67c6-a5b3-4bb1-9920-986e13375739"
+        restoId: restoId
+
     });
     
     const categorias = useSelector((state) => state.categorias)
    
     useEffect(() => {
-        dispatch(getCategorias()); 
-    }, [dispatch])
+
+        dispatch(getCategorias(restoId));            
+
+    }, [])
     
 
     function handleClick(e){
@@ -33,9 +39,9 @@ export default function Categorias(){
     function handleSubmit(e){
         e.preventDefault();
         setClickAgregar(false)
-        console.log(nuevaCategoria)
+        
         dispatch(agregarCategorias(nuevaCategoria))
-        dispatch(getCategorias())
+        dispatch(getCategorias(restoId))
               
     }
     function handleChange(e){

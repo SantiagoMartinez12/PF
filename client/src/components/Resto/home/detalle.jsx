@@ -4,25 +4,34 @@ import { useParams } from "react-router";
 import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
-
+import { useNavigate } from 'react-router-dom';
+import idResto from "./idResto.js"
 
 export default function Detalle(){
     
     const dispatch = useDispatch();
 
-    const {idMesa} = useParams()
+ 
+
+
+    const navigate = useNavigate()
+
+    const {idCliente} = useParams()
+    //console.log(idCliente)
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
-
-    let mesaFind = mesa.find(e => e.id === idMesa)
+        console.log(detalle)
+    //let mesaFind = mesa.find(e => e.id === idMesa)
     // console.log(mesaFind)
+    let idMesa = detalle.mesaId
   
- 
+    console.log(detalle)
     useEffect(()=>{
-        dispatch(getDetalle(idMesa))
-        dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
 
-    },[])
+        dispatch(getDetalle(idCliente))
+        dispatch(getMesa(idResto)) // id de resto
+    },[detalle])
+ 
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)
@@ -32,13 +41,46 @@ export default function Detalle(){
     // console.log(nameProducto)
     let cantidad = detalle?.map(e => e.cantidad )
     let precio = detalle?.map(e => e.precio)
-    let seguimiento = detalle?.map(e => e.seguimiento)
+
+    let seguimiento={}
+     seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
+    console.log(seguimiento)
+
+ 
+
+    const desocuparMesa = (idMesa)=>{
+        axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
+        axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
+    }
+    const handleOnClick = (e) =>{
+        e.preventDefault();
+        desocuparMesa(idMesa)
+        navigate("/home/resto")
+    }
+ 
 
 
+
+    function handleClickSeguimiento(seguimiento,id){
+      
+        let segui = seguimiento
+        if(segui === 'solicitado'){
+            segui = 'confirmado'
+        }
+        else if( segui === 'confirmado'){
+            segui = 'entregado'
+        }
+        
+       let seguimientoPut = {id:id, seguimiento:segui}
+        console.log(seguimientoPut)
+        axios.put("http://localhost:3001/api/detalle/seguimiento", seguimientoPut)
+        dispatch(getDetalle(idMesa))
+    }
+    
     return(
     <div className={s.gridcontainer}>
         <div className={s.NameMesa}>
-            <h2>{mesaFind.name}</h2>
+          {/*   <h2>{mesaFind.name}</h2> */}
         </div>
             <div className={s.NameCliente}>
                 <h4>Nombre del Cliente: {nameCliente[0]} </h4>
@@ -48,7 +90,7 @@ export default function Detalle(){
             </div>
             <div className={s.pedido}>
             <div className ={s.nameProducto}>
-                <h4>Nombre del Producto</h4>
+                <h4>Nombre del Producto</h4> 
                 <p>{nameProducto.map( e=>{
                     return(
                         <div>
@@ -79,13 +121,18 @@ export default function Detalle(){
             </div>
             <div className={s.Seguimiento}>
             <h4>Seguimiento:</h4>
-                <p>{seguimiento.map( e=>{
+                <p>{seguimiento?.map( s=>{
                     return(
                         <div>
-                            {e}
+                            
+                            {s.seguimiento} {s.seguimiento === 'entregado' ? null : <button onClick={(e) => handleClickSeguimiento(s.seguimiento, s.id)}> # </button>}
                         </div>
                     )
                     })}</p>
+            </div>
+            <div>
+                <h5>Desea cerrar mesa?</h5>
+                <button onClick={handleOnClick}>Ok</button>
             </div>
         </div>
     </div>
