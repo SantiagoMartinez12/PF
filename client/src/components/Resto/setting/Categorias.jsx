@@ -10,21 +10,20 @@ import { useParams } from "react-router";
 
 export default function Categorias(){
     const dispatch = useDispatch();
-    // const restoId = useSelector((state) => state.usuario)
     const {restoId} = useParams()
+    const categorias = useSelector((state) => state.categorias)
     const [clickAgregar, setClickAgregar] = useState(false);
     const [nuevaCategoria, setNuevaCategoria] = useState({
         name: "",
         restoId: restoId
     });
-    
-    const categorias = useSelector((state) => state.categorias)
-   
+      
+
     useEffect(() => {
-
-        dispatch(getCategorias(restoId));            
-
+         dispatch(getCategorias(restoId));            
     }, [])
+
+    
     
 
     function handleClick(e){
@@ -37,9 +36,8 @@ export default function Categorias(){
     }
     function handleSubmit(e){
         e.preventDefault();
-        setClickAgregar(false)
-        
         dispatch(agregarCategorias(nuevaCategoria))
+        setClickAgregar(false)
         dispatch(getCategorias(restoId))
               
     }
@@ -48,7 +46,7 @@ export default function Categorias(){
         setNuevaCategoria({...nuevaCategoria, name: e.target.value})
     }
 
-
+    console.log(categorias)
    
     return(
         
@@ -60,14 +58,14 @@ export default function Categorias(){
 
             <div className={styles.cardsDiv} >
                 {
-                    categorias?.map(el => (
+                   categorias && categorias?.map(el => (
                         <Card key={el.id} id={el.id} name={el.name} />
                     ) )
                 }
             </div>
 
             <div className={styles.tituloCambio}>            
-               { clickAgregar=== false ? <button onClick={(e)=>handleClick(e)} className={styles.botonCambio}>Agregar</button>:  <><input name={"categoria"} onChange={handleChange}></input><button type="submit" onClick={handleSubmit} >Confirmar</button></>
+               { clickAgregar=== false ? <button className={styles.botonCambio} onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input name="name" onChange={(e)=>handleChange(e)}></input><button type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
                }                     
             </div>           
             

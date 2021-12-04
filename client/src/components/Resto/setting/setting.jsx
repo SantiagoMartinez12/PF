@@ -7,55 +7,71 @@ import 'boxicons'
 import { useDispatch, useSelector } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
+import MediosDePago from "./MediosDePago";
 import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png"
 
 
 
 export default function Setting() {
+    const info = useSelector((state) => state.usuario)
     const [iUsuario, setIUsuario] = useState(false)
     const [infoCategorias, setInfoCategorias] = useState(false)
     const [product, setProduct] = useState(false)
-    const info = useSelector((state) => state.usuario)
+    const [mediosDePago, setMediosDePago] = useState(false)
     const dispatch = useDispatch()
     const {restoId} = useParams()
     const ruta = `/home/resto/${restoId}`
 
     function handleUsuario(e) {
-        if (iUsuario === false) {
-            e.preventDefault();
+        if (iUsuario === false) {            
             setIUsuario(true)
             dispatch(infoUsuario(restoId))
             setInfoCategorias(false)
             setProduct(false)
+            setMediosDePago(false)
         } else {
-            e.preventDefault();
+            
             setIUsuario(false)
         }
 
     }
     function handleCategorias(e) {
-        if (infoCategorias === false) {
-            e.preventDefault();
+        if (infoCategorias === false) {           
             setInfoCategorias(true)
             setIUsuario(false)
             setProduct(false)
+            setMediosDePago(false)
         } else {
-            e.preventDefault();
+           
             setInfoCategorias(false)
         }
     }
 
     function handleProduct(e) {
-        if (product === false) {
-            e.preventDefault();
+        if (product === false) {            
             setProduct(true)
             setIUsuario(false)
             setInfoCategorias(false)
+            setMediosDePago(false)
+
         } else {
-            e.preventDefault();
+            
             setProduct(false)
         }
+    }
+
+    function handleMediosDePago(e){
+        if(mediosDePago===false){           
+            setMediosDePago(true)
+            setProduct(false)
+                setIUsuario(false)
+                setInfoCategorias(false)
+        }else{
+           
+            setMediosDePago(false)
+        }
+
     }
 
     return (
@@ -98,24 +114,21 @@ export default function Setting() {
 
 
             <div className={style.display}>
-                {iUsuario === true ? info.map((el) => {
-                    return <Usuario key={el.id} image={el.imagen} name={el.name} usuario={el.usuario} contraseña={el.contraseña} mail={el.mail} mesa={el.mesa} />
-                }) : <></>}
+                {iUsuario === true ? <Usuario />
+                 : <></>}
 
                 {infoCategorias === true ? <Categorias /> : <></>
                 }
 
                 {product === true ? <Product /> : <></>
                 }
+
+                {mediosDePago === true ? <MediosDePago /> : <></>
+                }
             </div>
             <div className={style.pieDePagina}></div>
             <Link to= {ruta}><button>Home</button></Link>
             <div className={style.selectorBotones}>
-
-
-                {/* {infoUsuario===true?<Usuario/>
-                    : <></>
-                } */}
 
 
             </div>

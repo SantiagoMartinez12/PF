@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
 
       mesa: {
         type: DataTypes.INTEGER,
+          defaultValue: 0
         
       },
     },

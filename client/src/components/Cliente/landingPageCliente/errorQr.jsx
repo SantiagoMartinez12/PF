@@ -1,11 +1,18 @@
-
+import logo from "../../../assets/Logo.png";
 
 export default function ErrorQr(){
     return(
         <div>
-            <h2>Error en código QR!</h2>
-            <h3>por favor, volvelo a scanear</h3>
-            <h3>Si el error persiste, comunicate con personal del resto.</h3>
+            <br/>
+            <div class="col">
+                <img src={logo} alt="Logo" width="20%"  />
+            </div>
+            <br/>
+            <h3>Error en código QR!</h3>
+            <br/>
+            <h4>por favor, vuelvelo a scanear.</h4>
+            <h4>Si el error persiste,</h4>
+            <h4>comunicate con personal del resto.</h4>
         </div>
     )
 }

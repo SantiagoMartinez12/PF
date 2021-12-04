@@ -1,16 +1,13 @@
-
-
 import axios from "axios";
-
 import Usuario from "../../components/Resto/setting/usuario";
 import Detalle from "../../components/Resto/home/detalle";
 import serverFinder from "../deploy/serverFinder";
-export const INFO_USUARIO = 'INFO_USUARIO';
-export const MODIFICAR_USUARIO = 'MODIFICAR_USUARIO';
-export const AGREGAR_CATEGORIAS = 'AGREGAR_CATEGORIAS';
+export const INFO_USUARIO = "INFO_USUARIO";
+export const MODIFICAR_USUARIO = "MODIFICAR_USUARIO";
+export const AGREGAR_CATEGORIAS = "AGREGAR_CATEGORIAS";
 export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
-export const CREAR_USUARIO = 'CREAR_USUARIO'
+export const CREAR_USUARIO = "CREAR_USUARIO";
 
 export function getProductos(idResto) {
   return function (dispatch) {
@@ -77,34 +74,38 @@ export function resetTicket() {
     type: "resetTicket",
   };
 }
-export function ticketCuenta(payload) {
-  return {
-    type: "ticketCuenta",
-    payload,
+export function getCuenta(idCliente) {
+  return function (dispatch) {
+    axios
+      .get(serverFinder(`detalle/idcliente/${idCliente}`))
+      .then((response) => {
+        dispatch({ type: "getCuenta", payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 }
 
-export function crearUsuario(obj){
-    return function (dispatch){
-        axios.post(serverFinder("resto/"), obj)
-        .then((usuario) => {
-            dispatch({
-                type: CREAR_USUARIO,
-                payload: usuario.data
-            })
-        })
-        .catch((error) =>{
-            console.log(error)
-        })
-    }
+export function crearUsuario(obj) {
+  return function (dispatch) {
+    axios
+      .post(serverFinder("resto/"), obj)
+      .then((usuario) => {
+        dispatch({
+          type: CREAR_USUARIO,
+          payload: usuario.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
 
 export const agregarCategorias = (payload) => {
   return async function () {
-    const data = await axios.post(
-      serverFinder("categorias/"),
-      payload
-    );
+    const data = await axios.post(serverFinder("categorias/"), payload);
     const posteo = data.data;
     console.log(posteo);
     return {
@@ -117,9 +118,7 @@ export const agregarCategorias = (payload) => {
 export function getCategorias(idResto) {
   return async function (dispatch) {
     try {
-      const resp = await axios.get(
-        serverFinder("categorias/" + idResto)
-      );
+      const resp = await axios.get(serverFinder("categorias/" + idResto));
       const result = resp.data;
       dispatch({ type: GET_CATEGORIAS, payload: result });
     } catch (err) {
@@ -127,52 +126,47 @@ export function getCategorias(idResto) {
     }
   };
 }
-  export default function modificarUsuario(obj) {
-    return function (dispatch) {
-      axios
-        .put(serverFinder("/resto/"), obj)
-        .then((usuario) => {
-          return usuario;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+export default function modificarUsuario(obj) {
+  return function (dispatch) {
+    axios
+      .put(serverFinder("resto/"), obj)
+      .then((usuario) => {
+        return usuario;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+}
 
-  export function infoUsuario(id) {
-    return function (dispatch) {
-      axios
-        .get(
-          serverFinder('resto/' + id)
-        )
-        .then((usuario) => {
-          dispatch({
-            type: INFO_USUARIO,
-            payload: usuario.data,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
+export function infoUsuario(id) {
+  return function (dispatch) {
+    axios
+      .get(serverFinder("resto/" + id))
+      .then((usuario) => {
+        dispatch({
+          type: INFO_USUARIO,
+          payload: usuario.data,
         });
-    };
-  }
-
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
 
 export const borrarCategorias = (id) => {
   return async function (dispatch) {
-    const borrando = await axios.delete(
-      serverFinder(`categorias/${id}`)
-    );
+    const borrando = await axios.delete(serverFinder(`categorias/${id}`));
     const result = borrando.data;
     dispatch({ type: BORRAR_CATEGORIAS, payload: result });
   };
 };
 
-export function getDetalle(idMesa) {
+export function getDetalle(idCliente) {
   return function (dispatch) {
     axios
-      .get(serverFinder("detalle/mesaId/" + idMesa))
+      .get(serverFinder("detalle/idcliente/" + idCliente))
       .then((json) => {
         dispatch({
           type: "GET_DETALLE",
@@ -227,14 +221,12 @@ export function deleteProduct(id) {
 }
 
 export function getMesa(restoId) {
-    return async function (dispatch) {
-        let json = await axios.get(serverFinder("mesa/get/" + restoId))
-        
-           return dispatch({
-                type: "GET_MESA",
-                payload: json.data
-            })  
-    };
-};
+  return async function (dispatch) {
+    let json = await axios.get(serverFinder("mesa/get/" + restoId));
 
-
+    return dispatch({
+      type: "GET_MESA",
+      payload: json.data,
+    });
+  };
+}

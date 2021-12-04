@@ -1,13 +1,12 @@
 import './FormProduct.css'
-import logo from "../../../assets/Logo.png";
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { postProduct } from '../../../store/actions';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategorias, postProduct } from '../../../store/actions';
 import { useParams } from 'react-router';
 
 const FormProduct = () => {
     const dispatch = useDispatch();
-    const {restoId} = useParams()
+    const { restoId } = useParams()
     const [newProduct, setNewProduct] = useState({
         name: '',
         precio: '',
@@ -17,30 +16,45 @@ const FormProduct = () => {
         idResto: restoId
     })
 
-    const handleForm = (e) =>{
+    const regEx = new RegExp(/[A-Za-z0-9]+/g);
+    const reg = new RegExp('^[0-9]+$');
+    const categorias = useSelector((state) => state.categorias)
+
+    useEffect(() => {
+
+        dispatch(getCategorias(restoId));
+
+    }, [])
+
+    const handleForm = (e) => {
         setNewProduct({
             ...newProduct,
             [e.target.name]: e.target.value
         });
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postProduct(newProduct))
+        if (window.confirm("Se ha agregado un nuevo producto")) {
+            window.location.reload()
+        } else {
+            window.location.reload()
+        };
     }
 
     const handleGoBack = () => {
         window.location.reload()
     }
 
-    console.log(newProduct);
+    console.log(newProduct)
 
     return (
         <>
             <form onChange={(e) => handleForm(e)}>
                 <div className="grid-container">
                     <div class="nav">
-                        <img src={logo} alt="Logo" width="30%" />
+                        <h3>Agregar Producto</h3>
                     </div>
                     <div className="subNav"></div>
 
@@ -48,19 +62,27 @@ const FormProduct = () => {
                     <div className="producto">
                         <label htmlFor="name">Nombre del producto</label>
                         <input type="text" name="name" id="name" />
+                        <p>{regEx.test(newProduct.name) ? null : 'Introducir nombre del producto'}</p>
                     </div>
 
                     <div className="categoria">
                         <label htmlFor="categoria">Categoria</label>
-                        <input type="text" name="categoria" id="categoria" />
+                        <select name="categoria" id='categoria'>
+                            <option disabled selected>Selección...</option>
+                            {categorias.map((cat) =>
+                                <option value={cat.name} > {cat.name} </option>
+                            )}
+                        </select>
+                        <p>{regEx.test(newProduct.categoria) ? null : 'seleccionar categoria'}</p>
                     </div>
 
                     <div className="precio">
                         <label htmlFor="precio">Precio</label>
                         <input type="text" name="precio" id="precio" />
+                        <p>{reg.test(newProduct.precio) ? null : 'Introducir Precio'}</p>
                     </div>
 
-                    <div className="peso">
+                    {/* <div className="peso">
                         <label htmlFor="Peso">Peso/Lts/Personas</label>
                         <input type="text" name="Peso" id="Peso" />
                     </div>
@@ -68,7 +90,7 @@ const FormProduct = () => {
                     <div className="marca">
                         <label htmlFor="Marca">Marca</label>
                         <input type="text" name="Marca" id="Marca" />
-                    </div>
+                    </div> */}
 
                     <div className="descripcion">
                         <label htmlFor="detalle">Descripción</label>
@@ -81,15 +103,11 @@ const FormProduct = () => {
                     </div>
 
                     <div className="submit">
-                        <button type='submit' onClick={(e)=>handleSubmit(e)}>Agregar</button>
+                        <button type='submit' onClick={(e) => handleSubmit(e)}>Agregar</button>
                     </div>
 
                     <br />
-                    
-                    <div className="deleteSearch">
-                        <select name="" id=""></select>
-                    </div>
-                    <div className="deleteList"></div>
+
                     <div className="goBack">
                         <button type='button' onClick={handleGoBack}>volver</button>
                     </div>

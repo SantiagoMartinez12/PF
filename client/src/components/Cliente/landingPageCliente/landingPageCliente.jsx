@@ -11,13 +11,12 @@ import logo from "../../../assets/Logo.png";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getDatosMesa } from "../../../store/actions";
+
 
 
 export default function LandingPageClient() {
   const { idResto,idMesa} = useParams()
-  const infoCliente = useSelector(state=> state.ClientInfo);
-  const dispatch = useDispatch()
+    
   const [input, setInput] = useState({
     name: "",
   });
@@ -41,32 +40,21 @@ export default function LandingPageClient() {
     const existeMesa = axios.get(`http://localhost:3001/api/mesa/${idMesa}`);
     Promise.all([exiteResto, existeMesa])
       .then(res=>{
-    //si idResto o isMesa no existen postea nada y lo redirige a una página de error    
+    //si idResto o isMesa no existen no postea nada y lo redirige a una página de error  
+   
         if(res[0].data.length === 0 || res[1].data.length === 0){
           navigate('/errorQr');
         }else{
+         
     //si idResto y idMesa son correctos postea a la ruta cliente y lo redirige al home Cliente
-          navigate(`/${idResto}/${idMesa}/home/${name}`);
+          
           axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa})
             .then(resPost=> {
-              dispatch(getDatosMesa({idCliente:resPost.data.id}));
-              // const getEstado=()=>{
-              //   axios.get(`http://localhost:3001/api/cliente/${resPost.data.id}`)
-              //       .then(res=>{
-              //         dispatch(getDatosMesa({estadoCliente:res.data.estado}));
-              //       })
-              // }
-              // getEstado()
-              // // const repet = setInterval(getEstado, 2000);
-              // // if(infoCliente.estadoCliente !== 'solicitado'){
-              // //     clearInterval(repet);
-              // // }
-
-          })
+              navigate(`/${idResto}/${idMesa}/home/${name}/${resPost.data.id}`);
+              
+            })
         }  
     })
-    
-
   }
 
   return (
