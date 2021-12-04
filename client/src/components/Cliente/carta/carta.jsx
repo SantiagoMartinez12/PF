@@ -21,6 +21,7 @@ export default function Carta(){
     const {idResto} = useParams()
 
     const categorias = useSelector(state => state.categoriasMenu);
+    
     const filtrados = useSelector(state=> state.productosFiltrados)
     const cuenta = useSelector(state=> state.cuenta)
     
