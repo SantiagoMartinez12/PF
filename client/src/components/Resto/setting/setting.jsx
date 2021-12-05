@@ -19,6 +19,7 @@ export default function Setting() {
     const [infoCategorias, setInfoCategorias] = useState(false)
     const [product, setProduct] = useState(false)
     const [mediosDePago, setMediosDePago] = useState(false)
+    const [qr, setQr] = useState(false)
     const dispatch = useDispatch()
     const {restoId} = useParams()
     const ruta = `/home/resto/${restoId}`
@@ -30,6 +31,7 @@ export default function Setting() {
             setInfoCategorias(false)
             setProduct(false)
             setMediosDePago(false)
+            setQr(false)
         } else {
             
             setIUsuario(false)
@@ -42,36 +44,51 @@ export default function Setting() {
             setIUsuario(false)
             setProduct(false)
             setMediosDePago(false)
+            setQr(false)
         } else {
            
             setInfoCategorias(false)
         }
     }
 
-    function handleProduct(e) {
+   function handleProduct(e) {
         if (product === false) {            
             setProduct(true)
             setIUsuario(false)
             setInfoCategorias(false)
             setMediosDePago(false)
-
+            setQr(false)
         } else {
             
             setProduct(false)
         }
-    }
+    } 
 
     function handleMediosDePago(e){
         if(mediosDePago===false){           
-            setMediosDePago(true)
-            setProduct(false)
+                setMediosDePago(true)
+                setProduct(false)
                 setIUsuario(false)
                 setInfoCategorias(false)
+                setQr(false)
         }else{
            
             setMediosDePago(false)
         }
 
+    }
+
+    function handleQr(e) {
+        if (qr === false) {            
+            setQr(true)
+            setIUsuario(false)
+            setInfoCategorias(false)
+            setMediosDePago(false)
+            setProduct(false)
+        } else {
+            
+            setQr(false)
+        }
     }
 
     return (
@@ -109,7 +126,13 @@ export default function Setting() {
                         Medios de pagos</button>
                 </div>
             </div>
-
+            <div >
+                <div className={style.component}>
+                    <button className={style.botonsito}>
+                        <box-icon name='credit-card' type='solid' ></box-icon>
+                        Visualizar Qr</button>
+                </div>
+            </div>
             </div>
 
 
@@ -125,6 +148,9 @@ export default function Setting() {
 
                 {mediosDePago === true ? <MediosDePago /> : <></>
                 }
+
+                {/* {qr === true ? < /> : <></>
+                } */}
             </div>
             <div className={style.pieDePagina}></div>
             <Link to= {ruta}><button>Home</button></Link>
