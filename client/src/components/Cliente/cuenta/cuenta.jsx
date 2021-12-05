@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getCuenta } from "../../../store/actions";
 import serverFinder from "../../../store/deploy/serverFinder";
-
+var global = require('../../Resto/global.module.css')
 
 export default function Cuenta(){
     const{idCliente} = useParams()
@@ -32,10 +32,10 @@ export default function Cuenta(){
   
     return(
         <div className="container">
-        <div>
+        <div class={global.textsubtitle}>
         <h4>TU CUENTA</h4>
         </div>
-            <div class="card">
+            <div class={global.whitecardpedido}>
             {
                 cuenta.map(producto =>{
                     return(
@@ -48,8 +48,8 @@ export default function Cuenta(){
                 
         </div>
         <br/>
-        <div>
-            <h5>Total a pagar: ${totalCuenta}</h5>
+        <div class={global.underlinecard}>
+            <h5>TOTAL: ${totalCuenta}</h5>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
              <button class="btn btn-primary me-md-2">PAGAR CUENTA</button>

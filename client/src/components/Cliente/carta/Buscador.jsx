@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { buscaProducto } from '../../../store/actions';
 import Carrousel from './Carrousel';
+var global = require('../../Resto/global.module.css')
 
 export default function Buscador(){
 
@@ -24,6 +25,10 @@ export default function Buscador(){
     return(
         <div className="container">
             <Carrousel/>
+            <center>
+            <h1 class={global.textsubtitle}>¿Qué deseas ordenar?</h1>
+            </center>
+            <br/>
             <form onSubmit={(e) => handleSubmit(e)}>
                     <div class="input-group mb-3" >
                         <input class="form-control"
@@ -36,10 +41,11 @@ export default function Buscador(){
                         onChange={(e) => handleChange(e)}
                         />
                         <div className="search_button_container">
-                        <button className="search_button" type="submit"  class="btn btn-primary">SEARCH</button>
+                        <button className="search_button" type="submit"  class="btn btn-primary">BUSCAR</button>
                         </div>
                     </div >
             </form>
+            
         </div>
     )
 }

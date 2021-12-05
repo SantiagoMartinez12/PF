@@ -12,6 +12,7 @@ import LandingPageResto from "./components/Resto/landingPageResto/landigPageRest
 import { useDispatch } from "react-redux";
 import modificarUsuario from "./store/actions";
 import Usuario from "./components/Resto/setting/usuario";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
