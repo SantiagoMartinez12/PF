@@ -1,0 +1,50 @@
+/* .formulario {
+  display: inline-grid;
+  align-content: space-evenly;
+  justify-content: start;
+  align-items: baseline;
+  justify-items: center;
+} */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "titulo titulo titulo titulo titulo"
+    "areaImagen areaImagen areaImagen areaImagen areaImagen"
+    "nombreResto nombreResto nombreResto nombreResto nombreResto"
+    "nombreUsuario nombreUsuario nombreUsuario nombreUsuario nombreUsuario"
+    "email email email email email"
+    "cantMesas cantMesas cantMesas cantMesas cantMesas"
+    "botonEnviar botonEnviar botonEnviar botonEnviar botonEnviar";
+}
+
+.titulo {
+  grid-area: titulo;
+}
+
+.areaImagen {
+  grid-area: areaImagen;
+}
+
+.nombreResto {
+  grid-area: nombreResto;
+}
+
+.nombreUsuario {
+  grid-area: nombreUsuario;
+}
+
+.email {
+  grid-area: email;
+}
+
+.cantMesas {
+  grid-area: cantMesas;
+}
+
+.botonEnviar {
+  grid-area: botonEnviar;
+}
