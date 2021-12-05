@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
-import { useNavigate } from 'react-router-dom';
 
 
 export default function Detalle({idResto,funcion}){
@@ -12,7 +11,7 @@ export default function Detalle({idResto,funcion}){
     const dispatch = useDispatch();
 
 
-    const navigate = useNavigate()
+
 
    // const {idCliente , idResto} = useParams()
    const  idCliente = useSelector(state => state.idCliente)
@@ -23,7 +22,7 @@ export default function Detalle({idResto,funcion}){
      mesaFind = mesa.find(e => e.id === idMesa)
      console.log(mesaFind) */
     let idMesa = detalle.map(e => e.mesaId)
-       console.log(idMesa[0])
+
  
     useEffect(()=>{
 
@@ -76,6 +75,7 @@ export default function Detalle({idResto,funcion}){
         } else {
            setMsj(true)
         }
+
     }
  
 
