@@ -20,46 +20,45 @@ export default function Detalle({idResto,funcion}){
     const mesa = useSelector(state => state.mesas)
    /*      console.log(detalle)
      mesaFind = mesa.find(e => e.id === idMesa)
-     console.log(mesaFind) */ 
-     
-     
-     
-     useEffect(()=>{
-         
-         
-         dispatch(getMesa(idResto)) // id de resto
-        },[])
-        useEffect(()=>{
-            
-            dispatch(getDetalle(idCliente))
-            // id de resto
-        },[idCliente])
-        
-        // console.log(detalle)
-        let nameCliente = detalle?.map(e => e.namecliente)
-        // console.log(nameCliente[0])
-        
-        let nameProducto = detalle?.map(e => e.name)
-        // console.log(nameProducto)
-        
-        let cantidad = detalle?.map(e => e.cantidad )
-        console.log(cantidad)
-        let precio = detalle?.map(e => e.precio)
-        
-        let seguimiento={}
-        seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
-        
-        
-        
-        
-        let idMesa = detalle[0].mesaId
+     console.log(mesaFind) */
+    let idMesa = detalle.map(e => e.mesaId)
+       console.log(idMesa[0])
+ 
+    useEffect(()=>{
+
+       
+        dispatch(getMesa(idResto)) // id de resto
+    },[])
+    useEffect(()=>{
+
+        dispatch(getDetalle(idCliente))
+     // id de resto
+    },[idCliente])
+
+    // console.log(detalle)
+    let nameCliente = detalle?.map(e => e.namecliente)
+    // console.log(nameCliente[0])
+
+    let nameProducto = detalle?.map(e => e.name)
+    // console.log(nameProducto)
+
+    let cantidad = detalle?.map(e => e.cantidad )
+    console.log(cantidad)
+    let precio = detalle?.map(e => e.precio)
+
+    let seguimiento={}
+     seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
+    
+
+ 
+
     const desocuparMesa = (idMesa)=>{
         axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
         axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
     }
     const handleOnClick = (e) =>{
         e.preventDefault();
-        desocuparMesa(idMesa)
+        desocuparMesa(idMesa[0])
         funcion()
         navigate(`/home/resto/${idResto}`)
     }
