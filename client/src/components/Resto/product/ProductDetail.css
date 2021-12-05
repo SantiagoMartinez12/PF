@@ -1,7 +1,7 @@
 .producDetailAll {
     display: grid;
     grid-template-columns: 0.5fr 0.9fr 0.9fr 0.9fr;
-    grid-template-rows: 0.5fr 0.2fr 0.5fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 0.2fr 0.5fr 1.5fr 1.5fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
       "nav nav nav nav"
@@ -24,7 +24,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.8fr 0.8fr 1.8fr 0.6fr 0.6fr;
-    gap: 0px 0px;
+    gap: 10px 10px;
     grid-template-areas:
       "producto producto categoria"
       "precio peso marca"
@@ -45,7 +45,7 @@
   
   .warning {
     margin: 0 !important;
-    font-size: xx-small;
+    font-size: x-small;
     color: #581515;
     width: fit-content;
 }
@@ -58,4 +58,9 @@
 .formProduct {
   height: 440px;
   overflow-y: auto;
+}
+
+.imagen { 
+  max-width: 300px;
+  max-height: 200px; 
 }
