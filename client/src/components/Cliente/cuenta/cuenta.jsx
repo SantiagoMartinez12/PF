@@ -8,26 +8,28 @@ export default function Cuenta(){
     const{idCliente} = useParams()
     const [cuenta, setCuenta]=useState([]);
     const [totalCuenta, setTotalCuenta]=useState(0)
-
+    
     const actualizaCuenta=()=>{
         axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
         .then(res=>{
+            // calculo del total a pagar para renderizar
             setCuenta(res.data);
             let total = '';
             let subtotales = [];
             const reducer = (a, b) => a+b;
-            res.data.map(it => {
-                subtotales.push(it.precio * it.cantidad)
-            });
-            total = subtotales.reduce(reducer);
-            setTotalCuenta(total)
+            if(res.data.length){
+                res.data.map(it => {
+                    subtotales.push(it.precio * it.cantidad)
+                });
+                total = subtotales.reduce(reducer);
+                setTotalCuenta(total)
+            } 
         })
     }
 
     useEffect (actualizaCuenta, []);
 
     
-    // calculo del total a pagar para renderizar
     // }
     // setTimeout(calculaTotal, 1500)
   
