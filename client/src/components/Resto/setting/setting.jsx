@@ -128,7 +128,7 @@ export default function Setting() {
             </div>
             <div >
                 <div className={style.component}>
-                    <button className={style.botonsito}>
+                    <button className={style.botonsito} onClick={(e) => { handleQr(e) }}>
                         <box-icon name='credit-card' type='solid' ></box-icon>
                         Visualizar Qr</button>
                 </div>
