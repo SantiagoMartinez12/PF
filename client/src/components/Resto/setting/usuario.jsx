@@ -51,7 +51,7 @@ export default function Usuario(){
   
 
   function handleEditarImagen(e){
-    console.log(e.target.value)
+    //console.log(e.target.value)
       if(editarImagen===false){          
           setEditarImagen(true)         
       }else{
@@ -94,11 +94,9 @@ export default function Usuario(){
         } 
       }
 
-      console.log(restoInfo)
-      
+      console.log(restoInfo)      
       console.log(modificar)
-
-
+      
   return ( 
     
   

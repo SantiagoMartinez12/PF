@@ -7,12 +7,12 @@ import Setting from "./components/Resto/setting/setting";
 import HomeResto from "./components/Resto/home/home";
 import Detalle from "./components/Resto/home/detalle";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import ErrorQr from "./components/Cliente/landingPageCliente/errorQr";
 import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto";
 import { useDispatch } from "react-redux";
 import modificarUsuario from "./store/actions";
 import Usuario from "./components/Resto/setting/usuario";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
