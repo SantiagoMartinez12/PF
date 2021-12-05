@@ -10,6 +10,7 @@ import Product from "../product/Product";
 import MediosDePago from "./MediosDePago";
 import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png"
+import ViewQr from "./ViewQr";
 
 
 
@@ -128,8 +129,8 @@ export default function Setting() {
             </div>
             <div >
                 <div className={style.component}>
-                    <button className={style.botonsito}>
-                        <box-icon name='credit-card' type='solid' ></box-icon>
+                    <button onClick={(e) => handleQr(e)} className={style.botonsito}>
+                        <box-icon name='codigoQr' type='solid' ></box-icon>
                         Visualizar Qr</button>
                 </div>
             </div>
@@ -149,8 +150,8 @@ export default function Setting() {
                 {mediosDePago === true ? <MediosDePago /> : <></>
                 }
 
-                {/* {qr === true ? < /> : <></>
-                } */}
+                {qr === true ? <ViewQr /> : <></>
+                }
             </div>
             <div className={style.pieDePagina}></div>
             <Link to= {ruta}><button>Home</button></Link>
