@@ -20,38 +20,39 @@ export default function Detalle({idResto,funcion}){
     const mesa = useSelector(state => state.mesas)
    /*      console.log(detalle)
      mesaFind = mesa.find(e => e.id === idMesa)
-     console.log(mesaFind) */
-    let idMesa = detalle[0].mesaId
-    //    console.log(idMesa)
-    
-    useEffect(()=>{
-
-       
-        dispatch(getMesa(idResto)) // id de resto
-    },[])
-    useEffect(()=>{
-
-        dispatch(getDetalle(idCliente))
-     // id de resto
-    },[idCliente])
-
-    // console.log(detalle)
-    let nameCliente = detalle?.map(e => e.namecliente)
-    // console.log(nameCliente[0])
-
-    let nameProducto = detalle?.map(e => e.name)
-    // console.log(nameProducto)
-
-    let cantidad = detalle?.map(e => e.cantidad )
-    console.log(cantidad)
-    let precio = detalle?.map(e => e.precio)
-
-    let seguimiento={}
-     seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
-    
-
- 
-
+     console.log(mesaFind) */ 
+     
+     
+     
+     useEffect(()=>{
+         
+         
+         dispatch(getMesa(idResto)) // id de resto
+        },[])
+        useEffect(()=>{
+            
+            dispatch(getDetalle(idCliente))
+            // id de resto
+        },[idCliente])
+        
+        // console.log(detalle)
+        let nameCliente = detalle?.map(e => e.namecliente)
+        // console.log(nameCliente[0])
+        
+        let nameProducto = detalle?.map(e => e.name)
+        // console.log(nameProducto)
+        
+        let cantidad = detalle?.map(e => e.cantidad )
+        console.log(cantidad)
+        let precio = detalle?.map(e => e.precio)
+        
+        let seguimiento={}
+        seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
+        
+        
+        
+        
+        let idMesa = detalle[0].mesaId
     const desocuparMesa = (idMesa)=>{
         axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
         axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
