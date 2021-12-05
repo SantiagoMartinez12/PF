@@ -77,7 +77,7 @@ export default function Setting() {
     return (
         <div className={style.gridContainer}>
             <div className={style.LogoTitulo}>
-            <img src={logo} alt="Logo" width="15%"  class="navbar-brand" />
+            <img src={logo} alt="Logo" width="10%"  class="navbar-brand" />
                 <div className={style.titulo}><h1>Mozo Virtual</h1></div>
             </div>
             <div className={style.navBar}>
@@ -129,8 +129,6 @@ export default function Setting() {
             <div className={style.pieDePagina}></div>
             <Link to= {ruta}><button>Home</button></Link>
             <div className={style.selectorBotones}>
-
-
             </div>
         </div>
     )

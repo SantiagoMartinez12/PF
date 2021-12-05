@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
 import axios from 'axios'
+import logowhite from "../../../assets/Logo_white.png";
+var global = require('../../Resto/global.module.css')
 
 
 
@@ -63,6 +65,7 @@ export default function HomeClient(){
 
     
     return (
+        <div>
         <div className="container">
             <nav class="navbar navbar-expand-lg navbar-light navbar-fixed-top ">
             <div className="container-fluid">
@@ -105,5 +108,10 @@ export default function HomeClient(){
                 : null
             }    
         </div>
+        <footer class={global.footer}>
+        <img src={logowhite} height="55px"/>
+        </footer>
+        </div>
+  
     )
 }

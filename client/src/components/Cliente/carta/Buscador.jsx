@@ -2,8 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { buscaProducto } from '../../../store/actions';
-
-
+import Carrousel from './Carrousel';
 
 export default function Buscador(){
 
@@ -24,6 +23,7 @@ export default function Buscador(){
     
     return(
         <div className="container">
+            <Carrousel/>
             <form onSubmit={(e) => handleSubmit(e)}>
                     <div class="input-group mb-3" >
                         <input class="form-control"
