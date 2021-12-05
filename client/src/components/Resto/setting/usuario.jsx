@@ -41,6 +41,11 @@ export default function Usuario(){
     setEditarEmail(false)
     setEditarNumeroMesas(false)
     dispatch(infoUsuario(restoId))
+    if (window.confirm("El usuario se ha modificado exitosamente")) {
+      window.location.reload()
+  } else {
+      window.location.reload()
+  };
     // alert('El usuario se ha modificado exitosamente')
   }
   
