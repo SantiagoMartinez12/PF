@@ -1,34 +1,37 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getCuenta } from "../../../store/actions";
 import serverFinder from "../../../store/deploy/serverFinder";
 var global = require('../../Resto/global.module.css')
 
 export default function Cuenta(){
     const{idCliente} = useParams()
-    const dispatch = useDispatch();
-   // const cuenta = useSelector(state=> state.ticketCuenta);
-    let subtotales = []
-    const reducer = (a, b) => a+b;
-    let totalCuenta = 0
-    let cuenta = []
-    useEffect (() =>{
+    const [cuenta, setCuenta]=useState([]);
+    const [totalCuenta, setTotalCuenta]=useState(0)
+    
+    const actualizaCuenta=()=>{
         axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
-        .then((response) =>  {cuenta = response.data ;
-                            subtotales = response.data.map(el => { 
-               return el.precio * el.cantidad 
-        }) 
-        totalCuenta = subtotales.reduce(reducer)
-        }
-        )
-    }, []);
+        .then(res=>{
+            // calculo del total a pagar para renderizar
+            setCuenta(res.data);
+            let total = '';
+            let subtotales = [];
+            const reducer = (a, b) => a+b;
+            if(res.data.length){
+                res.data.map(it => {
+                    subtotales.push(it.precio * it.cantidad)
+                });
+                total = subtotales.reduce(reducer);
+                setTotalCuenta(total)
+            } 
+        })
+    }
 
-    // calculo del total a pagar para renderizar
-   /*  let subtotales = cuenta?.map(it=>{
-        return it.precio * it.cantidad
-    })  */
+    useEffect (actualizaCuenta, []);
+
+    
+    // }
+    // setTimeout(calculaTotal, 1500)
   
     return(
         <div className="container">
@@ -37,7 +40,7 @@ export default function Cuenta(){
         </div>
             <div class={global.whitecardpedido}>
             {
-                cuenta.map(producto =>{
+                cuenta?.map(producto =>{
                     return(
                         <div key={producto.id} class="card-body">
                             <h5 class="text-capitalize fw-normal">{producto.name} ${producto.precio} x {producto.cantidad} ${producto.precio * producto.cantidad}</h5>

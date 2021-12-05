@@ -49,11 +49,13 @@ export default function AutorizaMesa({restoId}){
                     return( 
                         <div class="container">
 
-                            <div class="card-body row" key={m.id}>
-                              <div class="col text-capitalize fs-5">
+                            <div class="card-body" key={m.id}>
+
+                              <div class="text-capitalize fs-5">
+
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                               </div> 
-                              <div class="col">
+                              <div class="">
                                 <button type="button" class="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
                               </div>  
                             </div>

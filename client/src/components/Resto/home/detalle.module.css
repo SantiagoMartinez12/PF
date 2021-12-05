@@ -1,4 +1,5 @@
 .gridcontainer {
+ 
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.4fr 0.4fr 0.4fr 2.8fr;
@@ -26,9 +27,23 @@
     grid-area: pedido;
   }
   
-  .nameProducto { grid-area: nameProducto; }
+  .nameProducto { grid-area: nameProducto;  }
   
-  .cantidad { grid-area: cantidad; }
+  .cantidad { grid-area: cantidad;  }
   
   .precio { grid-area: precio; }
   
+  .e{
+    margin-bottom: 20px;
+  }
+  .ee{
+    margin-bottom: 20px;
+  }
+  .el{
+    padding: 40px;
+  }
+  .cerrarMesa{
+    text-align: center;
+    
+    
+  }
