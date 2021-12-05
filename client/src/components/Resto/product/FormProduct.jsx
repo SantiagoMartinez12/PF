@@ -15,22 +15,30 @@ const FormProduct = () => {
         categoria: '',
         idResto: restoId
     })
+    const [imagenSelected, setImagenSelected] = useState(null)
+    const [control, setControl] = useState(null)
 
     const regEx = new RegExp(/[A-Za-z0-9]+/g);
     const reg = new RegExp('^[0-9]+$');
     const categorias = useSelector((state) => state.categorias)
 
     useEffect(() => {
-
         dispatch(getCategorias(restoId));
-
-    }, [])
+        if (control){       
+            setNewProduct({
+                ...newProduct,
+                imagen: control
+            });
+        }
+    }, [control])
 
     const handleForm = (e) => {
-        setNewProduct({
-            ...newProduct,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name !== 'imagen') {
+            setNewProduct({
+                ...newProduct,
+                [e.target.name]: e.target.value
+            });
+        }
     }
 
     const handleSubmit = (e) => {
@@ -47,7 +55,18 @@ const FormProduct = () => {
         window.location.reload()
     }
 
-    console.log(newProduct)
+    const handleImg = (e) => {
+
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = async function () {
+            setControl(reader.result)
+        }
+        if (file) {
+            setImagenSelected(reader.readAsDataURL(file));
+        }        
+
+    }
 
     return (
         <>
@@ -61,13 +80,13 @@ const FormProduct = () => {
 
                     <div className="producto">
                         <label htmlFor="name">Nombre del producto</label>
-                        <input type="text" name="name" id="name" />
+                        <input type="text" name="name" id="name" class="form-control"/>
                         <p>{regEx.test(newProduct.name) ? null : 'Introducir nombre del producto'}</p>
                     </div>
 
                     <div className="categoria">
                         <label htmlFor="categoria">Categoria</label>
-                        <select name="categoria" id='categoria'>
+                        <select name="categoria" id='categoria' className="form-select" aria-label="Default select example">
                             <option disabled selected>Selección...</option>
                             {categorias.map((cat) =>
                                 <option value={cat.name} > {cat.name} </option>
@@ -77,8 +96,8 @@ const FormProduct = () => {
                     </div>
 
                     <div className="precio">
-                        <label htmlFor="precio">Precio</label>
-                        <input type="text" name="precio" id="precio" />
+                        <label htmlFor="precio" >Precio</label>
+                        <input type="text" name="precio" id="precio" class="form-control"/>
                         <p>{reg.test(newProduct.precio) ? null : 'Introducir Precio'}</p>
                     </div>
 
@@ -94,22 +113,24 @@ const FormProduct = () => {
 
                     <div className="descripcion">
                         <label htmlFor="detalle">Descripción</label>
-                        <textarea id="detalle" name="detalle" rows="4" cols="50" />
+                        <textarea id="detalle" name="detalle" rows="4" cols="50" className="form-control"/>
                     </div>
 
                     <div className="imagen">
-                        <label htmlFor="imagen">Imagen</label>
-                        <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                        <label htmlFor="imagen" className="form-label">Imagen</label>
+                        <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"/>
+                        <br />
+                        <img src={control} height="200" alt="Image preview..." />
                     </div>
 
                     <div className="submit">
-                        <button type='submit' onClick={(e) => handleSubmit(e)}>Agregar</button>
+                        <button className="btn btn-primary me-md-2" type='submit' onClick={(e) => handleSubmit(e)}>Agregar</button>
                     </div>
 
                     <br />
 
                     <div className="goBack">
-                        <button type='button' onClick={handleGoBack}>volver</button>
+                        <button className="btn btn-primary me-md-2" type='button' onClick={handleGoBack}>volver</button>
                     </div>
                     <div className="footer"></div>
                 </div>

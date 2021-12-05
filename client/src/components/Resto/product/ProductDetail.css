@@ -1,7 +1,7 @@
 .producDetailAll {
     display: grid;
     grid-template-columns: 0.5fr 0.9fr 0.9fr 0.9fr;
-    grid-template-rows: 0.5fr 0.2fr 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    grid-template-rows: 0.5fr 0.2fr 0.5fr 1.5fr 1.5fr 1fr 1fr;
     gap: 0px 0px;
     grid-template-areas:
       "nav nav nav nav"
@@ -10,8 +10,7 @@
       "imagen imagen imagen imagen"
       "imagen imagen imagen imagen"
       "form form form form"
-      "form form form form"
-      "footer footer footer footer";
+      "form form form form";
   }
   
   .nav { grid-area: nav; }  
@@ -24,15 +23,14 @@
   .formProduct {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 0.8fr 0.8fr 1.8fr 0.6fr 0.6fr 0.6fr;
-    gap: 0px 0px;
+    grid-template-rows: 0.8fr 0.8fr 1.8fr 0.6fr 0.6fr;
+    gap: 10px 10px;
     grid-template-areas:
       "producto producto categoria"
       "precio peso marca"
       "descripcion descripcion inputImagen"
       "actualizarBoton actualizarBoton actualizarBoton"
-      "actualizarBoton actualizarBoton actualizarBoton"
-      "footer footer footer";
+      "actualizarBoton actualizarBoton actualizarBoton";
     grid-area: form;
   }
 
@@ -44,11 +42,10 @@
   .descripcion { grid-area: descripcion; }
   .inputImagen { grid-area: inputImagen; }
   .actualizarBoton { grid-area: actualizarBoton; }  
-  .footer { grid-area: footer; }
   
   .warning {
     margin: 0 !important;
-    font-size: xx-small;
+    font-size: x-small;
     color: #581515;
     width: fit-content;
 }
@@ -61,4 +58,9 @@
 .formProduct {
   height: 440px;
   overflow-y: auto;
+}
+
+.imagen { 
+  max-width: 300px;
+  max-height: 200px; 
 }

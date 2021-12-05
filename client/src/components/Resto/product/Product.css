@@ -1,7 +1,7 @@
 .prodcutAll {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 0.5fr 1.5fr;
+    grid-template-rows: 0.2fr 1.5fr;
     gap: 0px 0px;
     grid-template-areas:
       "menu"
@@ -13,6 +13,6 @@
   .contenido { grid-area: contenido; }  
 
   .contenido {
-    height: 440px;
+    height: 350px;
     overflow-y: auto;
   }
