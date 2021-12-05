@@ -21,9 +21,9 @@ export default function Detalle({idResto,funcion}){
    /*      console.log(detalle)
      mesaFind = mesa.find(e => e.id === idMesa)
      console.log(mesaFind) */
-    let idMesa = detalle[0].mesaId
-    //    console.log(idMesa)
-    
+    let idMesa = detalle.map(e => e.mesaId)
+       console.log(idMesa[0])
+ 
     useEffect(()=>{
 
        
@@ -58,7 +58,7 @@ export default function Detalle({idResto,funcion}){
     }
     const handleOnClick = (e) =>{
         e.preventDefault();
-        desocuparMesa(idMesa)
+        desocuparMesa(idMesa[0])
         funcion()
         navigate(`/home/resto/${idResto}`)
     }
