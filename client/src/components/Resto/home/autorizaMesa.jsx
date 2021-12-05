@@ -50,7 +50,9 @@ export default function AutorizaMesa({restoId}){
                         <div class="container">
 
                             <div class="card-body" key={m.id}>
+
                               <div class="text-capitalize fs-5">
+
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                               </div> 
                               <div class="">

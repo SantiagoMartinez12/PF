@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
-import { useNavigate } from 'react-router-dom';
 
 
 export default function Detalle({idResto,funcion}){
@@ -12,17 +11,18 @@ export default function Detalle({idResto,funcion}){
     const dispatch = useDispatch();
 
 
-    const navigate = useNavigate()
+
 
    // const {idCliente , idResto} = useParams()
    const  idCliente = useSelector(state => state.idCliente)
     const detalle = useSelector(state => state.detalle)
     const mesa = useSelector(state => state.mesas)
+    const [msj,setMsj] = useState(false)
    /*      console.log(detalle)
      mesaFind = mesa.find(e => e.id === idMesa)
      console.log(mesaFind) */
     let idMesa = detalle.map(e => e.mesaId)
-    //    console.log(idMesa[0])
+
  
     useEffect(()=>{
 
@@ -48,19 +48,34 @@ export default function Detalle({idResto,funcion}){
 
     let seguimiento={}
      seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
+     
     
-
+    
  
 
     const desocuparMesa = (idMesa)=>{
         axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
         axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
     }
+    
     const handleOnClick = (e) =>{
         e.preventDefault();
-        desocuparMesa(idMesa[0])
-        funcion()
-        navigate(`/home/resto/${idResto}`)
+        let vali = false
+        let validacion = seguimiento.map(e => e.seguimiento)
+        for(let i=0; i<validacion.length; i++){
+            if(validacion[i] === 'entregado'){
+                vali = true
+            }
+        }
+        if(vali || nameProducto.length === 0) {
+            desocuparMesa(idMesa[0])
+            funcion()
+            dispatch(getMesa(idResto))
+            alert("Su mesa se cerro correctamente")
+        } else {
+           setMsj(true)
+        }
+
     }
  
 
@@ -142,6 +157,9 @@ export default function Detalle({idResto,funcion}){
             <div className={s.cerrarMesa}>
                <p> Desea cerrar mesa?</p>
                 <button type="button" class="btn btn-primary btn-sm" onClick={handleOnClick}>Ok</button>
+                {
+                    msj === true ? <p>Hay productos que no se han pagado</p> : null
+                }
             </div>
         </div>
     </div>
