@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
+import serverFinder from "../../../store/deploy/serverFinder";
 
 
 export default function Detalle({idResto,funcion}){
@@ -54,8 +55,8 @@ export default function Detalle({idResto,funcion}){
  
 
     const desocuparMesa = (idMesa)=>{
-        axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
-        axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
+        axios.put(serverFinder('mesa'), {id:idMesa, estado:false})
+        axios.put(serverFinder('cliente'), {id:idCliente, estado:'finalizado'})
     }
     
     const handleOnClick = (e) =>{
@@ -93,7 +94,7 @@ export default function Detalle({idResto,funcion}){
         
        let seguimientoPut = {id:id, seguimiento:segui}
         console.log(seguimientoPut)
-        axios.put("http://localhost:3001/api/detalle/seguimiento", seguimientoPut)
+        axios.put(serverFinder("detalle/seguimiento"), seguimientoPut)
         dispatch(getDetalle(idCliente))
     }
     
