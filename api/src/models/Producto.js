@@ -20,13 +20,13 @@ module.exports = (sequelize) => {
         },
 
         imagen: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             // defaultValue:
             // "https://www.muycomputer.com/wp-content/uploads/2016/06/Nintendo-64.jpg",
         },
 
         detalle: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(500),
         },
 
 },{

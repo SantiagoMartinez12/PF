@@ -22,14 +22,21 @@ const ProductDetail = ({ info }) => {
         categoria: data.categoriaId,
         idResto: restoId
     })
-
+    const [imagenSelected, setImagenSelected] = useState(null)
+    const [control, setControl] = useState(null)
     const categorias = useSelector((state) => state.categorias)
 
     useEffect(() => {
 
         dispatch(getCategorias(restoId));
+        if (control) {
+            setUpdateProduct({
+                ...updateProduct,
+                imagen: control
+            });
+        }
 
-    }, [])
+    }, [control])
 
     const handleEliminar = () => {
         var userPreference;
@@ -57,10 +64,12 @@ const ProductDetail = ({ info }) => {
     }
 
     const handleForm = (e) => {
-        setUpdateProduct({
-            ...updateProduct,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name !== 'imagen') {
+            setUpdateProduct({
+                ...updateProduct,
+                [e.target.name]: e.target.value
+            });
+        }
     }
 
     const handleSubmit = (e) => {
@@ -77,7 +86,18 @@ const ProductDetail = ({ info }) => {
         window.location.reload()
     }
 
-    console.log(updateProduct)
+    const handleImg = (e) => {
+
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = async function () {
+            setControl(reader.result)
+        }
+        if (file) {
+            setImagenSelected(reader.readAsDataURL(file));
+        }
+    }
+
 
     return (
         <>
@@ -93,19 +113,19 @@ const ProductDetail = ({ info }) => {
                 </div>
 
                 <div className="eliminar">
-                    <button type='button' onClick={() => handleEliminar()}>Eliminar Producto</button>
+                    <button type='button' onClick={() => handleEliminar()} className="btn btn-primary me-md-2">Eliminar Producto</button>
                 </div>
 
                 <div className="actualizar">
                     {useForm ?
-                        <button type='button' onClick={(e) => handleNoAct(e)}>No Actualizar</button>
+                        <button type='button' onClick={(e) => handleNoAct(e) } className="btn btn-primary me-md-2">No Actualizar</button>
                         :
-                        <button type='button' onClick={(e) => handleActualizar(e)}>Actualizar Producto</button>
+                        <button type='button' onClick={(e) => handleActualizar(e)} className="btn btn-primary me-md-2">Actualizar Producto</button>
                     }
                 </div>
 
                 <div className="imagen">
-                    <img src={data.imagen} alt="imagen" />
+                    <img src={data.imagen} alt="imagen" className="img-thumbnail rounded float-left"/>
                 </div>
 
 
@@ -113,12 +133,12 @@ const ProductDetail = ({ info }) => {
                     <form className="formProduct" onChange={(e) => handleForm(e)}>
                         <div className="producto">
                             <label htmlFor="name">Nombre del producto</label>
-                            <input type="text" name="name" id="name" />
+                            <input type="text" name="name" id="name" class="form-control"/>
                         </div>
 
                         <div className="categoria">
-                            <label htmlFor="categoria">Categoria</label>
-                            <select name="categoria" id='categoria' >
+                            <label htmlFor="categoria" >Categoria</label>
+                            <select name="categoria" id='categoria' className="form-select">
                                 <option disabled selected>Selección...</option>
                                 {categorias.map((cat) =>
                                     <option value={cat.id}> {cat.name} </option>
@@ -128,7 +148,7 @@ const ProductDetail = ({ info }) => {
 
                         <div className="precio">
                             <label htmlFor="precio">Precio</label>
-                            <input type="text" name="precio" id="precio" />
+                            <input type="text" name="precio" id="precio" class="form-control"/>
                         </div>
 
                         {/* <div className="peso">
@@ -143,23 +163,25 @@ const ProductDetail = ({ info }) => {
 
                         <div className="descripcion">
                             <label htmlFor="detalle">Descripción</label>
-                            <textarea id="detalle" name="detalle" rows="4" cols="50" />
+                            <textarea id="detalle" name="detalle" rows="4" cols="50" class="form-control"/>
                         </div>
 
                         <div className="inputImagen">
-                            <label htmlFor="imagen">Imagen</label>
-                            <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" />
+                            <label htmlFor="imagen" className="form-label">Imagen</label>
+                            <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"/>
+                            <br />
+                            <img src={control} height="200" alt="Image preview..." />
                         </div>
 
                         <div className="actualizarBoton">
-                            <button type='submit' onClick={(e) => handleSubmit(e)}>Actualizar</button>
-                            <button type='button' onClick={handleGoBack}>volver</button>
+                            <button type='submit' onClick={(e) => handleSubmit(e)} className="btn btn-primary me-md-2">Actualizar</button>
+                            <button type='button' onClick={handleGoBack} className="btn btn-primary me-md-2">volver</button>
                             <p className='warning'>Llenar solo los campos que desea actualizar</p>
                         </div>
 
                     </form>
                     :
-                    
+
                     <div className="formProduct">
                         <div className="producto">
                             <p><b>Nombre del Producto: </b>{data.name}</p>
@@ -186,7 +208,7 @@ const ProductDetail = ({ info }) => {
                         </div>
 
                         <div className="actualizarBoton">
-                            <button type='button' onClick={handleGoBack}>volver</button>
+                            <button type='button' onClick={handleGoBack} className="btn btn-primary me-md-2">volver</button>
                         </div>
 
                     </div>

@@ -26,9 +26,23 @@
     grid-area: pedido;
   }
   
-  .nameProducto { grid-area: nameProducto; }
+  .nameProducto { grid-area: nameProducto;  }
   
-  .cantidad { grid-area: cantidad; }
+  .cantidad { grid-area: cantidad;  }
   
   .precio { grid-area: precio; }
   
+  .e{
+    margin-bottom: 20px;
+  }
+  .ee{
+    margin-bottom: 20px;
+  }
+  .el{
+    padding: 40px;
+  }
+  .cerrarMesa{
+    text-align: center;
+    
+    
+  }

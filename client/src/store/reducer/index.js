@@ -14,7 +14,7 @@ const initialState = {
   ticket: [],
   cuenta: 0,
   ticketCuenta: [],
-
+  idCliente:"",
   usuario: [],
 
   ClientInfo: {
@@ -195,6 +195,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         usuario: action.payload,
       };
+      case "GET_ID_CLIENTE":
+        return {
+          ...state,
+          idCliente:action.payload
+        }
 
     default:
       return state;

@@ -1,17 +1,18 @@
-.grid-container {
+.gridcontainer {
+  padding-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1.3fr 1.3fr 0.4fr;
-  grid-template-rows: 0.3fr 0.4fr 2.3fr;
+  grid-template-rows: 0.6fr 0.4fr 2.3fr;
   gap: 0px 0px;
   grid-template-areas:
     "logo . logOut rueda"
     "AutorizaMesa AutorizaMesa . ."
     "Mesas Mesas Detalle Detalle";
 }
-.logo { grid-area: logo; }
-.rueda { grid-area: rueda; }
+.logo { grid-area: logo; padding-left: 30px;}
+.rueda { grid-area: rueda; text-align: right; padding-right: 10px;}
 .logOut { grid-area: logOut; }
-.AutorizaMesa { grid-area: AutorizaMesa; }
+.AutorizaMesa { grid-area: AutorizaMesa; padding-left: 30px;padding-bottom: 10px;text-align: center}
 .Mesas {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -22,7 +23,12 @@
     ". . . ."
     ". . . .";
   grid-area: Mesas;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  padding: 30px;
 }
+.Mesas a{text-decoration: none; color:black}
 .Detalle {
   display: grid;
   grid-template-columns: 1fr;
