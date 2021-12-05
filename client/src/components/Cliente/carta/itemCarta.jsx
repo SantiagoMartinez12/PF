@@ -1,7 +1,8 @@
 
 import { useDispatch } from 'react-redux';
 import { agregarTicket, sumaCuenta } from '../../../store/actions';
-
+import cuadrito from "../../../assets/cuadrito.jpg";
+var global = require('../../Resto/global.module.css')
 
 
 
@@ -18,11 +19,26 @@ export default function ItemCarta ({data}){
     
 
     return(
-        <div>
-            <h5 class="text-capitalize fw-normal">{name}  ${precio}</h5>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-             <button onClick={handleOnClick} class="btn btn-primary me-md-2" >Agregar</button> 
-            </div>
+        <div class={global.whitecard}>
+
+            <div class="row justify-content-center">
+                <div class="col">
+                <center>
+                <img src={cuadrito} class={global.imgperfil}/>
+                </center>
+                </div>
+                <div class="col">
+                <center>
+                <h5 class="text-capitalize fw-normal">{name} ${precio}</h5>
+                </center>
+                <p class={global.textdetalle}>{detalle}</p>
+                </div>
+                <button onClick={handleOnClick} class="btn btn-primary" >Agregar</button> 
+              </div>
         </div>
     )
 }
+
+{/* <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<button onClick={handleOnClick} class="btn btn-primary me-md-2" >Agregar</button> 
+</div> */}
