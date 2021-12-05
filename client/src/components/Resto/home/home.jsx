@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AutorizaMesa from "../home/autorizaMesa"
-import Card from "./card";
+
 import logo from "../../../assets/Logo.png";
 import s from "../home/home.module.css"
 import { useParams } from "react-router";
@@ -9,6 +9,7 @@ import { getDetalle, getIdClienteToState, getMesa } from "../../../store/actions
 import { Link } from "react-router-dom";
 import axios from "axios"
 import Detalle from "./detalle";
+import serverFinder from "../../../store/deploy/serverFinder";
 
 export default function HomeResto(){
     const mesas = useSelector(state => state.mesas)
@@ -33,7 +34,7 @@ export default function HomeResto(){
        
     },[])
     function updateMesa(){
-        axios.get(`http://localhost:3001/api/cliente/${restoId}/autorizado`)
+        axios.get(serverFinder(`cliente/${restoId}/autorizado`))
             .then(res =>{
                 setClientes(res.data)
             })

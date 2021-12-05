@@ -10,7 +10,7 @@ import react, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta } from '../../../store/actions';
-
+import serverFinder from '../../../store/deploy/serverFinder';
 
 
 export default function DetallePedido(){
@@ -43,7 +43,7 @@ export default function DetallePedido(){
          ticket.map(el => {el.comentario = input 
             post.push(el)})
         
-         axios.post('http://localhost:3001/api/detalle', post)
+         axios.post(serverFinder('detalle'), post)
          dispatch(resetTicket())
 
         
