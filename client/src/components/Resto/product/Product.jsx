@@ -25,15 +25,13 @@ const Product = () => {
         setForm(true);
     }
 
-    console.log(data)
-
     return (
         <>
             {showDetail ? <ProductDetail info={infoDetail} /> :
                 form ? <FormProduct /> :
                     <div className="prodcutAll">
                         <div className="menu">
-                            <button type='button' onClick={(e) => handleAddProduct(e)}>Agregar Producto</button>
+                            <button type='button' onClick={(e) => handleAddProduct(e)} className="btn btn-primary me-md-2">Agregar Producto</button>
                         </div>
                         <div className="contenido">
 
