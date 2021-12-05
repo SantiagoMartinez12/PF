@@ -2,41 +2,43 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import serverFinder from "../../../store/deploy/serverFinder";
-
+var global = require('../../Resto/global.module.css')
 
 export default function Cuenta(){
     const{idCliente} = useParams()
     const [cuenta, setCuenta]=useState([]);
     const [totalCuenta, setTotalCuenta]=useState(0)
-
+    
     const actualizaCuenta=()=>{
         axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
         .then(res=>{
+            // calculo del total a pagar para renderizar
             setCuenta(res.data);
             let total = '';
             let subtotales = [];
             const reducer = (a, b) => a+b;
-            res.data.map(it => {
-                subtotales.push(it.precio * it.cantidad)
-            });
-            total = subtotales.reduce(reducer);
-            setTotalCuenta(total)
+            if(res.data.length){
+                res.data.map(it => {
+                    subtotales.push(it.precio * it.cantidad)
+                });
+                total = subtotales.reduce(reducer);
+                setTotalCuenta(total)
+            } 
         })
     }
 
     useEffect (actualizaCuenta, []);
 
     
-    // calculo del total a pagar para renderizar
     // }
     // setTimeout(calculaTotal, 1500)
   
     return(
         <div className="container">
-        <div>
+        <div class={global.textsubtitle}>
         <h4>TU CUENTA</h4>
         </div>
-            <div class="card">
+            <div class={global.whitecardpedido}>
             {
                 cuenta?.map(producto =>{
                     return(
@@ -49,8 +51,8 @@ export default function Cuenta(){
                 
         </div>
         <br/>
-        <div>
-            <h5>Total a pagar: ${totalCuenta}</h5>
+        <div class={global.underlinecard}>
+            <h5>TOTAL: ${totalCuenta}</h5>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
              <button class="btn btn-primary me-md-2">PAGAR CUENTA</button>

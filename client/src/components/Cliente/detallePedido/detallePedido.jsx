@@ -8,9 +8,13 @@
 import axios, { Axios } from 'axios';
 import react, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-
 import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta } from '../../../store/actions';
+
 import serverFinder from '../../../store/deploy/serverFinder';
+
+import Carrousel from '../carta/Carrousel';
+var global = require('../../Resto/global.module.css')
+
 
 
 export default function DetallePedido(){
@@ -49,25 +53,27 @@ export default function DetallePedido(){
         
     }
     return(
-    <div className="container">
-        <br/>
+    <div className="container"> 
+        <Carrousel/>
         <div>
-        <h4 class="fw-normal">TU PEDIDO</h4>
+        <center>
+        <h2  class={global.textsubtitle}>TU PEDIDO</h2>
+        </center>
         </div>
-        <br/>
+        <div class={global.whitecardpedido}>
         {ticket.map(it=>{
             return( it.cantidad>0?
-                <div key={it.id} class="p-3 mb-2 bg-light text-black">
-                    <h5 class="text-capitalize fw-normal">{it.name} ${it.precio} x {it.cantidad} ${it.precio * it.cantidad}</h5>
+                <div key={it.id} class="p-3 mb-2  text-black">
+                    <h5 class={global.textpedido}>{it.name} ${it.precio} x {it.cantidad} <br/> Subtotal: ${it.precio * it.cantidad}</h5>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)} class="btn btn-outline-primary">+</button>
                     <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} class="btn btn-outline-primary">-</button>
-                    </div>
-                   
+                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)} class="btn btn-outline-primary">+</button>
+                    </div> 
                 </div>
                 :null
             )
         })}
+        </div>
         <br/>      
         <div class="input-group mb-3">
             <input placeholder="Agrega una nota al restaurante (salsa tradicional, servir sin chile...)" class="form-control"
@@ -82,7 +88,9 @@ export default function DetallePedido(){
             }
             </div>
         <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
-            <h5>Total del pedido: ${cuenta}</h5>
+            <div class={global.underlinecard}>
+            <h5>TOTAL: ${cuenta}</h5>
+            </div>
         </div>
         
         

@@ -11,7 +11,11 @@ import logo from "../../../assets/Logo.png";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
 import serverFinder from "../../../store/deploy/serverFinder";
+
+var global = require('../../Resto/global.module.css')
+
 
 
 export default function LandingPageClient() {
@@ -61,6 +65,7 @@ export default function LandingPageClient() {
     <div className="container">
       <div class="row vh-100 justify-content-center align-items-center">
         <div class="col-auto  text-center">
+          <div class={global.whiteclientlog}>
           <img src={logo} alt="Logo" width="50%" class="img-fluid"/>
           <h2>Bienvenido</h2>
           <h6>Escribe tu nombre aquí:</h6>
@@ -81,6 +86,7 @@ export default function LandingPageClient() {
               </div>
             </div> 
           </form>
+        </div>
         </div>
       </div>
     </div>

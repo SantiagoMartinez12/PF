@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filtroProductos, getProductos } from '../../../store/actions';
 import ItemCarta from './itemCarta';
 import { useParams } from 'react-router';
-
+var global = require('../../Resto/global.module.css')
 
 export default function Carta(){
     const {idResto} = useParams()
@@ -37,29 +37,33 @@ export default function Carta(){
     }
 
     return(
-        <div className="container">
-
+        <div>
+            
             <Buscador/>
             <br/>
-            <div>
-            <h5 class="justify-content-md-end">Total a pagar ${cuenta}</h5>
+            <div class={global.underlinecard}>
+            <h5>TOTAL: ${cuenta}</h5>
             </div>
                 
-                <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+         <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
                 {categorias?.map(c=>{
                     return(
                     <button key={c} value={c} onClick= {handleOnClick} class="btn btn-outline-primary">{c}</button>
                     )})}
                 </div>
             <br/>
-
+            
+         <div class="container">
+             <div class="row">
                 {filtrados?.map(p=>{
                     return(
-                        <div key={p.id} class="p-3 mb-2 bg-light text-black">
+                        <div key={p.id} class="col align-items-center">
                             <ItemCarta data={p}/> 
                         </div>
                     )
                 })}
+                </div>
+            </div>
         </div>
     )
 }
