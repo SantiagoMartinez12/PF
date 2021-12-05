@@ -75,12 +75,15 @@ export default function Setting() {
     }
 
     return (
-        <div className={style.gridContainer}>
-            <div className={style.LogoTitulo}>
-            <img src={logo} alt="Logo" width="10%"  class="navbar-brand" />
-                <div className={style.titulo}><h1>Mozo Virtual</h1></div>
-            </div>
-            <div className={style.navBar}>
+        <div className="container-fluid">
+            <div class="row">
+                <div class="col">
+                <div>
+                <img src={logo} alt="Logo" width="10%"  class="navbar-brand" />
+                <div><h1>Mozo Virtual</h1></div>
+                </div>
+                
+                <div className={style.navBar}>
             <div >
                 <div className={style.component}>
                     <button onClick={(e) => { handleUsuario(e) }} className={style.botonsito}>
@@ -109,11 +112,11 @@ export default function Setting() {
                         Medios de pagos</button>
                 </div>
             </div>
-
             </div>
 
-
-            <div className={style.display}>
+                </div>
+                <div class="col">
+                <div className={style.display}>
                 {iUsuario === true ? <Usuario />
                  : <></>}
 
@@ -130,6 +133,12 @@ export default function Setting() {
             <Link to= {ruta}><button>Home</button></Link>
             <div className={style.selectorBotones}>
             </div>
+                </div>
+            </div>
+   
+      
+
+            
         </div>
     )
 }
