@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) =>{
 router.post('/', async (req, res, next) =>{
     try{
         const data = req.body
-        console.log(data)
+        
         const newDetalle = await data.forEach(async(register)=>{
             await Detalle.create({
             mesaId: register.idMesa,
@@ -38,7 +38,7 @@ router.post('/', async (req, res, next) =>{
             clienteId: register.idCliente
         })})
         res.send(newDetalle) 
-        console.log()
+       
     }catch(error){
         next(error)
     }
@@ -69,7 +69,7 @@ router.put('/', async (req, res, next) =>{
 router.put('/seguimiento/', async (req, res, next) =>{
     try{
         const {id, seguimiento} = req.body
-        console.log(id,seguimiento)
+        
         const cambiarSeguimiento = await Detalle.update({
             
             seguimiento:seguimiento,

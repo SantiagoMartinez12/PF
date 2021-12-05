@@ -22,7 +22,7 @@ export default function Detalle({idResto,funcion}){
      mesaFind = mesa.find(e => e.id === idMesa)
      console.log(mesaFind) */
     let idMesa = detalle.map(e => e.mesaId)
-       console.log(idMesa[0])
+    //    console.log(idMesa[0])
  
     useEffect(()=>{
 
