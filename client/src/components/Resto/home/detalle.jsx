@@ -6,6 +6,8 @@ import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
 import {Navbar, Container, Nav, Button, NavDropdown, Row, Col, Table} from 'react-bootstrap';
 var global = require('../../Resto/global.module.css')
+import serverFinder from "../../../store/deploy/serverFinder";
+
 
 export default function Detalle({idResto,funcion}){
     
@@ -46,8 +48,8 @@ export default function Detalle({idResto,funcion}){
      seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
      
     const desocuparMesa = (idMesa)=>{
-        axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
-        axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
+        axios.put(serverFinder('mesa'), {id:idMesa, estado:false})
+        axios.put(serverFinder('cliente'), {id:idCliente, estado:'finalizado'})
     }
     
     const handleOnClick = (e) =>{
@@ -82,7 +84,7 @@ export default function Detalle({idResto,funcion}){
         
        let seguimientoPut = {id:id, seguimiento:segui}
         console.log(seguimientoPut)
-        axios.put("http://localhost:3001/api/detalle/seguimiento", seguimientoPut)
+        axios.put(serverFinder("detalle/seguimiento"), seguimientoPut)
         dispatch(getDetalle(idCliente))
     }
     

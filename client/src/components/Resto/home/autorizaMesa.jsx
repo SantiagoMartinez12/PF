@@ -3,6 +3,7 @@ import axios from 'axios';
 
 var global = require('../../Resto/global.module.css')
 
+import serverFinder from '../../../store/deploy/serverFinder';
 
 export default function AutorizaMesa({restoId}){
 
@@ -17,7 +18,7 @@ export default function AutorizaMesa({restoId}){
 
     // esta función actualiza el estado mesas con la info traída del back   
     const updateMesas = ()=>{
-        axios.get(`http://localhost:3001/api/cliente/${restoId}/solicitado`)
+        axios.get(serverFinder(`cliente/${restoId}/solicitado`))
             .then(res =>{
                 setMesas(res.data)
             })
@@ -26,12 +27,12 @@ export default function AutorizaMesa({restoId}){
 
     // cambia el estado del cliente a "autorizado"
     const autorizarCliente = (cliente)=>{
-        axios.put('http://localhost:3001/api/cliente', {id:cliente, estado:'autorizado'})
+        axios.put(serverFinder('cliente'), {id:cliente, estado:'autorizado'})
     }
 
     // cambia el estado de la mesa a true (ocupada)
     const ocuparMesa = (mesa)=>{
-        axios.put('http://localhost:3001/api/mesa', {id:mesa, estado:true})
+        axios.put(serverFinder('mesa'), {id:mesa, estado:true})
     }
     
     const handleOnClickAutorizar = (e) =>{

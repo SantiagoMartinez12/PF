@@ -16,9 +16,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
 import axios from 'axios'
+
+import serverFinder from '../../../store/deploy/serverFinder.js'
+
 import logowhite from "../../../assets/Logo_white.png";
 import {Navbar, Container, Nav, Button, NavDropdown} from 'react-bootstrap';
 var global = require('../../Resto/global.module.css')
+
 
 
 
@@ -38,7 +42,7 @@ export default function HomeClient(){
         dispatch(getCuenta(idCliente));
     // repite el get para ver el estado hasta que cambia a autorizado     
         let repet = setInterval(()=>{
-            axios.get(`http://localhost:3001/api/cliente/cliente/${idCliente}`)
+            axios.get(serverFinder(`cliente/cliente/${idCliente}`))
                   .then(res=>{
                     dispatch(getDatosMesa({estadoCliente:res.data.estado}));
                     if(res.data.estado !== 'solicitado'){
@@ -52,7 +56,7 @@ export default function HomeClient(){
     const infoCliente = useSelector(state=> state.ClientInfo);
 
     // este estado en false muestra el detalle y en true muestra la carta
-    const [ state, setState] = useState("ver pedido");
+    const [ state, setState] = useState("ver menu");
     
     function handleClickPedido(e){
         setState("ver pedido")
