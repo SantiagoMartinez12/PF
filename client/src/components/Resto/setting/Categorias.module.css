@@ -1,7 +1,6 @@
 .gridContainer {
   display: flex;
   flex-direction: column;
-
   height: 90vh;
 }
 .titulo {
@@ -23,7 +22,6 @@
 .cardsDiv {
   display: flex;
   width: 100%;
-
   justify-content: center;
   align-items: flex-end;
   flex-wrap: wrap;

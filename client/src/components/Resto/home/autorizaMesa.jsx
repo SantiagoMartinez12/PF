@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
+var global = require('../../Resto/global.module.css')
+
 
 export default function AutorizaMesa({restoId}){
 
@@ -40,34 +42,31 @@ export default function AutorizaMesa({restoId}){
    
     
     return (
-        <div class="card">
-            <h2>Autorizar Mesa</h2>
-         
-            
-            { mesas.length?
+        <div class="container">
+            <div class="row">
+                <h2>Autorizar Mesa</h2>
+                { mesas.length?
                 mesas?.map(m=>{
                     return( 
-                        <div class="container">
-
-                            <div class="card-body" key={m.id}>
-
+                        <div>
+                            <div key={m.id}>
                               <div class="text-capitalize fs-5">
-
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                               </div> 
-                              <div class="">
+                              <div>
                                 <button type="button" class="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
                               </div>  
                             </div>
                         </div>
                  ) })
                 :
-                <div class="card-body">
+                <div>
+                <div>
                 <p>No hay solicitudes</p>
                 </div>
+                </div>
             }
-
-
+            </div>
         </div>
     )
 }

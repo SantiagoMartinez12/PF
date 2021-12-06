@@ -29,19 +29,19 @@ const Product = () => {
         <>
             {showDetail ? <ProductDetail info={infoDetail} /> :
                 form ? <FormProduct /> :
-                    <div className="prodcutAll">
-                        <div className="menu">
+                    <div>
+                        <div>
                             <button type='button' onClick={(e) => handleAddProduct(e)} className="btn btn-primary me-md-2">Agregar Producto</button>
                         </div>
-                        <div className="contenido">
+                        <div>
 
                             {data[0] ? data.map((categories) => {
-                                return <div className='categoriaBox'>
+                                return <div>
                                     <h4>{categories.name}</h4>
                                     <ProductsPerCategory productos={categories.productos} setShowDetail={setShowDetail} setInfoDetail={setInfoDetail} />
                                 </div>
                             })
-                        :<h2>No hay Prodtuctos cargados</h2>
+                        :<h2>No hay productos cargados</h2>
                         }
 
                         </div>

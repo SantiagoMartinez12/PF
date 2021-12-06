@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png";
 import { deleteProduct, getCategorias, getUpdateProduct } from "../../../store/actions";
 import './ProductDetail.css'
+var global = require('../../Resto/global.module.css')
 
 const ProductDetail = ({ info }) => {
     const data = JSON.parse(info);
@@ -40,8 +41,8 @@ const ProductDetail = ({ info }) => {
 
     const handleEliminar = () => {
         var userPreference;
-        if (window.confirm("Deseas eliminar el producto?")) {
-            userPreference = "Producto eliminado!";
+        if (window.confirm("¿Deseas eliminar el producto?")) {
+            userPreference = "Producto eliminado";
             dispatch(deleteProduct(data.id))
             if (window.confirm("Se ha eliminado el producto")) {
                 window.location.reload()
@@ -49,7 +50,7 @@ const ProductDetail = ({ info }) => {
                 window.location.reload()
             };
         } else {
-            userPreference = "Eliminación abortada!";
+            userPreference = "Eliminación abortada";
         };
     }
 
@@ -101,29 +102,27 @@ const ProductDetail = ({ info }) => {
 
     return (
         <>
-            <div className="producDetailAll">
+            <div class="row">
+                <div class="col">
                 <div className="nav">
                     <h3>Actualizar Producto</h3>
                 </div>
-
-                <div className="subNav"></div>
-
                 <div className="name">
                     <h3>{data.name}</h3>
                 </div>
-
-                <div className="eliminar">
-                    <button type='button' onClick={() => handleEliminar()} className="btn btn-primary me-md-2">Eliminar Producto</button>
                 </div>
-
+                <div class="col">
+                <div className="eliminar">
+                    <button type='button' onClick={() => handleEliminar()} className={global.botonnavbar}>Eliminar</button>
+                </div>
                 <div className="actualizar">
                     {useForm ?
                         <button type='button' onClick={(e) => handleNoAct(e) } className="btn btn-primary me-md-2">No Actualizar</button>
                         :
-                        <button type='button' onClick={(e) => handleActualizar(e)} className="btn btn-primary me-md-2">Actualizar Producto</button>
+                        <button type='button' onClick={(e) => handleActualizar(e)} className={global.botonnavbar}>Actualizar</button>
                     }
                 </div>
-
+                </div>
                 <div className="imagen">
                     <img src={data.imagen} alt="imagen" className="img-thumbnail rounded float-left"/>
                 </div>
