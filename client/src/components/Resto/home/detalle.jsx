@@ -5,8 +5,8 @@ import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
 import {Navbar, Container, Nav, Button, NavDropdown, Row, Col, Table} from 'react-bootstrap';
-var global = require('../../Resto/global.module.css')
 import serverFinder from "../../../store/deploy/serverFinder";
+var global = require('../../Resto/global.module.css')
 
 
 export default function Detalle({idResto,funcion}){

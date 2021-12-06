@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
-var global = require('../../Resto/global.module.css')
 
 import serverFinder from '../../../store/deploy/serverFinder';
+var global = require('../../Resto/global.module.css')
 
 export default function AutorizaMesa({restoId}){
 

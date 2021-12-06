@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AutorizaMesa from "../home/autorizaMesa"
 
 import logo from "../../../assets/Logo.png";
 import s from "../home/home.module.css"
@@ -11,9 +10,10 @@ import axios from "axios"
 import Detalle from "./detalle";
 import {Navbar, Container, Nav, Button, NavDropdown, Row, Col, Table, ListGroup} from 'react-bootstrap';
 import logowhite from "../../../assets/Logo_white.png";
-var global = require('../../Resto/global.module.css')
 import serverFinder from "../../../store/deploy/serverFinder";
 
+import AutorizaMesa from "../home/autorizaMesa"
+var global = require('../../Resto/global.module.css')
 export default function HomeResto(){
     const mesas = useSelector(state => state.mesas)
     const {restoId} = useParams()
