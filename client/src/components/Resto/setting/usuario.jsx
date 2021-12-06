@@ -4,6 +4,8 @@ import modificarUsuario,  {infoUsuario } from "../../../store/actions"
 import style from "./usuario.module.css"
 import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router";
+import logowhite from "../../../assets/Logo_white.png";
+var global = require('../../Resto/global.module.css')
 
 
 export default function Usuario(){
@@ -102,7 +104,7 @@ export default function Usuario(){
   
         <div className={style.display}>
             <div className={style.formulario}>
-                <h1 className={style.titulo}>Informacion de Usuario</h1>
+                <h1 className={style.titulo}>Información de Usuario</h1>
                 
                 <div className={style.info}>
               
@@ -138,7 +140,7 @@ export default function Usuario(){
                   <input onChange={(e)=> {handleModificar(e)}} name='mesa' class="form-control"></input>
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-primary">x</button></>}
                     <div>
-                    <button onClick={(e)=>handleSubmit(e)} class="btn btn-primary">Enviar cambios</button>
+                    <button onClick={(e)=>handleSubmit(e)} class={global.botonnavbar}>Enviar cambios</button>
                     </div>
                 </div>
 

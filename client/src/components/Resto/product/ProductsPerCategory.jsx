@@ -49,7 +49,7 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
                             <img className="card-img-top" src={product.imagen} alt="imagen" />
                             <div className="card-body">
                                 <h5 class="card-title">{product.name}</h5>
-                                <p><b>precio: </b>{product.precio} $</p>
+                                <p><b>Precio: </b> $ {product.precio} </p>
                                 <button type='button' onClick={(e) => handleSelect(e)} value={JSON.stringify(product)} className="btn btn-primary">Modificar</button>
                             </div>
                         </div>

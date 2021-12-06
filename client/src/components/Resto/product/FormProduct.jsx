@@ -71,7 +71,7 @@ const FormProduct = () => {
     return (
         <>
             <form onChange={(e) => handleForm(e)}>
-                <div className="grid-container">
+                <div>
                     <div class="nav">
                         <h3>Agregar Producto</h3>
                     </div>

@@ -4,15 +4,12 @@ import { useParams } from "react-router";
 import s from "../home/detalle.module.css"
 import { getDetalle, getMesa } from "../../../store/actions";
 import {useDispatch, useSelector} from  "react-redux";
-
+import {Navbar, Container, Nav, Button, NavDropdown, Row, Col, Table} from 'react-bootstrap';
+var global = require('../../Resto/global.module.css')
 
 export default function Detalle({idResto,funcion}){
     
     const dispatch = useDispatch();
-
-
-
-
    // const {idCliente , idResto} = useParams()
    const  idCliente = useSelector(state => state.idCliente)
     const detalle = useSelector(state => state.detalle)
@@ -23,7 +20,6 @@ export default function Detalle({idResto,funcion}){
      console.log(mesaFind) */
     let idMesa = detalle.map(e => e.mesaId)
 
- 
     useEffect(()=>{
 
        
@@ -49,10 +45,6 @@ export default function Detalle({idResto,funcion}){
     let seguimiento={}
      seguimiento = detalle?.map(e => {return{seguimiento:e.seguimiento,id:e.id}})
      
-    
-    
- 
-
     const desocuparMesa = (idMesa)=>{
         axios.put('http://localhost:3001/api/mesa', {id:idMesa, estado:false})
         axios.put('http://localhost:3001/api/cliente', {id:idCliente, estado:'finalizado'})
@@ -77,9 +69,6 @@ export default function Detalle({idResto,funcion}){
         }
 
     }
- 
-
-
 
     function handleClickSeguimiento(seguimiento,id){
       
@@ -98,72 +87,129 @@ export default function Detalle({idResto,funcion}){
     }
     
     return(
-       <div>
-          
-        <div className={s.gridcontainer}>
-      
-        <div className={s.NameMesa}>
+       <div class="container">
+        <div>
           {/*   <h2>{mesaFind.name}</h2> */}
         </div>
-            <div className={s.NameCliente}>
+            <div>
                 <h4 class="text-center">Cliente</h4>
                 <p class="text-center">{nameCliente[0]}</p>
             </div>
-            
-            <div className={s.pedido}>
-            <div className ={s.nameProducto}>
+
+            {/* <div class="row">
+                <div class="col-sm">
                 <h5>Producto</h5> 
                 <p>{nameProducto.map( e=>{
                     return(
-                        <div className={s.e}>
+                        <div>
                             {e}
                         </div>
                     )
                     })}</p>
+                </div>
             </div>
-            <div className={s.cantidad}>
+            <div class="col-sm">
                 <h5>Cantidad</h5>
                 <p>{cantidad.map( e=>{
                     return(
-                        <div className={s.ee}>
+                        <div>
                             {e}
                         </div>
                     )
                     })}</p>
             </div>
-            <div className={s.precio}>
+            <div class="col-sm">
             <h5>Precio</h5>
                 <p>{precio.map( e=>{
                     return(
-                        <div className={s.ee}>
+                        <div >
                             {e}
                         </div>
                     )
                     })}</p>
             </div>
-            <div className={s.Seguimiento}>
+            <div class="col-sm">
             <h5>Seguimiento</h5>
                 <p>{seguimiento?.map( s=>{
                     return(
-                        <div className={s.el}>
-                            
+                        <div >
                            {s.seguimiento} {s.seguimiento === 'entregado' ? null : <button type="button" class="btn btn-outline-success btn-sm" onClick={(e) => handleClickSeguimiento(s.seguimiento, s.id)}> ✔ </button>}
                         </div>
                     )
                     })}</p>
-            </div>
-            
-            
-            <div className={s.cerrarMesa}>
-               <p> Desea cerrar mesa?</p>
-                <button type="button" class="btn btn-primary btn-sm" onClick={handleOnClick}>Ok</button>
+            </div> */}
+
+  <Table responsive>
+  <thead>
+    <tr>
+      <th>Productos</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Seguimiento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>
+    <ul class="list-group list-group-flush">
+                <p>{nameProducto.map( e=>{
+                    return(
+                        <li class="list-group-item">
+                            {e}
+                        </li>
+                    )
+                    })}</p>
+                </ul>
+        </td>
+    <td>  
+      <ul class="list-group list-group-flush">
+            <p>{cantidad.map( e=>{
+                    return(
+                        <li class="list-group-item">
+                            {e}
+                        </li>
+                    )
+                    })}</p>
+                </ul>
+    </td>
+    <td>  
+            <ul class="list-group list-group-flush">
+            <p>{precio.map( e=>{
+                    return(
+                        <li class="list-group-item">
+                            {e}
+                        </li>
+                    )
+                    })}</p>
+                </ul>
+    </td>
+    <td>  
+            <ul class="list-group list-group-flush">
+            <p>{seguimiento?.map( s=>{
+                    return(
+                        <li class="list-group-item">
+                           {s.seguimiento} {s.seguimiento === 'entregado' ? null : <button type="button" class={global.botonflechita} onClick={(e) => handleClickSeguimiento(s.seguimiento, s.id)}> ✓ </button>}
+                        </li>
+                    )
+                    })}</p>
+                </ul>
+    </td>
+    </tr>
+  </tbody>
+    </Table>
+        <center>
+        <div class={global.whitecardmesasresto}>
+                <center>
+                <p class={global.textnotification}> ¿Desea cerrar la mesa? </p>
+                <button type="button" class="btn btn-primary btn-sm" onClick={handleOnClick}>Si, cierrala</button>
                 {
                     msj === true ? <p>Hay productos que no se han pagado</p> : null
                 }
+                </center>
             </div>
+            </center>
         </div>
-    </div>
-           
-    </div>
+        
+        
     )
 }

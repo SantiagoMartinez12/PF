@@ -60,14 +60,14 @@ export default function LandingPageClient() {
 
   return (
     <div className="container">
-      <div class="row vh-100 justify-content-center align-items-center">
+      <div class={global.centrar}>
         <div class="col-auto  text-center">
           <div class={global.whiteclientlog}>
           <img src={logo} alt="Logo" width="50%" class="img-fluid"/>
           <h2>Bienvenido</h2>
           <h6>Escribe tu nombre aquí:</h6>
           <form onSubmit={(e) => handleSubmit(e)}>
-          <div class="row justify-content-center align-items-center">
+          <div>
             <div class="input-group p-3 w-80">
             <input class="form-control"
             type="text"

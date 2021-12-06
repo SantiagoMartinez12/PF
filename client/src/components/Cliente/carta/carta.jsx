@@ -37,8 +37,7 @@ export default function Carta(){
     }
 
     return(
-        <div>
-            
+        <div class="container">
             <Buscador/>
             <br/>
             <div class={global.underlinecard}>
@@ -53,8 +52,8 @@ export default function Carta(){
                 </div>
             <br/>
             
-         <div class="container">
-             <div class="row">
+         
+             <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
                 {filtrados?.map(p=>{
                     return(
                         <div key={p.id} class="col align-items-center">
@@ -63,7 +62,7 @@ export default function Carta(){
                     )
                 })}
                 </div>
-            </div>
+            
         </div>
     )
 }
