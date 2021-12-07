@@ -116,7 +116,9 @@ export default function HomeResto(){
                state === true ?
                 <Detalle  idResto={restoId} funcion={setearEstadoFalse}/>
                 : 
-                <h1>Seleccionar mesa</h1>
+                
+                <></>
+               
                  }
                 </div>
     </Col>
