@@ -107,7 +107,7 @@ export const agregarCategorias = (payload) => {
   return async function () {
     const data = await axios.post(serverFinder("categorias/"), payload);
     const posteo = data.data;
-    console.log(posteo);
+    // console.log(posteo);
     return {
       type: "AGREGAR_CATEGORIAS",
       payload: posteo,

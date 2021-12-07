@@ -28,7 +28,7 @@ export default function Login(){
         signInWithPopup(auth, provider).then((result)=>{
                     const user = result.user.displayName
                     const id = result.user.uid
-                    console.log(id)
+                    // console.log(id)
                     setRestoId(id)
                     setName(user)
                 }).catch((error) =>{
@@ -36,7 +36,7 @@ export default function Login(){
                 })
     }
 
-    console.log(restoId)
+    // console.log(restoId)
 
 
     function signOuts(){

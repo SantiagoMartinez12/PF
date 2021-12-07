@@ -30,7 +30,6 @@ const initialState = {
   mesas: [],
 };
 
-console.log(initialState.idResto);
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":

@@ -39,7 +39,6 @@ export default function Detalle({ idResto, funcion }) {
     // console.log(nameProducto)
 
     let cantidad = detalle?.map(e => e.cantidad)
-    console.log(cantidad)
     let precio = detalle?.map(e => e.precio)
 
     let seguimiento = {}
@@ -81,7 +80,7 @@ export default function Detalle({ idResto, funcion }) {
         }
 
         let seguimientoPut = { id: id, seguimiento: segui }
-        console.log(seguimientoPut)
+        // console.log(seguimientoPut)
         axios.put(serverFinder("detalle/seguimiento"), seguimientoPut)
         dispatch(getDetalle(idCliente))
     }

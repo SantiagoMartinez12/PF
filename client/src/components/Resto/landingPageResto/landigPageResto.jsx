@@ -38,7 +38,7 @@ export default function LandingPageResto() {
     }
   },[isAuthenticated])
   
-  console.log(restoId[0])
+  // console.log(restoId[0])
 
   return (
     <div>    

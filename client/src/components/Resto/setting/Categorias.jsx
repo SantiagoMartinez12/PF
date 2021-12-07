@@ -49,11 +49,11 @@ export default function Categorias(){
               
     }
     function handleChange(e){
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setNuevaCategoria({...nuevaCategoria, name: e.target.value})
     }
 
-    console.log(categorias)
+    // console.log(categorias)
    
     return(
         

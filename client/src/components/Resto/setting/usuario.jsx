@@ -96,8 +96,8 @@ export default function Usuario(){
         } 
       }
 
-      console.log(restoInfo)      
-      console.log(modificar)
+      // console.log(restoInfo)      
+      // console.log(modificar)
       
   return ( 
     
