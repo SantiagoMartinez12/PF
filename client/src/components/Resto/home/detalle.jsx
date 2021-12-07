@@ -53,11 +53,12 @@ export default function Detalle({ idResto, funcion }) {
         e.preventDefault();
         let vali = false
         let validacion = seguimiento.map(e => e.seguimiento)
-        for (let i = 0; i < validacion.length; i++) {
-            if (validacion[i] === 'entregado') {
-                vali = true
-            }
+        let test = validacion.find(e => e === 'confirmado' || e === 'solicitado')
+        if(!test){
+            vali = true
         }
+      
+     
         if (vali || nameProducto.length === 0) {
             desocuparMesa(idMesa[0])
             funcion()
@@ -84,11 +85,14 @@ export default function Detalle({ idResto, funcion }) {
         axios.put(serverFinder("detalle/seguimiento"), seguimientoPut)
         dispatch(getDetalle(idCliente))
     }
+    function cerrarDetalle(){
+        funcion()
+    }
 
     return (
         <div className="container">
             <div>
-                {/*   <h2>{mesaFind.name}</h2> */}
+            <button type="button" class="btn-close" aria-label="Close" onClick={cerrarDetalle}></button>
             </div>
             <div>
                 <h4 className="text-center">Cliente</h4>
@@ -201,11 +205,13 @@ export default function Detalle({ idResto, funcion }) {
                     <center>
                         <p className={global.textnotification}> ¿Desea cerrar la mesa? </p>
                         <button type="button" className="btn btn-primary btn-sm" onClick={handleOnClick}>Si, cierrala</button>
-                        {
-                            msj === true ? <p>Hay productos que no se han pagado</p> : null
-                        }
                     </center>
                 </div>
+                        {
+                            msj === true ? <div class="alert alert-danger" role="alert">
+                           ! Tienes productos sin pagar
+                          </div> : null
+                        }
             </center>
         </div>
 
