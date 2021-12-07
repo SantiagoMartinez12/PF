@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 
 
+import serverFinder from '../../../store/deploy/serverFinder';
+// var global = require('../../Resto/global.module.css')
+
 export default function AutorizaMesa({restoId}){
 
     const [mesas, setMesas] = useState([])
@@ -15,7 +18,7 @@ export default function AutorizaMesa({restoId}){
 
     // esta función actualiza el estado mesas con la info traída del back   
     const updateMesas = ()=>{
-        axios.get(`http://localhost:3001/api/cliente/${restoId}/solicitado`)
+        axios.get(serverFinder(`cliente/${restoId}/solicitado`))
             .then(res =>{
                 setMesas(res.data)
             })
@@ -24,12 +27,12 @@ export default function AutorizaMesa({restoId}){
 
     // cambia el estado del cliente a "autorizado"
     const autorizarCliente = (cliente)=>{
-        axios.put('http://localhost:3001/api/cliente', {id:cliente, estado:'autorizado'})
+        axios.put(serverFinder('cliente'), {id:cliente, estado:'autorizado'})
     }
 
     // cambia el estado de la mesa a true (ocupada)
     const ocuparMesa = (mesa)=>{
-        axios.put('http://localhost:3001/api/mesa', {id:mesa, estado:true})
+        axios.put(serverFinder('mesa'), {id:mesa, estado:true})
     }
     
     const handleOnClickAutorizar = (e) =>{
@@ -40,34 +43,31 @@ export default function AutorizaMesa({restoId}){
    
     
     return (
-        <div class="card">
-            <h2>Autorizar Mesa</h2>
-         
-            
-            { mesas.length?
+        <div className="container">
+            <div className="row">
+                <h2>Autorizar Mesa</h2>
+                { mesas.length?
                 mesas?.map(m=>{
                     return( 
-                        <div class="container">
-
-                            <div class="card-body" key={m.id}>
-
-                              <div class="text-capitalize fs-5">
-
+                        <div>
+                            <div key={m.id}>
+                              <div className="text-capitalize fs-5">
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                               </div> 
-                              <div class="">
-                                <button type="button" class="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
+                              <div>
+                                <button type="button" className="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
                               </div>  
                             </div>
                         </div>
                  ) })
                 :
-                <div class="card-body">
+                <div>
+                <div>
                 <p>No hay solicitudes</p>
                 </div>
+                </div>
             }
-
-
+            </div>
         </div>
     )
 }

@@ -28,7 +28,7 @@ export default function Login(){
         signInWithPopup(auth, provider).then((result)=>{
                     const user = result.user.displayName
                     const id = result.user.uid
-                    console.log(id)
+                    // console.log(id)
                     setRestoId(id)
                     setName(user)
                 }).catch((error) =>{
@@ -36,7 +36,7 @@ export default function Login(){
                 })
     }
 
-    console.log(restoId)
+    // console.log(restoId)
 
 
     function signOuts(){
@@ -52,19 +52,19 @@ export default function Login(){
             {
                 name?
                 <div className="container-sm">
-                    <div class="row ">
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            {name} <button onClick={signOuts} class="btn btn-primary btn-md" > Salir</button>
+                    <div className="row ">
+                        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                            {name} <button onClick={signOuts} className="btn btn-primary btn-md" > Salir</button>
                         </div>
                     </div>
                     <HomeResto restoId={restoId}/>
                 </div>
                 : <div className="container">
-                    <div class="row vh-100 justify-content-center align-items-center">
-                     <div class="col-auto  text-center">
-                        <img src={logo} alt="Logo" width="60%" class="img-fluid" />
+                    <div className="row vh-100 justify-content-center align-items-center">
+                     <div className="col-auto  text-center">
+                        <img src={logo} alt="Logo" width="60%" className="img-fluid" />
                         <p></p>
-                        <button onClick={signIn} class="btn btn-primary btn-sm"> Ingresa con Google </button>
+                        <button onClick={signIn} className="btn btn-primary btn-sm"> Ingresa con Google </button>
                     </div>
                 </div>
               </div>

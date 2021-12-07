@@ -4,8 +4,6 @@ const { Producto } = conn.models;
 
 
 const updateProduct = async (parameters) => {
-    console.log(parameters)
-
     if (!parameters.id ) {
         return null;
 

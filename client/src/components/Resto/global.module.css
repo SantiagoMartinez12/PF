@@ -64,6 +64,45 @@ body{
     border-radius: 8px;
     box-shadow: 3px 9px 5px -2px rgba(0,0,0,0.11)
 }
+.whitecardresto{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 23px;
+    margin: 10px;
+    background:white;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 3px 9px 5px -2px rgba(0,0,0,0.11)
+}
+
+.whitecardmesasresto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin: 10px;
+    background:#201f5a;
+    width: 80%;
+    border-radius: 3px;
+}
+
+.settingsinfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin: 10px;
+    background:white;
+    width: 100%;
+    border-radius: 3px;
+}
 
 .underlinecard{
     padding: 5px;
@@ -101,6 +140,10 @@ body{
     text-transform: capitalize;
 }
 
+.textnotification{
+    color: white;
+}
+
 .botonnavbar{
     background-color: coral;
     color: white;
@@ -112,4 +155,52 @@ body{
 
 .botonnavbar:hover{
     background-color: #f26722;
+}
+
+.botonflechita{
+    background-color: coral;
+    padding: 3px 8px 3px 8px ;
+    margin: 0px;
+    border-radius: 5px;
+    border-style: none;
+    font-size: 0.5em;
+    color: white;
+}
+.botonflechita:hover{
+    background-color: #f26722;
+}
+
+
+.btcardsettings{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin: 10px;
+    background:#0d6efd;
+    width: 80%;
+    border-radius: 10px;
+    border-style: none;
+    color:white
+}
+.btcardsettings:hover{
+    background:#075cdb;
+}
+
+.icon{
+    color: white;
+}
+
+.centrar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.listali{
+    border: white;
+    text-decoration: none;
 }

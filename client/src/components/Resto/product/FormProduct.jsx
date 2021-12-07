@@ -71,8 +71,8 @@ const FormProduct = () => {
     return (
         <>
             <form onChange={(e) => handleForm(e)}>
-                <div className="grid-container">
-                    <div class="nav">
+                <div>
+                    <div className="nav">
                         <h3>Agregar Producto</h3>
                     </div>
                     <div className="subNav"></div>
@@ -80,7 +80,7 @@ const FormProduct = () => {
 
                     <div className="producto">
                         <label htmlFor="name">Nombre del producto</label>
-                        <input type="text" name="name" id="name" class="form-control"/>
+                        <input type="text" name="name" id="name" className="form-control"/>
                         <p>{regEx.test(newProduct.name) ? null : 'Introducir nombre del producto'}</p>
                     </div>
 
@@ -97,7 +97,7 @@ const FormProduct = () => {
 
                     <div className="precio">
                         <label htmlFor="precio" >Precio</label>
-                        <input type="text" name="precio" id="precio" class="form-control"/>
+                        <input type="text" name="precio" id="precio" className="form-control"/>
                         <p>{reg.test(newProduct.precio) ? null : 'Introducir Precio'}</p>
                     </div>
 
@@ -120,7 +120,7 @@ const FormProduct = () => {
                         <label htmlFor="imagen" className="form-label">Imagen</label>
                         <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"/>
                         <br />
-                        <img src={control} height="200" alt="Image preview..." />
+                        <img src={control} height="200" alt="Preview..." />
                     </div>
 
                     <div className="submit">

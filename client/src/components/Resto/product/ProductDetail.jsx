@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import logo from "../../../assets/Logo.png";
 import { deleteProduct, getCategorias, getUpdateProduct } from "../../../store/actions";
 import './ProductDetail.css'
+var global = require('../../Resto/global.module.css')
 
 const ProductDetail = ({ info }) => {
     const data = JSON.parse(info);
@@ -40,8 +40,8 @@ const ProductDetail = ({ info }) => {
 
     const handleEliminar = () => {
         var userPreference;
-        if (window.confirm("Deseas eliminar el producto?")) {
-            userPreference = "Producto eliminado!";
+        if (window.confirm("¿Deseas eliminar el producto?")) {
+            userPreference = "Producto eliminado";
             dispatch(deleteProduct(data.id))
             if (window.confirm("Se ha eliminado el producto")) {
                 window.location.reload()
@@ -49,7 +49,7 @@ const ProductDetail = ({ info }) => {
                 window.location.reload()
             };
         } else {
-            userPreference = "Eliminación abortada!";
+            userPreference = "Eliminación abortada";
         };
     }
 
@@ -101,29 +101,27 @@ const ProductDetail = ({ info }) => {
 
     return (
         <>
-            <div className="producDetailAll">
+            <div className="row">
+                <div className="col">
                 <div className="nav">
                     <h3>Actualizar Producto</h3>
                 </div>
-
-                <div className="subNav"></div>
-
                 <div className="name">
                     <h3>{data.name}</h3>
                 </div>
-
-                <div className="eliminar">
-                    <button type='button' onClick={() => handleEliminar()} className="btn btn-primary me-md-2">Eliminar Producto</button>
                 </div>
-
+                <div className="col">
+                <div className="eliminar">
+                    <button type='button' onClick={() => handleEliminar()} className={global.botonnavbar}>Eliminar</button>
+                </div>
                 <div className="actualizar">
                     {useForm ?
                         <button type='button' onClick={(e) => handleNoAct(e) } className="btn btn-primary me-md-2">No Actualizar</button>
                         :
-                        <button type='button' onClick={(e) => handleActualizar(e)} className="btn btn-primary me-md-2">Actualizar Producto</button>
+                        <button type='button' onClick={(e) => handleActualizar(e)} className={global.botonnavbar}>Actualizar</button>
                     }
                 </div>
-
+                </div>
                 <div className="imagen">
                     <img src={data.imagen} alt="imagen" className="img-thumbnail rounded float-left"/>
                 </div>
@@ -133,7 +131,7 @@ const ProductDetail = ({ info }) => {
                     <form className="formProduct" onChange={(e) => handleForm(e)}>
                         <div className="producto">
                             <label htmlFor="name">Nombre del producto</label>
-                            <input type="text" name="name" id="name" class="form-control"/>
+                            <input type="text" name="name" id="name" className="form-control"/>
                         </div>
 
                         <div className="categoria">
@@ -148,7 +146,7 @@ const ProductDetail = ({ info }) => {
 
                         <div className="precio">
                             <label htmlFor="precio">Precio</label>
-                            <input type="text" name="precio" id="precio" class="form-control"/>
+                            <input type="text" name="precio" id="precio" className="form-control"/>
                         </div>
 
                         {/* <div className="peso">
@@ -163,14 +161,14 @@ const ProductDetail = ({ info }) => {
 
                         <div className="descripcion">
                             <label htmlFor="detalle">Descripción</label>
-                            <textarea id="detalle" name="detalle" rows="4" cols="50" class="form-control"/>
+                            <textarea id="detalle" name="detalle" rows="4" cols="50" className="form-control"/>
                         </div>
 
                         <div className="inputImagen">
                             <label htmlFor="imagen" className="form-label">Imagen</label>
                             <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"/>
                             <br />
-                            <img src={control} height="200" alt="Image preview..." />
+                            <img src={control} height="200" alt="Preview..." />
                         </div>
 
                         <div className="actualizarBoton">

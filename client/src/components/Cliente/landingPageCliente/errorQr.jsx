@@ -4,7 +4,7 @@ export default function ErrorQr(){
     return(
         <div>
             <br/>
-            <div class="col">
+            <div className="col">
                 <img src={logo} alt="Logo" width="20%"  />
             </div>
             <br/>

@@ -30,7 +30,6 @@ const initialState = {
   mesas: [],
 };
 
-console.log(initialState.idResto);
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "filtroProductos":
@@ -103,15 +102,15 @@ const reducer = (state = initialState, action) => {
       // el payload trae un array con objetos {name:'categoria', productos:[array de productos]}
       // acá lo convierto para que quede un array de objetos de productos con la propiedad "categoria"
       const arrayProductos = [];
-      action.payload.map((categoria) => {
-        categoria.productos.map((prod) => {
+      action.payload.forEach((categoria) => {
+        categoria.productos.forEach((prod) => {
           prod.categoria = categoria.name;
           arrayProductos.push(prod);
         });
       });
       // del array que nos llega del back saco un array con las categorias
       const arrayCategorias = [];
-      action.payload.map((categoria) => {
+      action.payload.forEach((categoria) => {
         arrayCategorias.push(categoria.name);
       });
 

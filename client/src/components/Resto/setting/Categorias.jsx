@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import styles from "./Categorias.module.css"
 import Card from "./Card";
 import {useDispatch, useSelector} from 'react-redux';
@@ -50,11 +49,11 @@ export default function Categorias(){
               
     }
     function handleChange(e){
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setNuevaCategoria({...nuevaCategoria, name: e.target.value})
     }
 
-    console.log(categorias)
+    // console.log(categorias)
    
     return(
         
@@ -73,7 +72,7 @@ export default function Categorias(){
             </div>
 
             <div className={styles.tituloCambio}>            
-               { clickAgregar=== false ? <button class="btn btn-primary" onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input class="form-control" name="name" onChange={(e)=>handleChange(e)}></input><button disabled={!nuevaCategoria.name} class="btn btn-primary" type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
+               { clickAgregar=== false ? <button className="btn btn-primary" onClick={(e)=>handleClick(e)} >Agregar</button>:  <><input className="form-control" name="name" onChange={(e)=>handleChange(e)}></input><button disabled={!nuevaCategoria.name} class="btn btn-primary" type="submit" onClick={(e)=>handleSubmit(e)} >Confirmar</button></>
                }                     
             </div>           
             

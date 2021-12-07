@@ -9,8 +9,10 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
+import serverFinder from "../../../store/deploy/serverFinder";
+
 var global = require('../../Resto/global.module.css')
 
 
@@ -37,8 +39,8 @@ export default function LandingPageClient() {
     }
     
     //confirmo si idResto e idMesa son correctos (existen en la BD)
-    const exiteResto = axios.get(`http://localhost:3001/api/resto/${idResto}`);
-    const existeMesa = axios.get(`http://localhost:3001/api/mesa/${idMesa}`);
+    const exiteResto = axios.get(serverFinder(`resto/${idResto}`));
+    const existeMesa = axios.get(serverFinder(`mesa/${idMesa}`));
     Promise.all([exiteResto, existeMesa])
       .then(res=>{
     //si idResto o isMesa no existen no postea nada y lo redirige a una página de error  
@@ -49,7 +51,7 @@ export default function LandingPageClient() {
          
     //si idResto y idMesa son correctos postea a la ruta cliente y lo redirige al home Cliente
           
-          axios.post('http://localhost:3001/api/cliente', {nombre:name, mesaId:idMesa,restoId:idResto})
+          axios.post(serverFinder('cliente'), {nombre:name, mesaId:idMesa,restoId:idResto})
             .then(resPost=> {
               navigate(`/${idResto}/${idMesa}/home/${name}/${resPost.data.id}`);
               
@@ -60,16 +62,16 @@ export default function LandingPageClient() {
 
   return (
     <div className="container">
-      <div class="row vh-100 justify-content-center align-items-center">
-        <div class="col-auto  text-center">
-          <div class={global.whiteclientlog}>
-          <img src={logo} alt="Logo" width="50%" class="img-fluid"/>
+      <div className={global.centrar}>
+        <div className="col-auto  text-center">
+          <div className={global.whiteclientlog}>
+          <img src={logo} alt="Logo" width="50%" className="img-fluid"/>
           <h2>Bienvenido</h2>
           <h6>Escribe tu nombre aquí:</h6>
           <form onSubmit={(e) => handleSubmit(e)}>
-          <div class="row justify-content-center align-items-center">
-            <div class="input-group p-3 w-80">
-            <input class="form-control"
+          <div>
+            <div className="input-group p-3 w-80">
+            <input className="form-control"
             type="text"
             placeholder="Nombre..."
             value={input.name}
@@ -78,8 +80,8 @@ export default function LandingPageClient() {
             onChange={(e) => handleChange(e)}
             />
             </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-sm w-50">Ingresar</button>
+            <div className="col-12">
+              <button type="submit" className="btn btn-primary btn-sm w-50">Ingresar</button>
               </div>
             </div> 
           </form>

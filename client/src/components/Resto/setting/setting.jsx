@@ -1,21 +1,21 @@
+// import style from "./setting.module.css"
 import { useState } from "react";
-import style from "./setting.module.css"
 import { Link } from 'react-router-dom'
 import Usuario from "./usuario";
 import Categorias from "./Categorias";
-import 'boxicons'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
 import MediosDePago from "./MediosDePago";
 import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png"
 import ViewQr from "./ViewQr";
+import logowhite from "../../../assets/Logo_white.png";
+var global = require('../../Resto/global.module.css')
 
 
 
 export default function Setting() {
-    const info = useSelector((state) => state.usuario)
     const [iUsuario, setIUsuario] = useState(false)
     const [infoCategorias, setInfoCategorias] = useState(false)
     const [product, setProduct] = useState(false)
@@ -93,57 +93,46 @@ export default function Setting() {
     }
 
     return (
-        <div className="container-fluid">
-            <div class="row">
-                <div class="col">
+        <div>
+        <div className="container">
+            <div className="row">   
+            <div className="col">
+                <img src={logo} alt="Logo" width="25%"  className="navbar-brand" />
+                <h1>Configuración</h1>
+            </div>
+            <div className="col">
+                <Link to= {ruta}><button className={global.botonnavbar}>Home</button></Link>
+            </div>
+            <div className="row">
+                <div className="col">
                 <div>
-                <img src={logo} alt="Logo" width="10%"  class="navbar-brand" />
-                <div><h1>Mozo Virtual</h1></div>
-                </div>
-                
-                <div className={style.navBar}>
-            <div >
-                <div className={style.component}>
-                    <button onClick={(e) => { handleUsuario(e) }} className={style.botonsito}>
+                    <button onClick={(e) => { handleUsuario(e) }} className={global.btcardsettings}>
                         <box-icon type='solid' name='user-detail'></box-icon>
                         Info. de Usuario</button>
                 </div>
-            </div>
-            <div>
-                <div className={style.component}>
-                    <button onClick={(e) => { handleCategorias(e) }} className={style.botonsito}>
+                <div>
+                    <button onClick={(e) => { handleCategorias(e) }} className={global.btcardsettings}>
                         <box-icon name='cart'></box-icon>
                         Categorias</button>
                 </div>
-            </div>
-            <div >
-                <div className={style.component}>
-                    <button onClick={(e) => { handleProduct(e) }} className={style.botonsito}>
+                <div>
+                    <button onClick={(e) => { handleProduct(e) }} className={global.btcardsettings}>
                         <box-icon name='restaurant'></box-icon>
                         Productos</button>
                 </div>
-            </div>
-            <div >
-                <div className={style.component}>
-                    <button className={style.botonsito}>
+                <div>
+                    <button className={global.btcardsettings}>
                         <box-icon name='credit-card' type='solid' ></box-icon>
                         Medios de pagos</button>
                 </div>
-            </div>
-
-            <div >
-                <div className={style.component}>
-                    <button onClick={(e) => handleQr(e)} className={style.botonsito}>
-                        <box-icon name='codigoQr' type='solid' ></box-icon>
+                <div>
+                    <button onClick={(e) => handleQr(e)} className={global.btcardsettings}>
+                        <box-icon name='codigoQr' type='solid' className={global.icon} ></box-icon>
                         Visualizar Qr</button>
                 </div>
-            </div>
-
-            </div>
-
                 </div>
-                <div class="col">
-                <div className={style.display}>
+                <div className="col">
+                <div className={global.settingsinfo}>
                 {iUsuario === true ? <Usuario />
                  : <></>}
 
@@ -158,17 +147,14 @@ export default function Setting() {
 
                 {qr === true ? <ViewQr /> : <></>
                 }
-            </div>
-            <div className={style.pieDePagina}></div>
-            <Link to= {ruta}><button>Home</button></Link>
-            <div className={style.selectorBotones}>
-            </div>
+            </div>  
                 </div>
             </div>
-   
-      
-
-            
         </div>
+    </div>
+    <footer className={global.footer}>
+        <img src={logowhite} height="55px" alt="logo"/>
+    </footer>
+    </div>
     )
 }

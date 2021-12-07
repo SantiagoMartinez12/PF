@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import logowhite from "../../../assets/Logo_white.png";
 import bienvenido from "../../../assets/bienvenido.png";
-import Carrousel from "../../Cliente/carta/Carrousel";
+// import Carrousel from "../../Cliente/carta/Carrousel";
 var global = require('../../Resto/global.module.css')
 
 
@@ -38,26 +38,26 @@ export default function LandingPageResto() {
     }
   },[isAuthenticated])
   
-  console.log(restoId[0])
+  // console.log(restoId[0])
 
   return (
     <div>    
     <div className="container">
-      <div class="row vh-100 justify-content-center align-items-center">
-        <div class="col-auto  text-center" >
+      <div className="row vh-100 justify-content-center align-items-center">
+        <div className="col-auto  text-center" >
       <p/>
       {isAuthenticated ? (
-        <div  class={global.whitebacklog}>
+        <div  className={global.whitebacklog}>
           <h3>¡Bienvenido!</h3>
           <Perfil />
-          <Link to={ruta}><button class="btn btn-primary btn-sm w-50">Ingresar</button></Link>
+          <Link to={ruta}><button className="btn btn-primary btn-sm w-50">Ingresar</button></Link>
           <br/><br/>
           <LogOutButton />
         </div>
       ) : (
         <div>
-        <img src={logo} alt="Logo" width="40%" class="img-fluid"/>
-        <img src={bienvenido} alt="Logo" width="70%" class="img-fluid"/>
+        <img src={logo} alt="Logo" width="40%" className="img-fluid"/>
+        <img src={bienvenido} alt="Logo" width="70%" className="img-fluid"/>
         <LoginButton />
         <br/>
         <br/>
@@ -67,8 +67,8 @@ export default function LandingPageResto() {
         </div>
       </div>
     </div>
-    <footer class={global.footer}>
-    <img src={logowhite} height="55px"/>
+    <footer className={global.footer}>
+    <img src={logowhite} height="55px" alt="logo"/>
     </footer>
     </div>
   );

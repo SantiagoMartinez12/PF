@@ -5,12 +5,16 @@
 // boton eliminar pedido -- resetea todo el pedido
 // boton confirmar pedido --- hace el post al back con el pedido
 
-import axios, { Axios } from 'axios';
-import react, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta } from '../../../store/actions';
+
+import serverFinder from '../../../store/deploy/serverFinder';
+
 import Carrousel from '../carta/Carrousel';
 var global = require('../../Resto/global.module.css')
+
 
 
 export default function DetallePedido(){
@@ -40,10 +44,10 @@ export default function DetallePedido(){
      function handleSubmit (e){
         e.preventDefault();
         let post = []
-         ticket.map(el => {el.comentario = input 
+         ticket.forEach(el => {el.comentario = input 
             post.push(el)})
         
-         axios.post('http://localhost:3001/api/detalle', post)
+         axios.post(serverFinder('detalle'), post)
          dispatch(resetTicket())
 
         
@@ -53,17 +57,17 @@ export default function DetallePedido(){
         <Carrousel/>
         <div>
         <center>
-        <h2  class={global.textsubtitle}>TU PEDIDO</h2>
+        <h2  className={global.textsubtitle}>TU PEDIDO</h2>
         </center>
         </div>
-        <div class={global.whitecardpedido}>
+        <div className={global.whitecardpedido}>
         {ticket.map(it=>{
             return( it.cantidad>0?
-                <div key={it.id} class="p-3 mb-2  text-black">
-                    <h5 class={global.textpedido}>{it.name} ${it.precio} x {it.cantidad} <br/> Subtotal: ${it.precio * it.cantidad}</h5>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} class="btn btn-outline-primary">-</button>
-                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)} class="btn btn-outline-primary">+</button>
+                <div key={it.id} className="p-3 mb-2  text-black">
+                    <h5 className={global.textpedido}>{it.name} ${it.precio} x {it.cantidad} <br/> Subtotal: ${it.precio * it.cantidad}</h5>
+                    <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} className="btn btn-outline-primary">-</button>
+                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)} className="btn btn-outline-primary">+</button>
                     </div> 
                 </div>
                 :null
@@ -71,20 +75,20 @@ export default function DetallePedido(){
         })}
         </div>
         <br/>      
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
             <input placeholder="Agrega una nota al restaurante (salsa tradicional, servir sin chile...)" class="form-control"
                         value={input}
                     onChange={(e) => handleInputChange(e)}
             />
             <br/>
             {infoCliente.estadoCliente === 'solicitado'?
-            <button  class="btn btn-primary" disabled >PEDIR</button>
+            <button  className="btn btn-primary" disabled >PEDIR</button>
             :
-            <button  onClick={(e) => handleSubmit(e)} class="btn btn-primary">PEDIR</button> 
+            <button  onClick={(e) => handleSubmit(e)} className="btn btn-primary">PEDIR</button> 
             }
             </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
-            <div class={global.underlinecard}>
+        <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
+            <div className={global.underlinecard}>
             <h5>TOTAL: ${cuenta}</h5>
             </div>
         </div>
