@@ -1,10 +1,9 @@
+// import style from "./setting.module.css"
 import { useState } from "react";
-import style from "./setting.module.css"
 import { Link } from 'react-router-dom'
 import Usuario from "./usuario";
 import Categorias from "./Categorias";
-import 'boxicons'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
 import MediosDePago from "./MediosDePago";
@@ -17,7 +16,6 @@ var global = require('../../Resto/global.module.css')
 
 
 export default function Setting() {
-    const info = useSelector((state) => state.usuario)
     const [iUsuario, setIUsuario] = useState(false)
     const [infoCategorias, setInfoCategorias] = useState(false)
     const [product, setProduct] = useState(false)
@@ -97,44 +95,44 @@ export default function Setting() {
     return (
         <div>
         <div className="container">
-            <div class="row">   
-            <div class="col">
-                <img src={logo} alt="Logo" width="25%"  class="navbar-brand" />
+            <div className="row">   
+            <div className="col">
+                <img src={logo} alt="Logo" width="25%"  className="navbar-brand" />
                 <h1>Configuración</h1>
             </div>
-            <div class="col">
-                <Link to= {ruta}><button class={global.botonnavbar}>Home</button></Link>
+            <div className="col">
+                <Link to= {ruta}><button className={global.botonnavbar}>Home</button></Link>
             </div>
-            <div class="row">
-                <div class="col">
+            <div className="row">
+                <div className="col">
                 <div>
-                    <button onClick={(e) => { handleUsuario(e) }} class={global.btcardsettings}>
+                    <button onClick={(e) => { handleUsuario(e) }} className={global.btcardsettings}>
                         <box-icon type='solid' name='user-detail'></box-icon>
                         Info. de Usuario</button>
                 </div>
                 <div>
-                    <button onClick={(e) => { handleCategorias(e) }} class={global.btcardsettings}>
+                    <button onClick={(e) => { handleCategorias(e) }} className={global.btcardsettings}>
                         <box-icon name='cart'></box-icon>
                         Categorias</button>
                 </div>
                 <div>
-                    <button onClick={(e) => { handleProduct(e) }} class={global.btcardsettings}>
+                    <button onClick={(e) => { handleProduct(e) }} className={global.btcardsettings}>
                         <box-icon name='restaurant'></box-icon>
                         Productos</button>
                 </div>
                 <div>
-                    <button class={global.btcardsettings}>
+                    <button className={global.btcardsettings}>
                         <box-icon name='credit-card' type='solid' ></box-icon>
                         Medios de pagos</button>
                 </div>
                 <div>
-                    <button onClick={(e) => handleQr(e)} class={global.btcardsettings}>
-                        <box-icon name='codigoQr' type='solid' class={global.icon} ></box-icon>
+                    <button onClick={(e) => handleQr(e)} className={global.btcardsettings}>
+                        <box-icon name='codigoQr' type='solid' className={global.icon} ></box-icon>
                         Visualizar Qr</button>
                 </div>
                 </div>
-                <div class="col">
-                <div class={global.settingsinfo}>
+                <div className="col">
+                <div className={global.settingsinfo}>
                 {iUsuario === true ? <Usuario />
                  : <></>}
 
@@ -154,8 +152,8 @@ export default function Setting() {
             </div>
         </div>
     </div>
-    <footer class={global.footer}>
-        <img src={logowhite} height="55px"/>
+    <footer className={global.footer}>
+        <img src={logowhite} height="55px" alt="logo"/>
     </footer>
     </div>
     )

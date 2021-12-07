@@ -9,7 +9,6 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import serverFinder from "../../../store/deploy/serverFinder";
@@ -63,16 +62,16 @@ export default function LandingPageClient() {
 
   return (
     <div className="container">
-      <div class={global.centrar}>
-        <div class="col-auto  text-center">
-          <div class={global.whiteclientlog}>
-          <img src={logo} alt="Logo" width="50%" class="img-fluid"/>
+      <div className={global.centrar}>
+        <div className="col-auto  text-center">
+          <div className={global.whiteclientlog}>
+          <img src={logo} alt="Logo" width="50%" className="img-fluid"/>
           <h2>Bienvenido</h2>
           <h6>Escribe tu nombre aquí:</h6>
           <form onSubmit={(e) => handleSubmit(e)}>
           <div>
-            <div class="input-group p-3 w-80">
-            <input class="form-control"
+            <div className="input-group p-3 w-80">
+            <input className="form-control"
             type="text"
             placeholder="Nombre..."
             value={input.name}
@@ -81,8 +80,8 @@ export default function LandingPageClient() {
             onChange={(e) => handleChange(e)}
             />
             </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-sm w-50">Ingresar</button>
+            <div className="col-12">
+              <button type="submit" className="btn btn-primary btn-sm w-50">Ingresar</button>
               </div>
             </div> 
           </form>

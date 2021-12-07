@@ -1,6 +1,6 @@
+// import Usuario from "../../components/Resto/setting/usuario";
+// import Detalle from "../../components/Resto/home/detalle";
 import axios from "axios";
-import Usuario from "../../components/Resto/setting/usuario";
-import Detalle from "../../components/Resto/home/detalle";
 import serverFinder from "../deploy/serverFinder";
 export const INFO_USUARIO = "INFO_USUARIO";
 export const MODIFICAR_USUARIO = "MODIFICAR_USUARIO";

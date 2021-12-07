@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 import serverFinder from '../../../store/deploy/serverFinder';
-var global = require('../../Resto/global.module.css')
+// var global = require('../../Resto/global.module.css')
 
 export default function AutorizaMesa({restoId}){
 
@@ -43,19 +43,19 @@ export default function AutorizaMesa({restoId}){
    
     
     return (
-        <div class="container">
-            <div class="row">
+        <div className="container">
+            <div className="row">
                 <h2>Autorizar Mesa</h2>
                 { mesas.length?
                 mesas?.map(m=>{
                     return( 
                         <div>
                             <div key={m.id}>
-                              <div class="text-capitalize fs-5">
+                              <div className="text-capitalize fs-5">
                                 {`${m.nombre} está esperando autorización en ${m.mesa?m.mesa.name:'mesa incorrecta!'}`}
                               </div> 
                               <div>
-                                <button type="button" class="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
+                                <button type="button" className="btn btn-primary" onClick={handleOnClickAutorizar} name={m.mesaId} value={m.id}>Autorizar</button>
                               </div>  
                             </div>
                         </div>

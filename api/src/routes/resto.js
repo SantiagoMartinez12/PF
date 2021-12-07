@@ -32,7 +32,6 @@ router.get("/:id", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
-    console.log(id)
     let newUser = await Resto.findOrCreate({
       id,
       mail,
@@ -51,7 +50,6 @@ router.post("/", async (req, res, next) => {
 router.put("/", async (req, res, next) => {
   try {
     let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
-    console.log(req.body)
     let comparar = await Resto.findOne({where:{
       id: id,
     }})

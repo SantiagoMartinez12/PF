@@ -10,18 +10,21 @@ export default function Carrousel(){
     <img
       className="d-block w-100 rounded"
       src={banner1}
+      alt='banner'
     />
   </Carousel.Item>
   <Carousel.Item interval={500}>
     <img
       className="d-block w-100 rounded"
       src={banner2}
+      alt='banner'
     />
   </Carousel.Item>
   <Carousel.Item>
     <img
       className="d-block w-100 rounded"
       src={banner3}
+      alt='banner'
     />
   </Carousel.Item>
 </Carousel> 

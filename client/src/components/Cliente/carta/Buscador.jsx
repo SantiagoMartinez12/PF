@@ -26,12 +26,12 @@ export default function Buscador(){
         <div className="container">
             <Carrousel/>
             <center>
-            <h1 class={global.textsubtitle}>¿Qué deseas ordenar?</h1>
+            <h1 className={global.textsubtitle}>¿Qué deseas ordenar?</h1>
             </center>
             <br/>
             <form onSubmit={(e) => handleSubmit(e)}>
-                    <div class="input-group mb-3" >
-                        <input class="form-control"
+                    <div className="input-group mb-3" >
+                        <input className="form-control"
                         placeholder="Buscar tu producto favorito aquí..."
                         type="text"
                         id="search"
@@ -41,7 +41,7 @@ export default function Buscador(){
                         onChange={(e) => handleChange(e)}
                         />
                         <div className="search_button_container">
-                        <button className="search_button" type="submit"  class="btn btn-primary">BUSCAR</button>
+                        <button className="search_button btn btn-primary" type="submit">BUSCAR</button>
                         </div>
                     </div >
             </form>

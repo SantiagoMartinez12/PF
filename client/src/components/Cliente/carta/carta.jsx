@@ -37,26 +37,26 @@ export default function Carta(){
     }
 
     return(
-        <div class="container">
+        <div className="container">
             <Buscador/>
             <br/>
-            <div class={global.underlinecard}>
+            <div className={global.underlinecard}>
             <h5>TOTAL: ${cuenta}</h5>
             </div>
                 
-         <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+         <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
                 {categorias?.map(c=>{
                     return(
-                    <button key={c} value={c} onClick= {handleOnClick} class="btn btn-outline-primary">{c}</button>
+                    <button key={c} value={c} onClick= {handleOnClick} className="btn btn-outline-primary">{c}</button>
                     )})}
                 </div>
             <br/>
             
          
-             <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
+             <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
                 {filtrados?.map(p=>{
                     return(
-                        <div key={p.id} class="col align-items-center">
+                        <div key={p.id} className="col align-items-center">
                             <ItemCarta data={p}/> 
                         </div>
                     )

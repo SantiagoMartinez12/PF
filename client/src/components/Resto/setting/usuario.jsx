@@ -1,10 +1,10 @@
+// import { useAuth0 } from "@auth0/auth0-react";
+// import logowhite from "../../../assets/Logo_white.png";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import modificarUsuario,  {infoUsuario } from "../../../store/actions"
 import style from "./usuario.module.css"
-import { useAuth0 } from "@auth0/auth0-react";
 import { useParams } from "react-router";
-import logowhite from "../../../assets/Logo_white.png";
 var global = require('../../Resto/global.module.css')
 
 
@@ -110,37 +110,37 @@ export default function Usuario(){
               
                   <img  alt="img not found" width="200px" height="250px"/>
                   <div>
-                    {editarImagen === false ? <> <button onClick={(e)=>handleEditarImagen(e)} class="btn btn-primary">Editar</button></> 
-                    : <div><input onChange={(e)=> {handleModificar(e)}} name='image' class="form-control"></input>
-                      <button onClick={(e)=>handleEditarImagen(e)} class="btn btn-primary">x</button>
+                    {editarImagen === false ? <> <button onClick={(e)=>handleEditarImagen(e)} className="btn btn-primary">Editar</button></> 
+                    : <div><input onChange={(e)=> {handleModificar(e)}} name='image' className="form-control"></input>
+                      <button onClick={(e)=>handleEditarImagen(e)} className="btn btn-primary">x</button>
                     </div>}
                   </div>
               
                   <div className={style.nombre}>Nombre de Resto: {restoInfo[0]?.name}</div>
                   {editarNombreResto===false?<>
-                  <button onClick={(e)=>handleEditarNombreResto(e)} class="btn btn-primary">Editar</button></> : <>
-                  <input onChange={(e)=> {handleModificar(e)}} name='name' class="form-control"></input>
-                  <button onClick={(e)=>handleEditarNombreResto(e)} class="btn btn-primary">x</button></>} 
+                  <button onClick={(e)=>handleEditarNombreResto(e)} className="btn btn-primary">Editar</button></> : <>
+                  <input onChange={(e)=> {handleModificar(e)}} name='name' className="form-control"></input>
+                  <button onClick={(e)=>handleEditarNombreResto(e)} className="btn btn-primary">x</button></>} 
               
                   <div className={style.nombreUsuario}>Nombre de Usuario: {restoInfo[0]?.usuario}</div>
                   {editarNombreUsuario===false?<>
-                  <button onClick={(e)=>handleEditarNombreUsuario(e)} class="btn btn-primary">Editar</button></> : <>
-                  <input onChange={(e)=> {handleModificar(e)}} name='usuario' class="form-control"></input>
-                  <button onClick={(e)=>handleEditarNombreUsuario(e)}  class="btn btn-primary">x</button></>}
+                  <button onClick={(e)=>handleEditarNombreUsuario(e)} className="btn btn-primary">Editar</button></> : <>
+                  <input onChange={(e)=> {handleModificar(e)}} name='usuario' className="form-control"></input>
+                  <button onClick={(e)=>handleEditarNombreUsuario(e)}  className="btn btn-primary">x</button></>}
               
                   <div className={style.mail}>Email: {restoInfo[0]?.mail} </div>
                   {editarEmail===false?<>
-                  <button onClick={(e)=>handleEditarEmail(e)} class="btn btn-primary">Editar</button></> : <>
-                  <input onChange={(e)=> {handleModificar(e)}}  name='mail' class="form-control"></input>
-                  <button onClick={(e)=>handleEditarEmail(e)} class="btn btn-primary">x</button></>}
+                  <button onClick={(e)=>handleEditarEmail(e)} className="btn btn-primary">Editar</button></> : <>
+                  <input onChange={(e)=> {handleModificar(e)}}  name='mail' className="form-control"></input>
+                  <button onClick={(e)=>handleEditarEmail(e)} className="btn btn-primary">x</button></>}
               
                   <div className={style.contraseña}>Mesas: {restoInfo[0]?.mesa} </div>
                   {editarNumeroMesas===false?<>
-                  <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-primary">Editar</button></> : <>
-                  <input onChange={(e)=> {handleModificar(e)}} name='mesa' class="form-control"></input>
-                  <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-primary">x</button></>}
+                  <button onClick={(e)=>handleEditarNumeroMesas(e)} className="btn btn-primary">Editar</button></> : <>
+                  <input onChange={(e)=> {handleModificar(e)}} name='mesa' className="form-control"></input>
+                  <button onClick={(e)=>handleEditarNumeroMesas(e)} className="btn btn-primary">x</button></>}
                     <div>
-                    <button onClick={(e)=>handleSubmit(e)} class={global.botonnavbar}>Enviar cambios</button>
+                    <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
                     </div>
                 </div>
 

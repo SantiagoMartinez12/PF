@@ -1,21 +1,21 @@
+// import s from "../home/home.module.css"
 import React, { useEffect, useState } from "react";
 
 import logo from "../../../assets/Logo.png";
-import s from "../home/home.module.css"
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetalle, getIdClienteToState, getMesa } from "../../../store/actions";
+import { useDispatch } from "react-redux";
+import { getIdClienteToState, getMesa } from "../../../store/actions";
 import { Link } from "react-router-dom";
 import axios from "axios"
 import Detalle from "./detalle";
-import {Navbar, Container, Nav, Button, NavDropdown, Row, Col, Table, ListGroup} from 'react-bootstrap';
+import {Navbar, Container, Nav, Row, Col, ListGroup} from 'react-bootstrap';
 import logowhite from "../../../assets/Logo_white.png";
 import serverFinder from "../../../store/deploy/serverFinder";
 
 import AutorizaMesa from "../home/autorizaMesa"
 var global = require('../../Resto/global.module.css')
 export default function HomeResto(){
-    const mesas = useSelector(state => state.mesas)
+    // const mesas = useSelector(state => state.mesas)
     const {restoId} = useParams()
 
     const [clientes, setClientes] = useState()
@@ -51,13 +51,13 @@ export default function HomeResto(){
         setState(true)
     }
     
-  /*   <div class="grid-container">
-  <div class="logo"></div>
-  <div class="rueda"></div>
-  <div class="logOut"></div>
-  <div class="AutorizaMesa"></div>
-  <div class="Mesas"></div>
-  <div class="Detalle"></div>
+  /*   <div className="grid-container">
+  <div className="logo"></div>
+  <div className="rueda"></div>
+  <div className="logOut"></div>
+  <div className="AutorizaMesa"></div>
+  <div className="Mesas"></div>
+  <div className="Detalle"></div>
 </div> */
     
     
@@ -73,7 +73,7 @@ export default function HomeResto(){
               <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
               <Nav>
-                  <button class={global.botonnavbar}>Logout</button>
+                  <button className={global.botonnavbar}>Logout</button>
               </Nav>
               <Nav>
               <Link to={`/home/resto/setting/${restoId}`}>
@@ -98,10 +98,10 @@ export default function HomeResto(){
                             <div>
                                <ListGroup>
                                 <ListGroup.Item>
-                                <h5 class={global.textpedido}>{el.mesa.name}</h5>
+                                <h5 className={global.textpedido}>{el.mesa.name}</h5>
                                 <p>{el.nombre}</p>
-                                <div class="d-grid gap-2 d-md-flex justify-content-sm-end">
-                                <button class="btn btn-primary btn-sm" value={el.id} onClick={(e) => handleClick(e,el.id)}>Ver Detalle</button>
+                                <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
+                                <button className="btn btn-primary btn-sm" value={el.id} onClick={(e) => handleClick(e,el.id)}>Ver Detalle</button>
                                 </div>
                                 </ListGroup.Item>
                                 </ListGroup>
@@ -122,23 +122,23 @@ export default function HomeResto(){
     </Col>
   </Row>
 </Container>
-           {/* <div class="row">
-             <div class="col-sm">
+           {/* <div className="row">
+             <div className="col-sm">
                 <AutorizaMesa restoId={restoId}/>
-                <div class="d-grid gap-2 d-md-flex justify-content-sm-center">
+                <div className="d-grid gap-2 d-md-flex justify-content-sm-center">
                 {
                  clientes?.map(el =>{
                     return(
-                            <div class={global.whitecardmesasresto}>
-                                <h5 class={global.textpedido}>{el.mesa.name}</h5>
+                            <div className={global.whitecardmesasresto}>
+                                <h5 className={global.textpedido}>{el.mesa.name}</h5>
                                 <p>{el.nombre}</p>
-                                <button class="btn btn-primary btn-sm" value={el.id} onClick={(e) => handleClick(e,el.id)}>Ver Detalle</button>
+                                <button className="btn btn-primary btn-sm" value={el.id} onClick={(e) => handleClick(e,el.id)}>Ver Detalle</button>
                             </div>
                     )
                 })
                 }
             </div>
-           <div class="col-sm">
+           <div className="col-sm">
                 <div>
                  {
                state === true ?
@@ -151,8 +151,8 @@ export default function HomeResto(){
         </div>
         </div> */}
         <br/>
-                <footer class={global.footer}>
-                <img src={logowhite} height="55px"/>
+                <footer className={global.footer}>
+                <img src={logowhite} height="55px" alt="logo"/>
                 </footer>
         </div>
 

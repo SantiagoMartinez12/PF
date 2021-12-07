@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getMesa } from "../../../store/actions";
 import { useState } from "react";
-import { Modal, Button  } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import './ViewQr.css';
 
 const ViewQr = () => {
@@ -28,32 +28,32 @@ const ViewQr = () => {
                     return <div className="col-lg-4">
                         <div className="card bg-light mb-3" style={{ maxWidth: '16rem' }}>
                             <ul className="list-group list-group-flush">
-                                <div class="card-header text-capitalize">{info.name}</div>
-                                <div class="card-body">
+                                <div className="card-header text-capitalize">{info.name}</div>
+                                <div className="card-body">
                                     <li className="list-group-item">
                                         <Modal
-                                        size="sm"
-                                        show={show}
-                                        onHide={handleClose}
-                                        backdrop="static"
-                                        keyboard={false}
+                                            size="sm"
+                                            show={show}
+                                            onHide={handleClose}
+                                            backdrop="static"
+                                            keyboard={false}
                                         >
-                                        <Modal.Header closeButton>
-                                       <Modal.Title>Código QR</Modal.Title>
-                                     </Modal.Header>
-                                    <Modal.Body>
-                                        <center>
-                                    <img src={info.qr}/>
-                                        </center>
-                                    </Modal.Body>
-                                    <Modal.Footer>
-                                 <Button variant="secondary" onClick={handleClose}>
-                                    Close
-                                         </Button>
-                                     </Modal.Footer>
-                                    </Modal>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Código QR</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>
+                                                <center>
+                                                    <img src={info.qr} alt="qr"/>
+                                                </center>
+                                            </Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="secondary" onClick={handleClose}>
+                                                    Close
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                         <Button variant="primary" size="sm" onClick={handleShow}>
-                                         Código QR
+                                            Código QR
                                         </Button>
                                     </li>
                                 </div>

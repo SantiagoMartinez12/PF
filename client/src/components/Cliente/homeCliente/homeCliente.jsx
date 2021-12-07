@@ -20,7 +20,7 @@ import axios from 'axios'
 import serverFinder from '../../../store/deploy/serverFinder.js'
 
 import logowhite from "../../../assets/Logo_white.png";
-import {Navbar, Container, Nav, Button, NavDropdown} from 'react-bootstrap';
+import {Navbar, Container, Nav} from 'react-bootstrap';
 var global = require('../../Resto/global.module.css')
 
 
@@ -75,9 +75,9 @@ export default function HomeClient(){
         <Navbar expand="lg">
         <Container>
         <Navbar.Brand>
-            <div class="col">
+            <div className="col">
                 <center>
-                <img src={logo} alt="Logo" width="50%"  class="navbar-brand" />
+                <img src={logo} alt="Logo" width="50%"  className="navbar-brand" />
                 </center>
             </div>
         </Navbar.Brand>
@@ -86,16 +86,16 @@ export default function HomeClient(){
         <Nav className="me-auto">
 
             <div>
-                    <button onClick={e => {handleClickPedidoMenu(e)}} class={global.botonnavbar}>Ver Menu</button>
-                    <button onClick={e => {handleClickPedido(e)}} class={global.botonnavbar}>Ver Pedido</button>
-                    <button onClick={e => {handleClickPedidoCuenta(e)}} class={global.botonnavbar}>Ver Cuenta</button>
+                    <button onClick={e => {handleClickPedidoMenu(e)}} className={global.botonnavbar}>Ver Menu</button>
+                    <button onClick={e => {handleClickPedido(e)}} className={global.botonnavbar}>Ver Pedido</button>
+                    <button onClick={e => {handleClickPedidoCuenta(e)}} className={global.botonnavbar}>Ver Cuenta</button>
             </div>
          </Nav>
         </Navbar.Collapse>
         </Container>
         </Navbar>
             <div className="container-fluid">
-            <div class="col">
+            <div className="col">
                 <h5>Bienvenid@ {name}</h5>
             </div>
             </div>
@@ -112,8 +112,8 @@ export default function HomeClient(){
                 : null
             }    
         </div>
-        <footer class={global.footer}>
-        <img src={logowhite} height="55px"/>
+        <footer className={global.footer}>
+        <img src={logowhite} height="55px" alt="logo"/>
         </footer>
         </div>
   

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import logo from "../../../assets/Logo.png";
 import { deleteProduct, getCategorias, getUpdateProduct } from "../../../store/actions";
 import './ProductDetail.css'
 var global = require('../../Resto/global.module.css')
@@ -102,8 +101,8 @@ const ProductDetail = ({ info }) => {
 
     return (
         <>
-            <div class="row">
-                <div class="col">
+            <div className="row">
+                <div className="col">
                 <div className="nav">
                     <h3>Actualizar Producto</h3>
                 </div>
@@ -111,7 +110,7 @@ const ProductDetail = ({ info }) => {
                     <h3>{data.name}</h3>
                 </div>
                 </div>
-                <div class="col">
+                <div className="col">
                 <div className="eliminar">
                     <button type='button' onClick={() => handleEliminar()} className={global.botonnavbar}>Eliminar</button>
                 </div>
@@ -132,7 +131,7 @@ const ProductDetail = ({ info }) => {
                     <form className="formProduct" onChange={(e) => handleForm(e)}>
                         <div className="producto">
                             <label htmlFor="name">Nombre del producto</label>
-                            <input type="text" name="name" id="name" class="form-control"/>
+                            <input type="text" name="name" id="name" className="form-control"/>
                         </div>
 
                         <div className="categoria">
@@ -147,7 +146,7 @@ const ProductDetail = ({ info }) => {
 
                         <div className="precio">
                             <label htmlFor="precio">Precio</label>
-                            <input type="text" name="precio" id="precio" class="form-control"/>
+                            <input type="text" name="precio" id="precio" className="form-control"/>
                         </div>
 
                         {/* <div className="peso">
@@ -162,14 +161,14 @@ const ProductDetail = ({ info }) => {
 
                         <div className="descripcion">
                             <label htmlFor="detalle">Descripción</label>
-                            <textarea id="detalle" name="detalle" rows="4" cols="50" class="form-control"/>
+                            <textarea id="detalle" name="detalle" rows="4" cols="50" className="form-control"/>
                         </div>
 
                         <div className="inputImagen">
                             <label htmlFor="imagen" className="form-label">Imagen</label>
                             <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"/>
                             <br />
-                            <img src={control} height="200" alt="Image preview..." />
+                            <img src={control} height="200" alt="Preview..." />
                         </div>
 
                         <div className="actualizarBoton">
