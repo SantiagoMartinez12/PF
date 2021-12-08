@@ -58,9 +58,10 @@ router.post('/', async (req, res, next) =>{
 });
 
 router.put('/', async (req, res, next) =>{
-    const { estado, id} = req.body
+    const { estado, id, nuevoPedido } = req.body
     try{
         await Cliente.update({
+            nuevoPedido,
             estado
         },{
             where:{

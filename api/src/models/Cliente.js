@@ -25,6 +25,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue:'solicitado'
     },
+    
+    nuevoPedido: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
+    },
   },
   {
     freezeTableName: true,
