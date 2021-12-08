@@ -4,6 +4,7 @@ import { getDetalle, getMesa } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from 'react-bootstrap';
 import serverFinder from "../../../store/deploy/serverFinder";
+
 // import s from "../home/detalle.module.css"
 var global = require('../../Resto/global.module.css')
 
