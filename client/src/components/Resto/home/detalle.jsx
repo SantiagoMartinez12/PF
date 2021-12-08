@@ -27,10 +27,14 @@ export default function Detalle({ idResto, funcion }) {
         dispatch(getMesa(idResto)) // id de resto
     }, [])
     useEffect(() => {
-
+        
         dispatch(getDetalle(idCliente))
         // id de resto
     }, [idCliente])
+    let seguimiento = []
+    useEffect(() => {
+        seguimiento1()
+    },[seguimiento])
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)
@@ -42,9 +46,29 @@ export default function Detalle({ idResto, funcion }) {
     let cantidad = detalle?.map(e => e.cantidad)
     let precio = detalle?.map(e => e.precio)
 
-    let seguimiento = {}
-    seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })
+    seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })   
 
+
+
+    function seguimiento1(){
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+        .then(res => {
+            let seguimientofilter = res.data.filter(e => e.seguimiento === 'solicitado')
+            console.log(seguimientofilter)
+            if(seguimientofilter.length === 0){
+                axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
+        }})
+   
+/*      let pedido = false
+    let filtradoSeguimiento = seguimientofilter.filter(e => e === 'solicitado')
+    console.log(filtradoSeguimiento.length)
+        pedido = true
+        
+    } 
+    if(pedido){
+        axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
+    }  */
+}
     const desocuparMesa = (idMesa) => {
         axios.put(serverFinder('mesa'), { id: idMesa, estado: false })
         axios.put(serverFinder('cliente'), { id: idCliente, estado: 'finalizado' })
