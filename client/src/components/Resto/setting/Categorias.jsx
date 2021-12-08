@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Categorias.module.css"
-import Card from "./Card";
 import {useDispatch, useSelector} from 'react-redux';
-import { agregarCategorias, getCategorias } from "../../../store/actions";
+import { agregarCategorias, getCategorias, getProductos } from "../../../store/actions";
 import { useParams } from "react-router";
 
 
@@ -15,7 +14,14 @@ export default function Categorias(){
     const [nuevaCategoria, setNuevaCategoria] = useState({       
         restoId: restoId
     });
-      
+     
+    
+
+    useEffect(() => {
+        dispatch(getProductos(restoId));
+
+    }, [])
+
 
     useEffect(() => {
          dispatch(getCategorias(restoId));            
@@ -36,25 +42,17 @@ export default function Categorias(){
         e.preventDefault();
         dispatch(agregarCategorias(nuevaCategoria))
         setClickAgregar(false)
-        dispatch(getCategorias(restoId))
         setNuevaCategoria({       
             restoId: restoId
         })
-        if (window.confirm("Se ha agregado una nueva categoria")) {
-            window.location.reload()
-        } else {
-            window.location.reload()
-        };
-        
-              
+        dispatch(getCategorias(restoId))
+          
     }
-    function handleChange(e){
-        // console.log(e.target.value)
+    function handleChange(e){        
         setNuevaCategoria({...nuevaCategoria, name: e.target.value})
-    }
+    }    
+    
 
-    // console.log(categorias)
-   
     return(
         
         <div className="container">
@@ -64,11 +62,21 @@ export default function Categorias(){
             </div>
 
             <div className={styles.cardsDiv} >
-                {
+            <ul class="list-group">
+            {
                    categorias && categorias?.map(el => (
-                        <Card key={el.id} id={el.id} name={el.name} />
+                    <li key={el.id} class="list-group-item">{el.name} <button type="button" class="btn btn-light btn-sm">✗</button></li>
                     ) )
                 }
+                
+                
+            </ul>
+
+
+
+
+
+                
             </div>
 
             <div className={styles.tituloCambio}>            
