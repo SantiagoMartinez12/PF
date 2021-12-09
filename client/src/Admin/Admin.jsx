@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allResto, infoUsuario } from "../store/actions";
+import CardsAdmin from "./CardsAdmin";
 
 
 export default function SuperAdmin() {
@@ -14,8 +15,25 @@ export default function SuperAdmin() {
     useEffect(()=>{
         dispatch(allResto())
       },[dispatch])
+
+
+      console.log(restos)
     
       return (
-        <div>Tramita el culiau en tu dependecia culiau mas cercana </div>
+        <div>
+          <h2>Admin</h2>
+          <br />
+          <hr />
+          <h3>Usuarios</h3>
+          <ul>
+            {
+              restos && restos?.map(el =>{
+                return (
+                  <li><CardsAdmin key={el.id} name={el.name} mail={el.mail}/></li>                  
+                )
+              })
+            }
+          </ul>
+        </div>
     )
 }
