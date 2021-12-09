@@ -6,6 +6,7 @@ const productoRoutes = require("../routes/producto");
 const detalleRoutes = require("../routes/detalle");
 const modificarMesaRoutes = require("../routes/modificarMesa") 
 const clienteRoutes = require('../routes/cliente')
+const estadisticas = require('../routes/estadisticas')
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -21,5 +22,6 @@ router.use("/detalle", detalleRoutes);
 router.use("/categorias", categoriasRoutes);
 router.use("/producto", productoRoutes);
 router.use("/cliente", clienteRoutes);
+router.use("/estadisticas", estadisticas);
 
 module.exports = router;
