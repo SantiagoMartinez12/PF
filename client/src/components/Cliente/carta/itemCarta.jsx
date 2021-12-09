@@ -7,7 +7,7 @@ var global = require('../../Resto/global.module.css')
 export default function ItemCarta({ data, mesaOcupada }) {
     const dispatch = useDispatch();
     const ocupada = mesaOcupada;
-    const { id, name, precio, detalle, imagen } = data;
+    const { id, name, precio, detalle, imagen, disponible } = data;
 
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -30,11 +30,16 @@ export default function ItemCarta({ data, mesaOcupada }) {
                     </center>
                     <p className={global.textdetalle}>{detalle}</p>
                 </div>
-                {!ocupada?
+                {disponible?
+                    !ocupada?
+                        <center>
+                            <button onClick={handleOnClick} className="btn btn-primary" >Agregar</button>
+                        </center>
+                        : null
+                    :
                     <center>
-                        <button onClick={handleOnClick} className="btn btn-primary" >Agregar</button>
+                            <button disabled className="btn btn-primary" >No disponible</button>
                     </center>
-                    : null
                 }
             </div>
         </div>
