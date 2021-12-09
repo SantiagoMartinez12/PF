@@ -14,29 +14,43 @@ export default function Detalle({ idResto, funcion }) {
     const dispatch = useDispatch();
     // const {idCliente , idResto} = useParams()
     const idCliente = useSelector(state => state.idCliente)
+
     const detalle = useSelector(state => state.detalle)
     const [msj, setMsj] = useState(false)
+    const [clientes, setClientes] = useState()
+
     /*      console.log(detalle)
       mesaFind = mesa.find(e => e.id === idMesa)
       console.log(mesaFind) */
     let idMesa = detalle.map(e => e.mesaId)
 
+    function updateMesa(){
+        axios.get(serverFinder(`cliente/cliente/${idCliente}`))
+            .then(res =>{
+                setClientes(res.data.comentario)
+            })
+
+    }
+
     useEffect(() => {
-
-
         dispatch(getMesa(idResto)) // id de resto
     }, [])
+
     useEffect(() => {
-        
         dispatch(getDetalle(idCliente))
+        updateMesa()
         // id de resto
     }, [idCliente])
+
     let seguimiento = []
+
     useEffect(() => {
         seguimiento1()
     },[seguimiento])
 
-    // console.log(detalle)
+    
+
+
     let nameCliente = detalle?.map(e => e.namecliente)
     // console.log(nameCliente[0])
 
@@ -47,14 +61,15 @@ export default function Detalle({ idResto, funcion }) {
     let precio = detalle?.map(e => e.precio)
 
     seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })   
-
-
+    let comentario = detalle?.map(e=> e.comentario)
+   
+    console.log(comentario)
 
     function seguimiento1(){
         axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
         .then(res => {
             let seguimientofilter = res.data.filter(e => e.seguimiento === 'solicitado')
-            console.log(seguimientofilter)
+            
             if(seguimientofilter.length === 0){
                 axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
         }})
@@ -121,7 +136,7 @@ export default function Detalle({ idResto, funcion }) {
             </div>
             <div>
                 <h4 className="text-center">Cliente</h4>
-                <p className="text-center">{nameCliente[0]}</p>
+                <p className="text-center text-capitalize">{nameCliente[0]}</p>
             </div>
 
             {/* <div claclassNamess="row">
@@ -225,6 +240,16 @@ export default function Detalle({ idResto, funcion }) {
                     </tr>
                 </tbody>
             </Table>
+            <center>
+                <div>
+                    <h5>Comentario</h5>
+                   <p>{clientes}</p>
+                   
+
+                    
+
+                </div>
+            </center>
             <center>
                 <div className={global.whitecardmesasresto}>
                     <center>
