@@ -143,6 +143,9 @@ body{
 .textnotification{
     color: white;
 }
+.nombreCliente{
+    text-transform: capitalize;
+}
 
 .botonnavbar{
     background-color: coral;
