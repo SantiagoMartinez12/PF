@@ -229,4 +229,3 @@ const ProductDetail = ({ info }) => {
 }
 
 export default ProductDetail;
-
