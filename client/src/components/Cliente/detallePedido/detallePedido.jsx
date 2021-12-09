@@ -52,7 +52,9 @@ export default function DetallePedido(){
             post.push(el)})
         
          axios.post(serverFinder('detalle'), post)
+
          axios.put(serverFinder('cliente'), {nuevoPedido: true, id: infoCliente.idCliente, comentario: input})
+
          dispatch(resetTicket())
 
         

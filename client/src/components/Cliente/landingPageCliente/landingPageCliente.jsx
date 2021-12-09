@@ -49,12 +49,21 @@ export default function LandingPageClient() {
           navigate('/errorQr');
         }else{
          
-    //si idResto y idMesa son correctos postea a la ruta cliente y lo redirige al home Cliente
-          
-          axios.post(serverFinder('cliente'), {nombre:name, mesaId:idMesa,restoId:idResto})
-            .then(resPost=> {
-              navigate(`/${idResto}/${idMesa}/home/${name}/${resPost.data.id}`);
-              
+    //si idResto y idMesa son correctos 
+      // me fijo si la mesa está disponible  
+          axios.get(serverFinder(`mesa/${idMesa}`))
+            .then(respuesta=>{
+      // si está ocupada lo redirijo a una ruta mesaocupada        
+              if(respuesta.data[0].estado === true){
+                navigate(`/mesaocupada/${idResto}/${idMesa}/${name}`);  
+              }else{
+      //si está disponible postea a la ruta cliente y lo redirige al home Cliente          
+                axios.post(serverFinder('cliente'), {nombre:name, mesaId:idMesa,restoId:idResto})
+                  .then(resPost=> {
+                    navigate(`/${idResto}/${idMesa}/home/${name}/${resPost.data.id}`);
+                    
+                  })
+              }
             })
         }  
     })
