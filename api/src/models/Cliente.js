@@ -30,6 +30,9 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue:false
     },
+    comentario:{
+      type: DataTypes.STRING,
+    }
   },
   {
     freezeTableName: true,

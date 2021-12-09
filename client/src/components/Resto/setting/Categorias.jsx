@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Categorias.module.css"
-import Card from "./Card";
 import {useDispatch, useSelector} from 'react-redux';
-import { agregarCategorias, getCategorias } from "../../../store/actions";
+import { agregarCategorias, borrarCategorias, getCategorias, getProductos } from "../../../store/actions";
 import { useParams } from "react-router";
 
 
@@ -15,14 +14,10 @@ export default function Categorias(){
     const [nuevaCategoria, setNuevaCategoria] = useState({       
         restoId: restoId
     });
-      
 
     useEffect(() => {
          dispatch(getCategorias(restoId));            
     }, [])
-
-    
-    
 
     function handleClick(e){
         if(clickAgregar===false){
@@ -34,27 +29,33 @@ export default function Categorias(){
     }
     function handleSubmit(e){
         e.preventDefault();
-        dispatch(agregarCategorias(nuevaCategoria))
-        setClickAgregar(false)
-        dispatch(getCategorias(restoId))
-        setNuevaCategoria({       
-            restoId: restoId
-        })
-        if (window.confirm("Se ha agregado una nueva categoria")) {
-            window.location.reload()
+        let existe = categorias.find(el => el.name.toLowerCase() === nuevaCategoria.name.toLowerCase())
+        if(!existe){
+            dispatch(agregarCategorias(nuevaCategoria))
+            setClickAgregar(false)
+            setNuevaCategoria({       
+                restoId: restoId
+            })
+            alert("Categoría agregada")
+            dispatch(getCategorias(restoId)) 
         } else {
-            window.location.reload()
-        };
-        
-              
+            alert("Esa categoría ya existe")
+        }
+          
     }
-    function handleChange(e){
-        // console.log(e.target.value)
-        setNuevaCategoria({...nuevaCategoria, name: e.target.value})
-    }
+    function handleChange(e){       
+            setNuevaCategoria({...nuevaCategoria, name: e.target.value})
+    }  
 
-    // console.log(categorias)
-   
+    function handleEliminar(e){
+        dispatch(borrarCategorias(e.target.value))
+        dispatch(getCategorias(restoId))
+        alert('La categoría ha sido borrada')
+    }
+        
+
+
+
     return(
         
         <div className="container">
@@ -64,11 +65,16 @@ export default function Categorias(){
             </div>
 
             <div className={styles.cardsDiv} >
-                {
+            <ul class="list-group">
+            {
                    categorias && categorias?.map(el => (
-                        <Card key={el.id} id={el.id} name={el.name} />
+                    <li key={el.id} id={el.id} class="list-group-item text-capitalize">{el.name} <button type="button" class="btn btn-light btn-sm" value={el.id} onClick={(e) => handleEliminar(e)}>✗</button></li>
                     ) )
                 }
+                
+                
+            </ul>
+                
             </div>
 
             <div className={styles.tituloCambio}>            

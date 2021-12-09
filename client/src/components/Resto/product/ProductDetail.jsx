@@ -98,7 +98,6 @@ const ProductDetail = ({ info }) => {
         }
     }
 
-
     return (
         <>
             <div className="row">
@@ -123,21 +122,26 @@ const ProductDetail = ({ info }) => {
                 </div>
                 </div>
                 <div className="imagen">
-                    <img src={data.imagen} alt="imagen" className="img-thumbnail rounded float-left"/>
+                    <img src={data.imagen} alt="imagen" className="img-thumbnail rounded float-left" style={
+                                {  display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    maxWidth: "300px",
+                                    maxHeight: "200px" }
+                            }/>
                 </div>
-
 
                 {useForm ?
                     <form className="formProduct" onChange={(e) => handleForm(e)}>
                         <div className="producto">
                             <label htmlFor="name">Nombre del producto</label>
-                            <input type="text" name="name" id="name" className="form-control"/>
+                            <input placeholder={data.name}type="text" name="name" id="name" className="form-control"/>
                         </div>
 
                         <div className="categoria">
                             <label htmlFor="categoria" >Categoria</label>
                             <select name="categoria" id='categoria' className="form-select">
-                                <option disabled selected>Selección...</option>
+                                <option disabled selected>{data.categoria}</option>
                                 {categorias.map((cat) =>
                                     <option value={cat.id}> {cat.name} </option>
                                 )}
@@ -146,7 +150,7 @@ const ProductDetail = ({ info }) => {
 
                         <div className="precio">
                             <label htmlFor="precio">Precio</label>
-                            <input type="text" name="precio" id="precio" className="form-control"/>
+                            <input placeholder={data.precio} type="text" name="precio" id="precio" className="form-control"/>
                         </div>
 
                         {/* <div className="peso">
@@ -161,14 +165,21 @@ const ProductDetail = ({ info }) => {
 
                         <div className="descripcion">
                             <label htmlFor="detalle">Descripción</label>
-                            <textarea id="detalle" name="detalle" rows="4" cols="50" className="form-control"/>
+                            <textarea  placeholder={data.detalle} id="detalle" name="detalle" rows="4" cols="50" className="form-control"/>
                         </div>
 
                         <div className="inputImagen">
                             <label htmlFor="imagen" className="form-label">Imagen</label>
                             <input onChange={(e) => handleImg(e)} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"/>
                             <br />
-                            <img src={control} height="200" alt="Preview..." />
+                            <img src={control} style={
+                                {  display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    maxWidth: "300px",
+                                    maxHeight: "200px" }
+                            }
+                              alt="Preview..." />
                         </div>
 
                         <div className="actualizarBoton">
@@ -218,3 +229,4 @@ const ProductDetail = ({ info }) => {
 }
 
 export default ProductDetail;
+

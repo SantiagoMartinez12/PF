@@ -21,7 +21,7 @@ export default function ItemCarta({ data, mesaOcupada }) {
             <div className="row">
                 <div className="col-sm">
                     <center>
-                        <img src={imagen ? imagen : cuadrito} className={global.imgperfil} alt="plato"/>
+                        <img src={imagen ? imagen : cuadrito} className={global.imgperfil} alt="plato" width="140rem" height="120rem"/>
                     </center>
                 </div>
                 <div className="col-sm">
