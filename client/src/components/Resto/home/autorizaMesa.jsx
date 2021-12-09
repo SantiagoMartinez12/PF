@@ -43,9 +43,12 @@ export default function AutorizaMesa({restoId}){
    
     
     return (
+        <div class="card bg-success p-2 text-dark bg-opacity-10 mb-4">
+        <div class="card-body">
+        
         <div className="container">
             <div className="row">
-                <h2>Autorizar Mesa</h2>
+                <h5>Autorizar Mesa</h5>
                 { mesas.length?
                 mesas?.map(m=>{
                     return( 
@@ -69,5 +72,7 @@ export default function AutorizaMesa({restoId}){
             }
             </div>
         </div>
+        </div>
+</div>
     )
 }

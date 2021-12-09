@@ -1,10 +1,10 @@
 // import s from "../home/home.module.css"
 import React, { useEffect, useState } from "react";
-
+import "./prueba.css"
 import logo from "../../../assets/Logo.png";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
-import { getIdClienteToState, getMesa } from "../../../store/actions";
+import { getDetalle, getIdClienteToState, getMesa } from "../../../store/actions";
 import { Link } from "react-router-dom";
 import axios from "axios"
 import Detalle from "./detalle";
@@ -47,8 +47,9 @@ export default function HomeResto(){
     function handleClick(e,idCliente){
         e.preventDefault() 
         dispatch(getIdClienteToState(e.target.value))    
-
+        getDetalle(e.target.value)
         setState(true)
+        
     }
     
   /*   <div className="grid-container">
@@ -59,7 +60,7 @@ export default function HomeResto(){
   <div className="Mesas"></div>
   <div className="Detalle"></div>
 </div> */
-    
+    let className
     
     // console.log(mesas)
     return(
@@ -94,14 +95,20 @@ export default function HomeResto(){
               
                 {
                  clientes?.map(el =>{
+                    {
+                        el.nuevoPedido === true ? className = 'danger' : className = 'light'
+                        console.log(el.nuevoPedido)
+                    }
                     return(
                             <div>
                                <ListGroup>
-                                <ListGroup.Item>
+                                <ListGroup.Item variant={className}>
+                                    
                                 <h5 className={global.textpedido}>{el.mesa.name}</h5>
                                 <p>{el.nombre}</p>
-                                <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
+                                <div className="d-grid gap-2 d-md-flex justify-content-sm-end"  className={className}>
                                 <button className="btn btn-primary btn-sm" value={el.id} onClick={(e) => handleClick(e,el.id)}>Ver Detalle</button>
+                                
                                 </div>
                                 </ListGroup.Item>
                                 </ListGroup>
@@ -116,7 +123,9 @@ export default function HomeResto(){
                state === true ?
                 <Detalle  idResto={restoId} funcion={setearEstadoFalse}/>
                 : 
-                <h1>Seleccionar mesa</h1>
+                
+                <></>
+               
                  }
                 </div>
     </Col>

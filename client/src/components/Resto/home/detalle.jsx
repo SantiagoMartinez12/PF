@@ -4,6 +4,7 @@ import { getDetalle, getMesa } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from 'react-bootstrap';
 import serverFinder from "../../../store/deploy/serverFinder";
+
 // import s from "../home/detalle.module.css"
 var global = require('../../Resto/global.module.css')
 
@@ -26,10 +27,14 @@ export default function Detalle({ idResto, funcion }) {
         dispatch(getMesa(idResto)) // id de resto
     }, [])
     useEffect(() => {
-
+        
         dispatch(getDetalle(idCliente))
         // id de resto
     }, [idCliente])
+    let seguimiento = []
+    useEffect(() => {
+        seguimiento1()
+    },[seguimiento])
 
     // console.log(detalle)
     let nameCliente = detalle?.map(e => e.namecliente)
@@ -41,9 +46,29 @@ export default function Detalle({ idResto, funcion }) {
     let cantidad = detalle?.map(e => e.cantidad)
     let precio = detalle?.map(e => e.precio)
 
-    let seguimiento = {}
-    seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })
+    seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })   
 
+
+
+    function seguimiento1(){
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+        .then(res => {
+            let seguimientofilter = res.data.filter(e => e.seguimiento === 'solicitado')
+            console.log(seguimientofilter)
+            if(seguimientofilter.length === 0){
+                axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
+        }})
+   
+/*      let pedido = false
+    let filtradoSeguimiento = seguimientofilter.filter(e => e === 'solicitado')
+    console.log(filtradoSeguimiento.length)
+        pedido = true
+        
+    } 
+    if(pedido){
+        axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
+    }  */
+}
     const desocuparMesa = (idMesa) => {
         axios.put(serverFinder('mesa'), { id: idMesa, estado: false })
         axios.put(serverFinder('cliente'), { id: idCliente, estado: 'finalizado' })
@@ -53,11 +78,12 @@ export default function Detalle({ idResto, funcion }) {
         e.preventDefault();
         let vali = false
         let validacion = seguimiento.map(e => e.seguimiento)
-        for (let i = 0; i < validacion.length; i++) {
-            if (validacion[i] === 'entregado') {
-                vali = true
-            }
+        let test = validacion.find(e => e === 'confirmado' || e === 'solicitado')
+        if(!test){
+            vali = true
         }
+      
+     
         if (vali || nameProducto.length === 0) {
             desocuparMesa(idMesa[0])
             funcion()
@@ -84,11 +110,14 @@ export default function Detalle({ idResto, funcion }) {
         axios.put(serverFinder("detalle/seguimiento"), seguimientoPut)
         dispatch(getDetalle(idCliente))
     }
+    function cerrarDetalle(){
+        funcion()
+    }
 
     return (
         <div className="container">
             <div>
-                {/*   <h2>{mesaFind.name}</h2> */}
+            <button type="button" class="btn-close" aria-label="Close" onClick={cerrarDetalle}></button>
             </div>
             <div>
                 <h4 className="text-center">Cliente</h4>
@@ -201,11 +230,13 @@ export default function Detalle({ idResto, funcion }) {
                     <center>
                         <p className={global.textnotification}> ¿Desea cerrar la mesa? </p>
                         <button type="button" className="btn btn-primary btn-sm" onClick={handleOnClick}>Si, cierrala</button>
-                        {
-                            msj === true ? <p>Hay productos que no se han pagado</p> : null
-                        }
                     </center>
                 </div>
+                        {
+                            msj === true ? <div class="alert alert-danger" role="alert">
+                           ! Tienes productos sin pagar
+                          </div> : null
+                        }
             </center>
         </div>
 
