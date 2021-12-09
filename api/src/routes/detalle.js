@@ -116,4 +116,29 @@ router.get('/idcliente/:idCliente', async (req, res, next) =>{
     }
 });
 
+router.delete("/", async (req, res, next) => {
+    try {
+      const { id, name, precio, plato, estado, seguimiento, comentario } =
+        req.body;
+      const deleteDetail = await Detalle.destroy(
+        {
+          name: name,
+          precio: precio,
+          plato: plato,
+          estado: estado,
+          seguimiento: seguimiento,
+          comentario: comentario,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      res.send(deleteDetail);
+    } catch (error) {
+      next(error);
+    }
+  });
+
 module.exports = router;
