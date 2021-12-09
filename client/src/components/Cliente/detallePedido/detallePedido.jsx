@@ -35,11 +35,15 @@ export default function DetallePedido(){
         dispatch(restarTicket(id))
         dispatch(restaCuenta(precio))
     }
+   
+  
     function handleInputChange(e) {
         e.preventDefault();
         setInput(e.target.value);
+       
 
     }
+    
     
      function handleSubmit (e){
         e.preventDefault();
@@ -48,7 +52,7 @@ export default function DetallePedido(){
             post.push(el)})
         
          axios.post(serverFinder('detalle'), post)
-         axios.put(serverFinder('cliente'), {nuevoPedido: true, id: infoCliente.idCliente})
+         axios.put(serverFinder('cliente'), {nuevoPedido: true, id: infoCliente.idCliente, comentario: input})
          dispatch(resetTicket())
 
         

@@ -105,7 +105,7 @@ export default function HomeResto(){
                                 <ListGroup.Item variant={className}>
                                     
                                 <h5 className={global.textpedido}>{el.mesa.name}</h5>
-                                <p>{el.nombre}</p>
+                                <p className={global.nombreCliente}>{el.nombre}</p>
                                 <div className="d-grid gap-2 d-md-flex justify-content-sm-end"  className={className}>
                                 <button className="btn btn-primary btn-sm" value={el.id} onClick={(e) => handleClick(e,el.id)}>Ver Detalle</button>
                                 
