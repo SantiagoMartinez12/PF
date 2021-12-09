@@ -10,7 +10,7 @@ router.get('/:id', async (req, res, next) =>{
     try{
         const {id} = req.params;
         const detalle = await Detalle.findAll({
-        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad'],
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad', 'comentario'],
         where:{
             id:id,
         }
@@ -104,7 +104,7 @@ router.get('/idcliente/:idCliente', async (req, res, next) =>{
         const {idCliente} = req.params;
        
         const detalle = await Detalle.findAll({
-        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad', 'clienteId','mesaId'],
+        attributes : ['id', 'namecliente', 'precio', 'name', 'estado', 'seguimiento', 'cantidad', 'clienteId','mesaId', 'comentario'],
         where:{
             clienteId:idCliente,
         }
