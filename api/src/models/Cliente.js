@@ -32,7 +32,12 @@ module.exports = (sequelize) => {
     },
     comentario:{
       type: DataTypes.STRING,
-    }
+    },
+    pedidoModificado:{
+      type: DataTypes.STRING,
+      defaultValue:''
+    },
+   
   },
   {
     freezeTableName: true,
