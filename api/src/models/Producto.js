@@ -29,6 +29,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING(500),
         },
 
+        disponible: {
+            type: DataTypes.BOOLEAN,
+            defaultValue:true
+        },
+
 },{
     freezeTableName: true,
     timestamps: false,
