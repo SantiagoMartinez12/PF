@@ -1,11 +1,22 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { allResto, deleteResto } from "../../store/actions";
 import styles from "./CardsAdmin.module.css"
 
 
 
-export default function CardsAdmin({mail,image, name, usuario}){ 
+
+export default function CardsAdmin({mail,image, name, usuario, id}){ 
+    const dispatch = useDispatch()
     
-   
+
+   function handleClick(e) {
+    // e.preventDefault()
+    dispatch(deleteResto(id))
+    dispatch(allResto())
+   }
+
    
     return(
         <div>
@@ -20,7 +31,7 @@ export default function CardsAdmin({mail,image, name, usuario}){
                     </div>
                 
                     <div className={styles.divBotones}>
-                    <button className={styles.boton} >Eliminar</button>
+                    <button onClick={(e)=>{handleClick(e)}} value={id} className={styles.boton} >Eliminar</button>
                     </div>
             </div>
         </div>
