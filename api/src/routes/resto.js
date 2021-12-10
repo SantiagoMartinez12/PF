@@ -29,6 +29,15 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.get("/", async (req, res, next) => {
+  try {
+    let info = await Resto.findAll();
+    res.send(info);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/", async (req, res, next) => {
   try {
     let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
@@ -77,28 +86,22 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.delete("/", async (req, res, next) => {
+
+router.delete("/:id", async (req, res, next) => {
   try {
-    const { id, name, precio, plato, estado, seguimiento, comentario } =
-      req.body;
-    const deleteDetail = await Detalle.destroy(
-      {
-        name: name,
-        precio: precio,
-        plato: plato,
-        estado: estado,
-        seguimiento: seguimiento,
-        comentario: comentario,
-      },
+    const {id} =req.params;
+    const deleteResto = await Resto.destroy(
       {
         where: {
           id: id,
         },
       }
     );
-    res.send(deleteDetail);
+    res.send('El resto se ha eliminado con exito');
   } catch (error) {
     next(error);
   }
 });
+
+
 module.exports = router;

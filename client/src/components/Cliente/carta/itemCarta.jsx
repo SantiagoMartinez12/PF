@@ -4,10 +4,10 @@ import { agregarTicket, sumaCuenta } from '../../../store/actions';
 import cuadrito from "../../../assets/cuadrito.jpg";
 var global = require('../../Resto/global.module.css')
 
-export default function ItemCarta({ data }) {
+export default function ItemCarta({ data, mesaOcupada }) {
     const dispatch = useDispatch();
-
-    const { id, name, precio, detalle, imagen } = data;
+    const ocupada = mesaOcupada;
+    const { id, name, precio, detalle, imagen, disponible } = data;
 
     const handleOnClick = (e) => {
         e.preventDefault();
@@ -30,9 +30,17 @@ export default function ItemCarta({ data }) {
                     </center>
                     <p className={global.textdetalle}>{detalle}</p>
                 </div>
-                <center>
-                    <button onClick={handleOnClick} className="btn btn-primary" >Agregar</button>
-                </center>
+                {disponible?
+                    !ocupada?
+                        <center>
+                            <button onClick={handleOnClick} className="btn btn-primary" >Agregar</button>
+                        </center>
+                        : null
+                    :
+                    <center>
+                            <button disabled className="btn btn-primary" >No disponible</button>
+                    </center>
+                }
             </div>
         </div>
     )

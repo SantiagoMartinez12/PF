@@ -16,6 +16,7 @@ const initialState = {
   ticketCuenta: [],
   idCliente:"",
   usuario: [],
+  allResto: [],
 
   ClientInfo: {
     estadoCliente: "solicitado",
@@ -198,7 +199,12 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           idCliente:action.payload
-        }
+        };
+        case "ALL_RESTO":
+          return{
+            ...state,
+            allResto:action.payload
+          }
 
     default:
       return state;

@@ -4,11 +4,13 @@ const { Producto } = conn.models;
 
 
 const updateProduct = async (parameters) => {
+   
     if (!parameters.id ) {
+        
         return null;
 
     } else {
-
+        
         let productoRegister = await Producto.findOne({ where: { id: parameters.id } });
         
         if (parameters.categoriaId !== parameters.categoria){
@@ -20,12 +22,14 @@ const updateProduct = async (parameters) => {
             precio: parameters.precio ? parameters.precio : productoRegister.dataValues?.precio ? productoRegister.dataValues?.precio : null,
             imagen: parameters.imagen ? parameters.imagen : productoRegister.dataValues?.imagen ? productoRegister.dataValues?.imagen : null,
             detalle: parameters.detalle ? parameters.detalle : productoRegister.dataValues?.detalle ? productoRegister.dataValues?.detalle : null,
-            categoriaId: parameters.categoriaId
+            categoriaId: parameters.categoriaId,
+            disponible: parameters.disponible ? parameters.disponible : productoRegister.dataValues?.disponible ? productoRegister.dataValues?.disponible : null, 
         }, {
             where: {
                 id: parameters.id
             }
         })
+        
         return cambiarDetail;
     }
 

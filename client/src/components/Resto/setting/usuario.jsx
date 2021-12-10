@@ -111,7 +111,7 @@ export default function Usuario(){
                   <img  alt="img not found" width="200px" height="250px"/>
                   <div>
                     {editarImagen === false ? <> <button onClick={(e)=>handleEditarImagen(e)} className="btn btn-primary">Editar</button></> 
-                    : <div><input onChange={(e)=> {handleModificar(e)}} name='image' className="form-control"></input>
+                    : <div><input onChange={(e)=> {handleModificar(e)}} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"></input>
                       <button onClick={(e)=>handleEditarImagen(e)} className="btn btn-primary">x</button>
                     </div>}
                   </div>
