@@ -1,7 +1,7 @@
 .cardContainer {
   border: 1px solid rgba(0, 0, 0, 0.125);
-  height: 120px; /* Si le achicas esto no entra el nombre */
-  width: 200px;
+  height: 200px; /* Si le achicas esto no entra el nombre */
+  width: 250px;
   margin: 5px;
   border-radius: 6px;
   max-width: 200px;
