@@ -25,6 +25,10 @@ const initialState = {
     idResto: "",
     idMesa: "",
   },
+  infoMesa:{
+    resto:"",
+    mesa:""
+  },
 
   categorias: [],
   detalle: [],
@@ -195,6 +199,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         usuario: action.payload,
       };
+
+    case "setDatosMesa":
+      return{
+        ...state,
+        infoMesa: action.payload
+      }
+
       case "GET_ID_CLIENTE":
         return {
           ...state,
@@ -209,6 +220,7 @@ const reducer = (state = initialState, action) => {
           return{
             ...state
           }
+
 
     default:
       return state;

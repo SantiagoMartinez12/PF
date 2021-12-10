@@ -42,7 +42,7 @@ export default function Cuenta(){
             {
                 cuenta?.map(producto =>{
                     return <div key={producto.id} className="card-body">
-                            <h5 className="text-capitalize fw-normal">{producto.name} ${producto.precio} x {producto.cantidad} ${producto.precio * producto.cantidad}</h5>
+                            <h5 className="text-capitalize fw-normal">{producto.name} ${producto.precio}  x  {producto.cantidad}  ${producto.precio * producto.cantidad}</h5>
                         </div>      
                 })
             }
