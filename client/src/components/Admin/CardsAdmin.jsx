@@ -1,8 +1,11 @@
 import React from "react";
+
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allResto, deleteResto } from "../../store/actions";
+
 import styles from "./CardsAdmin.module.css"
+
 
 
 
@@ -17,6 +20,7 @@ export default function CardsAdmin({mail,image, name, usuario, id}){
     dispatch(allResto())
    }
 
+
    
     return(
         <div>
@@ -24,6 +28,8 @@ export default function CardsAdmin({mail,image, name, usuario, id}){
             <div className={styles.cardContainer}>
                 
                     <div className={styles.divName} >
+
+ 
                         <div className={styles.divImg}>
                         <img src={image} alt="" width="50px" height="50px"/>
                         </div>
@@ -41,6 +47,7 @@ export default function CardsAdmin({mail,image, name, usuario, id}){
                     <div className={styles.divBotones}>
                     <button onClick={(e)=>{handleClick(e)}} value={id} class="btn btn-outline-danger" >Suspender</button>
                     <button onClick={(e)=>{handleClick(e)}} value={id} class="btn btn-danger" >Eliminar</button>
+
                     </div>
             </div>
         </div>

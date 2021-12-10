@@ -5,15 +5,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allResto } from "../../store/actions";
+
+import AutorizaResto from "./AutorizaResto";
+
 import logo from "../../assets/Logo.png"
 import CardsAdmin from "./CardsAdmin.jsx"
 import styles from './Admin.module.css'
 import Paginado from "./Paginado.jsx";
 
 
+
 export default function SuperAdmin() {
     const restos = useSelector((state) => state.allResto)
     const dispatch = useDispatch() 
+
     let [currentPage, setCurrentPage] = useState(1)
     let [restoPerPage]= useState(3) 
     let indexOfLastResto = currentPage * restoPerPage 
@@ -39,6 +44,8 @@ export default function SuperAdmin() {
           <h1>Admin</h1>
           </div>
           </div>
+          <AutorizaResto/>
+
           <br />
           <div className={styles.losTitulosAlMedio}>
           <h3>Usuarios</h3>
@@ -57,6 +64,7 @@ export default function SuperAdmin() {
            restos = {restos.length}
            paginado = {paginado}
            />
+
         </div>
     )
 }
