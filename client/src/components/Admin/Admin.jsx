@@ -4,14 +4,15 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allResto, infoUsuario } from "../store/actions";
-import CardsAdmin from "./CardsAdmin";
+import { allResto } from "../../store/actions";
+import AutorizaResto from "./AutorizaResto";
+import CardsAdmin from "./CardsAdmin"
 
 
 export default function SuperAdmin() {
     const restos = useSelector((state) => state.allResto)
     const dispatch = useDispatch() 
-
+    
     useEffect(()=>{
         dispatch(allResto())
       },[dispatch])
@@ -22,6 +23,7 @@ export default function SuperAdmin() {
       return (
         <div>
           <h2>Admin</h2>
+          <AutorizaResto/>
           <br />
           <hr />
           <h3>Usuarios</h3>
