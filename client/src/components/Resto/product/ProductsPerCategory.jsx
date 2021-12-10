@@ -1,5 +1,10 @@
 import { useState } from 'react'
 import './ProductsPerCategory.css'
+import axios from 'axios'
+import serverFinder from '../../../store/deploy/serverFinder'
+import { useSelector } from 'react-redux'
+
+
 
 const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
     const [current, setCurrent] = useState(1);
@@ -7,7 +12,8 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
     const lastData = dataShow * current;
     const firstData = lastData - dataShow;
     const currentDataShow = productos.slice(firstData, lastData);
-
+    const productsDB = useSelector(state=> state.menuBaseDatos);
+    
 
     const handleBefore = (e) => {
         e.preventDefault();
@@ -33,6 +39,18 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
         setShowDetail(true);
     }
 
+    const handleDisponibilidad = (e) =>{
+        e.preventDefault();
+        let productToChange = productsDB.find(p => p.id === e.target.value);
+        
+        if(productToChange.disponible){
+            axios.put(serverFinder('producto'), {id: e.target.value, disponible:'false'});
+        }else{
+            axios.put(serverFinder('producto'), {id: e.target.value, disponible:true})
+        }
+    }
+
+    
     return (
         <>
             <div className="perCategoryALl">
@@ -50,6 +68,13 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
                             <div className="card-body">
                                 <h5 className="card-title">{product.name}</h5>
                                 <p><b>Precio: </b> $ {product.precio} </p>
+                                <span><b>Disponible?:  </b></span> {product.disponible? 
+                                                                                <span>SI</span>
+                                                                                :
+                                                                                <span>NO</span>}
+                                <button type='button' onClick={handleDisponibilidad} value={product.id} className="btn btn-secondary">Cambiar</button>
+                                <br/>
+                                <br/>
                                 <button type='button' onClick={(e) => handleSelect(e)} value={JSON.stringify(product)} className="btn btn-primary">Modificar</button>
                             </div>
                         </div>
