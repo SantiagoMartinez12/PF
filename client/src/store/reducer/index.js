@@ -25,6 +25,10 @@ const initialState = {
     idResto: "",
     idMesa: "",
   },
+  infoMesa:{
+    resto:"",
+    mesa:""
+  },
 
   categorias: [],
   detalle: [],
@@ -195,16 +199,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         usuario: action.payload,
       };
-      case "GET_ID_CLIENTE":
-        return {
-          ...state,
-          idCliente:action.payload
-        };
-        case "ALL_RESTO":
-          return{
-            ...state,
-            allResto:action.payload
-          }
+    case "GET_ID_CLIENTE":
+      return {
+        ...state,
+        idCliente:action.payload
+      };
+    case "ALL_RESTO":
+      return{
+        ...state,
+        allResto:action.payload
+      }
+    case "setDatosMesa":
+      return{
+        ...state,
+        infoMesa: action.payload
+      }
 
     default:
       return state;

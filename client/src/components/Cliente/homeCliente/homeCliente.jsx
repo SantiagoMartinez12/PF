@@ -11,7 +11,7 @@ import { useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
 import { useEffect } from 'react'
-import { getCuenta, getDatosMesa } from '../../../store/actions/index.js'
+import { getCuenta, getDatosMesa, checkMesa, setDatosMesa } from '../../../store/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
@@ -27,9 +27,8 @@ var global = require('../../Resto/global.module.css')
 
 
 
-
 export default function HomeClient(){
-    
+    const infoMesa = useSelector(state => state.infoMesa);
     const{name,idResto,idMesa, idCliente} = useParams()
     const dispatch = useDispatch()
     const cliente = {
@@ -38,8 +37,21 @@ export default function HomeClient(){
         idMesa:idMesa,
         idCliente: idCliente
     }
+
+    function setMesa(){
+        const resto = axios.get(serverFinder(`resto/${idResto}`));
+        const mesa = axios.get(serverFinder(`mesa/${idMesa}`));
+        Promise.all([resto, mesa])
+        .then(res=>{
+            dispatch(setDatosMesa({
+                resto:res[0].data[0].name,
+                mesa: res[1].data[0].name
+            }))
+        })
+    }
     
     useEffect (() =>{
+        setMesa();
         dispatch(getDatosMesa(cliente));
         dispatch(getCuenta(idCliente));
     // repite el get para ver el estado hasta que cambia a autorizado     
@@ -99,7 +111,10 @@ export default function HomeClient(){
         </Navbar>
             <div className="container-fluid">
             <div className="col">
-                <h5>Bienvenid@ {name}</h5>
+                <center>
+                    <h6>Hola <b>{name}</b>, estás en la {infoMesa.mesa} de</h6>
+                    <h4>{infoMesa.resto}</h4>
+                </center>
             </div>
             </div>
             {

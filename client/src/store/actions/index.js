@@ -247,3 +247,10 @@ export function allResto(){
     })
   }
 }
+
+export function setDatosMesa(payload){
+  return{
+    type:"setDatosMesa",
+    payload
+  }
+}
