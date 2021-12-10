@@ -263,3 +263,5 @@ export function deleteResto(restoId) {
       type: "DELETE_RESTO",
       payload: fundioResto.data
     })
+  }
+}
