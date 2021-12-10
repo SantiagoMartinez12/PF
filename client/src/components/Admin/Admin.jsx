@@ -4,8 +4,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allResto, infoUsuario } from "../store/actions";
-import CardsAdmin from "./CardsAdmin";
+import { allResto } from "../../store/actions";
+
+import CardsAdmin from "./CardsAdmin.jsx"
 
 
 export default function SuperAdmin() {

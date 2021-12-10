@@ -10,8 +10,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorQr from "./components/Cliente/landingPageCliente/errorQr";
 import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SuperAdmin from "./Admin/Admin";
+
 import MesaOcupada from "./components/Cliente/landingPageCliente/mesaOcupada";
+import SuperAdmin from "./components/Admin/Admin";
 
 
 function App() {

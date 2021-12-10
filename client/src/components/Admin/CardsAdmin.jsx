@@ -3,7 +3,7 @@ import styles from "./CardsAdmin.module.css"
 
 
 
-export default function CardsAdmin({mail}){ 
+export default function CardsAdmin({mail,image, name, usuario}){ 
     
    
    
@@ -13,7 +13,10 @@ export default function CardsAdmin({mail}){
             <div className={styles.cardContainer}>
                 
                     <div className={styles.divName} >
-                        <h4>{mail}</h4>                
+                        <img src={image} alt="" width="50px" height="50px"/>
+                        <h3>{name}</h3>
+                        <h3>{usuario}</h3>
+                        <p>{mail}</p>                
                     </div>
                 
                     <div className={styles.divBotones}>
