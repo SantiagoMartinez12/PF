@@ -1,0 +1,34 @@
+.paginacion {
+	margin:20px 0;
+    border-color: darkturquoise;
+    height: 100px;
+    width: 100px;
+}
+
+.paginacion ul {
+	list-style:none;
+	text-align: center;
+}
+
+.paginacion ul li {
+	display:inline-block;
+	margin-right:2px;
+}
+
+.paginacion ul li a {
+	display:block;
+	padding:10px 10px;
+	color:#fff;
+	background-image: linear-gradient(to bottom, rgb(119, 119, 119), #121313) ;
+	text-decoration: none;
+    border-radius: 28px;
+}
+
+.paginacion ul li a:hover {
+	background:rgb(85, 130, 253)
+}
+
+.paginacion ul li .active {
+	background:lightskyblue;
+	font-weight:bold;
+}
