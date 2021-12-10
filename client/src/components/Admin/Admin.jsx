@@ -4,8 +4,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allResto, infoUsuario } from "../store/actions";
-import CardsAdmin from "./CardsAdmin";
+import { allResto } from "../../store/actions";
+
+import CardsAdmin from "./CardsAdmin.jsx"
 
 
 export default function SuperAdmin() {
@@ -17,23 +18,22 @@ export default function SuperAdmin() {
       },[dispatch])
 
 
-      console.log(restos)
     
       return (
         <div>
-          <h2>Admin</h2>
+          <h1>Admin</h1>
           <br />
           <hr />
           <h3>Usuarios</h3>
-          <ul>
+          <div>
             {
               restos && restos?.map(el =>{
                 return (
-                  <li><CardsAdmin key={el.id} name={el.name} mail={el.mail}/></li>                  
+                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail}/></h5>                  
                 )
               })
             }
-          </ul>
+          </div>
         </div>
     )
 }

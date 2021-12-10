@@ -23,7 +23,7 @@ export default function MesaOcupada(){
         axios.get(serverFinder(`cliente/${idResto}/autorizado`))
         .then(res=>{
            let encontrado = res.data.find(e => e.mesaId === param)
-           setCliente(encontrado.nombre)
+           setCliente(encontrado?.nombre)
         })
     }
 
