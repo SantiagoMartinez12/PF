@@ -249,13 +249,6 @@ export function allResto(){
   }
 }
 
-export function setDatosMesa(payload){
-  return{
-    type:"setDatosMesa",
-    payload
-    }
-}    
-    
 export function deleteResto(restoId) {
   return async function (dispatch) {
     let fundioResto = await axios.delete(serverFinder("resto/" + restoId))
@@ -263,5 +256,19 @@ export function deleteResto(restoId) {
       type: "DELETE_RESTO",
       payload: fundioResto.data
     })
+  }
+}
+
+export function setDatosMesa(payload){
+  return{
+    type:"setDatosMesa",
+    payload
+    }
+}
+
+export function setPedidoModificado(payload){
+  return{
+    type:"setPedidoModificado",
+    payload
   }
 }
