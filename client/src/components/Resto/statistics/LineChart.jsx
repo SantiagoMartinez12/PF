@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -8,19 +8,12 @@ am4core.useTheme(am4themes_animated);
 function LineChart(props) {
   const chart = useRef(null);
 
-  useEffect(() => {
-    let x = am4core.create("chartdiv", am4charts.XYChart);
+  useLayoutEffect(() => {
+    let x = am4core.create(`chartdiv${props.name}`, am4charts.XYChart);
 
     // x.paddingRight = 20;
 
-    let data = [];
-    let visits = 10;
-
-    for (let i = 1; i < 366; i++) {
-      visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-    }
-    console.log(data[0] ? data[0].date : null)
+    let data = props.data;
 
     x.data = data;
 
@@ -46,10 +39,15 @@ function LineChart(props) {
     return () => {
       x.dispose();
     };
-  }, []);
+  }, [props]);
+
+  useLayoutEffect(() => {
+    chart.current.paddingRight = props.paddingRight;
+  }, [props.paddingRight]);
+
 
   return (
-    <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+    <div id={`chartdiv${props.name}`} style={{ width: "100%", height: "500px" }}></div>
   );
 }
 export default LineChart;
