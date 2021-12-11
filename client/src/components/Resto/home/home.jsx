@@ -140,7 +140,7 @@ export default function HomeResto(){
                      estado === false ?
                      
                          <div>
-                             <p>Su restaurante no se encuentra habilitado aun para usar la APP</p>
+                             <p>Su restaurante no se encuentra habilitado para usar la APP</p>
                          </div>
                      
                      :

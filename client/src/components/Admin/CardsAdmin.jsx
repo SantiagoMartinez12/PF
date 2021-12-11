@@ -3,16 +3,19 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allResto, deleteResto } from "../../store/actions";
-
+import { useState } from "react";
 import styles from "./CardsAdmin.module.css"
+import axios from "axios";
+import serverFinder from "../../store/deploy/serverFinder";
 
 
 
 
-
-export default function CardsAdmin({mail,image, name, usuario, id}){ 
+export default function CardsAdmin({mail,image, name, usuario, id, estado}){ 
     const dispatch = useDispatch()
-    
+ 
+
+
 
    function handleClick(e) {
     // e.preventDefault()
@@ -20,10 +23,29 @@ export default function CardsAdmin({mail,image, name, usuario, id}){
     dispatch(allResto())
    }
 
+               
+
+    function handleSuspender(){    
+        
+        axios.put(serverFinder('resto'), {id:id, estado: 'suspendido'})
+        
+    }
+    function handleActivar(){    
+        
+        axios.put(serverFinder('resto'), {id:id, estado: 'autorizado'})
+        
+    }
+    
+
+
+  
+
+
 
    
     return(
-        <div>
+        <div >
+            
                         
             <div className={styles.cardContainer}>
                 
@@ -42,11 +64,17 @@ export default function CardsAdmin({mail,image, name, usuario, id}){
                         <div className={styles.divImg}>
                         <p>{mail}</p>                
                         </div>
+                        <div className={styles.divImg}>
+                        
+                        <p>{estado}</p>                
+                        </div>
                     </div>
                 
                     <div className={styles.divBotones}>
-                    <button onClick={(e)=>{handleClick(e)}} value={id} class="btn btn-outline-danger" >Suspender</button>
-                    <button onClick={(e)=>{handleClick(e)}} value={id} class="btn btn-danger" >Eliminar</button>
+                    <button onClick={(e)=>{ handleSuspender(e)}} value={id} class="btn btn-outline-danger btn-sm" >Suspender</button>
+                    <button onClick={(e)=>{handleActivar(e)}} value={id} class="btn btn-outline-danger btn-sm" >Activar</button>
+
+                    <button onClick={(e)=>{handleClick(e)}} value={id} class="btn btn-danger btn-sm" >Eliminar</button>
 
                     </div>
             </div>
