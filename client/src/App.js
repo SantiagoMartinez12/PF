@@ -10,8 +10,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorQr from "./components/Cliente/landingPageCliente/errorQr";
 import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import MesaOcupada from "./components/Cliente/landingPageCliente/mesaOcupada";
+import Gracias from "./components/Cliente/homeCliente/gracias";
 import SuperAdmin from "./components/Admin/Admin";
 
 
@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/errorQr" element={<ErrorQr />} />
         <Route exact path="/mesaocupada/:idResto/:idMesa/:name" element={<MesaOcupada />} />
         <Route exact path="/home/resto/detalle/:idResto/:idCliente" element={<Detalle/>}/>
-   
+        <Route path="/gracias" element={<Gracias/>}/>
       </Routes>
     </div>
   );
