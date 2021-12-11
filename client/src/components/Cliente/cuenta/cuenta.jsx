@@ -58,7 +58,7 @@ export default function Cuenta(){
     }
 
     function createCheckout(idpago){ // Inicializa el carrito de compras
-        console.log("soy el id", idpago)
+       // console.log("soy el id", idpago) 
         mercadopago.checkout({
                preference: {
                 id: idpago
