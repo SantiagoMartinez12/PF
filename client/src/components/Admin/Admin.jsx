@@ -54,7 +54,7 @@ export default function SuperAdmin() {
             {
               currentResto?.map(el =>{
                 return (
-                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} usuario={el.usuario}/></h5>                  
+                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} usuario={el.usuario} estado={el.estado}/></h5>                  
                   )
                 })
               }
