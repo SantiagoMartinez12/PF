@@ -99,7 +99,7 @@ export default function Setting() {
         <div className="container">
             <div className="row">   
             <div className="col">
-                <img src={logo} alt="Logo" width="25%"  className="navbar-brand" />
+                <img src={logo} alt="Logo" width="15%"  className="navbar-brand" />
                 <h1>Configuración</h1>
             </div>
             <div className="col">

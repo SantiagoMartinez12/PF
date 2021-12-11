@@ -1,6 +1,7 @@
 // import { importar acciones } from "../actions/index"
 import {
   AGREGAR_CATEGORIAS,
+  allResto,
   BORRAR_CATEGORIAS,
   GET_CATEGORIAS,
 } from "../actions";
@@ -211,6 +212,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           idCliente:action.payload
         };
+
       case ALL_RESTO:
         return{
           ...state,

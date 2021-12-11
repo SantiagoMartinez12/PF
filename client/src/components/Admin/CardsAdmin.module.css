@@ -1,16 +1,21 @@
 .cardContainer {
   border: 1px solid rgba(0, 0, 0, 0.125);
-  height: 200px; /* Si le achicas esto no entra el nombre */
-  width: 250px;
-  margin: 5px;
-  border-radius: 6px;
-  max-width: 200px;
+  height: 211px;
+  width: 290px;
+  margin: 16px;
+  border-radius: 20px;
+  max-width: 284px;
+  display: block;
 }
-
+.divImg{
+  display:flex;
+  justify-content: center;
+}
 .divName {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  background-color: rgba(0, 0, 0, 0.03);
+
   justify-content: center;
 }
 .h5Card {
@@ -21,6 +26,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+
+  justify-content: space-evenly;
+
 }
 
 .boton {
