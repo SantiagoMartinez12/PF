@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import logowhite from "../../../assets/Logo_white.png";
 import bienvenido from "../../../assets/bienvenido.png";
-import CardsAdmin from "../../../Admin/CardsAdmin"
+
 // import Carrousel from "../../Cliente/carta/Carrousel";
 var global = require('../../Resto/global.module.css')
 
@@ -26,7 +26,7 @@ export default function LandingPageResto() {
   const restoId = useSelector((state) => state.usuario)
   const ruta = `/home/resto/${restoId[0]?.id}`
   const rutaAdmin = "/admin"
-  const admin = "auth0%7C61b246f578b4bd006ac1cac4"
+  
   
   useEffect(()=>{
     
@@ -54,7 +54,7 @@ export default function LandingPageResto() {
           <h3>¡Bienvenido!</h3>
           <Perfil />
           { user.email === "admin@mozovirtual.com" ? <>
-          <Link to={rutaAdmin}><button className="btn btn-primary btn-sm w-50">Ing</button></Link></>:
+          <Link to={rutaAdmin}><button className="btn btn-primary btn-sm w-50">Ingresar</button></Link></>:
           <><Link to={ruta}><button className="btn btn-primary btn-sm w-50">Ingresar</button></Link></>}
           <br/><br/>
           <LogOutButton />

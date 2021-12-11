@@ -1,10 +1,11 @@
 // import { importar acciones } from "../actions/index"
 import {
   AGREGAR_CATEGORIAS,
+  allResto,
   BORRAR_CATEGORIAS,
   GET_CATEGORIAS,
 } from "../actions";
-import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO } from "../actions";
+import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO, DELETE_RESTO, ALL_RESTO} from "../actions";
 
 const initialState = {
   menuBaseDatos: [],
@@ -24,6 +25,10 @@ const initialState = {
     nameCliente: "",
     idResto: "",
     idMesa: "",
+  },
+  infoMesa:{
+    resto:"",
+    mesa:""
   },
 
   categorias: [],
@@ -195,16 +200,28 @@ const reducer = (state = initialState, action) => {
         ...state,
         usuario: action.payload,
       };
+
+    case "setDatosMesa":
+      return{
+        ...state,
+        infoMesa: action.payload
+      }
+
       case "GET_ID_CLIENTE":
         return {
           ...state,
           idCliente:action.payload
         };
-        case "ALL_RESTO":
+        case ALL_RESTO:
           return{
             ...state,
-            allResto:action.payload
+            allResto: action.payload
           }
+          case DELETE_RESTO:
+          return{
+            ...state
+          }
+
 
     default:
       return state;
