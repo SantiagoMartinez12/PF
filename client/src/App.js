@@ -12,7 +12,7 @@ import LandingPageResto from "./components/Resto/landingPageResto/landigPageRest
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SuperAdmin from "./Admin/Admin";
 import MesaOcupada from "./components/Cliente/landingPageCliente/mesaOcupada";
-
+import Gracias from "./components/Cliente/homeCliente/gracias";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route exact path="/errorQr" element={<ErrorQr />} />
         <Route exact path="/mesaocupada/:idResto/:idMesa/:name" element={<MesaOcupada />} />
         <Route exact path="/home/resto/detalle/:idResto/:idCliente" element={<Detalle/>}/>
-   
+        <Route path="/gracias" element={<Gracias/>}/>
       </Routes>
     </div>
   );
