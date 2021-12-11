@@ -62,6 +62,11 @@ export default function Detalle({ idResto, funcion }) {
 
     let cantidad = detalle?.map(e => e.cantidad)
     let precio = detalle?.map(e => e.precio)
+    let precioTotal = 0
+    for (let i = 0; i < precio.length; i++){
+        precioTotal = precio[i] + precioTotal
+    }
+    
 
     seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })   
     let comentario = detalle?.map(e=> e.comentario)
@@ -151,7 +156,7 @@ export default function Detalle({ idResto, funcion }) {
   
    
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div>
             <button type="button" class="btn-close" aria-label="Close" onClick={cerrarDetalle}></button>
             </div>
@@ -272,7 +277,9 @@ export default function Detalle({ idResto, funcion }) {
                 </tbody>
             </Table>
             <center>
-               
+            <div className={global.underlinecard}>
+            <h5>TOTAL: ${precioTotal}</h5>
+            </div>
                 <div>
                     <h5>Comentario</h5>
                    <p>{clientes}</p>
