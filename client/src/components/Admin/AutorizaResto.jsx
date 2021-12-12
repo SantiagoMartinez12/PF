@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function AutorizaResto(){
     const [restos, setRestos] = useState([])
-    console.log(restos)
+    
      // al cargar el componente se dispara la función para actualizar restos cada cierto tiempo
      useEffect (() =>{
         

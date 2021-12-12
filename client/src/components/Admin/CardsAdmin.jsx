@@ -13,8 +13,9 @@ import serverFinder from "../../store/deploy/serverFinder";
 
 export default function CardsAdmin({mail,image, name, usuario, id, estado}){ 
     const dispatch = useDispatch()
- 
 
+ 
+console.log(estado)
 
 
    function handleClick(e) {
@@ -37,8 +38,12 @@ export default function CardsAdmin({mail,image, name, usuario, id, estado}){
     }
     
 
-
-  
+    let cardContainer
+  if(estado === "autorizado"){
+      cardContainer = styles.cardContainerOne
+  }else{
+      cardContainer = styles.cardContainerTwo
+  }
 
 
 
@@ -47,7 +52,7 @@ export default function CardsAdmin({mail,image, name, usuario, id, estado}){
         <div >
             
                         
-            <div className={styles.cardContainer}>
+            <div className={cardContainer}>
                 
                     <div className={styles.divName} >
 
@@ -79,6 +84,7 @@ export default function CardsAdmin({mail,image, name, usuario, id, estado}){
                     </div>
             </div>
         </div>
+       
     )
 
 }
