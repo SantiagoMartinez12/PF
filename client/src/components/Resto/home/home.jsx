@@ -91,7 +91,7 @@ export default function HomeResto(){
     return(
         <div>
              <Navbar expand="lg">
-             <Container>
+             <Container fluid>
               <Navbar.Brand>
               <img src={logo} alt="Logo" width="40%" />
               </Navbar.Brand>
@@ -141,7 +141,7 @@ export default function HomeResto(){
                      estado === false ?
                      
                          <div>
-                             <p>Su restaurante no se encuentra habilitado aun para usar la APP</p>
+                             <p>Su restaurante no se encuentra habilitado para usar la APP</p>
                          </div>
                      
                      :

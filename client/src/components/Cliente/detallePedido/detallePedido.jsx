@@ -8,10 +8,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { agregarTicket, resetTicket, restaCuenta, restarTicket, sumaCuenta } from '../../../store/actions';
-
+import { useParams } from 'react-router';
+import { agregarTicket, resetTicket, restaCuenta, restarTicket, setPedidoModificado, sumaCuenta } from '../../../store/actions';
 import serverFinder from '../../../store/deploy/serverFinder';
-
 import Carrousel from '../carta/Carrousel';
 var global = require('../../Resto/global.module.css')
 
@@ -20,7 +19,7 @@ var global = require('../../Resto/global.module.css')
 export default function DetallePedido(){
     
     const [input,setInput] = useState("")
-
+    const { idCliente } = useParams();
     const ticket = useSelector(state=> state.ticket);
     const cuenta = useSelector(state=> state.cuenta);
     const infoCliente = useSelector(state=> state.ClientInfo);
@@ -35,34 +34,52 @@ export default function DetallePedido(){
         dispatch(restarTicket(id))
         dispatch(restaCuenta(precio))
     }
-   
   
     function handleInputChange(e) {
         e.preventDefault();
         setInput(e.target.value);
-       
+    }
 
+    function updateEstadoPedido(){
+        let repet = setInterval(()=>{
+            axios.get(serverFinder(`cliente/cliente/${idCliente}`))
+            .then(res=>{
+                if(res.data.pedidoModificado){
+                    dispatch(setPedidoModificado(res.data.pedidoModificado));
+                    // clearInterval(repet);
+                }       
+    // limpia el interval cuando el cliente está finalizado                
+                if(res.data.estado === 'finalizado'){
+                    clearInterval(repet);
+                }
+            })
+          }          
+        , 2000);
     }
     
     
-     function handleSubmit (e){
+    function handleSubmit (e){
         e.preventDefault();
         let post = []
-         ticket.forEach(el => {el.comentario = input 
+        ticket.forEach(el => {el.comentario = input 
             post.push(el)})
-        
-         axios.post(serverFinder('detalle'), post)
-
-         axios.put(serverFinder('cliente'), {nuevoPedido: true, id: infoCliente.idCliente, comentario: input})
-
-         dispatch(resetTicket())
-
-        
+    // postea el detalle con el pedido    
+        axios.post(serverFinder('detalle'), post)
+    //modifica la propiedad nuevoPedido del cliente en true y agrega el comentario
+        axios.put(serverFinder('cliente'), {nuevoPedido: true, id: infoCliente.idCliente, comentario: input})
+    //resetea el pedido
+        dispatch(resetTicket())
+    //resetea la propiedad pedidoModificado del cliente
+        // axios.put(serverFinder('cliente'), { id: idCliente, pedidoModificado: '' })
+    //lanza la función para que quede "escuchando" por alguna modificación en el pedido
+        updateEstadoPedido();
     }
+
     return(
     <div className="container"> 
         <Carrousel/>
         <div>
+           
         <center>
         <h2  className={global.textsubtitle}>TU PEDIDO</h2>
         </center>

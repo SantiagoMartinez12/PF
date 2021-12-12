@@ -25,6 +25,7 @@ export default function SuperAdmin() {
     let indexOfFirstResto = indexOfLastResto - restoPerPage 
     let currentResto = restos.slice(indexOfFirstResto, indexOfLastResto)
 
+ 
     let paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -39,9 +40,9 @@ export default function SuperAdmin() {
       return (
         <div>
           <div className={styles.losImg}>
-          <img src={logo} alt="Logo" width="20%"  className="navbar-brand" />
+          <img src={logo} alt="Logo" width="10%"  className="navbar-brand" />
           <div className={styles.losTitulosAlMedio}>
-          <h1>Admin</h1>
+          <h3>SuperAdmin</h3>
           </div>
           </div>
           <AutorizaResto/>
@@ -54,7 +55,7 @@ export default function SuperAdmin() {
             {
               currentResto?.map(el =>{
                 return (
-                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} usuario={el.usuario}/></h5>                  
+                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} usuario={el.usuario} estado={el.estado}/></h5>                  
                   )
                 })
               }

@@ -18,7 +18,7 @@ const initialState = {
   idCliente:"",
   usuario: [],
   allResto: [],
-
+  pedidoModificado:'',
   ClientInfo: {
     estadoCliente: "solicitado",
     idCliente: "",
@@ -212,16 +212,21 @@ const reducer = (state = initialState, action) => {
           ...state,
           idCliente:action.payload
         };
-        case ALL_RESTO:
-          return{
-            ...state,
-            allResto: action.payload
-          }
-          case DELETE_RESTO:
-          return{
-            ...state
-          }
 
+      case ALL_RESTO:
+        return{
+          ...state,
+          allResto:action.payload
+        }
+      case DELETE_RESTO:
+        return{
+          ...state
+        }
+      case 'setPedidoModificado':
+        return {
+          ...state,
+          pedidoModificado: action.payload
+        }
 
     default:
       return state;

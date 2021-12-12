@@ -7,19 +7,18 @@
 
 
 import React, { useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
 import { useEffect } from 'react'
-import { getCuenta, getDatosMesa, checkMesa, setDatosMesa } from '../../../store/actions/index.js'
+import { getCuenta, getDatosMesa, setDatosMesa } from '../../../store/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
 import axios from 'axios'
-
 import serverFinder from '../../../store/deploy/serverFinder.js'
 import 'boxicons'
-
+import Aviso from '../avisoPedidoModificado/aviso';
 import logowhite from "../../../assets/Logo_white.png";
 import {Navbar, Container, Nav} from 'react-bootstrap';
 // import CBot from '../ChatBot/ChatBot.jsx'
@@ -30,7 +29,10 @@ var global = require('../../Resto/global.module.css')
 export default function HomeClient(){
     const infoMesa = useSelector(state => state.infoMesa);
     const{name,idResto,idMesa, idCliente} = useParams()
+    const pedidoModificado = useSelector(state=> state.pedidoModificado)
+    const infoCliente = useSelector(state=> state.ClientInfo);
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const cliente = {
         nameCliente:name,
         idResto:idResto,
@@ -49,6 +51,10 @@ export default function HomeClient(){
             }))
         })
     }
+
+    if(infoCliente.estadoCliente === 'finalizado'){
+        navigate('/mesaCerrada');
+    }
     
     useEffect (() =>{
         setMesa();
@@ -59,7 +65,7 @@ export default function HomeClient(){
             axios.get(serverFinder(`cliente/cliente/${idCliente}`))
                   .then(res=>{
                     dispatch(getDatosMesa({estadoCliente:res.data.estado}));
-                    if(res.data.estado !== 'solicitado'){
+                    if(res.data.estado === 'finalizado'){
                         clearInterval(repet);
                     }
                   })
@@ -67,7 +73,6 @@ export default function HomeClient(){
            , 2000);
     }, []);
 
-    const infoCliente = useSelector(state=> state.ClientInfo);
 
     // este estado en false muestra el detalle y en true muestra la carta
     const [ state, setState] = useState("ver menu");
@@ -110,16 +115,24 @@ export default function HomeClient(){
         </Container>
         </Navbar>
             <div className="container-fluid">
-            <div className="col">
-                <center>
-                    <h6>Hola <b>{name}</b>, estás en la {infoMesa.mesa} de</h6>
-                    <h4>{infoMesa.resto}</h4>
-                </center>
+                <div className="col">
+                    <center>
+                        <h6>Hola <b>{name}</b>, estás en la {infoMesa.mesa} de</h6>
+                        <h4>{infoMesa.resto}</h4>
+                    </center>
+                </div>
             </div>
-            </div>
+            
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta/> :  <Cuenta/>  
             }
+            <div>
+                {pedidoModificado?
+                    <Aviso />
+                    :
+                    null
+                }
+            </div> 
             <br/>
             <br/>
             {infoCliente.estadoCliente === 'solicitado'?
