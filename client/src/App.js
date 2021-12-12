@@ -29,6 +29,7 @@ function App() {
         <Route exact path="/mesaocupada/:idResto/:idMesa/:name" element={<MesaOcupada />} />
         <Route exact path="/mesaCerrada" element={<MesaCerrada />} />
         <Route exact path="/home/resto/detalle/:idResto/:idCliente" element={<Detalle/>}/>
+
         <Route path="/gracias" element={<Gracias/>}/>
       </Routes>
     </div>

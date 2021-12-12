@@ -44,6 +44,9 @@ Detalle.belongsTo(Mesa);
 Resto.hasMany(Categorias)
 Categorias.belongsTo(Resto)
 
+Resto.hasMany(Detalle)
+Detalle.belongsTo(Resto)
+
 Categorias.hasMany(Producto);
 Producto.belongsTo(Categorias);
 
