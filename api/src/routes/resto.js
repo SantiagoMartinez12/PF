@@ -18,6 +18,7 @@ router.get("/:id", async (req, res, next) => {
         "contraseña",
         "mail",
         "mesa",
+        "estado"
       ],
       where: {
         id: id,
@@ -28,6 +29,35 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+router.get("/", async (req, res, next) => {
+  try {
+    let info = await Resto.findAll();
+    res.send(info);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/param/:param', async(req, res, next)=>{
+  const { param } = req.params; 
+  
+  try{
+      
+      const restos = await Resto.findAll({
+          where:{
+              
+          estado:param,
+          },
+          
+      });
+      return res.json(restos)
+
+  }catch(error){
+      next(error)
+  }
+})
+
 
 router.post("/", async (req, res, next) => {
   try {
@@ -49,7 +79,7 @@ router.post("/", async (req, res, next) => {
 
 router.put("/", async (req, res, next) => {
   try {
-    let { id, image, name, usuario, contraseña, mail, mesa } = req.body;
+    let { id, image, name, usuario, contraseña, mail, mesa, estado } = req.body;
     let comparar = await Resto.findOne({where:{
       id: id,
     }})
@@ -62,6 +92,7 @@ router.put("/", async (req, res, next) => {
         contraseña: contraseña,
         mail: mail,
         mesa: mesa,
+        estado: estado,
       },
       {
         where: {
@@ -77,28 +108,22 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.delete("/", async (req, res, next) => {
+
+router.delete("/:id", async (req, res, next) => {
   try {
-    const { id, name, precio, plato, estado, seguimiento, comentario } =
-      req.body;
-    const deleteDetail = await Detalle.destroy(
-      {
-        name: name,
-        precio: precio,
-        plato: plato,
-        estado: estado,
-        seguimiento: seguimiento,
-        comentario: comentario,
-      },
+    const {id} =req.params;
+    const deleteResto = await Resto.destroy(
       {
         where: {
           id: id,
         },
       }
     );
-    res.send(deleteDetail);
+    res.send('El resto se ha eliminado con exito');
   } catch (error) {
     next(error);
   }
 });
+
+
 module.exports = router;

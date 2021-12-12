@@ -23,6 +23,7 @@ export default function Carta(){
     const categorias = useSelector(state => state.categoriasMenu);
     
     const filtrados = useSelector(state=> state.productosFiltrados)
+    
     const cuenta = useSelector(state=> state.cuenta)
     
     const dispatch = useDispatch();
@@ -54,15 +55,22 @@ export default function Carta(){
             
          
              <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
-                {filtrados?.map(p=>{
+                {filtrados.length > 0 ?
+
+                    filtrados?.map(p=>{
                     return(
                         <div key={p.id} className="col align-items-center">
                             <ItemCarta data={p}/> 
                         </div>
                     )
-                })}
-                </div>
+                })
+                :
+                <p>
+                    Lo sentimos! Por el momento no contamos con estos productos. Selecciona otra categoria para continuar... 
+                </p>
             
+            }
+                </div>
         </div>
     )
 }

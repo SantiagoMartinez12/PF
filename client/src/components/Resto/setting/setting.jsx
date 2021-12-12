@@ -11,6 +11,7 @@ import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png"
 import ViewQr from "./ViewQr";
 import logowhite from "../../../assets/Logo_white.png";
+import 'boxicons'
 var global = require('../../Resto/global.module.css')
 
 
@@ -51,6 +52,7 @@ export default function Setting() {
             setInfoCategorias(false)
         }
     }
+
 
    function handleProduct(e) {
         if (product === false) {            
@@ -97,7 +99,7 @@ export default function Setting() {
         <div className="container">
             <div className="row">   
             <div className="col">
-                <img src={logo} alt="Logo" width="25%"  className="navbar-brand" />
+                <img src={logo} alt="Logo" width="15%"  className="navbar-brand" />
                 <h1>Configuración</h1>
             </div>
             <div className="col">
@@ -127,8 +129,8 @@ export default function Setting() {
                 </div>
                 <div>
                     <button onClick={(e) => handleQr(e)} className={global.btcardsettings}>
-                        <box-icon name='codigoQr' type='solid' className={global.icon} ></box-icon>
-                        Visualizar Qr</button>
+                    <box-icon name='qr-scan'></box-icon>
+                        Visualizar QR</button>
                 </div>
                 </div>
                 <div className="col">

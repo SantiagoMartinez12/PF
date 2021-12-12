@@ -4,6 +4,8 @@ import { getDetalle, getMesa } from "../../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from 'react-bootstrap';
 import serverFinder from "../../../store/deploy/serverFinder";
+
+
 // import s from "../home/detalle.module.css"
 var global = require('../../Resto/global.module.css')
 
@@ -13,37 +15,78 @@ export default function Detalle({ idResto, funcion }) {
     const dispatch = useDispatch();
     // const {idCliente , idResto} = useParams()
     const idCliente = useSelector(state => state.idCliente)
+     const [modifica,setModifica] = useState(false)
     const detalle = useSelector(state => state.detalle)
     const [msj, setMsj] = useState(false)
+    const [clientes, setClientes] = useState()
+    const [eliminar,setEliminar] = useState()
+
     /*      console.log(detalle)
       mesaFind = mesa.find(e => e.id === idMesa)
       console.log(mesaFind) */
     let idMesa = detalle.map(e => e.mesaId)
 
+    function updateMesa(){
+        axios.get(serverFinder(`cliente/cliente/${idCliente}`))
+            .then(res =>{
+                setClientes(res.data.comentario)
+            })
+
+    }
+
     useEffect(() => {
-
-
         dispatch(getMesa(idResto)) // id de resto
     }, [])
-    useEffect(() => {
 
+    useEffect(() => {
         dispatch(getDetalle(idCliente))
+        updateMesa()
         // id de resto
     }, [idCliente])
 
-    // console.log(detalle)
+    let seguimiento = []
+
+    useEffect(() => {
+        seguimiento1()
+    },[seguimiento])
+
+    
+
+
     let nameCliente = detalle?.map(e => e.namecliente)
     // console.log(nameCliente[0])
 
-    let nameProducto = detalle?.map(e => e.name)
+    let nameProducto = detalle?.map(e => { return {name:e.name, id:e.id}})
     // console.log(nameProducto)
+    
 
     let cantidad = detalle?.map(e => e.cantidad)
     let precio = detalle?.map(e => e.precio)
 
-    let seguimiento = {}
-    seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })
+    seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })   
+    let comentario = detalle?.map(e=> e.comentario)
+   
+    
 
+    function seguimiento1(){
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+        .then(res => {
+            let seguimientofilter = res.data.filter(e => e.seguimiento === 'solicitado')
+            
+            if(seguimientofilter.length === 0){
+                axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
+        }})
+   
+/*      let pedido = false
+    let filtradoSeguimiento = seguimientofilter.filter(e => e === 'solicitado')
+    console.log(filtradoSeguimiento.length)
+        pedido = true
+        
+    } 
+    if(pedido){
+        axios.put(serverFinder('cliente'), {nuevoPedido: false, id: idCliente})
+    }  */
+}
     const desocuparMesa = (idMesa) => {
         axios.put(serverFinder('mesa'), { id: idMesa, estado: false })
         axios.put(serverFinder('cliente'), { id: idCliente, estado: 'finalizado' })
@@ -88,7 +131,25 @@ export default function Detalle({ idResto, funcion }) {
     function cerrarDetalle(){
         funcion()
     }
-
+    function handleClickModifica(){
+        if(modifica === false){
+        setModifica(true)
+    }else {
+        setModifica(false)
+    }
+    }
+    function handleClickEliminar(e,name, id){
+       axios.delete(serverFinder("detalle/" + id))
+       dispatch(getDetalle(idCliente))
+       EliminarProducto(name)
+       
+       alert("se elimino Correctamente, le avisaremos a tu comensal")
+    }
+    function EliminarProducto(name){
+        axios.put(serverFinder('cliente'), { id: idCliente, pedidoModificado: name })
+    }
+  
+   
     return (
         <div className="container">
             <div>
@@ -96,7 +157,7 @@ export default function Detalle({ idResto, funcion }) {
             </div>
             <div>
                 <h4 className="text-center">Cliente</h4>
-                <p className="text-center">{nameCliente[0]}</p>
+                <p className="text-center text-capitalize">{nameCliente[0]}</p>
             </div>
 
             {/* <div claclassNamess="row">
@@ -149,16 +210,26 @@ export default function Detalle({ idResto, funcion }) {
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Seguimiento</th>
+                        <button type="button" class="btn btn-primary"  onClick={(e) => {handleClickModifica()}} >Modificar productos</button>
+                       
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
                             <ul className="list-group list-group-flush">
-                                <p>{nameProducto.map(e => {
+                                <p>{nameProducto.map(el => {
                                     return (
                                         <li className="list-group-item">
-                                            {e}
+                                            {
+                                               modifica === true ? <button 
+                                               type="button" class="btn btn-primary"
+                                               width="1px" height="1px"
+                                                                    onClick={(e) => {handleClickEliminar(e,el.name, el.id)}}>X
+                                                                      
+                                                                    </button> : null
+                                            }
+                                            {el.name}
                                         </li>
                                     )
                                 })}</p>
@@ -200,6 +271,17 @@ export default function Detalle({ idResto, funcion }) {
                     </tr>
                 </tbody>
             </Table>
+            <center>
+               
+                <div>
+                    <h5>Comentario</h5>
+                   <p>{clientes}</p>
+                   
+
+                    
+
+                </div>
+            </center>
             <center>
                 <div className={global.whitecardmesasresto}>
                     <center>

@@ -5,7 +5,7 @@ const path = require('path');
 
 
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, ACCES_TOKEN
 } = process.env;
                                              //Nombre de base de datos TODOS TENEMOS QUE TENER EL MISMO NOMBRE
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/demo`, {

@@ -1,0 +1,38 @@
+.ticket{
+    border:1px solid blue;
+    width: 340px;
+    font-size: 12px;
+    font-family: 'Times New Roman';
+}
+
+.cabecera{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    display:flex;
+    justify-content: space-around;
+}
+
+.cabecera_cantidad{
+    margin:0px;
+    padding: 0px;
+
+    background-color: tomato;
+    width: 80px;
+}
+
+.cabecera_producto{
+    background-color:turquoise;
+    width: 30px;
+}
+
+.cabecera_unit{
+    background-color:yellow;
+    width: px;
+}
+
+.cabecera_subtotal{
+    background-color:blue;
+    width: 30px;
+}
+
+
