@@ -10,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorQr from "./components/Cliente/landingPageCliente/errorQr";
 import LandingPageResto from "./components/Resto/landingPageResto/landigPageResto";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Statistics from "./components/Resto/statistics/Statistics";
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
         <Route exact path="/errorQr" element={<ErrorQr />} />
         <Route exact path="/home/resto/detalle/:idResto/:idCliente" element={<Detalle/>}/>
    
-        <Route exact path="/estadictica" element={<Statistics />} />
 
       </Routes>
     </div>

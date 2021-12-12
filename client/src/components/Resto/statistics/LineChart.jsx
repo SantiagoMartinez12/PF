@@ -27,12 +27,16 @@ function LineChart(props) {
     let series = x.series.push(new am4charts.LineSeries());
     series.dataFields.dateX = "date";
     series.dataFields.valueY = "value";
-    series.tooltipText = "{valueY.value}";
+    series.tooltipText = "{openValueY.value}";
     x.cursor = new am4charts.XYCursor();
 
     let scrollbarX = new am4charts.XYChartScrollbar();
     scrollbarX.series.push(series);
     x.scrollbarX = scrollbarX;
+
+    series.dataFields.openValueY = "value";
+    x.legend = new am4charts.Legend();
+    series.name = props.name;
 
     chart.current = x;
 
@@ -40,10 +44,6 @@ function LineChart(props) {
       x.dispose();
     };
   }, [props]);
-
-  useLayoutEffect(() => {
-    chart.current.paddingRight = props.paddingRight;
-  }, [props.paddingRight]);
 
 
   return (

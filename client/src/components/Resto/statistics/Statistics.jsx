@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import serverFinder from "../../../store/deploy/serverFinder";
 import BarChart from "./BarChart";
 import LineChart from "./LineChart";
@@ -8,8 +7,7 @@ import PieChartConstructor from "./PieChart";
 
 
 const Statistics = () => {
-    const data = useSelector((state) => state.detalle);
-    const dispatch = useDispatch();
+
     const [datos, setDatos] = useState([]);
     const [datosproductosAgrupados, setDatosProductosAgrupados] = useState([])
     const [datosclientes, setDatosClientes] = useState([]);
@@ -45,8 +43,15 @@ const Statistics = () => {
 
     }, [])
 
-    const mayorIngreso = datosproductosAgrupados[0];
-    const mayorVenta = datosproductosAgrupados[1];
+    const mayorIngreso = [];
+    for (let n = 0; n < 5 && n < datosproductosAgrupados[0]?.length; n++) {
+        mayorIngreso.push(datosproductosAgrupados[0]?.[n])
+    }
+
+    const mayorVenta = [];
+    for (let n = 0; n < 5 && n < datosproductosAgrupados[1]?.length; n++) {
+        mayorVenta.push(datosproductosAgrupados[1]?.[n])
+    }
 
     var controlDia;
     const formatData = [];
@@ -147,7 +152,7 @@ const Statistics = () => {
 
     const sendDataProduct = (productoData) => {
         let controlDia;
-        let valueReturn=[];
+        let valueReturn = [];
         let cantidad;
 
         for (let n = 0; n < productoData.length; n++) {
@@ -206,9 +211,11 @@ const Statistics = () => {
             <div className='lineCharts'>
 
                 <div className='ventas'>
+                    <h3>Historial de ingresos por ventas</h3>
                     <LineChart name='ventas' data={formatData} />
                 </div>
                 <div className='clientes'>
+                    <h3>Historial de cantidad de clientes</h3>
                     <LineChart name='clientes' data={clientes} />
                 </div>
             </div>
@@ -216,14 +223,17 @@ const Statistics = () => {
             <div className='pieCharts'>
 
                 <div className='mayorIngreso'>
+                    <h3>Productos con más ingresos</h3>
                     <PieChartConstructor name='mayorIngreso' data={mayorIngreso} />
                 </div>
                 <div className='mayorVenta'>
+                    <h3>Productos más vendidos</h3>
                     <PieChartConstructor name='mayorVenta' data={mayorVenta} />
                 </div>
             </div>
 
             <div className='barChar'>
+                <h3>Historial de cantidad de ventas por producto</h3>
                 <label htmlFor="productoSelected">Producto</label>
                 <select onChange={(e) => handleProduct(e)} name="productoSelected" id='productoSelected' className="form-select" aria-label="Default select example">
                     <option disabled selected value='nada'> Seleccionar... </option>

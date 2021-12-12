@@ -29,6 +29,9 @@ function BarChart(props) {
     scrollbarX.series.push(series);
     x.scrollbarX = scrollbarX;
 
+    x.legend = new am4charts.Legend();
+    series.name = props.name;
+
     chartBar.current = x;
 
     return () => {
@@ -36,9 +39,6 @@ function BarChart(props) {
     };
   }, [props]);
 
-  useLayoutEffect(() => {
-    chartBar.current.paddingRight = props.paddingRight;
-  }, [props.paddingRight]);
 
   return (
     <div id={`divBar${props.name}`} style={{ width: "100%", height: "500px" }}></div>

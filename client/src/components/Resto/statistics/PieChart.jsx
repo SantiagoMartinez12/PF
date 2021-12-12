@@ -24,6 +24,11 @@ function PieChartConstructor(props) {
         series.dataFields.value = value;
         series.dataFields.category = "name";
 
+        series.slices.template.stroke = am4core.color('#4a2abb');
+        series.slices.template.strokeWidth = 2;
+        series.slices.template.strokeOpacity = 1;
+
+        x.legend = new am4charts.Legend();
 
         chartPie.current = x;
 
@@ -31,10 +36,6 @@ function PieChartConstructor(props) {
             x.dispose();
         };
     }, [props]);
-
-    useLayoutEffect(() => {
-        chartPie.current.paddingRight = props.paddingRight;
-    }, [props.paddingRight]);
 
 
     return (
