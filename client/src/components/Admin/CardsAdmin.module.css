@@ -1,4 +1,5 @@
-.cardContainer {
+
+.cardContainerOne {
   border: 1px solid rgba(0, 0, 0, 0.125);
   height: 211px;
   width: 290px;
@@ -6,6 +7,19 @@
   border-radius: 20px;
   max-width: 284px;
   display: block;
+  background-color: rgb(240, 235, 235);
+ 
+}
+.cardContainerTwo {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  height: 211px;
+  width: 290px;
+  margin: 16px;
+  border-radius: 20px;
+  max-width: 284px;
+  display: block;
+  background-color: rgb(240, 189, 147);
+ 
 }
 .divImg{
   display:flex;
@@ -15,6 +29,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
   justify-content: center;
 }
 .h5Card {
@@ -25,7 +40,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+
   justify-content: space-evenly;
+
 }
 
 .boton {

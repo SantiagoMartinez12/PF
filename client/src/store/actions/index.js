@@ -258,3 +258,17 @@ export function deleteResto(restoId) {
     })
   }
 }
+
+export function setDatosMesa(payload){
+  return{
+    type:"setDatosMesa",
+    payload
+    }
+}
+
+export function setPedidoModificado(payload){
+  return{
+    type:"setPedidoModificado",
+    payload
+  }
+}

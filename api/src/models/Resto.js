@@ -44,6 +44,10 @@ module.exports = (sequelize) => {
           defaultValue: 0
         
       },
+      estado: {
+        type: DataTypes.STRING,
+        defaultValue:'solicitado'
+      },
     },
     {
       freezeTableName: true,
