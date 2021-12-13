@@ -9,10 +9,13 @@ export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
 export const CREAR_USUARIO = "CREAR_USUARIO";
 export const ALL_RESTO = "ALL_RESTO";
-export const DELETE_RESTO = "DELETE_RESTO"
+export const DELETE_RESTO = "DELETE_RESTO";
+export const FILTRO_ADMIN_MAIL = "FILTRO_ADMIN_MAIL";
+export const FILTRO_ADMIN_ID = "FILTRO_ADMIN_ID";
+export const FILTRO_ADMIN_NAME = "FILTRO_ADMIN_NAME";
 
 export function getProductos(idResto) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .get(serverFinder(`producto?idResto=${idResto}`))
       .then((response) => {
@@ -77,7 +80,7 @@ export function resetTicket() {
   };
 }
 export function getCuenta(idCliente) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .get(serverFinder(`detalle/idcliente/${idCliente}`))
       .then((response) => {
@@ -90,7 +93,7 @@ export function getCuenta(idCliente) {
 }
 
 export function crearUsuario(obj) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .post(serverFinder("resto/"), obj)
       .then((usuario) => {
@@ -106,7 +109,7 @@ export function crearUsuario(obj) {
 }
 
 export const agregarCategorias = (payload) => {
-  return async function () {
+  return async function() {
     const data = await axios.post(serverFinder("categorias/"), payload);
     const posteo = data.data;
     // console.log(posteo);
@@ -118,7 +121,7 @@ export const agregarCategorias = (payload) => {
 };
 
 export function getCategorias(idResto) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       const resp = await axios.get(serverFinder("categorias/" + idResto));
       const result = resp.data;
@@ -129,7 +132,7 @@ export function getCategorias(idResto) {
   };
 }
 export default function modificarUsuario(obj) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .put(serverFinder("resto/"), obj)
       .then((usuario) => {
@@ -142,7 +145,7 @@ export default function modificarUsuario(obj) {
 }
 
 export function infoUsuario(id) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .get(serverFinder("resto/" + id))
       .then((usuario) => {
@@ -158,7 +161,7 @@ export function infoUsuario(id) {
 }
 
 export const borrarCategorias = (id) => {
-  return async function (dispatch) {
+  return async function(dispatch) {
     const borrando = await axios.delete(serverFinder(`categorias/${id}`));
     const result = borrando.data;
     dispatch({ type: BORRAR_CATEGORIAS, payload: result });
@@ -166,7 +169,7 @@ export const borrarCategorias = (id) => {
 };
 
 export function getDetalle(idCliente) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .get(serverFinder("detalle/idcliente/" + idCliente))
       .then((json) => {
@@ -184,7 +187,7 @@ export function getDetalle(idCliente) {
 //actions to delete, update and create products RESTO
 
 export function postProduct(productObject) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .post(serverFinder(`producto`), productObject)
       .then((response) => {
@@ -197,7 +200,7 @@ export function postProduct(productObject) {
 }
 
 export function getUpdateProduct(productObject) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .put(serverFinder(`producto`), productObject)
       .then((response) => {
@@ -210,7 +213,7 @@ export function getUpdateProduct(productObject) {
 }
 
 export function deleteProduct(id) {
-  return function (dispatch) {
+  return function(dispatch) {
     axios
       .delete(serverFinder(`producto?id=${id}`))
       .then((response) => {
@@ -223,7 +226,7 @@ export function deleteProduct(id) {
 }
 
 export function getMesa(restoId) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     let json = await axios.get(serverFinder("mesa/get/" + restoId));
 
     return dispatch({
@@ -233,42 +236,63 @@ export function getMesa(restoId) {
   };
 }
 
-export function getIdClienteToState(payload){
-  return { 
+export function getIdClienteToState(payload) {
+  return {
     type: "GET_ID_CLIENTE",
-    payload}
+    payload,
+  };
 }
 
-export function allResto(){
+export function allResto() {
   return async function(dispatch) {
     let restos = await axios.get(serverFinder("resto"));
     return dispatch({
       type: "ALL_RESTO",
       payload: restos.data,
-    })
-  }
+    });
+  };
 }
 
 export function deleteResto(restoId) {
-  return async function (dispatch) {
-    let fundioResto = await axios.delete(serverFinder("resto/" + restoId))
+  return async function(dispatch) {
+    let fundioResto = await axios.delete(serverFinder("resto/" + restoId));
     return dispatch({
       type: "DELETE_RESTO",
-      payload: fundioResto.data
-    })
-  }
+      payload: fundioResto.data,
+    });
+  };
 }
 
-export function setDatosMesa(payload){
-  return{
-    type:"setDatosMesa",
-    payload
-    }
+export function setDatosMesa(payload) {
+  return {
+    type: "setDatosMesa",
+    payload,
+  };
 }
 
-export function setPedidoModificado(payload){
-  return{
-    type:"setPedidoModificado",
-    payload
-  }
+export function setPedidoModificado(payload) {
+  return {
+    type: "setPedidoModificado",
+    payload,
+  };
 }
+export const filtroAdminMail = (mail) => {
+  return {
+    type: FILTRO_ADMIN_MAIL,
+    payload: mail,
+  };
+};
+
+export const filtroAdminId = (id) => {
+  return {
+    type: FILTRO_ADMIN_ID,
+    payload: id,
+  };
+};
+
+export const filtroAdminName = (name) => {
+  return {
+    type: FILTRO_ADMIN_NAME,
+    payload: name,
+  };
+};

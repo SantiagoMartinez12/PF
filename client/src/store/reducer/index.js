@@ -3,9 +3,18 @@ import {
   AGREGAR_CATEGORIAS,
   allResto,
   BORRAR_CATEGORIAS,
+  FILTRO_ADMIN_ID,
+  FILTRO_ADMIN_MAIL,
+  FILTRO_ADMIN_NAME,
   GET_CATEGORIAS,
 } from "../actions";
-import { INFO_USUARIO, MODIFICAR_USUARIO, CREAR_USUARIO, DELETE_RESTO, ALL_RESTO} from "../actions";
+import {
+  INFO_USUARIO,
+  MODIFICAR_USUARIO,
+  CREAR_USUARIO,
+  DELETE_RESTO,
+  ALL_RESTO,
+} from "../actions";
 
 const initialState = {
   menuBaseDatos: [],
@@ -15,10 +24,12 @@ const initialState = {
   ticket: [],
   cuenta: 0,
   ticketCuenta: [],
-  idCliente:"",
+  idCliente: "",
   usuario: [],
   allResto: [],
-  pedidoModificado:'',
+  pedidoModificado: "",
+  allRestoFiltrosAdmin: [],
+
   ClientInfo: {
     estadoCliente: "solicitado",
     idCliente: "",
@@ -26,9 +37,9 @@ const initialState = {
     idResto: "",
     idMesa: "",
   },
-  infoMesa:{
-    resto:"",
-    mesa:""
+  infoMesa: {
+    resto: "",
+    mesa: "",
   },
 
   categorias: [],
@@ -141,8 +152,13 @@ const reducer = (state = initialState, action) => {
       };
 
     case "getDatosMesa":
-      const { estadoCliente, idCliente, nameCliente, idResto, idMesa } =
-        action.payload;
+      const {
+        estadoCliente,
+        idCliente,
+        nameCliente,
+        idResto,
+        idMesa,
+      } = action.payload;
 
       return {
         ...state,
@@ -202,31 +218,60 @@ const reducer = (state = initialState, action) => {
       };
 
     case "setDatosMesa":
-      return{
+      return {
         ...state,
-        infoMesa: action.payload
-      }
+        infoMesa: action.payload,
+      };
 
-      case "GET_ID_CLIENTE":
-        return {
-          ...state,
-          idCliente:action.payload
-        };
+    case "GET_ID_CLIENTE":
+      return {
+        ...state,
+        idCliente: action.payload,
+      };
+    case ALL_RESTO:
+      return {
+        ...state,
+        allResto: action.payload,
+        allRestoFiltrosAdmin: action.payload,
+      };
+    case DELETE_RESTO:
+      return {
+        ...state,
+      };
 
-      case ALL_RESTO:
-        return{
-          ...state,
-          allResto:action.payload
-        }
-      case DELETE_RESTO:
-        return{
-          ...state
-        }
-      case 'setPedidoModificado':
-        return {
-          ...state,
-          pedidoModificado: action.payload
-        }
+    case FILTRO_ADMIN_MAIL:
+      const todosLosRestos = state.allResto;
+      let filtrado = todosLosRestos.filter((el) => el.mail === action.payload);
+
+      return {
+        ...state,
+        allRestoFiltrosAdmin: filtrado,
+      };
+
+    case FILTRO_ADMIN_ID:
+      const todosLosResto = state.allResto;
+      let filtrad = todosLosResto.filter((el) => el.id === action.payload);
+
+      return {
+        ...state,
+        allRestoFiltrosAdmin: filtrad,
+      };
+
+    case FILTRO_ADMIN_NAME:
+      const todosResto = [...state.allResto];
+      let name = action.payload.toLowerCase();
+      console.log(name);
+      console.log(todosResto);
+      let filt = todosResto.filter((el) =>
+        el.name?.toLowerCase().includes(name)
+      );
+
+      console.log(filt);
+
+      return {
+        ...state,
+        allRestoFiltrosAdmin: filt,
+      };
 
     default:
       return state;
