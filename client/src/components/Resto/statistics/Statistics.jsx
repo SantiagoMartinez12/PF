@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import serverFinder from "../../../store/deploy/serverFinder";
 import BarChart from "./BarChart";
 import LineChart from "./LineChart";
@@ -13,11 +14,12 @@ const Statistics = () => {
     const [datosclientes, setDatosClientes] = useState([]);
     const [producto, setProducto] = useState([]);
     const [nameProducto, setNameProducto] = useState('nada')
+    const {restoId} = useParams()
 
 
     useEffect(() => {
 
-        axios.get(serverFinder("estadisticas/google-oauth2|116009200735399076324"))
+        axios.get(serverFinder(`estadisticas/${restoId}`))
             .then((json) => {
                 setDatos(json.data)
             })
@@ -25,7 +27,7 @@ const Statistics = () => {
                 console.log(error);
             });
 
-        axios.get(serverFinder("estadisticas/cliente/google-oauth2|116009200735399076324"))
+        axios.get(serverFinder(`estadisticas/cliente/${restoId}`))
             .then((json) => {
                 setDatosClientes(json.data)
             })
@@ -33,7 +35,7 @@ const Statistics = () => {
                 console.log(error);
             });
 
-        axios.get(serverFinder("estadisticas/productos/google-oauth2|116009200735399076324"))
+        axios.get(serverFinder(`estadisticas/productos/${restoId}`))
             .then((json) => {
                 setDatosProductosAgrupados(json.data)
             })
