@@ -20,6 +20,8 @@ export default function Detalle({ idResto, funcion }) {
     const [msj, setMsj] = useState(false)
     const [clientes, setClientes] = useState()
     const [eliminar,setEliminar] = useState()
+    const [emergente, setEmergente] = useState(false)
+    const [emergenteMesa, setEmergenteMesa] = useState(false)
 
     /*      console.log(detalle)
       mesaFind = mesa.find(e => e.id === idMesa)
@@ -56,7 +58,7 @@ export default function Detalle({ idResto, funcion }) {
     let nameCliente = detalle?.map(e => e.namecliente)
     // console.log(nameCliente[0])
 
-    let nameProducto = detalle?.map(e => { return {name:e.name, id:e.id}})
+    let nameProducto = detalle?.map(e => { return {name:e.name, id:e.id, seguimiento:e.seguimiento}})
     // console.log(nameProducto)
     
 
@@ -112,7 +114,7 @@ export default function Detalle({ idResto, funcion }) {
             desocuparMesa(idMesa[0])
             funcion()
             dispatch(getMesa(idResto))
-            alert("Su mesa se cerro correctamente")
+            alert("su mesa se cerro correctamente...")
         } else {
             setMsj(true)
         }
@@ -148,12 +150,18 @@ export default function Detalle({ idResto, funcion }) {
        axios.delete(serverFinder("detalle/" + id))
        dispatch(getDetalle(idCliente))
        EliminarProducto(name)
-       
-       alert("se elimino Correctamente, le avisaremos a tu comensal")
+       setEmergente(true)
+       //alert("se elimino Correctamente, le avisaremos a tu comensal")
     }
     function EliminarProducto(name){
         axios.put(serverFinder('cliente'), { id: idCliente, pedidoModificado: name })
     }
+    function handleOnClickemergente(){
+        setEmergente(false)
+    }
+   /*  function handleOnClickemergenteMesa(){
+        setEmergenteMesa(false)
+    } */
   
    
     return (
@@ -210,6 +218,7 @@ export default function Detalle({ idResto, funcion }) {
             </div> */}
 
             <Table responsive>
+                
                 <thead>
                     <tr>
                         <th>Productos</th>
@@ -228,7 +237,7 @@ export default function Detalle({ idResto, funcion }) {
                                     return (
                                         <li className="list-group-item">
                                             {
-                                               modifica === true ? <button 
+                                               modifica === true && el.seguimiento === "solicitado" ? <button 
                                                type="button" class="btn btn-primary"
                                                width="1px" height="1px"
                                                                     onClick={(e) => {handleClickEliminar(e,el.name, el.id)}}>X
@@ -287,9 +296,33 @@ export default function Detalle({ idResto, funcion }) {
                    
 
                     
-
+            
                 </div>
-            </center>
+                
+                {
+                 emergente ?
+                
+                <div className="body_aviso">
+                    <div className="container_aviso">
+                        <center>
+                            <h5> Su pedido se borro correctamente</h5>
+                            <i class="bi bi-check-circle"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" fill="currentColor" color="green" class="bi bi-check-circle" viewBox="0 0 16 16">
+                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+
+                  <h6> Le avisaremos a tu comensal </h6>
+
+                    <button onClick={handleOnClickemergente} id='boton_cerrar' className="btn btn-primary">Cerrar</button>
+                </center>
+            </div>    
+        </div>
+        : null
+                }
+
+            
+            
             <center>
                 <div className={global.whitecardmesasresto}>
                     <center>
@@ -298,11 +331,34 @@ export default function Detalle({ idResto, funcion }) {
                     </center>
                 </div>
                         {
-                            msj === true ? <div class="alert alert-danger" role="alert">
+                         msj === true ? 
+                            <div class="alert alert-danger" role="alert">
                            ! Tienes productos sin pagar
                           </div> : null
                         }
-            </center>
+                       {/*         {
+                 !emergenteMesa ? 
+            <div className="body_aviso">
+            <div className="container_aviso">
+                <center>
+                  <h5> Mesa cerrada correctamente</h5>
+                  <i class="bi bi-check-circle"></i>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" fill="currentColor" color="green" class="bi bi-check-circle" viewBox="0 0 16 16">
+                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                    </svg>
+
+            
+
+                    <button onClick={handleOnClickemergenteMesa} id='boton_cerrar' className="btn btn-primary">Cerrar</button>
+                </center>
+            </div>    
+        </div>
+        : null
+            
+                }  */}
+                </center>
+                </center>
         </div>
 
 
