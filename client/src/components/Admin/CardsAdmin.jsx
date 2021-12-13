@@ -1,6 +1,4 @@
 import React from "react";
-
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allResto, deleteResto } from "../../store/actions";
 import { useState } from "react";
@@ -13,8 +11,9 @@ import serverFinder from "../../store/deploy/serverFinder";
 
 export default function CardsAdmin({mail,image, name, usuario, id, estado}){ 
     const dispatch = useDispatch()
- 
 
+ 
+console.log(estado)
 
 
    function handleClick(e) {
@@ -37,8 +36,12 @@ export default function CardsAdmin({mail,image, name, usuario, id, estado}){
     }
     
 
-
-  
+    let cardContainer
+  if(estado === "autorizado"){
+      cardContainer = styles.cardContainerOne
+  }else{
+      cardContainer = styles.cardContainerTwo
+  }
 
 
 
@@ -47,7 +50,7 @@ export default function CardsAdmin({mail,image, name, usuario, id, estado}){
         <div >
             
                         
-            <div className={styles.cardContainer}>
+            <div className={cardContainer}>
                 
                     <div className={styles.divName} >
 
@@ -71,14 +74,15 @@ export default function CardsAdmin({mail,image, name, usuario, id, estado}){
                     </div>
                 
                     <div className={styles.divBotones}>
-                    <button onClick={(e)=>{ handleSuspender(e)}} value={id} class="btn btn-outline-danger btn-sm" >Suspender</button>
-                    <button onClick={(e)=>{handleActivar(e)}} value={id} class="btn btn-outline-danger btn-sm" >Activar</button>
+                    <button onClick={(e)=>{ handleSuspender(e)}} value={id} className="btn btn-outline-danger btn-sm" >Suspender</button>
+                    <button onClick={(e)=>{handleActivar(e)}} value={id} className="btn btn-outline-danger btn-sm" >Activar</button>
 
-                    <button onClick={(e)=>{handleClick(e)}} value={id} class="btn btn-danger btn-sm" >Eliminar</button>
+                    <button onClick={(e)=>{handleClick(e)}} value={id} className="btn btn-danger btn-sm" >Eliminar</button>
 
                     </div>
             </div>
         </div>
+       
     )
 
 }
