@@ -1,61 +1,77 @@
 
 .cardContainerOne {
+  justify-items: center;
+  max-width: 290px;
+  max-height: 260px;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  height: 211px;
-  width: 290px;
-  margin: 16px;
-  border-radius: 20px;
-  max-width: 284px;
-  display: block;
-  background-color: rgb(240, 235, 235);
+    border-radius: 9px;
+    background-color: rgb(240, 235, 235);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.1fr 1fr 1.1fr 1fr 1fr;
+    gap: 0px 1px;
+    grid-template-areas:
+      "imagen"
+      "nombreResto"
+      "mail"
+      "estado"
+      "botones";
+    grid-area: card;
  
 }
 .cardContainerTwo {
+  justify-items: center;
+  max-width: 290px;
+  max-height: 260px;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  height: 211px;
-  width: 290px;
-  margin: 16px;
-  border-radius: 20px;
-  max-width: 284px;
-  display: block;
+  border-radius: 9px;
   background-color: rgb(240, 189, 147);
- 
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.1fr 1fr 1.1fr 1fr 1fr;
+  gap: 0px 1px;
+  grid-template-areas:
+    "imagen"
+    "nombreResto"
+    "mail"
+    "estado"
+    "botones";
+  grid-area: card;
 }
+
 .divImg{
-  display:flex;
-  justify-content: center;
-}
-.divName {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-
-  justify-content: center;
-}
-.h5Card {
-  margin: 5px;
+  grid-area: imagen; 
+  
 }
 
-.divBotones {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
 
-  justify-content: space-evenly;
-
-}
-
-.boton {
-  margin: 0;
-  border: rgba(0, 0, 0, 0.125);
-}
-.link {
-  display: flex;
-  margin: 0;
-  justify-content: center;
-
-  text-decoration: none;
-}
-.link a {
-  text-decoration: none;
-}
+.gridContainer {
+  display: grid;
+  grid-template-columns: 0.1fr 2.8fr 0.1fr;
+  grid-template-rows: 0.1fr 2.8fr 0.1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+  ". . ."
+    ". card ."
+    ". . .";
+  }
+  
+  .nombreResto { grid-area: nombreResto; }
+  .mail { grid-area: mail; }
+  .estado { grid-area: estado; }
+  .botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 10px;
+    grid-template-areas:
+    "suspender activar eliminar";
+    grid-area: botones;
+    align-content: center;
+    align-items: center;
+    justify-items: end;
+  }
+  .suspender { grid-area: suspender; }
+  .activar { grid-area: activar; }
+  .eliminar { grid-area: eliminar; }
+ 

@@ -20,3 +20,9 @@
   display: flex;
   justify-content: center;
 }
+
+.logout{
+  display: flex;
+    justify-content: end;
+    margin: 20px;
+}
