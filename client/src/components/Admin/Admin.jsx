@@ -20,7 +20,7 @@ export default function SuperAdmin() {
     const dispatch = useDispatch() 
 
     let [currentPage, setCurrentPage] = useState(1)
-    let [restoPerPage]= useState(3) 
+    let [restoPerPage]= useState(9) 
     let indexOfLastResto = currentPage * restoPerPage 
     let indexOfFirstResto = indexOfLastResto - restoPerPage 
     let currentResto = restos.slice(indexOfFirstResto, indexOfLastResto)
