@@ -214,11 +214,11 @@ const Statistics = () => {
 
                 <div className='ventas'>
                     <h3>Historial de ingresos por ventas</h3>
-                    <LineChart name='ventas' data={formatData} />
+                    {formatData[0] ? <LineChart name='ventas' data={formatData} />:<p>No hay suficientes datos</p>}
                 </div>
                 <div className='clientes'>
                     <h3>Historial de cantidad de clientes</h3>
-                    <LineChart name='clientes' data={clientes} />
+                    {clientes[0] ? <LineChart name='clientes' data={clientes} />:<p>No hay suficientes datos</p>}
                 </div>
             </div>
 
@@ -226,11 +226,12 @@ const Statistics = () => {
 
                 <div className='mayorIngreso'>
                     <h3>Productos con más ingresos</h3>
-                    <PieChartConstructor name='mayorIngreso' data={mayorIngreso} />
+                    {mayorIngreso[0] ? <PieChartConstructor name='mayorIngreso' data={mayorIngreso} />:<p>No hay suficientes datos</p>}
                 </div>
                 <div className='mayorVenta'>
                     <h3>Productos más vendidos</h3>
-                    <PieChartConstructor name='mayorVenta' data={mayorVenta} />
+                    {mayorVenta[0] ? <PieChartConstructor name='mayorVenta' data={mayorVenta} />:<p>No hay suficientes datos</p>}
+                    
                 </div>
             </div>
 
