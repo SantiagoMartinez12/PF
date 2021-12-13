@@ -4,12 +4,15 @@ const { ACCESS_TOKEN } = process.env;
 
 const router = Router()
 
+// mercadopago.configure({
+//     access_token: ACCESS_TOKEN
+// });
 
 router.post("/preference", (req, res, next) => {
-    const { title, unit_price, quantity } = req.body
+    const { title, unit_price, quantity, token } = req.body
 
     mercadopago.configure({
-        access_token: ACCESS_TOKEN
+        access_token: token
     });
 
     let preference = {
