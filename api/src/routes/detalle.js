@@ -85,6 +85,28 @@ router.put('/seguimiento/', async (req, res, next) =>{
     }
 });
 
+// ruta para modificar el seguimiento de todos los detalles de un mismo cliente
+
+router.put('/seguimiento/:idCliente', async (req, res, next) =>{
+    try{
+        const {idCliente} = req.params
+        const {seguimiento} = req.body
+        
+        const cambiarSeguimiento = await Detalle.update({
+            
+            seguimiento:seguimiento,
+            
+        },{
+            where:{
+                clienteId:idCliente
+            }
+        })
+        res.send('su seguimiento se ha cambiado con exito') 
+    }catch(error){
+        next(error)
+    }
+});
+
 router.delete('/:id', async (req, res, next) =>{
     try{
         const {id} = req.params;

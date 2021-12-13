@@ -53,7 +53,7 @@ export default function HomeClient(){
     }
 
     if(infoCliente.estadoCliente === 'finalizado'){
-        navigate('/mesaCerrada');
+        navigate(`/mesaCerrada/${idCliente}`);
     }
     
     useEffect (() =>{
@@ -122,6 +122,14 @@ export default function HomeClient(){
                     </center>
                 </div>
             </div>
+            <br/>
+            {infoCliente.estadoCliente === 'solicitado'?
+                <div>
+                    <h6>En un instante te habilitaremos para realizar pedidos...</h6>
+                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+                </div>
+                : null
+            }    
             
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta/> :  <Cuenta/>  
@@ -135,15 +143,8 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
-            {infoCliente.estadoCliente === 'solicitado'?
-                <div>
-                    <h5>En un instante te habilitaremos para realizar pedidos.</h5>
-                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
-                </div>
-                : null
-            }    
         {/* <CBot /> */}
-        <div>
+        {/* <div>
         <script type="text/javascript">
       {
       (function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; 
@@ -152,7 +153,7 @@ export default function HomeClient(){
       s.parentNode.insertBefore(ldk, s); })()
       }
       </script>
-        </div>
+        </div> */}
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>

@@ -9,7 +9,7 @@ mercadopago.configure({
 });
   
 router.post("/preference", (req, res, next)=>{
-const {title, unit_price, quantity} = req.body
+const {idCliente, title, unit_price, quantity} = req.body
 
 let preference = {
     items:[{
@@ -18,8 +18,8 @@ let preference = {
         quantity: quantity
     }],
     back_urls: {
-            "success": "http://localhost:3000/gracias",
-            "failure": "http://localhost:3000/feedback",
+            "success": `http://localhost:3000/mesaCerrada/${idCliente}`,
+            "failure": "http://localhost:3000/errorPago",
             "pending": "http://localhost:3000/feedback"
         },
         auto_return:"approved",

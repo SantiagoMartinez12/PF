@@ -262,7 +262,10 @@ export default function Detalle({ idResto, funcion }) {
                                 <p>{seguimiento?.map(s => {
                                     return (
                                         <li className="list-group-item">
-                                            {s.seguimiento} {s.seguimiento === 'entregado' ? null : <button type="button" class={global.botonflechita} onClick={(e) => handleClickSeguimiento(s.seguimiento, s.id)}> ✓ </button>}
+                                            {s.seguimiento} {s.seguimiento === 'entregado'|| s.seguimiento === 'pagado'  ? 
+                                            null 
+                                            : 
+                                            <button type="button" class={global.botonflechita} onClick={(e) => handleClickSeguimiento(s.seguimiento, s.id)}> ✓ </button>}
                                         </li>
                                     )
                                 })}</p>
