@@ -11,7 +11,7 @@ import AutorizaResto from "./AutorizaResto";
 import logo from "../../assets/Logo.png"
 import CardsAdmin from "./CardsAdmin.jsx"
 import styles from './Admin.module.css'
-import Paginado from "./Paginado.jsx";
+import Paginado from './Paginado.jsx'
 
 
 
@@ -34,9 +34,9 @@ export default function SuperAdmin() {
     useEffect(()=>{
         dispatch(allResto())
       },[])
-
-
-    
+      
+      
+      
       return (
         <div>
           <div className={styles.losImg}>
@@ -55,17 +55,16 @@ export default function SuperAdmin() {
             {
               currentResto?.map(el =>{
                 return (
-                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} usuario={el.usuario} estado={el.estado}/></h5>                  
+                  <h5><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} estado={el.estado}/></h5>                  
                   )
                 })
               }
           </div>
-          <Paginado
-           restoPerPage = {restoPerPage}
-           restos = {restos.length}
-           paginado = {paginado}
-           />
-
+              <Paginado
+               restoPerPage = {restoPerPage}
+               restos = {restos.length}
+               paginado = {paginado}
+               />
         </div>
     )
 }
