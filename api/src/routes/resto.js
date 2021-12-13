@@ -18,7 +18,9 @@ router.get("/:id", async (req, res, next) => {
         "contraseña",
         "mail",
         "mesa",
-        "estado"
+        "estado",
+        "accesstoken",
+        "publickey"
       ],
       where: {
         id: id,
@@ -79,7 +81,7 @@ router.post("/", async (req, res, next) => {
 
 router.put("/", async (req, res, next) => {
   try {
-    let { id, image, name, usuario, contraseña, mail, mesa, estado, token, key } = req.body;
+    let { id, image, name, usuario, contraseña, mail, mesa, estado, accesstoken, publickey } = req.body;
     let comparar = await Resto.findOne({where:{
       id: id,
     }})
@@ -93,8 +95,8 @@ router.put("/", async (req, res, next) => {
         mail: mail,
         mesa: mesa,
         estado: estado,
-        token: token,
-        key: key
+        accesstoken: accesstoken,
+        publickey: publickey
       },
       {
         where: {
