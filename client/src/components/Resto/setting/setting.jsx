@@ -6,7 +6,6 @@ import Categorias from "./Categorias";
 import { useDispatch } from "react-redux";
 import { infoUsuario } from "../../../store/actions";
 import Product from "../product/Product";
-import MediosDePago from "./MediosDePago";
 import { useParams } from "react-router";
 import logo from "../../../assets/Logo.png"
 import ViewQr from "./ViewQr";
@@ -67,20 +66,7 @@ export default function Setting() {
         }
     } 
 
-    function handleMediosDePago(e){
-        if(mediosDePago===false){           
-                setMediosDePago(true)
-                setProduct(false)
-                setIUsuario(false)
-                setInfoCategorias(false)
-                setQr(false)
-        }else{
-           
-            setMediosDePago(false)
-        }
-
-    }
-
+ 
     function handleQr(e) {
         if (qr === false) {            
             setQr(true)
@@ -122,11 +108,7 @@ export default function Setting() {
                         <box-icon name='restaurant'></box-icon>
                         Productos</button>
                 </div>
-                <div>
-                    <button className={global.btcardsettings}>
-                        <box-icon name='credit-card' type='solid' ></box-icon>
-                        Medios de pagos</button>
-                </div>
+                
                 <div>
                     <button onClick={(e) => handleQr(e)} className={global.btcardsettings}>
                     <box-icon name='qr-scan'></box-icon>
@@ -142,9 +124,6 @@ export default function Setting() {
                 }
 
                 {product === true ? <Product /> : <></>
-                }
-
-                {mediosDePago === true ? <MediosDePago /> : <></>
                 }
 
                 {qr === true ? <ViewQr /> : <></>
