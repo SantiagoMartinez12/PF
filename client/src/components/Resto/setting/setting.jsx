@@ -135,7 +135,7 @@ export default function Setting() {
                 </div>
                 <div>
                     <button onClick={(e) => handleStadistics(e)} className={global.btcardsettings}>
-                    <box-icon name=''></box-icon>
+                    <box-icon type='solid' name='bar-chart-alt-2'></box-icon>
                         Estadísticas</button>
                 </div>
                 </div>
