@@ -8,9 +8,10 @@ import { getDetalle, getIdClienteToState, getMesa } from "../../../store/actions
 import { Link } from "react-router-dom";
 import axios from "axios"
 import Detalle from "./detalle";
-import {Navbar, Container, Nav, Row, Col, ListGroup} from 'react-bootstrap';
+import {Navbar, Container, Nav, Row, Col, ListGroup, Card} from 'react-bootstrap';
 import logowhite from "../../../assets/Logo_white.png";
 import serverFinder from "../../../store/deploy/serverFinder";
+import {useAuth0} from '@auth0/auth0-react'
 
 
 
@@ -20,13 +21,13 @@ var global = require('../../Resto/global.module.css')
 export default function HomeResto(){
     // const mesas = useSelector(state => state.mesas)
     const {restoId} = useParams()
-   
+    const { logout } = useAuth0();
 
 
     const [clientes, setClientes] = useState()
     const [state, setState] = useState(false)
     const [estado, setEstado] = useState(false)
-    // console.log(estado)
+
     const dispatch = useDispatch()
     // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
     
@@ -98,7 +99,7 @@ export default function HomeResto(){
               <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
               <Nav>
-                  <button className={global.botonnavbar}>Logout</button>
+              <button onClick={() => logout({returnTo: window.location.origin})} class="btn btn-primary btn-sm w-50">Logout</button>
               </Nav>
               <Nav>
              {
@@ -153,10 +154,13 @@ export default function HomeResto(){
                  clientes?.map(el =>{
                     {
                         el.nuevoPedido === true ? className = 'danger' : className = 'light'
-                        console.log(el.nuevoPedido)
+                        
                     }
                     return(
                             <div>
+                                
+                                <Card  style={{ width: '15rem' }}>
+                                    
                                <ListGroup>
                                 <ListGroup.Item variant={className}>
                                     
@@ -168,6 +172,7 @@ export default function HomeResto(){
                                 </div>
                                 </ListGroup.Item>
                                 </ListGroup>
+                                </Card>
                             </div>
                     )
                 })
