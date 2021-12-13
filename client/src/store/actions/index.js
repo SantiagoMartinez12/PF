@@ -9,6 +9,7 @@ export const GET_CATEGORIAS = "GET_CATEGORIAS";
 export const BORRAR_CATEGORIAS = "BORRAR_CATEGORIAS";
 export const CREAR_USUARIO = "CREAR_USUARIO";
 export const ALL_RESTO = "ALL_RESTO";
+export const DELETE_RESTO = "DELETE_RESTO"
 
 export function getProductos(idResto) {
   return function (dispatch) {
@@ -245,5 +246,29 @@ export function allResto(){
       type: "ALL_RESTO",
       payload: restos.data,
     })
+  }
+}
+
+export function deleteResto(restoId) {
+  return async function (dispatch) {
+    let fundioResto = await axios.delete(serverFinder("resto/" + restoId))
+    return dispatch({
+      type: "DELETE_RESTO",
+      payload: fundioResto.data
+    })
+  }
+}
+
+export function setDatosMesa(payload){
+  return{
+    type:"setDatosMesa",
+    payload
+    }
+}
+
+export function setPedidoModificado(payload){
+  return{
+    type:"setPedidoModificado",
+    payload
   }
 }

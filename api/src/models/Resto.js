@@ -19,7 +19,8 @@ module.exports = (sequelize) => {
       }, 
       
       image: {
-        type: DataTypes.BLOB,
+        type: DataTypes.TEXT,
+        
       },
 
       name: {
@@ -42,6 +43,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
           defaultValue: 0
         
+      },
+      estado: {
+        type: DataTypes.STRING,
+        defaultValue:'solicitado'
       },
     },
     {

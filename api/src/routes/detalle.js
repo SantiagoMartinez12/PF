@@ -24,7 +24,6 @@ router.get('/:id', async (req, res, next) =>{
 router.post('/', async (req, res, next) =>{
     try{
         const data = req.body
-        
         const newDetalle = await data.forEach(async(register)=>{
             await Detalle.create({
             mesaId: register.idMesa,
@@ -35,7 +34,8 @@ router.post('/', async (req, res, next) =>{
             seguimiento: register.seguimiento,
             comentario: register.comentario,
             cantidad: register.cantidad,
-            clienteId: register.idCliente
+            clienteId: register.idCliente,
+            restoId: register.idResto
         })})
         res.send(newDetalle) 
        
