@@ -26,7 +26,7 @@ export default function HomeResto(){
     const [clientes, setClientes] = useState()
     const [state, setState] = useState(false)
     const [estado, setEstado] = useState(false)
-    console.log(estado)
+    // console.log(estado)
     const dispatch = useDispatch()
     // const getMesas = dispatch(getMesa("397799a7-45df-4051-a12d-e880cdd59c0b"))
     
