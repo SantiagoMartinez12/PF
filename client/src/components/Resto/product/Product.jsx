@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import Buscador from "./Buscador";
 import { filtroProductos} from '../../../store/actions';
 
+//Filtros del resto terminados
 const Product = () => {
   const [form, setForm] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
