@@ -45,6 +45,7 @@ export default function Cuenta(){
         if(idpago.length===0){
             //console.log("Entre al if")
             const cuenta = {
+                idCliente: idCliente,       //agregado por Leo
                 title: "Total de cuenta",
                 unit_price: Number(totalCuenta),
                 quantity: 1
