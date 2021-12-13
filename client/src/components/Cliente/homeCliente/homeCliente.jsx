@@ -152,7 +152,7 @@ export default function HomeClient(){
       var s = document.getElementsByTagName('script')[0]; 
       s.parentNode.insertBefore(ldk, s); })()
       } */}
-      </script>
+      {/*</div></script>
         </div> */}
         </div>
         <footer className={global.footer}>

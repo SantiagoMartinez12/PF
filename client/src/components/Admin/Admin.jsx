@@ -37,9 +37,12 @@ export default function SuperAdmin() {
     useEffect(()=>{
         dispatch(allResto())
       },[])
-      
-      
-      
+
+    function handleClick(e){
+      dispatch(allResto())
+    }
+    
+
       return (
         <div>
           <div >
@@ -53,6 +56,9 @@ export default function SuperAdmin() {
             <div className={styles.losTitulosAlMedio}>
               <SearchBarAdmin />
             </div>
+            <div className={styles.losTitulosAlMedio}>
+              <button className="btn btn-primary mx-2 my-3" onClick={handleClick} >Ver todos</button>
+            </div>
             <AutorizaResto/>
 
             <br />
@@ -61,13 +67,14 @@ export default function SuperAdmin() {
             </div>
             <div className={styles.conteinerCards}>
               {
-                currentResto?.map(el =>{
+                currentResto.length ? currentResto?.map(el =>{
                   return (
                     <div key={el.id}><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} estado={el.estado}/>
                     </div>
                                    
                     )
-                  })
+                  }) : <div><h4>No existe el usuario</h4></div>
+                
               }
             </div >
             <div className={styles.paginado }>
