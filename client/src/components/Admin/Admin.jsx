@@ -24,7 +24,9 @@ export default function SuperAdmin() {
     const filtrado = filtro?.filter((el) => el.mail !== "admin@mozovirtual.com")
 
     let [currentPage, setCurrentPage] = useState(1)
-    let [restoPerPage]= useState(4) 
+
+    let [restoPerPage]= useState(9) 
+
     let indexOfLastResto = currentPage * restoPerPage 
     let indexOfFirstResto = indexOfLastResto - restoPerPage 
     let currentResto = filtrado.slice(indexOfFirstResto, indexOfLastResto)
