@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import serverFinder from "../../../store/deploy/serverFinder";
 import BarChart from "./BarChart";
 import LineChart from "./LineChart";
@@ -13,11 +14,12 @@ const Statistics = () => {
     const [datosclientes, setDatosClientes] = useState([]);
     const [producto, setProducto] = useState([]);
     const [nameProducto, setNameProducto] = useState('nada')
+    const {restoId} = useParams()
 
 
     useEffect(() => {
 
-        axios.get(serverFinder("estadisticas/google-oauth2|116009200735399076324"))
+        axios.get(serverFinder(`estadisticas/${restoId}`))
             .then((json) => {
                 setDatos(json.data)
             })
@@ -25,7 +27,7 @@ const Statistics = () => {
                 console.log(error);
             });
 
-        axios.get(serverFinder("estadisticas/cliente/google-oauth2|116009200735399076324"))
+        axios.get(serverFinder(`estadisticas/cliente/${restoId}`))
             .then((json) => {
                 setDatosClientes(json.data)
             })
@@ -33,7 +35,7 @@ const Statistics = () => {
                 console.log(error);
             });
 
-        axios.get(serverFinder("estadisticas/productos/google-oauth2|116009200735399076324"))
+        axios.get(serverFinder(`estadisticas/productos/${restoId}`))
             .then((json) => {
                 setDatosProductosAgrupados(json.data)
             })
@@ -212,11 +214,11 @@ const Statistics = () => {
 
                 <div className='ventas'>
                     <h3>Historial de ingresos por ventas</h3>
-                    <LineChart name='ventas' data={formatData} />
+                    {formatData[0] ? <LineChart name='ventas' data={formatData} />:<p>No hay suficientes datos</p>}
                 </div>
                 <div className='clientes'>
                     <h3>Historial de cantidad de clientes</h3>
-                    <LineChart name='clientes' data={clientes} />
+                    {clientes[0] ? <LineChart name='clientes' data={clientes} />:<p>No hay suficientes datos</p>}
                 </div>
             </div>
 
@@ -224,11 +226,12 @@ const Statistics = () => {
 
                 <div className='mayorIngreso'>
                     <h3>Productos con más ingresos</h3>
-                    <PieChartConstructor name='mayorIngreso' data={mayorIngreso} />
+                    {mayorIngreso[0] ? <PieChartConstructor name='mayorIngreso' data={mayorIngreso} />:<p>No hay suficientes datos</p>}
                 </div>
                 <div className='mayorVenta'>
                     <h3>Productos más vendidos</h3>
-                    <PieChartConstructor name='mayorVenta' data={mayorVenta} />
+                    {mayorVenta[0] ? <PieChartConstructor name='mayorVenta' data={mayorVenta} />:<p>No hay suficientes datos</p>}
+                    
                 </div>
             </div>
 

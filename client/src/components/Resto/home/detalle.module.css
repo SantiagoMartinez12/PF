@@ -47,3 +47,31 @@
     
     
   }
+
+  .body_aviso{
+    position:fixed;
+    z-index:999;
+    top:0;
+    left:0;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0,0,0,0.80);
+    display: flex;
+    justify-content: center;
+    
+}
+
+.container_aviso{
+    position: relative;
+    top:150px;
+    width: 350px;
+    height: 265px;
+    padding:8px 5px 5px 5px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+#boton_cerrar{
+    margin-top: 5px;
+    
+}
