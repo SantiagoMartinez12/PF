@@ -1,6 +1,4 @@
 import React from "react";
-
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { allResto, deleteResto } from "../../store/actions";
 import { useState } from "react";

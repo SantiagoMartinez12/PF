@@ -1,11 +1,10 @@
 .paginacion {
-	margin:20px 0;
-    border-color: darkturquoise;
+	margin:20px;
     height: 100px;
     width: 100px;
 }
 
-.paginacion ul {
+/* .paginacion ul {
 	list-style:none;
 	text-align: center;
 }
@@ -13,9 +12,9 @@
 .paginacion ul li {
 	display:inline-block;
 	margin-right:2px;
-}
+} */
 
-.paginacion ul li a {
+/* .paginacion ul li a {
 	display:block;
 	padding:10px 10px;
 	color:#fff;
@@ -31,4 +30,4 @@
 .paginacion ul li .active {
 	background:lightskyblue;
 	font-weight:bold;
-}
+} */
