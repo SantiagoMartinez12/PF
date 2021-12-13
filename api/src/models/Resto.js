@@ -38,6 +38,16 @@ module.exports = (sequelize) => {
         
       },
 
+      accesstoken: {
+        type: DataTypes.STRING,
+        
+      },
+
+      publickey: {
+        type: DataTypes.STRING,
+        
+      },
+
 
       mesa: {
         type: DataTypes.INTEGER,

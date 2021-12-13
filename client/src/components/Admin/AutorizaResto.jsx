@@ -6,7 +6,8 @@ import { useState } from "react";
 
 export default function AutorizaResto(){
     const [restos, setRestos] = useState([])
-    
+    const filtradoRestos = restos?.filter((el) => el.mail !== "admin@mozovirtual.com")
+
      // al cargar el componente se dispara la función para actualizar restos cada cierto tiempo
      useEffect (() =>{
         
@@ -36,17 +37,17 @@ export default function AutorizaResto(){
     }
 
     return(
-        <div class="card bg-success p-2 text-dark bg-opacity-10 mb-4">
-        <div class="card-body">
+        <div className="card bg-success p-2 text-dark bg-opacity-10 mb-4">
+        <div className="card-body">
         
         <div className="container">
             <div className="row">
                 <h5>Autorizar Resto</h5>
-                { restos.length?
-                restos?.map(r=>{
+                { filtradoRestos.length?
+                filtradoRestos?.map(r=>{
                     return( 
-                        <div>
-                            <div key={r.id}>
+                        <div key={r.id}>
+                            <div>
                               <div className="text-capitalize fs-5">
                                 {`${r.mail} está esperando autorización`}
                               </div> 

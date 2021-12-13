@@ -1,17 +1,17 @@
-.conteinerCards{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-between;
-    justify-content: center;
-    align-items: center;
+.conteinerCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
-.losTitulosAlMedio{
-    display:flex;
-    justify-content: center;
+.losTitulosAlMedio {
+  display: flex;
+  justify-content: center;
 }
 
-.laImg{
-    display: flex;
+.laImg {
+  display: flex;
 }
