@@ -41,11 +41,12 @@ const Product = () => {
 
   return (
     <>
-      <div>
-        <Buscador setShowFiltrados={setShowFiltrados} />
-      </div>
+      
       {showFiltrados ? (
         <>
+        <div>
+        <Buscador setShowFiltrados={setShowFiltrados} />
+      </div>
           <button type="button" className="btn btn-primary me-md-2" onClick={(e) => handleReset(e)}>
             Volver
           </button>
@@ -57,6 +58,9 @@ const Product = () => {
         </>
       ) : showCategorias ? (
         <>
+        <div>
+        <Buscador setShowFiltrados={setShowFiltrados} />
+      </div>
         <button type="button" className="btn btn-primary me-md-2" onClick={(e) => handleReset(e)}>
             Volver
           </button>
@@ -83,9 +87,11 @@ const Product = () => {
               Agregar Producto
             </button>
           </div>
-
           <div>
-            <h4>Buscar por categoría:</h4>
+        <Buscador setShowFiltrados={setShowFiltrados} />
+      </div>
+          <div>
+            <h5>Buscar por categoría:</h5>
             <select onChange={(e) => handleFiltroCategorias(e)}>
               <option key="All" value="All">
                 {" "}
