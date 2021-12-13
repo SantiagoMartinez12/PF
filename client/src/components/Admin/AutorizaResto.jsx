@@ -6,7 +6,8 @@ import { useState } from "react";
 
 export default function AutorizaResto(){
     const [restos, setRestos] = useState([])
-    
+    const filtradoRestos = restos?.filter((el) => el.mail !== "admin@mozovirtual.com")
+
      // al cargar el componente se dispara la función para actualizar restos cada cierto tiempo
      useEffect (() =>{
         
@@ -42,8 +43,8 @@ export default function AutorizaResto(){
         <div className="container">
             <div className="row">
                 <h5>Autorizar Resto</h5>
-                { restos.length?
-                restos?.map(r=>{
+                { filtradoRestos.length?
+                filtradoRestos?.map(r=>{
                     return( 
                         <div key={r.id}>
                             <div>
