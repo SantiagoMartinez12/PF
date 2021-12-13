@@ -62,11 +62,12 @@ export default function Detalle({ idResto, funcion }) {
 
     let cantidad = detalle?.map(e => e.cantidad)
     let precio = detalle?.map(e => e.precio)
+    // ----total de cuenta----- //
     let precioTotal = 0
     for (let i = 0; i < precio.length; i++){
         precioTotal = precio[i] + precioTotal
     }
-    
+    //----------------------//
 
     seguimiento = detalle?.map(e => { return { seguimiento: e.seguimiento, id: e.id } })   
     let comentario = detalle?.map(e=> e.comentario)
