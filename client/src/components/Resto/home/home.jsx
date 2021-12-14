@@ -115,7 +115,7 @@ export default function HomeResto(){
               <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
               <Nav>
-              <button onClick={() => logout({returnTo: window.location.origin})} class="btn btn-primary btn-sm w-50">Logout</button>
+              <button onClick={() => logout({returnTo: window.location.origin})} class="btn btn-outline-primary">Logout</button>
               </Nav>
               <Nav>
             

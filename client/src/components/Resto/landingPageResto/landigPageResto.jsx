@@ -25,7 +25,7 @@ export default function LandingPageResto() {
   const dispatch = useDispatch()
   const restoId = useSelector((state) => state.usuario)
   const ruta = `/home/resto/${restoId[0]?.id}`
-  const rutaAdmin = "/admin"
+  const rutaAdmin = "/admin/auth0|61b246f578b4bd006ac1cac4"
   
   
   useEffect(()=>{
