@@ -17,6 +17,8 @@ export default function Usuario(){
   const [editarNombreUsuario, setEditarNombreUsuario] = useState(false)
   const [editarEmail, setEditarEmail] = useState(false)  
   const [editarNumeroMesas, setEditarNumeroMesas] = useState(false)
+  const [editarAccessToken, setEditarAccessToken] = useState(false)
+  const [editarPublicKey, setEditarPublicKey] = useState(false)
   const [modificar, setModificar] = useState({
     id: restoId,
   })
@@ -42,6 +44,8 @@ export default function Usuario(){
     setEditarNombreUsuario(false)
     setEditarEmail(false)
     setEditarNumeroMesas(false)
+    setEditarAccessToken(false)
+    setEditarPublicKey(false)
     dispatch(infoUsuario(restoId))
     if (window.confirm("El usuario se ha modificado exitosamente")) {
       window.location.reload()
@@ -95,6 +99,22 @@ export default function Usuario(){
             setEditarNumeroMesas(false)
         } 
       }
+      
+      function handleEditarAccessToken(e){
+        if(editarAccessToken===false){
+          setEditarAccessToken(true)
+        }else{
+            setEditarAccessToken(false)
+        } 
+      }
+
+      function handleEditarPublicKey(e){
+        if(editarPublicKey===false){
+          setEditarPublicKey(true)
+        }else{
+            setEditarPublicKey(false)
+        } 
+      }
 
       // console.log(restoInfo)      
       // console.log(modificar)
@@ -139,6 +159,22 @@ export default function Usuario(){
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} className="btn btn-primary">Editar</button></> : <>
                   <input onChange={(e)=> {handleModificar(e)}} name='mesa' className="form-control"></input>
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} className="btn btn-primary">x</button></>}
+                  <div>
+                  <h5>Configurar Mercado Pago:</h5>
+                  </div>
+                  <div className={style.accessToken}>Access Token: {restoInfo[0]?.accesstoken} </div>
+                  {console.log(restoInfo[0]?.accesstoken)}
+                  {editarAccessToken===false?<>
+                  <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">Editar</button></> : <>
+                  <input onChange={(e)=> {handleModificar(e)}} name='accesstoken' className="form-control"></input>
+                  <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">x</button></>}
+
+                  <div className={style.publicKey}>Public Key: {restoInfo[0]?.publickey} </div>
+                  {editarPublicKey===false?<>
+                  <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
+                  <input onChange={(e)=> {handleModificar(e)}} name='publickey' className="form-control"></input>
+                  <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">x</button></>}
+
                     <div>
                     <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
                     </div>
