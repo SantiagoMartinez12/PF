@@ -41,22 +41,22 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get('/param/:param', async(req, res, next)=>{
-  const { param } = req.params; 
-  
-  try{
-      
-      const restos = await Resto.findAll({
-          where:{
-              
-          estado:param,
-          },
-          
-      });
-      return res.json(restos)
+router.get('/param/:param', async (req, res, next) => {
+  const { param } = req.params;
 
-  }catch(error){
-      next(error)
+  try {
+
+    const restos = await Resto.findAll({
+      where: {
+
+        estado: param,
+      },
+
+    });
+    return res.json(restos)
+
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -67,12 +67,12 @@ router.post("/", async (req, res, next) => {
     let newUser = await Resto.findOrCreate({
       id,
       mail,
-      where:{
-        id:id,
-        mail:mail
+      where: {
+        id: id,
+        mail: mail
       }
     });
-    
+
     res.send(newUser);
   } catch (err) {
     next(err);
@@ -81,10 +81,12 @@ router.post("/", async (req, res, next) => {
 
 router.put("/", async (req, res, next) => {
   try {
-    let { id, image, name, usuario, contraseña, mail, mesa, estado, accesstoken, publickey } = req.body;
-    let comparar = await Resto.findOne({where:{
-      id: id,
-    }})
+    let { id, image, name, usuario, contraseña, mail, mesa, estado, token, key } = req.body;
+    let comparar = await Resto.findOne({
+      where: {
+        id: id,
+      }
+    })
 
     let updated = await Resto.update(
       {
@@ -95,8 +97,8 @@ router.put("/", async (req, res, next) => {
         mail: mail,
         mesa: mesa,
         estado: estado,
-        accesstoken: accesstoken,
-        publickey: publickey
+        accesstoken: token,
+        publickey: key
       },
       {
         where: {
@@ -104,8 +106,11 @@ router.put("/", async (req, res, next) => {
         },
       }
     );
-    await modificarMesaQr(comparar.dataValues.mesa, mesa ,id)
-    
+
+    await modificarMesaQr(comparar.dataValues.mesa, mesa, id)
+
+
+
     res.send(updated);
   } catch (err) {
     next(err);
@@ -115,7 +120,7 @@ router.put("/", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    const {id} =req.params;
+    const { id } = req.params;
     const deleteResto = await Resto.destroy(
       {
         where: {
