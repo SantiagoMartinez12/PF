@@ -1,23 +1,21 @@
-
 .cardContainerOne {
   justify-items: center;
   max-width: 290px;
   max-height: 260px;
   border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 9px;
-    background-color: rgb(240, 235, 235);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1.1fr 1fr 1.1fr 1fr 1fr;
-    gap: 0px 1px;
-    grid-template-areas:
-      "imagen"
-      "nombreResto"
-      "mail"
-      "estado"
-      "botones";
-    grid-area: card;
- 
+  border-radius: 9px;
+  background-color: rgb(240, 235, 235);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.1fr 1fr 1.1fr 1fr 1fr;
+  gap: 0px 1px;
+  grid-template-areas:
+    "imagen"
+    "nombreResto"
+    "mail"
+    "estado"
+    "botones";
+  grid-area: card;
 }
 .cardContainerTwo {
   justify-items: center;
@@ -39,11 +37,10 @@
   grid-area: card;
 }
 
-.divImg{
-  grid-area: imagen; 
-  
+.divImg {
+  grid-area: imagen;
+  margin-top: 10px;
 }
-
 
 .gridContainer {
   display: grid;
@@ -51,27 +48,37 @@
   grid-template-rows: 0.1fr 2.8fr 0.1fr;
   gap: 0px 0px;
   grid-template-areas:
-  ". . ."
+    ". . ."
     ". card ."
     ". . .";
-  }
-  
-  .nombreResto { grid-area: nombreResto; }
-  .mail { grid-area: mail; }
-  .estado { grid-area: estado; }
-  .botones {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 10px;
-    grid-template-areas:
-    "suspender activar eliminar";
-    grid-area: botones;
-    align-content: center;
-    align-items: center;
-    justify-items: end;
-  }
-  .suspender { grid-area: suspender; }
-  .activar { grid-area: activar; }
-  .eliminar { grid-area: eliminar; }
- 
+}
+
+.nombreResto {
+  grid-area: nombreResto;
+}
+.mail {
+  grid-area: mail;
+}
+.estado {
+  grid-area: estado;
+}
+.botones {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 10px;
+  grid-template-areas: "suspender activar eliminar";
+  grid-area: botones;
+  align-content: center;
+  align-items: center;
+  justify-items: end;
+}
+.suspender {
+  grid-area: suspender;
+}
+.activar {
+  grid-area: activar;
+}
+.eliminar {
+  grid-area: eliminar;
+}
