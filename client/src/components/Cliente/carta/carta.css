@@ -1,0 +1,27 @@
+.tu_pedido{
+    padding: 10px;
+    background-color: rgba(0,0,0,0.80);
+    width: 100vh;
+    position:fixed;
+    bottom: 55px;
+    left:0px;
+    display:flex;
+    align-content: center;
+
+}
+
+.tu_pedido_total{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 200px;
+    border: 2px solid;
+    border-radius: 8px;
+    border-color:#0d6efd;
+    background-color: #f5f5f5;
+    color:#0d6efd;
+    margin-right: 25px;
+}
+
+
