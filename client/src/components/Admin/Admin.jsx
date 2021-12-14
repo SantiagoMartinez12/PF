@@ -69,7 +69,7 @@ export default function SuperAdmin() {
               {
                 currentResto.length ? currentResto?.map(el =>{
                   return (
-                    <div key={el.id}><CardsAdmin key={el.id} id={el.id} name={el.name} mail={el.mail} estado={el.estado}/>
+                    <div key={el.id}><CardsAdmin key={el.id} image={el.image} id={el.id} name={el.name} mail={el.mail} estado={el.estado}/>
                     </div>
                                    
                     )
