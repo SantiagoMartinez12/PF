@@ -53,7 +53,7 @@ export default function HomeClient(){
     }
 
     if(infoCliente.estadoCliente === 'finalizado'){
-        navigate(`/mesaCerrada/${idCliente}`);
+        navigate('/mesaCerrada');
     }
     
     useEffect (() =>{
@@ -122,14 +122,6 @@ export default function HomeClient(){
                     </center>
                 </div>
             </div>
-            <br/>
-            {infoCliente.estadoCliente === 'solicitado'?
-                <div>
-                    <h6>En un instante te habilitaremos para realizar pedidos...</h6>
-                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
-                </div>
-                : null
-            }    
             
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta/> :  <Cuenta/>  
@@ -143,17 +135,14 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
-        {/* <CBot /> */}
-        {/* <div>
-        <script type="text/javascript">
-     {/*  {
-      (function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; 
-      ldk.src = 'https://s.cliengo.com/weboptimizer/61afe3f2f02aad002a715f0c/61afe3f4f02aad002a715f10.js?platform=view_installation_code'; 
-      var s = document.getElementsByTagName('script')[0]; 
-      s.parentNode.insertBefore(ldk, s); })()
-      } */}
-      {/*</div></script>
-        </div> */}
+            {infoCliente.estadoCliente === 'solicitado'?
+                <div>
+                    <h5>En un instante te habilitaremos para realizar pedidos.</h5>
+                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+                </div>
+                : null
+            }    
+
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
