@@ -4,15 +4,25 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import serverFinder from "../../../store/deploy/serverFinder";
 import {useMercadopago} from "react-sdk-mercadopago";
+import { useDispatch, useSelector } from "react-redux";
+import { infoUsuario } from "../../../store/actions";
 
 var global = require('../../Resto/global.module.css')
 let idpago = ''
 
 
 export default function Cuenta(){
-    const{idCliente} = useParams()
+    const{idCliente, idResto} = useParams()
     const [cuenta, setCuenta]=useState([]);
     const [totalCuenta, setTotalCuenta]=useState(0)
+    const dispatch = useDispatch();
+    const usuario = useSelector(state => state.usuario)
+    const token = usuario[0]?.accesstoken
+
+   
+    useEffect (()=>{ 
+    dispatch(infoUsuario(idResto))},
+    [dispatch])
 
     const actualizaCuenta=()=>{
         axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
@@ -33,24 +43,28 @@ export default function Cuenta(){
     }
 
     useEffect (actualizaCuenta, []);
-
-    const mercadopago = useMercadopago.v2('TEST-1f9d40ec-8e74-4f9a-a07f-ec3a5ee6d2f2', {
+    //console.log(usuario)
+    if (usuario[0]) {
+        var mercadopago = useMercadopago.v2(usuario[0]?.publickey, {
         locale: 'es-AR',
-    }) // Instancia para Mercado Pago
+    })} // Instancia para Mercado Pago
 
     //Esta función manda el objeto capturado con el número de la cuenta al back y hace la peticion
     //de una preferencia a la API de MP, recibe un id y este es enviado a la funcion para
     //crear el Checkout, una vez allí inicializa la terminal de MP
-    function pagarCuenta() {
+    function pagarCuenta(e) {
+        e.preventDefault()
+        // console.log("entre")
         if(idpago.length===0){
             //console.log("Entre al if")
             const cuenta = {
                 idCliente: idCliente,       //agregado por Leo
                 title: "Total de cuenta",
                 unit_price: Number(totalCuenta),
-                quantity: 1
+                quantity: 1,
+                token: token
             }      
-            axios.post ("http://localhost:3001/api/mercadopago/preference", cuenta)
+            axios.post (serverFinder(`api/mercadopago/preference`), cuenta)
             .then((response)=>{
                 idpago= response.data
                 console.log(idpago + "Estoy dentro del .then")
@@ -93,7 +107,7 @@ export default function Cuenta(){
             <h5>TOTAL: ${totalCuenta}</h5>  
           </div>
           <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-             <button className="btn btn-primary me-md-2"  onClick={(e) => {pagarCuenta()}}>GENERAR PAGO</button>
+             <button className="btn btn-primary me-md-2"  onClick={(e) => {pagarCuenta(e)}}>GENERAR PAGO</button>
              <div class="button-checkout"></div>
           </div>
         </div>

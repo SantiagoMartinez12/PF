@@ -151,7 +151,7 @@ export default function Usuario() {
   }
 
       // console.log(restoInfo)      
-      // console.log(modificar)
+      console.log(modificar)
       
   return ( 
     
@@ -203,15 +203,15 @@ export default function Usuario() {
                   {console.log(restoInfo[0]?.accesstoken)}
                   {editarAccessToken===false?<>
                   <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">Editar</button></> : <>
-                  <input onChange={(e)=> {handleModificar(e)}} name='accesstoken' className="form-control"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='token' className="form-control"></input>
                   <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">x</button></>}
 
                   <div className={style.publicKey}>Public Key: {restoInfo[0]?.publickey} </div>
                   {editarPublicKey===false?<>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
-                  <input onChange={(e)=> {handleModificar(e)}} name='publickey' className="form-control"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='key' className="form-control"></input>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">x</button></>}
-
+                    
                     <div>
                     <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
                     </div>
