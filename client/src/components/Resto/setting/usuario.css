@@ -45,6 +45,14 @@
   grid-area: cantMesas;
 }
 
+.accessToken {
+  grid-area: accessToken;
+}
+
+.publicKey {
+  grid-area: publicKey;
+}
+
 .botonEnviar {
   grid-area: botonEnviar;
 }
