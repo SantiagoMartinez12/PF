@@ -22,6 +22,7 @@ export default function Detalle({ idResto, funcion }) {
     const [eliminar,setEliminar] = useState()
     const [emergente, setEmergente] = useState(false)
     const [emergenteMesa, setEmergenteMesa] = useState(false)
+    const [pagado , setPagado] = useState(false)
 
     /*      console.log(detalle)
       mesaFind = mesa.find(e => e.id === idMesa)
@@ -51,7 +52,9 @@ export default function Detalle({ idResto, funcion }) {
     useEffect(() => {
         seguimiento1()
     },[seguimiento])
-
+    useEffect(() => {
+        valiTodoPagado()
+    },[])
     
 
 
@@ -99,7 +102,14 @@ export default function Detalle({ idResto, funcion }) {
         axios.put(serverFinder('mesa'), { id: idMesa, estado: false })
         axios.put(serverFinder('cliente'), { id: idCliente, estado: 'finalizado' })
     }
-
+    function valiTodoPagado(){
+    let filtroSeguimiento = seguimiento.map(e => e.seguimiento)
+    
+    let todoPagado = filtroSeguimiento.find(e => e === 'confirmado' || e === 'solicitado' || e=== 'entregado')
+    if(!todoPagado){
+        setPagado(true)
+    }
+    }
     const handleOnClick = (e) => {
         e.preventDefault();
         let vali = false
@@ -162,6 +172,12 @@ export default function Detalle({ idResto, funcion }) {
    /*  function handleOnClickemergenteMesa(){
         setEmergenteMesa(false)
     } */
+  function handleOnClickCerrar(){
+    desocuparMesa(idMesa[0])
+    funcion()
+    dispatch(getMesa(idResto))
+    alert("su mesa se cerro correctamente...")
+  }
   
    
     return (
@@ -172,6 +188,7 @@ export default function Detalle({ idResto, funcion }) {
             <div>
                 <h4 className="text-center">Cliente</h4>
                 <p className="text-center text-capitalize">{nameCliente[0]}</p>
+                <button type="button" class="btn btn-primary"  onClick={(e) => {handleClickModifica()}} >Modificar productos</button>
             </div>
 
             {/* <div claclassNamess="row">
@@ -225,10 +242,11 @@ export default function Detalle({ idResto, funcion }) {
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Seguimiento</th>
-                        <button type="button" class="btn btn-primary"  onClick={(e) => {handleClickModifica()}} >Modificar productos</button>
+                       
                        
                     </tr>
                 </thead>
+               
                 <tbody>
                     <tr>
                         <td>
@@ -336,7 +354,8 @@ export default function Detalle({ idResto, funcion }) {
                         {
                          msj === true ? 
                             <div class="alert alert-danger" role="alert">
-                           ! Tienes productos sin pagar
+                           ! Tienes productos sin pagar ¡ <br></br>
+                           <button type="button" className="btn btn-primary btn-sm" onClick={handleOnClickCerrar}>Cerrar de todas maneras</button>
                           </div> : null
                         }
                        {/*         {
@@ -360,6 +379,15 @@ export default function Detalle({ idResto, funcion }) {
         : null
             
                 }  */}
+                 {
+                    pagado ? 
+                <div className={global.whitecardmesasresto}>
+                    <center>
+                        <p className={global.textnotification}> Su cliente ya abono  </p>
+                        
+                    </center>
+                </div> : null
+                }
                 </center>
                 </center>
         </div>

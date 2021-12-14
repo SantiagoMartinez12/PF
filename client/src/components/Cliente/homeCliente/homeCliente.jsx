@@ -157,7 +157,7 @@ export default function HomeClient(){
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
-        <div>
+        {/* <div>
         <script type="text/javascript"> 
         {(function () { 
             var ldk = document.createElement('script'); 
@@ -167,7 +167,7 @@ export default function HomeClient(){
             s.parentNode.insertBefore(ldk, s); 
             })()};
             </script>
-        </div>
+        </div> */}
         </footer>
         </div>
   
