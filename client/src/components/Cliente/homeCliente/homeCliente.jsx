@@ -11,7 +11,7 @@ import { useNavigate, useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
 import { useEffect } from 'react'
-import { getCuenta, getDatosMesa, setDatosMesa } from '../../../store/actions/index.js'
+import { getCuenta, getDatosMesa, setDatosMesa, setPedidoModificado } from '../../../store/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
@@ -64,7 +64,8 @@ export default function HomeClient(){
         let repet = setInterval(()=>{
             axios.get(serverFinder(`cliente/cliente/${idCliente}`))
                   .then(res=>{
-                    dispatch(getDatosMesa({estadoCliente:res.data.estado}));
+                    dispatch(getDatosMesa({estadoCliente:res.data.estado}))
+                    dispatch(setPedidoModificado(res.data.pedidoModificado))
                     if(res.data.estado === 'finalizado'){
                         clearInterval(repet);
                     }
@@ -92,28 +93,14 @@ export default function HomeClient(){
     return (
         <div>
         <div className="container">
-        <Navbar expand="lg">
+        {/* <Navbar expand="lg">
         <Container>
-        <Navbar.Brand>
+        <Navbar.Brand> */}
             <div className="col">
                 <center>
                 <img src={logo} alt="Logo" width="50%"  className="navbar-brand" />
                 </center>
             </div>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-
-            <div>
-                    <button onClick={e => {handleClickPedidoMenu(e)}} className={global.botonnavbar}>Ver Menu</button>
-                    <button onClick={e => {handleClickPedido(e)}} className={global.botonnavbar}>Ver Pedido</button>
-                    <button onClick={e => {handleClickPedidoCuenta(e)}} className={global.botonnavbar}>Ver Cuenta</button>
-            </div>
-         </Nav>
-        </Navbar.Collapse>
-        </Container>
-        </Navbar>
             <div className="container-fluid">
                 <div className="col">
                     <center>
@@ -122,9 +109,34 @@ export default function HomeClient(){
                     </center>
                 </div>
             </div>
-            
+
+        {/* </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="me-auto"> */}
+
+            <div>
+                <center>
+                    <button onClick={e => {handleClickPedidoMenu(e)}} className={global.botonnavbar}>Menu</button>
+                    <button onClick={e => {handleClickPedido(e)}} className={global.botonnavbar}>Tu Pedido</button>
+                    <button onClick={e => {handleClickPedidoCuenta(e)}} className={global.botonnavbar}>Cuenta</button>
+                </center>
+            </div>
+         {/* </Nav>
+        </Navbar.Collapse>
+        </Container>
+        </Navbar> */}
+            <br/>
+            {infoCliente.estadoCliente === 'solicitado'?
+                <div>
+                    <h6>En un instante te habilitaremos para realizar pedidos...</h6>
+                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+                </div>
+                : null
+            }    
+
             {
-                state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta/> :  <Cuenta/>  
+                state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  <Cuenta/>  
             }
             <div>
                 {pedidoModificado?
@@ -135,7 +147,8 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
-            {infoCliente.estadoCliente === 'solicitado'?
+            {
+              infoCliente.estadoCliente === 'solicitado'?
                 <div>
                     <h5>En un instante te habilitaremos para realizar pedidos.</h5>
                     <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
