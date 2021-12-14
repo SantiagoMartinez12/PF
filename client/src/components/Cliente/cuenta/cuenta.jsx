@@ -44,10 +44,10 @@ export default function Cuenta(){
 
     useEffect (actualizaCuenta, []);
     //console.log(usuario)
-    if (usuario[0]) {
-        var mercadopago = useMercadopago.v2(usuario[0]?.publickey, {
+   
+    var mercadopago = useMercadopago.v2(usuario[0]?.publickey, {
         locale: 'es-AR',
-    })} // Instancia para Mercado Pago
+    }) // Instancia para Mercado Pago
 
     //Esta función manda el objeto capturado con el número de la cuenta al back y hace la peticion
     //de una preferencia a la API de MP, recibe un id y este es enviado a la funcion para
@@ -64,7 +64,7 @@ export default function Cuenta(){
                 quantity: 1,
                 token: token
             }      
-            axios.post (serverFinder(`api/mercadopago/preference`), cuenta)
+            axios.post (serverFinder(`mercadopago/preference`), cuenta)
             .then((response)=>{
                 idpago= response.data
                 console.log(idpago + "Estoy dentro del .then")
