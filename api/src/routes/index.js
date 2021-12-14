@@ -8,6 +8,7 @@ const modificarMesaRoutes = require("../routes/modificarMesa")
 const clienteRoutes = require('../routes/cliente')
 const estadisticas = require('../routes/estadisticas')
 const mercadoRoutes = require('../routes/mercadopago')
+const bannerRoutes = require('../routes/banner')
 
 
 // Importar todos los routers;
@@ -25,7 +26,8 @@ router.use("/categorias", categoriasRoutes);
 router.use("/producto", productoRoutes);
 router.use("/cliente", clienteRoutes);
 router.use("/estadisticas", estadisticas);
-router.use("/mercadopago", mercadoRoutes)
+router.use("/mercadopago", mercadoRoutes);
+router.use("/banner", bannerRoutes);
 
 
 

@@ -23,6 +23,7 @@
 
 .titulo {
   grid-area: titulo;
+
 }
 
 .areaImagen {
@@ -43,6 +44,14 @@
 
 .cantMesas {
   grid-area: cantMesas;
+}
+
+.accessToken {
+  grid-area: accessToken;
+}
+
+.publicKey {
+  grid-area: publicKey;
 }
 
 .botonEnviar {

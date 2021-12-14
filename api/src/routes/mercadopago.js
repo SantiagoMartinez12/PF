@@ -4,12 +4,19 @@ const { ACCESS_TOKEN } = process.env;
 
 const router = Router()
 
+
+
+  
+
+
+    
+
 // mercadopago.configure({
 //     access_token: ACCESS_TOKEN
 // });
 
 router.post("/preference", (req, res, next) => {
-    const { title, unit_price, quantity, token } = req.body
+    const { idCliente,title, unit_price, quantity, token } = req.body
 
     mercadopago.configure({
         access_token: token
@@ -21,9 +28,10 @@ router.post("/preference", (req, res, next) => {
             unit_price: unit_price,
             quantity: quantity
         }],
-        back_urls: {
-            "success": "http://localhost:3000/gracias",
-            "failure": "http://localhost:3000/feedback",
+        
+back_urls: {
+            "success": `http://localhost:3000/mesaCerrada/${idCliente}`,
+            "failure": "http://localhost:3000/errorPago",
             "pending": "http://localhost:3000/feedback"
         },
         auto_return: "approved",

@@ -251,6 +251,7 @@ const reducer = (state = initialState, action) => {
     case FILTRO_ADMIN_ID:
       const todosLosResto = state.allResto;
       let filtrad = todosLosResto.filter((el) => el.id === action.payload);
+      console.log(filtrad);
 
       return {
         ...state,
