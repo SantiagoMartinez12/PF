@@ -88,7 +88,7 @@ export default function DetallePedido(){
         {ticket.map(it=>{
             return( it.cantidad>0?
                 <div key={it.id} className="p-3 mb-2  text-black">
-                    <h5 className={global.textpedido}>{it.name} ${it.precio} x {it.cantidad} <br/> Subtotal: ${it.precio * it.cantidad}</h5>
+                    <h6 className={global.textpedido}>{it.name} ${it.precio.toLocaleString()},00 x {it.cantidad} <br/> Subtotal: ${(it.precio * it.cantidad).toLocaleString()},00</h6>
                     <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} className="btn btn-outline-primary">-</button>
                     <button onClick = {()=>handleOnClickMas(it.id, it.precio)} className="btn btn-outline-primary">+</button>
@@ -113,7 +113,7 @@ export default function DetallePedido(){
             </div>
         <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
             <div className={global.underlinecard}>
-            <h5>TOTAL: ${cuenta}</h5>
+            <h5>TOTAL: ${cuenta.toLocaleString()},00</h5>
             </div>
         </div>
         

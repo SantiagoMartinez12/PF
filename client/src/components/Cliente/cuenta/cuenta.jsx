@@ -67,7 +67,7 @@ export default function Cuenta(){
                },
                render: {
                container: '.button-checkout', // Aqui se muestra el botón
-               label: 'Pagar por Mercado Libre', // Este es el texto que se le da al boton de Mercado Libre
+               label: 'Pagar', // Este es el texto que se le da al boton de Mercado Libre
             }
         });
     }
@@ -83,18 +83,20 @@ export default function Cuenta(){
             {
                 cuenta?.map(producto =>{
                     return <div key={producto.id} className="card-body">
-                            <h5 className="text-capitalize fw-normal">{producto.name} ${producto.precio}  x  {producto.cantidad}  ${producto.precio * producto.cantidad}</h5>
+                            <h6 className="text-capitalize fw-normal">{producto.name} ${producto.precio.toLocaleString()},00  x  {producto.cantidad}  ${(producto.precio * producto.cantidad).toLocaleString()},00</h6>
                         </div>      
                 })
             }      
           </div>
           <br/>
           <div className={global.underlinecard}>
-            <h5>TOTAL: ${totalCuenta}</h5>  
+            <h6>TOTAL: ${totalCuenta.toLocaleString()},00</h6>  
           </div>
+          <br/>
           <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-             <button className="btn btn-primary me-md-2"  onClick={(e) => {pagarCuenta()}}>GENERAR PAGO</button>
-             <div class="button-checkout"></div>
+            <button className="btn btn-primary me-md-2" >Pagar en Efectivo</button> 
+            <button className="btn btn-primary me-md-2"  onClick={(e) => {pagarCuenta()}}>Pagar con Mercado Pago</button>
+            <div class="button-checkout"></div>
           </div>
         </div>
     )

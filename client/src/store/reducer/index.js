@@ -274,6 +274,12 @@ const reducer = (state = initialState, action) => {
         allRestoFiltrosAdmin: filt,
       };
 
+    case 'setPedidoModificado':
+      return {
+        ...state,
+        pedidoModificado: action.payload
+      }
+      
     default:
       return state;
   }
