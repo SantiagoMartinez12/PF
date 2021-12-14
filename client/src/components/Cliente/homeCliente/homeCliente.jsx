@@ -109,7 +109,11 @@ export default function HomeClient(){
                     </center>
                 </div>
             </div>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
         {/* </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -134,7 +138,13 @@ export default function HomeClient(){
                 </div>
                 : null
             }    
+<<<<<<< HEAD
+=======
+>>>>>>> main
+            
+=======
 
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  <Cuenta/>  
             }
@@ -147,8 +157,25 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+        {/* <CBot /> */}
+            {/* <div>
+                <script type="text/javascript">
+        
+                    (function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; 
+                    ldk.src = 'https://s.cliengo.com/weboptimizer/61afe3f2f02aad002a715f0c/61afe3f4f02aad002a715f10.js?platform=view_installation_code'; 
+                    var s = document.getElementsByTagName('script')[0]; 
+                    s.parentNode.insertBefore(ldk, s); })()
+        
+                </script>
+            </div> */}
+=======
+            {infoCliente.estadoCliente === 'solicitado'?
+=======
             {
               infoCliente.estadoCliente === 'solicitado'?
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
                 <div>
                     <h5>En un instante te habilitaremos para realizar pedidos.</h5>
                     <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
@@ -156,6 +183,10 @@ export default function HomeClient(){
                 : null
             }    
 
+<<<<<<< HEAD
+>>>>>>> main
+=======
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
