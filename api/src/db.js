@@ -3,7 +3,6 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-
 const {
   DB_USER, DB_PASSWORD, DB_HOST, ACCES_TOKEN
 } = process.env;
@@ -31,7 +30,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
-const { Resto, Mesa, Detalle, Categorias, Producto, Cliente } = sequelize.models;
+const { Resto, Mesa, Detalle, Categorias, Producto, Cliente, Banner } = sequelize.models;
 // Para relacionarlos hacemos un destructuring
  
 
@@ -53,6 +52,8 @@ Producto.belongsTo(Categorias);
 Mesa.hasMany(Cliente);
 Cliente.belongsTo(Mesa);
 
+Resto.hasMany(Banner);
+Banner.belongsTo(Resto);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
