@@ -110,6 +110,10 @@ export default function HomeClient(){
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
         {/* </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -134,9 +138,13 @@ export default function HomeClient(){
                 </div>
                 : null
             }    
+<<<<<<< HEAD
 =======
 >>>>>>> main
             
+=======
+
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  <Cuenta/>  
             }
@@ -149,6 +157,7 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
+<<<<<<< HEAD
 <<<<<<< HEAD
         {/* <CBot /> */}
             {/* <div>
@@ -163,6 +172,10 @@ export default function HomeClient(){
             </div> */}
 =======
             {infoCliente.estadoCliente === 'solicitado'?
+=======
+            {
+              infoCliente.estadoCliente === 'solicitado'?
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
                 <div>
                     <h5>En un instante te habilitaremos para realizar pedidos.</h5>
                     <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
@@ -170,7 +183,10 @@ export default function HomeClient(){
                 : null
             }    
 
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> 528e0b7b71e14cf5bdd0d88778c1ea1a0e66276b
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
