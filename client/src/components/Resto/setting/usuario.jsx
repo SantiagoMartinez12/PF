@@ -177,7 +177,7 @@ export default function Usuario() {
                   {editarNombreResto===false?<>
                   <button onClick={(e)=>handleEditarNombreResto(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='name' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='name' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarNombreResto(e)} class="btn btn-outline-secondary" type="button" id="button-addon2">x</button> 
                   </div>
                   </>}
@@ -186,7 +186,7 @@ export default function Usuario() {
                   {editarNombreUsuario===false?<>
                   <button onClick={(e)=>handleEditarNombreUsuario(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='usuario' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='usuario' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarNombreUsuario(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
@@ -195,7 +195,7 @@ export default function Usuario() {
                   {editarEmail===false?<>
                   <button onClick={(e)=>handleEditarEmail(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}}  name='mail' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}}  name='mail' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarEmail(e)} class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
@@ -204,7 +204,7 @@ export default function Usuario() {
                   {editarNumeroMesas===false?<>
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='mesa' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='mesa' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
@@ -219,7 +219,7 @@ export default function Usuario() {
                   <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">Editar</button></> : <>
 
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='accesstoken' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='accesstoken' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarAccessToken(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
@@ -229,7 +229,7 @@ export default function Usuario() {
                   {editarPublicKey===false?<>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='publickey' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='publickey' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarPublicKey(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
