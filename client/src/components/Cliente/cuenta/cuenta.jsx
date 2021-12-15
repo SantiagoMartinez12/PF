@@ -10,6 +10,7 @@ let idpago = ''
 
 
 export default function Cuenta(parametros) {
+
     const { idCliente } = useParams()
     const [cuenta, setCuenta] = useState([]);
     const [totalCuenta, setTotalCuenta] = useState(0)
@@ -117,7 +118,7 @@ export default function Cuenta(parametros) {
           </div> */}
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button className="btn btn-primary me-md-2" >Pagar en Efectivo</button>
+                
                 <button className="btn btn-primary me-md-2" onClick={(e) => { pagarCuenta() }}>Pagar con Mercado Pago</button>
                 <div class="button-checkout"></div>
             </div>
