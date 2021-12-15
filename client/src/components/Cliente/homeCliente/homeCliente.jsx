@@ -100,7 +100,7 @@ export default function HomeClient(){
         <Navbar.Brand> */}
             <div className="col">
                 <center>
-                <img src={logo} alt="Logo" width="50%"  className="navbar-brand" />
+                <img src={logo} alt="Logo" width="20%"  className="navbar-brand" />
                 </center>
             </div>
             <div className="container-fluid">
@@ -175,11 +175,10 @@ export default function HomeClient(){
 
         </div>
         <footer className={global.footer}>
-        <img src={logowhite} height="55px" alt="logo"/>
-       
+        {/* <img src={logowhite} height="55px" alt="logo"/> */}     
         </footer>
         </div>
-        </div>
+
   
     )
 }
