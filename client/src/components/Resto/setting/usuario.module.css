@@ -5,3 +5,26 @@
   align-items: baseline;
   justify-items: center;
 }
+.titulo{
+  text-align: center;
+  background-color: whitesmoke;
+  font-size: -webkit-xxx-large;
+}
+
+.info{
+  width: 365px;
+    height: 725px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.tituloMercado{
+  text-align: center;
+  background-color: whitesmoke;
+  font-size: xx-large;
+}
+
