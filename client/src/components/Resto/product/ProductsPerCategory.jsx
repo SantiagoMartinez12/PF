@@ -64,15 +64,17 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
 
                     {currentDataShow.map((product) => {
                         return <div className='card' style={{ width: "18rem" }}>
-                            <img className="card-img-top" src={product.imagen} alt="imagen" />
+                            <img className="card-img-top alturaFijaFoto" src={product.imagen} alt="imagen" />
                             <div className="card-body">
                                 <h5 className="card-title">{product.name}</h5>
                                 <p><b>Precio: </b> $ {product.precio} </p>
-                                <span><b>Disponible?:  </b></span> {product.disponible? 
-                                                                                <span>SI</span>
-                                                                                :
-                                                                                <span>NO</span>}
-                                <button type='button' onClick={handleDisponibilidad} value={product.id} className="btn btn-secondary">Cambiar</button>
+                                <div className='paraDistribuir'>
+                                    <span><b>Disponible?:  </b></span> {product.disponible? 
+                                                                                    <span>SI</span>
+                                                                                    :
+                                                                                    <span>NO</span>}
+                                    <button type='button' onClick={handleDisponibilidad} value={product.id} className="btn btn-secondary">Cambiar</button>
+                                </div>
                                 <br/>
                                 <br/>
                                 <button type='button' onClick={(e) => handleSelect(e)} value={JSON.stringify(product)} className="btn btn-primary">Modificar</button>
