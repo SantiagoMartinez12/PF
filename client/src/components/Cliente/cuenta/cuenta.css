@@ -1,38 +1,47 @@
 .ticket{
-    border:1px solid blue;
-    width: 340px;
+    
+    width: 300px;
     font-size: 12px;
     font-family: 'Times New Roman';
 }
 
-.cabecera{
+.ticket_header{
+    display:grid;
+    grid-template-columns: 1fr 4fr 2fr auto;
+    grid-auto-flow: column;
+    column-gap: 4px;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    display:flex;
-    justify-content: space-around;
+    justify-items: center;
 }
 
-.cabecera_cantidad{
-    margin:0px;
-    padding: 0px;
-
-    background-color: tomato;
-    width: 80px;
+.ticket_items{
+    display:grid;
+    grid-template-columns: 1fr 4fr 2fr auto;
+    grid-auto-flow: column;
+    column-gap: 4px;
+        
+}
+.ticket_body{
+    border-bottom: 2px solid black; 
+    
 }
 
-.cabecera_producto{
-    background-color:turquoise;
-    width: 30px;
+#item_cantidad{
+    justify-self: center;
 }
 
-.cabecera_unit{
-    background-color:yellow;
-    width: px;
+#item_precio{
+    justify-self:grid-end;
 }
 
-.cabecera_subtotal{
-    background-color:blue;
-    width: 30px;
+#total_ticket{
+    position:absolute;
+    left: 190px;
+    margin-bottom:30px
+    
+   
 }
+
 
 

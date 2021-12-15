@@ -54,7 +54,7 @@ body{
 
 .whitecardpedido{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
@@ -90,7 +90,17 @@ body{
     width: 80%;
     border-radius: 3px;
 }
-
+.whitecardmesas{
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: left;
+    padding: 23px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 8px;
+}
 .settingsinfo{
     display: flex;
     justify-content: center;
@@ -118,10 +128,11 @@ body{
 }
 
 .footer{
-  position:bottom;
+  position:fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 10px;
   background-color: #201f5a;
   color: white;
   text-align: center;
@@ -160,6 +171,35 @@ body{
     background-color: #f26722;
 }
 
+.botonsettings{
+    background-color: coral;
+    color: white;
+    padding: 5px 10px 5px 10px ;
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 80px;
+    height: 50px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.botonsettings:hover{
+    background-color: #f26722;
+}
+
+.botonnavbarresto{
+    background-color: coral;
+    color: white;
+    padding: 5px 10px 5px 10px ;
+    margin-right: 15px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.botonnavbarresto:hover{
+    background-color: #f26722;
+}
+
 .botonflechita{
     background-color: coral;
     padding: 3px 8px 3px 8px ;
@@ -173,6 +213,19 @@ body{
     background-color: #f26722;
 }
 
+.botoncierre{
+    background-color: coral;
+    padding: 3px 8px 3px 8px ;
+    margin-right: 3px;
+    border-radius: 5px;
+    border-style: none;
+    font-size: 0.5em;
+    color: white;
+}
+.botoncierre:hover{
+    background-color: #f26722;
+}
+
 
 .btcardsettings{
     display: flex;
@@ -183,7 +236,7 @@ body{
     padding: 30px;
     margin: 10px;
     background:#0d6efd;
-    width: 80%;
+    width: 100%;
     border-radius: 10px;
     border-style: none;
     color:white
