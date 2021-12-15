@@ -179,7 +179,7 @@ export default function HomeClient(){
        
         </footer>
         </div>
-        </div>
+        // </div>
   
     )
 }
