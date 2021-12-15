@@ -172,6 +172,9 @@ export default function Detalle({ idResto, funcion }) {
             <div>
                 <h4 className="text-center">Cliente</h4>
                 <p className="text-center text-capitalize">{nameCliente[0]}</p>
+                <center>
+                <button type="button" class="btn btn-primary"  onClick={(e) => {handleClickModifica()}} >Modificar productos</button>
+                </center>
             </div>
 
             {/* <div claclassNamess="row">
@@ -225,7 +228,7 @@ export default function Detalle({ idResto, funcion }) {
                         <th>Cantidad</th>
                         <th>Precio</th>
                         <th>Seguimiento</th>
-                        <button type="button" class="btn btn-primary"  onClick={(e) => {handleClickModifica()}} >Modificar productos</button>
+                        
                        
                     </tr>
                 </thead>
@@ -238,7 +241,7 @@ export default function Detalle({ idResto, funcion }) {
                                         <li className="list-group-item">
                                             {
                                                modifica === true && el.seguimiento === "solicitado" ? <button 
-                                               type="button" class="btn btn-primary"
+                                               type="button" class={global.botoncierre}
                                                width="1px" height="1px"
                                                                     onClick={(e) => {handleClickEliminar(e,el.name, el.id)}}>X
                                                                       
