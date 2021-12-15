@@ -217,11 +217,13 @@ export default function Usuario() {
                   {console.log(restoInfo[0]?.accesstoken)}
                   {editarAccessToken===false?<>
                   <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">Editar</button></> : <>
+
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}} name='accesstoken' type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarAccessToken(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
+
 
                   <div className={style.publicKey}>Public Key: {restoInfo[0]?.publickey} </div>
                   {editarPublicKey===false?<>

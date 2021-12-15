@@ -16,9 +16,18 @@ const ViewQr = () => {
     }, [])
 
     const [show, setShow] = useState(false);
+    const [qr, setQr] = useState('');
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    const handleClose = (qr) => {
+        setShow(false);
+        setQr(qr);
+    }
+
+    const handleShow = (qr) => {
+        setShow(true);
+        setQr(qr);
+    }
 
     return (
         <>
@@ -27,37 +36,34 @@ const ViewQr = () => {
                 {mesas[0] ? mesas.map((info) => {
                     return <div className="col-lg-4">
                         <div className="card bg-light mb-3" style={{ maxWidth: '16rem' }}>
-                            <ul className="list-group list-group-flush">
-                                <div className="card-header text-capitalize">{info.name}</div>
-                                <div className="card-body">
-                                    <li className="list-group-item">
-                                        <Modal
-                                            size="sm"
-                                            show={show}
-                                            onHide={handleClose}
-                                            backdrop="static"
-                                            keyboard={false}
-                                        >
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Código QR</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>
-                                                <center>
-                                                    <img src={info.qr} alt="qr"/>
-                                                </center>
-                                            </Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={handleClose}>
-                                                    Close
-                                                </Button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                        <Button variant="primary" size="sm" onClick={handleShow}>
-                                            Código QR
+                            <div className="card-header text-capitalize">{info.name}</div>
+                            <div name={info.qr} className="card-body">
+                                <Modal
+                                    key={info.qr}
+                                    size="sm"
+                                    show={qr === info.qr && show}
+                                    onHide={handleClose}
+                                    backdrop="static"
+                                    keyboard={false}
+                                >
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Código QR</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <center>
+                                            <img src={info.qr} alt="qr" />
+                                        </center>
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" name={info.qr} onClick={()=>handleClose(info.qr)}>
+                                            Close
                                         </Button>
-                                    </li>
-                                </div>
-                            </ul>
+                                    </Modal.Footer>
+                                </Modal>
+                                <Button variant="primary" size="sm" name={info.qr} onClick={()=>handleShow(info.qr)}>
+                                    Código QR
+                                </Button>
+                            </div>
                         </div>
                     </div>
 
@@ -72,4 +78,3 @@ const ViewQr = () => {
 }
 
 export default ViewQr;
-

@@ -116,17 +116,21 @@ export default function Setting() {
 
     return (
         <div>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <img src={logo} alt="Logo" width="15%" className="navbar-brand" />
-                        <h1>Configuración</h1>
+                        <img src={logo} alt="Logo" width="25%" className="navbar-brand" />
+                        
                     </div>
-                    <div className="col">
-                        <Link to={ruta}><button className={global.botonnavbar}>Home</button></Link>
+                    <div className="col d-grid gap-2 d-md-flex justify-content-sm-end">
+                        <Link to={ruta}><button className={global.botonsettings}>Home</button></Link>
                     </div>
                     <div className="row">
-                        <div className="col">
+                        <div className="col-4">
+                            <center>
+                        <h3>Configuración</h3>
+
+                        </center>
                             <div>
                                 <button onClick={(e) => { handleUsuario(e) }} className={global.btcardsettings}>
                                     <box-icon type='solid' name='user-detail'></box-icon>
@@ -159,7 +163,7 @@ export default function Setting() {
                             </div>
                             
                         </div>
-                        <div className="col">
+                        <div className="col-8">
                             <div className={global.settingsinfo}>
                                 {iUsuario === true ? <Usuario />
                                     : <></>}
@@ -184,7 +188,7 @@ export default function Setting() {
                 </div>
             </div>
             <footer className={global.footer}>
-                <img src={logowhite} height="55px" alt="logo" />
+                {/* <img src={logowhite} height="55px" alt="logo" /> */}
             </footer>
         </div>
     )
