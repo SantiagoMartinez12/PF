@@ -1,7 +1,7 @@
 .tu_pedido{
     padding: 10px;
     background-color: rgba(180, 212, 255, 0.8);
-    width: 350px;
+    width: 100vw;
     position:fixed;
     bottom: 10px;
     left:0px;

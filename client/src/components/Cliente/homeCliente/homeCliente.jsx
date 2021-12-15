@@ -5,7 +5,7 @@
 //                                    Ver tu pedido
 // en base a lo que se seleccione renderizar un componente u otro
 
-
+import './homeCliente.css';
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
@@ -127,8 +127,17 @@ export default function HomeClient(){
             <br/>
             {infoCliente.estadoCliente === 'solicitado'?
                 <div>
-                    <h6>En un instante te habilitaremos para realizar pedidos...</h6>
-                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+                    <center>
+                    <div className="advertencia">
+                        <h6>¡En un instante te habilitaremos para realizar pedidos!</h6>
+                    </div>
+                    </center>    
+                   
+                    <center>
+                        <div className="mientras">
+                            <h6 id="mientras_texto">Mientras tanto puedes ir viendo nuestro menu...</h6>
+                        </div>
+                    </center>
                 </div>
                 : null
             }    
@@ -145,21 +154,7 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
-
-
-            
-
-
-            {
-              infoCliente.estadoCliente === 'solicitado'?
-
-                <div>
-                    <h5>En un instante te habilitaremos para realizar pedidos.</h5>
-                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
-                </div>
-                : null
-            }    
-
+    
         </div>
         <footer className={global.footer}>
         {/* <img src={logowhite} height="55px" alt="logo"/> */}     

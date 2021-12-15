@@ -8,7 +8,7 @@ import { getProductos } from "../../../store/actions";
 import { useParams } from "react-router";
 import Buscador from "./Buscador";
 import { filtroProductos} from '../../../store/actions';
-import { Carousel } from '@trendyol-js/react-carousel';
+// import { Carousel } from '@trendyol-js/react-carousel';
 
 //Filtros del resto terminados
 const Product = () => {
