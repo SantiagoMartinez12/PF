@@ -1,0 +1,28 @@
+.body_enviado{
+    position:fixed;
+    z-index:999;
+    top:0;
+    left:0;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0,0,0,0.80);
+    display: flex;
+    justify-content: center;
+    
+}
+
+.container_enviado{
+    position: relative;
+    top:200px;
+    width: 300px;
+    height: 240px;
+    padding:8px 5px 5px 5px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    padding-top:20px 
+}
+
+#boton_cerrar_enviado{
+    margin-top: 5px;
+    
+}

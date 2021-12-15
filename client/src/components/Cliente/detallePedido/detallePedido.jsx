@@ -12,17 +12,19 @@ import { useParams } from 'react-router';
 import { agregarTicket, resetTicket, restaCuenta, restarTicket, setPedidoModificado, sumaCuenta } from '../../../store/actions';
 import serverFinder from '../../../store/deploy/serverFinder';
 import Carrousel from '../carta/Carrousel';
+import PedidoEnviado from './pedidoEnviado';
 var global = require('../../Resto/global.module.css')
 
 
 
-export default function DetallePedido(){
+export default function DetallePedido( {setState} ){
     
     const [input,setInput] = useState("")
     const { idCliente } = useParams();
     const ticket = useSelector(state=> state.ticket);
     const cuenta = useSelector(state=> state.cuenta);
     const infoCliente = useSelector(state=> state.ClientInfo);
+    const [pedidoOk, setPedidoOk] = useState(false)
     const dispatch = useDispatch();
 
     const handleOnClickMas=(id, precio)=>{
@@ -73,16 +75,25 @@ export default function DetallePedido(){
         // axios.put(serverFinder('cliente'), { id: idCliente, pedidoModificado: '' })
     //lanza la función para que quede "escuchando" por alguna modificación en el pedido
         updateEstadoPedido();
+    //cambia el estado pedidoOk a true para que se muestre el aviso de pedido enviado
+        setPedidoOk(true);
     }
 
     return(
     <div className="container"> 
         <Carrousel/>
         <div>
-           
-        <center>
-        <h2  className={global.textsubtitle}>TU PEDIDO</h2>
-        </center>
+            {
+              pedidoOk?
+                <PedidoEnviado setPedido={setPedidoOk} setState={setState} />
+                :
+                null
+            }
+        </div>
+        <div>
+            <center>
+                <h2  className={global.textsubtitle}>TU PEDIDO</h2>
+            </center>
         </div>
         <div className={global.whitecardpedido}>
         {ticket.map(it=>{
