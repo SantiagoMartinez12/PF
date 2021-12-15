@@ -112,10 +112,7 @@ export default function HomeClient(){
                 </div>
             </div>
 
-        {/* </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto"> */}
+
 
             <div>
                 <center>
@@ -136,6 +133,7 @@ export default function HomeClient(){
                 </div>
                 : null
             }    
+
             {
                 state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  usuario[0] ? <Cuenta usuario={{accesstoken: usuario[0].accesstoken, publickey:usuario[0].publickey }} /> : <h2>Cargando</h2>  
             }
@@ -161,10 +159,10 @@ export default function HomeClient(){
                 </script>
             </div> */}
 
-           
 
             {
               infoCliente.estadoCliente === 'solicitado'?
+
 
                 <div>
                     <h5>En un instante te habilitaremos para realizar pedidos.</h5>
@@ -174,11 +172,13 @@ export default function HomeClient(){
             }    
 
 
+
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
-        
+       
         </footer>
+        </div>
         </div>
   
     )

@@ -142,6 +142,7 @@ export default function HomeResto(){
                     }
                     return(
                             <div>
+
                                <Card  style={{ width: '11rem', margin: '5px'}}> 
                                <ListGroup>
                                 <center>
