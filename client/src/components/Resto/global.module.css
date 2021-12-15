@@ -54,7 +54,7 @@ body{
 
 .whitecardpedido{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;

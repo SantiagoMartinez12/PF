@@ -1,4 +1,4 @@
-
+import './cuenta.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -77,21 +77,39 @@ export default function Cuenta(){
           <script src="https://sdk.mercadopago.com/js/v2" type="text/javascript"></script>
 
           <div className={global.textsubtitle}>
-            <h4>TU CUENTA</h4>
+            <center>
+                <h5>TU CUENTA</h5>
+            </center>    
           </div>
           <div className={global.whitecardpedido}>
-            {
-                cuenta?.map(producto =>{
-                    return <div key={producto.id} className="card-body">
-                            <h6 className="text-capitalize fw-normal">{producto.name} ${producto.precio.toLocaleString()},00  x  {producto.cantidad}  ${(producto.precio * producto.cantidad).toLocaleString()},00</h6>
-                        </div>      
-                })
-            }      
+                <div className='ticket'>
+                    <div className='ticket_header'>
+                        <h6>Cant.</h6>
+                        <h6>Producto</h6>
+                        <h6>Unit.</h6>
+                        <h6>Subtotal</h6>
+                    </div>
+                    <div className='ticket_body'>    
+                        {
+                        cuenta?.map(producto =>{
+                            return <div key={producto.id} className='ticket_items'> 
+                                    <h6 id='item_cantidad' >{producto.cantidad}</h6>
+                                    <h6 >{producto.name}</h6>
+                                    <h6 id='item_precio' >{producto.precio.toLocaleString()},00</h6>
+                                    <h6 >{(producto.precio * producto.cantidad).toLocaleString()},00</h6>
+                                </div>      
+                        })
+                        }
+                    </div>
+                    <div>
+                        <h6 id='total_ticket'>TOTAL: ${totalCuenta.toLocaleString()},00</h6>
+                    </div>
+                </div>           
           </div>
           <br/>
-          <div className={global.underlinecard}>
+          {/* <div className={global.underlinecard}>
             <h6>TOTAL: ${totalCuenta.toLocaleString()},00</h6>  
-          </div>
+          </div> */}
           <br/>
           <div className="d-grid gap-2 d-md-flex justify-content-md-end">
             <button className="btn btn-primary me-md-2" >Pagar en Efectivo</button> 
