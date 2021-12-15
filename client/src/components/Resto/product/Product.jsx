@@ -79,18 +79,21 @@ const Product = () => {
       ) : (
         <div>
           <div>
+            <h2>Productos</h2>
+          </div>
+          <div className="marginBottom">
             <button
               type="button"
               onClick={(e) => handleAddProduct(e)}
               className="btn btn-primary me-md-2"
             >
-              Agregar Producto
+            Agregar Producto
             </button>
           </div>
-          <div>
+          <div className="marginBottom">
         <Buscador setShowFiltrados={setShowFiltrados} />
       </div>
-          <div>
+          <div >
             <h5>Buscar por categoría:</h5>
             <select onChange={(e) => handleFiltroCategorias(e)}>
               <option key="All" value="All">
@@ -122,7 +125,9 @@ const Product = () => {
                 );
               })
             ) : (
-              <h2>No hay productos cargados</h2>
+              <div className="marginTop">
+                <h3>No hay productos cargados</h3>
+              </div>
             )}
           </div>
         </div>

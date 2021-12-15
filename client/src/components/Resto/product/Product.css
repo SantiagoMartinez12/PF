@@ -1,18 +1,28 @@
 .prodcutAll {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.2fr 1.5fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      "menu"
-      "contenido";
-  }
-  
-  .menu { grid-area: menu; }
-  
-  .contenido { grid-area: contenido; }  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 1.5fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "menu"
+    "contenido";
+}
 
-  .contenido {
-    height: 350px;
-    overflow-y: auto;
-  }
+.menu {
+  grid-area: menu;
+}
+
+.contenido {
+  grid-area: contenido;
+}
+
+.contenido {
+  height: 350px;
+  overflow-y: auto;
+}
+.marginBottom {
+  margin-bottom: 15px;
+}
+.marginTop {
+  margin-top: 15px;
+}

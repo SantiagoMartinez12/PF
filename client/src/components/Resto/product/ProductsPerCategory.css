@@ -1,28 +1,42 @@
 .perCategoryALl {
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr 0.5fr;
-    grid-template-rows: 1fr;
-    gap: 10px 10px;
-    grid-template-areas:
-      "before product after";
-  }
-  
-  .before { grid-area: before; }
-  .after { grid-area: after; }
-  .product { grid-area: product; }
-  
-  .product {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  gap: 10px 10px;
+  grid-template-areas: "before product after";
+}
 
-  .before {
-    display: flex;
-    align-items: center;
-  }
+.before {
+  grid-area: before;
+}
+.after {
+  grid-area: after;
+}
+.product {
+  grid-area: product;
+}
 
-  .after {
-    display: flex;
-    align-items: center;
-  }
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.before {
+  display: flex;
+  align-items: center;
+}
+
+.after {
+  display: flex;
+  align-items: center;
+}
+
+.alturaFijaFoto {
+  height: 215px;
+}
+
+.paraDistribuir {
+  display: flex;
+  justify-content: space-between;
+}
