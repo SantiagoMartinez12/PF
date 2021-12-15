@@ -134,7 +134,7 @@ export default function HomeClient(){
             }    
 
             {
-                state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  usuario[0] ? <Cuenta usuario={{accesstoken: usuario[0].accesstoken, publickey:usuario[0].publickey }} /> : <h2>Cargando</h2>  
+                state === "ver pedido" ? <DetallePedido setState={setState}/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  usuario[0] ? <Cuenta usuario={{accesstoken: usuario[0].accesstoken, publickey:usuario[0].publickey }} /> : <h2>Cargando</h2>  
             }
             <div>
                 {pedidoModificado?
@@ -164,8 +164,8 @@ export default function HomeClient(){
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
         </footer>
-        </div>
 
-  
+    </div>
+
     )
 }
