@@ -11,7 +11,7 @@ import { useNavigate, useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
 import DetallePedido from '../detallePedido/detallePedido.jsx'
 import { useEffect } from 'react'
-import { getCuenta, getDatosMesa, setDatosMesa, setPedidoModificado } from '../../../store/actions/index.js'
+import { getCuenta, getDatosMesa, infoUsuario, setDatosMesa, setPedidoModificado } from '../../../store/actions/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import Cuenta from '../cuenta/cuenta.jsx'
 import logo from "../../../assets/Logo.png";
@@ -31,6 +31,7 @@ export default function HomeClient(){
     const{name,idResto,idMesa, idCliente} = useParams()
     const pedidoModificado = useSelector(state=> state.pedidoModificado)
     const infoCliente = useSelector(state=> state.ClientInfo);
+    const usuario = useSelector(state => state.usuario)
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const cliente = {
@@ -60,6 +61,7 @@ export default function HomeClient(){
         setMesa();
         dispatch(getDatosMesa(cliente));
         dispatch(getCuenta(idCliente));
+        dispatch(infoUsuario(idResto));
     // repite el get para ver el estado hasta que cambia a autorizado     
         let repet = setInterval(()=>{
             axios.get(serverFinder(`cliente/cliente/${idCliente}`))
@@ -135,7 +137,7 @@ export default function HomeClient(){
                 : null
             }    
             {
-                state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  <Cuenta/>  
+                state === "ver pedido" ? <DetallePedido/> : state === "ver menu" ? <Carta verPedido={handleClickPedido}/> :  usuario[0] ? <Cuenta usuario={{accesstoken: usuario[0].accesstoken, publickey:usuario[0].publickey }} /> : <h2>Cargando</h2>  
             }
             <div>
                 {pedidoModificado?
