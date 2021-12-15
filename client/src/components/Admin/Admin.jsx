@@ -34,8 +34,14 @@ export default function SuperAdmin() {
         setCurrentPage(pageNumber)
     }
 
+
     useEffect(()=>{
-        dispatch(allResto())
+        setInterval(()=>{
+          dispatch(allResto()) 
+              
+              
+          }, 5000)
+         
       },[])
 
     function handleClick(e){

@@ -49,7 +49,7 @@ console.log(estado)
             <div className={cardContainer}>
                 
                         <div className={styles.divImg}>
-                        <img src={image} alt="" width="50px" height="50px"/>
+                        <img src={image} alt="" width="60px" height="60px"/>
                         </div>
                         <div className={styles.nombreResto}>
                         <h3>{name}</h3>
