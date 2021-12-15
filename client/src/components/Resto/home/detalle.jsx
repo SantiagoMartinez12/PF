@@ -22,7 +22,7 @@ export default function Detalle({ idResto, funcion }) {
     const [eliminar,setEliminar] = useState()
     const [emergente, setEmergente] = useState(false)
     const [mesaEliminada , setMesaEliminada] = useState(false)
-    const [pagado , setPagado] = useState(false)
+    /* const [pagado , setPagado] = useState(false) */
     const [cuenta, setCuenta] = useState([]);
     const [totalCuenta, setTotalCuenta] = useState(0)
 
@@ -54,9 +54,9 @@ export default function Detalle({ idResto, funcion }) {
     useEffect(() => {
         seguimiento1()
     },[seguimiento])
-    useEffect(() => {
+    /* useEffect(() => {
         valiTodoPagado()
-    },[])
+    },[]) */
     useEffect(() => {
         actualizaCuenta()
     },[])
@@ -124,14 +124,23 @@ export default function Detalle({ idResto, funcion }) {
         axios.put(serverFinder('mesa'), { id: idMesa, estado: false })
         axios.put(serverFinder('cliente'), { id: idCliente, estado: 'finalizado' })
     }
-    function valiTodoPagado(){
+    /* function valiTodoPagado(){
     let filtroSeguimiento = seguimiento.map(e => e.seguimiento)
     
     let todoPagado = filtroSeguimiento.find(e => e === 'confirmado' || e === 'solicitado' || e=== 'entregado')
     if(!todoPagado){
         setPagado(true)
     }
-    }
+    } */
+/*     function valiTodoPagado(){
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+        .then(res => {
+            let valitodoPagadoDetalle = res.data.find(e => e === 'confirmado' || e === 'solicitado' || e=== 'entregado')
+            
+            if(!valitodoPagadoDetalle){
+                setPagado(true)
+        }})
+    } */
     const handleOnClick = (e) => {
         e.preventDefault();
         let vali = false
@@ -413,7 +422,7 @@ export default function Detalle({ idResto, funcion }) {
         : null
             
                 }  
-                 {
+                 {/* {
                     pagado ? 
                 <div className={global.whitecardmesasresto}>
                     <center>
@@ -421,7 +430,7 @@ export default function Detalle({ idResto, funcion }) {
                         
                     </center>
                 </div> : null
-                }
+                } */}
                 </center>
                 </center>
         </div>
