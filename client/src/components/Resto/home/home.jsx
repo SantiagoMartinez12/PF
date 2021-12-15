@@ -154,10 +154,10 @@ export default function HomeResto(){
                     return(
                             <div>
                                 
-                                <Card  style={{ width: '15rem' }}>
+                                <Card  style={{ width: '13rem'  }} >
                                     
                                <ListGroup>
-                                <ListGroup.Item variant={className}>
+                                <ListGroup.Item variant={className} >
                                     
                                 <h5 className={global.textpedido}>{el.mesa.name}</h5>
                                 <p className={global.nombreCliente}>{el.nombre}</p>

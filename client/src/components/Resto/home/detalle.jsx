@@ -21,7 +21,7 @@ export default function Detalle({ idResto, funcion }) {
     const [clientes, setClientes] = useState()
     const [eliminar,setEliminar] = useState()
     const [emergente, setEmergente] = useState(false)
-    const [emergenteMesa, setEmergenteMesa] = useState(false)
+    const [mesaEliminada , setMesaEliminada] = useState(false)
     const [pagado , setPagado] = useState(false)
 
     /*      console.log(detalle)
@@ -121,10 +121,11 @@ export default function Detalle({ idResto, funcion }) {
       
      
         if (vali || nameProducto.length === 0) {
+            setMesaEliminada(true)
             desocuparMesa(idMesa[0])
             funcion()
             dispatch(getMesa(idResto))
-            alert("su mesa se cerro correctamente...")
+            
         } else {
             setMsj(true)
         }
@@ -173,11 +174,15 @@ export default function Detalle({ idResto, funcion }) {
         setEmergenteMesa(false)
     } */
   function handleOnClickCerrar(){
+      setMesaEliminada(true)
     desocuparMesa(idMesa[0])
     funcion()
     dispatch(getMesa(idResto))
-    alert("su mesa se cerro correctamente...")
+    //alert("su mesa se cerro correctamente...")
   }
+  function handleOnClickmesaEliminada(){
+    setMesaEliminada(false)
+}
   
    
     return (
@@ -358,8 +363,8 @@ export default function Detalle({ idResto, funcion }) {
                            <button type="button" className="btn btn-primary btn-sm" onClick={handleOnClickCerrar}>Cerrar de todas maneras</button>
                           </div> : null
                         }
-                       {/*         {
-                 !emergenteMesa ? 
+                             {
+                 mesaEliminada ? 
             <div className="body_aviso">
             <div className="container_aviso">
                 <center>
@@ -369,16 +374,14 @@ export default function Detalle({ idResto, funcion }) {
                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                     </svg>
-
-            
-
-                    <button onClick={handleOnClickemergenteMesa} id='boton_cerrar' className="btn btn-primary">Cerrar</button>
+                 <button onClick={handleOnClickmesaEliminada} id='boton_cerrar' className="btn btn-primary">Cerrar</button>
                 </center>
             </div>    
         </div>
+
         : null
             
-                }  */}
+                }  
                  {
                     pagado ? 
                 <div className={global.whitecardmesasresto}>
