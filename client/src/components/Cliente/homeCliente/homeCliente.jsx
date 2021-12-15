@@ -165,7 +165,7 @@ export default function HomeClient(){
         <img src={logowhite} height="55px" alt="logo"/>
         </footer>
         </div>
-        // </div>
+
   
     )
 }
