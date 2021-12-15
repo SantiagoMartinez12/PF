@@ -22,7 +22,7 @@ export default function Cuenta(){
    
     useEffect (()=>{ 
     dispatch(infoUsuario(idResto))},
-    [dispatch])
+    [])
 
     const actualizaCuenta = () => {
         axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
@@ -111,6 +111,7 @@ export default function Cuenta(){
              <button className="btn btn-primary me-md-2"  onClick={(e) => {pagarCuenta(e)}}>GENERAR PAGO</button>
              <div class="button-checkout"></div>
           </div>
+
         </div>
     )
 }

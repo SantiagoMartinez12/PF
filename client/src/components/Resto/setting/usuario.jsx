@@ -151,7 +151,7 @@ export default function Usuario() {
   }
 
       // console.log(restoInfo)      
-      // console.log(modificar)
+      console.log(modificar)
       
   return ( 
     
@@ -211,7 +211,7 @@ export default function Usuario() {
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
                   <input onChange={(e)=> {handleModificar(e)}} name='key' className="form-control"></input>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">x</button></>}
-
+                    
                     <div>
                     <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
                     </div>
