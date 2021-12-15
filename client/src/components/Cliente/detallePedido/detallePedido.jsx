@@ -4,7 +4,7 @@
 // boton modificar pedido -- te vuelve a la carta
 // boton eliminar pedido -- resetea todo el pedido
 // boton confirmar pedido --- hace el post al back con el pedido
-
+import './detallePedido.css';
 import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
@@ -87,12 +87,20 @@ export default function DetallePedido(){
         <div className={global.whitecardpedido}>
         {ticket.map(it=>{
             return( it.cantidad>0?
-                <div key={it.id} className="p-3 mb-2  text-black">
-                    <h6 className={global.textpedido}>{it.name} ${it.precio.toLocaleString()},00 x {it.cantidad} <br/> Subtotal: ${(it.precio * it.cantidad).toLocaleString()},00</h6>
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} className="btn btn-outline-primary">-</button>
-                    <button onClick = {()=>handleOnClickMas(it.id, it.precio)} className="btn btn-outline-primary">+</button>
-                    </div> 
+                // <div key={it.id} className="p-3 mb-2  text-black">
+                <div key={it.id} className="item  text-black">
+                    <div className='item_producto'>    
+                        <h6 className={global.textpedido}>{it.name}</h6>
+                        <h6 id='precio_item' className={global.textpedido}>${it.precio.toLocaleString()},00</h6>
+                    </div>
+                    <div className='item_subtotal'>
+                        <button onClick = {()=>handleOnClickMenos(it.id, it.precio)} className="boton_mas_menos">-</button>
+                        <h6 className='item_cantidad'> {it.cantidad} </h6>
+                        <button onClick = {()=>handleOnClickMas(it.id, it.precio)} className="boton_mas_menos">+</button>
+                        <h6 id='subtotal_item'> ${(it.precio * it.cantidad).toLocaleString()},00</h6>
+                    </div>
+                    {/* <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                    </div>  */}
                 </div>
                 :null
             )
