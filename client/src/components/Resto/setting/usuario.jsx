@@ -89,14 +89,7 @@ export default function Usuario() {
   }
 
 
-  function handleEditarNombreResto(e){
-        if(editarNombreResto === false){          
-          setEditarNombreResto(true)
-        }else{
-          e.preventDefault();
-            setEditarNombreResto(false)
-        } 
-      }
+  
       
       function handleEditarNombreUsuario(e){
         if(editarNombreUsuario===false){

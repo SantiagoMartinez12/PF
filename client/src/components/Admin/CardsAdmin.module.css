@@ -55,12 +55,15 @@
 
 .nombreResto {
   grid-area: nombreResto;
+  text-transform: capitalize;
 }
 .mail {
   grid-area: mail;
 }
 .estado {
   grid-area: estado;
+  text-transform: capitalize;
+  
 }
 .botones {
   display: grid;
