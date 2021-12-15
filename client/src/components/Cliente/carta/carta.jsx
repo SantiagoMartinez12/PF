@@ -55,7 +55,7 @@ export default function Carta({verPedido}){
                 </div> */}
 
                     
-                <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
+                <div className="d-grid gap-2 d-md-flex justify-content-sm-end text-capitalize">
                     {categorias?.map(c=>{
                         return(
                         <button key={c} value={c} onClick= {handleOnClick} className="btn btn-outline-primary">{c}</button>
