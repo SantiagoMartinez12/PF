@@ -1,0 +1,38 @@
+.advertencia{
+    color:red;
+    padding-top:5px;
+    width: 80vw;
+    animation-name: parpadeo;
+    animation-duration: 4s;
+    animation-timing-function:cubic-bezier();
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+  
+  @-webkit-keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+}
+  
+  @keyframes parpadeo {  
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+.mientras{
+    color:rgb(0, 102, 255);
+    padding-top:5px;
+    width: 80vw;
+    margin-bottom:20px
+}
+
+#mientras_texto{
+    font-size: 13px;
+}

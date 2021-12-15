@@ -1,6 +1,8 @@
 // import s from "../home/home.module.css"
 import React, { useEffect, useState } from "react";
+
 import "./prueba.css"
+
 import logo from "../../../assets/Logo.png";
 import { useParams } from "react-router";
 import { useDispatch} from "react-redux";
