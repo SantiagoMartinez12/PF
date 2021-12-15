@@ -163,27 +163,9 @@ export default function HomeClient(){
         </div>
         <footer className={global.footer}>
         <img src={logowhite} height="55px" alt="logo"/>
-<<<<<<< HEAD
-        <div>
-        {/* <script type="text/javascript"> 
-        {(function () { 
-            var ldk = document.createElement('script'); 
-            ldk.type = 'text/javascript'; ldk.async = true; 
-            ldk.src = 'https://s.cliengo.com/weboptimizer/61afe3f2f02aad002a715f0c/61afe3f4f02aad002a715f10.js?platform=view_installation_code'; 
-            var s = document.getElementsByTagName('script')[0]; 
-            s.parentNode.insertBefore(ldk, s); 
-            })()};
-            </script> */}
-        </div>
-        </footer>
-        </div>
-        
-  
-=======
         </footer>
 
     </div>
 
->>>>>>> d37ba81be7ce579c26106f0cbcc0141b7941b49e
     )
 }

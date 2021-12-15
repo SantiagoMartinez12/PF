@@ -82,6 +82,7 @@ const FormProduct = () => {
                         <label htmlFor="name">Nombre del producto</label>
                         <input type="text" name="name" id="name" className="form-control"/>
                         <p>{regEx.test(newProduct.name) ? null : 'Introducir nombre del producto'}</p>
+                        
                     </div>
 
                     <div className="categoria">
@@ -97,7 +98,7 @@ const FormProduct = () => {
 
                     <div className="precio">
                         <label htmlFor="precio" >Precio</label>
-                        <input type="text" name="precio" id="precio" className="form-control"/>
+                        <input type="number" min="1" name="precio" id="precio" className="form-control"/>
                         <p>{reg.test(newProduct.precio) ? null : 'Introducir Precio'}</p>
                     </div>
 
@@ -125,13 +126,14 @@ const FormProduct = () => {
 
                     <div className="submit">
                         <button className="btn btn-primary me-md-2" type='submit' onClick={(e) => handleSubmit(e)}>Agregar</button>
+                        <button className="btn btn-primary me-md-2" type='button' onClick={handleGoBack}>Volver</button>
                     </div>
 
                     <br />
 
-                    <div className="goBack">
-                        <button className="btn btn-primary me-md-2" type='button' onClick={handleGoBack}>volver</button>
-                    </div>
+                    {/* <div className="goBack">
+                        <button className="btn btn-primary me-md-2" type='button' onClick={handleGoBack}>Volver</button>
+                    </div> */}
                     <div className="footer"></div>
                 </div>
             </form>

@@ -221,11 +221,6 @@ export default function Usuario() {
                   <div className={style.publicKey}>Public Key: {restoInfo[0]?.publickey} </div>
                   {editarPublicKey===false?<>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
-<<<<<<< HEAD
-                  <input onChange={(e)=> {handleModificar(e)}} name='key' className="form-control"></input>
-                  <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">x</button></>}
-                    
-=======
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}} name='publickey' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarPublicKey(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
@@ -234,7 +229,6 @@ export default function Usuario() {
                   </div>
 
                   </div>
->>>>>>> d37ba81be7ce579c26106f0cbcc0141b7941b49e
                     <div>
                     <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
                     </div>
