@@ -1,9 +1,9 @@
 .tu_pedido{
     padding: 10px;
-    background-color: rgba(0,0,0,0.80);
-    width: 100vh;
+    background-color: rgba(180, 212, 255, 0.8);
+    width: 100vw;
     position:fixed;
-    bottom: 55px;
+    bottom: 10px;
     left:0px;
     display:flex;
     align-content: center;
@@ -16,8 +16,8 @@
     justify-content: center;
     align-items:center;
     width: 200px;
-    border: 2px solid;
-    border-radius: 8px;
+    border: none;
+    border-radius: 10px;
     border-color:#0d6efd;
     background-color: #f5f5f5;
     color:#0d6efd;

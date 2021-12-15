@@ -32,6 +32,9 @@ export default function Carrousel() {
               className="d-block w-100 rounded"
               src={el.image}
               alt='banner'
+              width= "20rem"
+              height= "300rem"
+              objectFit= "fill"
             />
           </Carousel.Item>
       })}

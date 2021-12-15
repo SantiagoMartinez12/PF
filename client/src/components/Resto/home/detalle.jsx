@@ -22,7 +22,9 @@ export default function Detalle({ idResto, funcion }) {
     const [eliminar,setEliminar] = useState()
     const [emergente, setEmergente] = useState(false)
     const [mesaEliminada , setMesaEliminada] = useState(false)
-    const [pagado , setPagado] = useState(false)
+    /* const [pagado , setPagado] = useState(false) */
+    const [cuenta, setCuenta] = useState([]);
+    const [totalCuenta, setTotalCuenta] = useState(0)
 
     /*      console.log(detalle)
       mesaFind = mesa.find(e => e.id === idMesa)
@@ -52,8 +54,11 @@ export default function Detalle({ idResto, funcion }) {
     useEffect(() => {
         seguimiento1()
     },[seguimiento])
-    useEffect(() => {
+    /* useEffect(() => {
         valiTodoPagado()
+    },[]) */
+    useEffect(() => {
+        actualizaCuenta()
     },[])
     
 
@@ -68,9 +73,26 @@ export default function Detalle({ idResto, funcion }) {
     let cantidad = detalle?.map(e => e.cantidad)
     let precio = detalle?.map(e => e.precio)
     // ----total de cuenta----- //
-    let precioTotal = 0
+    /* let precioTotal = 0
     for (let i = 0; i < precio.length; i++){
         precioTotal = precio[i] + precioTotal
+    } */
+    const actualizaCuenta = () => {
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+            .then(res => {
+                // calculo del total a pagar para renderizar
+                setCuenta(res.data);
+                let total = '';
+                let subtotales = [];
+                const reducer = (a, b) => a + b;
+                if (res.data.length) {
+                    res.data.forEach(it => {
+                        subtotales.push(it.precio * it.cantidad)
+                    });
+                    total = subtotales.reduce(reducer);
+                    setTotalCuenta(total)
+                }
+            })
     }
     //----------------------//
 
@@ -102,14 +124,23 @@ export default function Detalle({ idResto, funcion }) {
         axios.put(serverFinder('mesa'), { id: idMesa, estado: false })
         axios.put(serverFinder('cliente'), { id: idCliente, estado: 'finalizado' })
     }
-    function valiTodoPagado(){
+    /* function valiTodoPagado(){
     let filtroSeguimiento = seguimiento.map(e => e.seguimiento)
     
     let todoPagado = filtroSeguimiento.find(e => e === 'confirmado' || e === 'solicitado' || e=== 'entregado')
     if(!todoPagado){
         setPagado(true)
     }
-    }
+    } */
+/*     function valiTodoPagado(){
+        axios.get(serverFinder(`detalle/idcliente/${idCliente}`))
+        .then(res => {
+            let valitodoPagadoDetalle = res.data.find(e => e === 'confirmado' || e === 'solicitado' || e=== 'entregado')
+            
+            if(!valitodoPagadoDetalle){
+                setPagado(true)
+        }})
+    } */
     const handleOnClick = (e) => {
         e.preventDefault();
         let vali = false
@@ -316,16 +347,23 @@ export default function Detalle({ idResto, funcion }) {
             </Table>
             <center>
             <div className={global.underlinecard}>
-            <h5>TOTAL: ${precioTotal}</h5>
+            <h5>TOTAL: ${totalCuenta}</h5>
             </div>
-                <div>
-                    <h5>Comentario</h5>
-                   <p>{clientes}</p>
+                
+                    {
+                        clientes ? 
+                        <div>
+                        <h5>Comentario</h5>
+                        <p>{clientes}</p> 
+                        </div> : null
+                    }
+            {/*         <h5>Comentario</h5>
+                   <p>{clientes}</p> */}
                    
 
                     
             
-                </div>
+                
                 
                 {
                  emergente ?
@@ -384,7 +422,7 @@ export default function Detalle({ idResto, funcion }) {
         : null
             
                 }  
-                 {
+                 {/* {
                     pagado ? 
                 <div className={global.whitecardmesasresto}>
                     <center>
@@ -392,7 +430,7 @@ export default function Detalle({ idResto, funcion }) {
                         
                     </center>
                 </div> : null
-                }
+                } */}
                 </center>
                 </center>
         </div>

@@ -5,7 +5,7 @@
 //                                    Ver tu pedido
 // en base a lo que se seleccione renderizar un componente u otro
 
-import './homeCliente.css';
+
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import Carta from '../carta/carta.jsx'
@@ -100,7 +100,7 @@ export default function HomeClient(){
         <Navbar.Brand> */}
             <div className="col">
                 <center>
-                <img src={logo} alt="Logo" width="20%"  className="navbar-brand" />
+                <img src={logo} alt="Logo" width="50%"  className="navbar-brand" />
                 </center>
             </div>
             <div className="container-fluid">
@@ -127,17 +127,8 @@ export default function HomeClient(){
             <br/>
             {infoCliente.estadoCliente === 'solicitado'?
                 <div>
-                    <center>
-                    <div className="advertencia">
-                        <h6>¡En un instante te habilitaremos para realizar pedidos!</h6>
-                    </div>
-                    </center>    
-                   
-                    <center>
-                        <div className="mientras">
-                            <h6 id="mientras_texto">Mientras tanto puedes ir viendo nuestro menu...</h6>
-                        </div>
-                    </center>
+                    <h6>En un instante te habilitaremos para realizar pedidos...</h6>
+                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
                 </div>
                 : null
             }    
@@ -154,11 +145,45 @@ export default function HomeClient(){
             </div> 
             <br/>
             <br/>
-    
+
+
+            
+
+
+            {
+              infoCliente.estadoCliente === 'solicitado'?
+
+                <div>
+                    <h5>En un instante te habilitaremos para realizar pedidos.</h5>
+                    <h6>mientras tanto puedes ir viendo nuestro menu...</h6>
+                </div>
+                : null
+            }    
+
         </div>
         <footer className={global.footer}>
-        {/* <img src={logowhite} height="55px" alt="logo"/> */}     
+        <img src={logowhite} height="55px" alt="logo"/>
+<<<<<<< HEAD
+        <div>
+        {/* <script type="text/javascript"> 
+        {(function () { 
+            var ldk = document.createElement('script'); 
+            ldk.type = 'text/javascript'; ldk.async = true; 
+            ldk.src = 'https://s.cliengo.com/weboptimizer/61afe3f2f02aad002a715f0c/61afe3f4f02aad002a715f10.js?platform=view_installation_code'; 
+            var s = document.getElementsByTagName('script')[0]; 
+            s.parentNode.insertBefore(ldk, s); 
+            })()};
+            </script> */}
+        </div>
         </footer>
         </div>
+        
+  
+=======
+        </footer>
+
+    </div>
+
+>>>>>>> d37ba81be7ce579c26106f0cbcc0141b7941b49e
     )
 }

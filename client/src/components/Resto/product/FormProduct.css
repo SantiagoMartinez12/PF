@@ -23,10 +23,13 @@
   .peso { grid-area: peso; }
   .marca { grid-area: marca; }
   .footer { grid-area: footer; }
-  .goBack { grid-area: goBack; }
-  .submit { grid-area: submit; }
+  .goBack { grid-area: goBack;}
+  .submit { grid-area: submit; 
+  margin-top: 8rem;}
   .descripcion { grid-area: descripcion; }
-  .imagen { grid-area: imagen; }
+  .imagen { 
+    grid-area: imagen;
+   }
 
   
 
