@@ -8,6 +8,7 @@ import { getProductos } from "../../../store/actions";
 import { useParams } from "react-router";
 import Buscador from "./Buscador";
 import { filtroProductos} from '../../../store/actions';
+import { Carousel } from '@trendyol-js/react-carousel';
 
 //Filtros del resto terminados
 const Product = () => {
@@ -100,6 +101,7 @@ const Product = () => {
                 {" "}
                 Todas
               </option>
+              
               {data[0]
                 ? data.map((categories) => {
                     return (
@@ -109,9 +111,11 @@ const Product = () => {
                     );
                   })
                 : null}
+                
             </select>
-
+             
             {data[0] ? (
+              
               data.map((categories) => {
                 return (
                   <div>
