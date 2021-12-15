@@ -250,8 +250,9 @@ const reducer = (state = initialState, action) => {
 
     case FILTRO_ADMIN_ID:
       const todosLosResto = state.allResto;
-      let filtrad = todosLosResto.filter((el) => el.id === action.payload);
-      console.log(filtrad);
+      let filtrad = todosLosResto?.filter((el) =>
+        el.id.includes(action.payload)
+      );
 
       return {
         ...state,
@@ -261,25 +262,21 @@ const reducer = (state = initialState, action) => {
     case FILTRO_ADMIN_NAME:
       const todosResto = [...state.allResto];
       let name = action.payload.toLowerCase();
-      console.log(name);
-      console.log(todosResto);
       let filt = todosResto.filter((el) =>
         el.name?.toLowerCase().includes(name)
       );
-
-      console.log(filt);
 
       return {
         ...state,
         allRestoFiltrosAdmin: filt,
       };
 
-    case 'setPedidoModificado':
+    case "setPedidoModificado":
       return {
         ...state,
-        pedidoModificado: action.payload
-      }
-      
+        pedidoModificado: action.payload,
+      };
+
     default:
       return state;
   }

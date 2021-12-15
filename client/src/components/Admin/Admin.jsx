@@ -29,7 +29,7 @@ export default function SuperAdmin() {
     let indexOfFirstResto = indexOfLastResto - restoPerPage 
     let currentResto = filtrado.slice(indexOfFirstResto, indexOfLastResto)
 
- console.log(currentResto)
+ 
     let paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
