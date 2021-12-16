@@ -155,66 +155,77 @@ export default function Usuario() {
       
   return ( 
     
-  
-        <div className={style.display}>
-            <div className={style.formulario}>
-                <h1 className={style.titulo}>Información de Usuario</h1>
-                
-                <div className={style.info}>
-              
-                 <img src={restoInfo[0]?.image} alt="img not found" width="200px" height="250px" />
-          <div>
-            {editarImagen === false ? <> <button onClick={(e) => handleEditarImagen(e)} className="btn btn-primary">Editar</button></>
+        <div class="container-fluid">
+          <div class={style.formulario}>
+          <div class="row"><h4 className={style.titulo}>Información de Usuario</h4></div>
+          <div class="col">
+          <img src={restoInfo[0]?.image} alt="Imagen no encontrada" width="200px" height="250px" />
+          </div>
+          <div class="col">
+          {editarImagen === false ? <> <button onClick={(e) => handleEditarImagen(e)} className="btn btn-primary">Editar</button></>
               :
               <div>
                 <input onChange={(e) => { handleImg(e) }} type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" className="form-control"></input>
                 <img src={control} height="200" alt="Preview..." />
                 <button onClick={(e) => handleEditarImagen(e)} className="btn btn-primary">x</button>
               </div>}
-                  </div>
-              
-                  <div className={style.nombre}>Nombre de Resto: {restoInfo[0]?.name}</div>
-                  {editarNombreResto===false?<>
+          </div>
+          <div class="col">
+          <div className={style.nombre}>Nombre de Resto: {restoInfo[0]?.name}</div>
+          </div>
+          <div class="col">
+          {editarNombreResto===false?<>
                   <button onClick={(e)=>handleEditarNombreResto(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}} name='name' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarNombreResto(e)} class="btn btn-outline-secondary" type="button" id="button-addon2">x</button> 
                   </div>
                   </>}
-
-                  <div className={style.nombreUsuario}>Nombre de Usuario: {restoInfo[0]?.usuario}</div>
-                  {editarNombreUsuario===false?<>
+          </div>
+          <div class="col">
+          <div className={style.nombreUsuario}>Nombre de Usuario: {restoInfo[0]?.usuario}</div>
+          </div>
+          <div class="col">
+          {editarNombreUsuario===false?<>
                   <button onClick={(e)=>handleEditarNombreUsuario(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}} name='usuario' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarNombreUsuario(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
-
-                  <div className={style.mail}>Email: {restoInfo[0]?.mail} </div>
-                  {editarEmail===false?<>
+          </div>
+          <div class="col">
+          <div className={style.mail}>Email: {restoInfo[0]?.mail} </div>
+          </div>
+          <div class="col">
+          {editarEmail===false?<>
                   <button onClick={(e)=>handleEditarEmail(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}}  name='mail' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarEmail(e)} class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
-              
-                  <div className={style.contraseña}>Mesas: {restoInfo[0]?.mesa} </div>
-                  {editarNumeroMesas===false?<>
+          </div>
+          <div class="col">
+          <div className={style.contraseña}>Mesas: {restoInfo[0]?.mesa} </div>
+          </div>
+          <div class="col">
+          {editarNumeroMesas===false?<>
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}} name='mesa' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarNumeroMesas(e)} class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
-                  
-                  <div >
-                  <h1 className={style.tituloMercado}>Configuracion Mercado Pago</h1>
-                  
-                  <div>
-                  <div className={style.accessToken}>Access Token: {restoInfo[0]?.accesstoken} </div>
-                  {console.log(restoInfo[0]?.accesstoken)}
+          </div>
+          <div class="col">
+          <h3 className={style.tituloMercado}>Configuración de Mercado Pago</h3>
+          </div>
+          <div class="col">
+          Access Token: {restoInfo[0]?.accesstoken}
+          </div>
+          <div class="col">
+          {console.log(restoInfo[0]?.accesstoken)}
                   {editarAccessToken===false?<>
                   <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">Editar</button></> : <>
 
@@ -223,27 +234,24 @@ export default function Usuario() {
                   <button onClick={(e)=>handleEditarAccessToken(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
-
-
-                  <div className={style.publicKey}>Public Key: {restoInfo[0]?.publickey} </div>
-                  {editarPublicKey===false?<>
+            </div>
+            <div class="col">
+            Public Key: {restoInfo[0]?.publickey} 
+            </div>
+            <div class="col">
+            {editarPublicKey===false?<>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
                   <input onChange={(e)=> {handleModificar(e)}} name='publickey' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarPublicKey(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
-                  </div>
-
-                  </div>
-                    <div>
-                    <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
-                    </div>
-                </div>
-
             </div>
-
-        </div>       
+            <div class="col">
+            <button onClick={(e)=>handleSubmit(e)} className={global.botonnavbar}>Enviar cambios</button>
+            </div>
+            </div>
+        </div> 
       )
 
 }

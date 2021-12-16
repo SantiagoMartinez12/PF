@@ -7,7 +7,7 @@
     left:0px;
     display:flex;
     align-content: center;
-
+    z-index: 3;
 }
 
 .tu_pedido_total{

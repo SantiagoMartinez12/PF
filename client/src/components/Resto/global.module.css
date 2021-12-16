@@ -39,19 +39,36 @@ body{
 }
 
 .whitecard{
-    display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     padding: 23px;
     margin: 10px;
     background:white;
-    width: 300px;
+    width: 250px;
     border-radius: 8px;
     box-shadow: 3px 9px 5px -2px rgba(0,0,0,0.11)
 }
 
+.whitecardmod{
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 23px;
+    margin: 10px;
+}
+
+.btnwhitecardmod{
+    margin-top:10px;
+}
+
+.section {
+    height: 75%;
+    margin: 0 auto;
+    display:flex;
+}
 .whitecardpedido{
     display: flex;
     justify-content: flex-start;

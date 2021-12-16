@@ -61,12 +61,14 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
                     {productos.length > 3 ? <button type='button' onClick={(e) => handleAfter(e)} className="btn btn-outline-primary">{'>'}</button> : null}
                 </div>
                 <div className="product">
-
+                    <div class="row">
                     {currentDataShow.map((product) => {
-                        return <div className='card' style={{ width: "18rem" }}>
+                        return <div class="col"><div className='card' style={{ width: "18rem" }}>
                             <img className="card-img-top alturaFijaFoto" src={product.imagen} alt="imagen" />
                             <div className="card-body">
+                                <center>
                                 <h5 className="card-title">{product.name}</h5>
+                                </center> 
                                 <p><b>Precio: </b> $ {product.precio} </p>
                                 <div className='paraDistribuir'>
                                     <span><b>Disponible?:  </b></span> {product.disponible? 
@@ -80,6 +82,7 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
                                 <button type='button' onClick={(e) => handleSelect(e)} value={JSON.stringify(product)} className="btn btn-primary">Modificar</button>
                             </div>
                         </div>
+                        </div>
                         /*  <div className="card" style="width: 18rem;">
                          <img className="card-img-top" src="..." alt="Card image cap">
                          <div className="card-body">
@@ -90,6 +93,7 @@ const ProductsPerCategory = ({ productos, setShowDetail, setInfoDetail }) => {
                        </div> */
                     })
                     }
+                    </div>
                 </div>
             </div>
 
