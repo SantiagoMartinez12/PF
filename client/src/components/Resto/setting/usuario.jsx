@@ -230,7 +230,7 @@ export default function Usuario() {
                   <button onClick={(e)=>handleEditarAccessToken(e)} className="btn btn-primary">Editar</button></> : <>
 
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='accesstoken' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='token' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarAccessToken(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
@@ -242,7 +242,7 @@ export default function Usuario() {
             {editarPublicKey===false?<>
                   <button onClick={(e)=>handleEditarPublicKey(e)} className="btn btn-primary">Editar</button></> : <>
                   <div class="input-group mb-3">
-                  <input onChange={(e)=> {handleModificar(e)}} name='publickey' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
+                  <input onChange={(e)=> {handleModificar(e)}} name='key' type="text" class="form-control" placeholder="" aria-label="" aria-describedby="button-addon2"></input>
                   <button onClick={(e)=>handleEditarPublicKey(e)}  class="btn btn-outline-secondary" type="button" id="button-addon2">x</button>
                   </div>
                   </>}
