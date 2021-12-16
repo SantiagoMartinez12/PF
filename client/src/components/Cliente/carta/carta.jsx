@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { filtroProductos, getProductos } from '../../../store/actions';
 import ItemCarta from './itemCarta';
 import { useParams } from 'react-router';
+import { CardGroup, Card } from 'react-bootstrap';
 var global = require('../../Resto/global.module.css')
 
 export default function Carta({verPedido}){
@@ -64,14 +65,18 @@ export default function Carta({verPedido}){
                 <br/>
                 
             
-                <div className="d-grid gap-2 d-md-flex justify-content-sm-end">
+                {/* <div className="d-grid gap-2 d-md-flex justify-content-sm-end"> */}
+
+                    <CardGroup>
                     {filtrados.length > 0 ?
 
                         filtrados?.map(p=>{
                         return(
+                            <Card border="light" style={{ margin: '3px'}}>
                             <div key={p.id} className="col align-items-center">
                                 <ItemCarta data={p}/> 
                             </div>
+                            </Card>
                         )
                         })
                     :
@@ -79,7 +84,8 @@ export default function Carta({verPedido}){
                         Lo sentimos! Por el momento no contamos con estos productos. Selecciona otra categoria para continuar... 
                     </p>
                     }
-                </div>
+                    </CardGroup>
+                {/* </div> */}
             </div>
         </div>    
     )

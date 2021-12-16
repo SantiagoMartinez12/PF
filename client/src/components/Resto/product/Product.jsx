@@ -41,13 +41,13 @@ const Product = () => {
   };
 
   return (
-    <>
+    <div class="container-fluid">
       
       {showFiltrados ? (
         <>
         <div>
         <Buscador setShowFiltrados={setShowFiltrados} />
-      </div>
+      </div >
           <button type="button" className="btn btn-primary me-md-2" onClick={(e) => handleReset(e)}>
             Volver
           </button>
@@ -78,10 +78,14 @@ const Product = () => {
       ) : form ? (
         <FormProduct />
       ) : (
-        <div>
-          <div>
-            <h2>Productos</h2>
+        <div class="row">
+          <div class="col-12">
+            <center>
+            <h3>Productos</h3>
+            </center>
           </div>
+          
+          <div class="col-3 align-self-center">
           <div className="marginBottom">
             <button
               type="button"
@@ -91,11 +95,18 @@ const Product = () => {
             Agregar Producto
             </button>
           </div>
+          </div>
+          <div class="col-5 align-self-center">
           <div className="marginBottom">
         <Buscador setShowFiltrados={setShowFiltrados} />
+        </div>
       </div>
-          <div >
-            <h5>Buscar por categoría:</h5>
+          <div class="col-3 align-self-center">
+            
+            
+            <h6>Buscar por categoría:</h6>
+            
+            
             <select onChange={(e) => handleFiltroCategorias(e)}>
               <option key="All" value="All">
                 {" "}
@@ -113,12 +124,15 @@ const Product = () => {
                 : null}
                 
             </select>
-             
+            
+            
+          </div>
+          <div class="row">
             {data[0] ? (
               
               data.map((categories) => {
                 return (
-                  <div>
+                  <div class="col">
                     <h4>{categories.name}</h4>
                     <ProductsPerCategory
                       productos={categories.productos}
@@ -136,7 +150,7 @@ const Product = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

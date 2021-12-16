@@ -1,18 +1,27 @@
 .formulario {
-  display: inline-grid;
+  /* display: inline-grid;
   align-content: space-evenly;
   justify-content: start;
   align-items: baseline;
-  justify-items: center;
+  justify-items: center; */
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+
 }
 .titulo{
   text-align: center;
-  background-color: whitesmoke;
-  font-size: -webkit-xxx-large;
+  background-color: coral;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 18pt;
+  color: #fff;
+  border-radius: 10px;
 }
 
 .info{
-  width: 365px;
+    width: 100%;
     height: 725px;
     display: flex;
     flex-direction: row;
@@ -24,7 +33,11 @@
 
 .tituloMercado{
   text-align: center;
-  background-color: whitesmoke;
-  font-size: xx-large;
+  background-color: coral;
+  padding: 5px;
+  margin-top: 10px;
+  font-size: 18pt;
+  color: #fff;
+  border-radius: 10px;
 }
 
